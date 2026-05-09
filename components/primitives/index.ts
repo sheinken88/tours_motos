@@ -10,4 +10,5 @@ export { HandUnderline } from "./HandUnderline";
 export { SkullBadge } from "./SkullBadge";
 export { Stamp } from "./Stamp";
 export { StickyNote } from "./StickyNote";
+export { TourCard } from "./TourCard";
 export { XIcon } from "./XIcon";

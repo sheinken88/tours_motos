@@ -42,5 +42,25 @@
     "eyebrow": "[NEEDS_TRANSLATION] Moto On/Off · expediciones",
     "headline": "[NEEDS_TRANSLATION] VIAJES QUE DEJAN MARCA",
     "manifesto": "[NEEDS_TRANSLATION] Cruzamos los caminos que ponen a prueba lo que tenés adentro. Doce días, 2.200 kilómetros, todo ganado en la ruta."
+  },
+  "tours_index": {
+    "eyebrow": "[NEEDS_TRANSLATION] Catálogo",
+    "headline": "[NEEDS_TRANSLATION] RUTAS QUE TE CAMBIAN",
+    "intro": "[NEEDS_TRANSLATION] Cada ruta es una que ya rodamos.",
+    "all_routes_eyebrow": "[NEEDS_TRANSLATION] Todas las rutas",
+    "all_routes_heading": "[NEEDS_TRANSLATION] Elegí tu travesía",
+    "empty": "[NEEDS_TRANSLATION] Estamos preparando la próxima temporada."
+  },
+  "tour_detail": {
+    "itinerary_heading": "[NEEDS_TRANSLATION] Día por día",
+    "departures_eyebrow": "[NEEDS_TRANSLATION] Salidas",
+    "departures_heading": "[NEEDS_TRANSLATION] Próximas fechas",
+    "no_departures": "[NEEDS_TRANSLATION] Sin fechas confirmadas.",
+    "status_open": "[NEEDS_TRANSLATION] Disponible",
+    "status_low": "[NEEDS_TRANSLATION] Últimos lugares",
+    "status_sold_out": "[NEEDS_TRANSLATION] Agotado",
+    "related_eyebrow": "[NEEDS_TRANSLATION] Otras rutas",
+    "related_heading": "[NEEDS_TRANSLATION] Si esta no, esta",
+    "missing_content": "[NEEDS_TRANSLATION] Contenido en preparación."
   }
 }

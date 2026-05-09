@@ -1,11 +1,12 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Link from "next/link";
-import { Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import { Container } from "@/components/primitives";
 import { Hero } from "@/components/sections/Hero";
+import { TourGrid } from "@/components/sections/TourGrid";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { isLocale } from "@/lib/i18n/config";
-import { getTours } from "@/lib/sheets/queries";
 import { Link as I18nLink } from "@/lib/i18n/navigation";
+import { getTours } from "@/lib/sheets/queries";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -16,6 +17,7 @@ export default async function Home({ params }: Props) {
   if (!isLocale(locale)) return null;
   setRequestLocale(locale);
 
+  const t = await getTranslations("tours_index");
   const tours = await getTours(locale);
 
   return (
@@ -24,42 +26,23 @@ export default async function Home({ params }: Props) {
 
       {/* Tours preview — exercises the Phase 5 Sheets pipeline */}
       <PaperZone density="default" tornBottom={3}>
-        <Container className="space-y-8">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <Eyebrow rule>Rutas</Eyebrow>
-              <DisplayHeading size="xl" as="h2" className="mt-3">
-                Viajes que dejan marca
-              </DisplayHeading>
-            </div>
+        <div className="flex flex-col gap-8">
+          <TourGrid
+            tours={tours}
+            locale={locale}
+            limit={3}
+            eyebrow={t("eyebrow")}
+            heading={t("headline")}
+          />
+          <Container>
             <I18nLink
               href="/tours"
-              className="text-eyebrow tracking-eyebrow font-semibold uppercase underline-offset-4 hover:underline"
+              className="text-eyebrow tracking-eyebrow text-accent-on-paper font-semibold uppercase underline-offset-4 hover:underline"
             >
-              Ver todos →
+              {t("all_routes_eyebrow")} →
             </I18nLink>
-          </div>
-
-          <ul className="grid gap-6 md:grid-cols-3">
-            {tours.slice(0, 3).map((tour) => (
-              <li key={tour.slug}>
-                <I18nLink
-                  href={`/tours/${tour.slugs[locale]}`}
-                  className="bg-paper-light hover:shadow-sticker-ink ease-out-soft group flex h-full flex-col gap-4 border-2 border-current/20 p-6 transition-[box-shadow,transform] duration-200 hover:-translate-y-1"
-                >
-                  <Stamp className="text-accent-on-paper self-start">{tour.region}</Stamp>
-                  <DisplayHeading size="md" as="h3">
-                    {tour.title[locale]}
-                  </DisplayHeading>
-                  <p className="text-on-paper font-sans text-sm leading-relaxed opacity-80">
-                    {tour.duration_days} días · {tour.distance_km.toLocaleString("es-AR")} km ·{" "}
-                    {tour.difficulty}
-                  </p>
-                </I18nLink>
-              </li>
-            ))}
-          </ul>
-        </Container>
+          </Container>
+        </div>
       </PaperZone>
 
       {/* Dev surfaces — kept for development convenience; remove when the

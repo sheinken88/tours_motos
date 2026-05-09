@@ -42,5 +42,25 @@
     "eyebrow": "Moto On/Off · expediciones",
     "headline": "VIAJES QUE DEJAN MARCA",
     "manifesto": "Cruzamos los caminos que ponen a prueba lo que tenés adentro. Doce días, 2.200 kilómetros, todo ganado en la ruta."
+  },
+  "tours_index": {
+    "eyebrow": "Catálogo",
+    "headline": "RUTAS QUE TE CAMBIAN",
+    "intro": "Cada ruta es una que ya rodamos. Los días, los kilómetros y la altura están medidos. Lo que no se mide es lo que vas a volver a contar.",
+    "all_routes_eyebrow": "Todas las rutas",
+    "all_routes_heading": "Elegí tu travesía",
+    "empty": "Estamos preparando la próxima temporada. Volvé pronto."
+  },
+  "tour_detail": {
+    "itinerary_heading": "Día por día",
+    "departures_eyebrow": "Salidas",
+    "departures_heading": "Próximas fechas",
+    "no_departures": "Sin fechas confirmadas por ahora — escribinos y armamos una.",
+    "status_open": "Disponible",
+    "status_low": "Últimos lugares",
+    "status_sold_out": "Agotado",
+    "related_eyebrow": "Otras rutas",
+    "related_heading": "Si esta no, esta",
+    "missing_content": "Contenido en preparación."
   }
 }

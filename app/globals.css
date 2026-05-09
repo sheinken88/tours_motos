@@ -110,6 +110,71 @@
 }
 
 /* =============================================================================
+   Zone-aware primitive defaults.
+   Surfaces (Phase 3 RedZone/PaperZone) set data-zone="red" or data-zone="paper"
+   on their root. These descendant selectors flip primitive colors automatically
+   so component authors don't need to thread a zone prop through every call.
+   See lib/zone.ts for the TS contract.
+   ============================================================================= */
+
+@layer components {
+  /* DisplayHeading — red on paper (signature), paper on red */
+  [data-zone="paper"] .display-heading {
+    color: var(--color-brand-red);
+  }
+  [data-zone="red"] .display-heading {
+    color: var(--color-paper);
+  }
+
+  /* Eyebrow + body defaults */
+  [data-zone="paper"] .eyebrow {
+    color: var(--color-brand-red);
+  }
+  [data-zone="red"] .eyebrow {
+    color: var(--color-paper);
+    opacity: 0.85;
+  }
+
+  /* Sticker-outline button — outline + text in zone-foreground;
+     hover fills with that color and inverts text to zone-background. */
+  [data-zone="paper"] .sticker-outline {
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+  [data-zone="paper"] .sticker-outline:hover {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+  [data-zone="red"] .sticker-outline {
+    color: var(--color-paper);
+    border-color: var(--color-paper);
+  }
+  [data-zone="red"] .sticker-outline:hover {
+    background-color: var(--color-paper);
+    color: var(--color-brand-red);
+  }
+
+  /* Sticker-filled button — paper chip with ink text on red zone;
+     ink chip with paper text on paper zone. Max one per zone. */
+  [data-zone="paper"] .sticker-filled {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+  [data-zone="red"] .sticker-filled {
+    background-color: var(--color-paper);
+    color: var(--color-brand-red);
+  }
+
+  /* Focus rings — paper on red, ink on paper. design.md §2 accessibility. */
+  [data-zone="red"] :focus-visible {
+    outline-color: var(--color-paper);
+  }
+  [data-zone="paper"] :focus-visible {
+    outline-color: var(--color-ink);
+  }
+}
+
+/* =============================================================================
    Base layer — body defaults, focus rings, motion preferences.
    ============================================================================= */
 

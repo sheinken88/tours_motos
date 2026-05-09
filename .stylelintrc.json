@@ -32,6 +32,7 @@
     "custom-property-empty-line-before": null,
     "rule-empty-line-before": null,
     "alpha-value-notation": null,
+    "no-descending-specificity": null,
     "declaration-property-value-disallowed-list": [
       {
         "/.*/": [

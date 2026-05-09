@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "trips": "Viajes",
+    "destinations": "Destinos",
+    "about": "Nosotros",
+    "journal": "Diario",
+    "gear": "Equipo",
+    "cta": "Hablemos",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú"
+  },
+  "footer": {
+    "section_trips": "Viajes",
+    "section_journal": "Diario",
+    "section_contact": "Contacto",
+    "newsletter_eyebrow": "Diario",
+    "newsletter_title": "Rutas, polvo y notas de campo",
+    "newsletter_placeholder": "Tu correo",
+    "newsletter_submit": "Suscribirme",
+    "rights": "Todos los derechos reservados.",
+    "instagram": "Instagram",
+    "email": "Correo"
+  },
+  "lang_switcher": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "Inglés",
+    "pt": "Portugués"
+  },
+  "whatsapp": {
+    "label": "Hablar por WhatsApp",
+    "default_message": "Hola, me interesa una expedición."
+  },
+  "common": {
+    "plan_trip": "Planeá tu viaje",
+    "see_routes": "Ver las rutas",
+    "read_journal": "Leé el diario",
+    "talk_to_us": "Hablemos",
+    "hold_a_spot": "Reservá un lugar"
+  },
+  "home": {
+    "eyebrow": "Moto On/Off · expediciones",
+    "headline": "VIAJES QUE DEJAN MARCA",
+    "manifesto": "Cruzamos los caminos que ponen a prueba lo que tenés adentro. Doce días, 2.200 kilómetros, todo ganado en la ruta."
+  }
+}

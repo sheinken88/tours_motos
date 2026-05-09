@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "trips": "[NEEDS_TRANSLATION] Viajes",
+    "destinations": "[NEEDS_TRANSLATION] Destinos",
+    "about": "[NEEDS_TRANSLATION] Nosotros",
+    "journal": "[NEEDS_TRANSLATION] Diario",
+    "gear": "[NEEDS_TRANSLATION] Equipo",
+    "cta": "[NEEDS_TRANSLATION] Hablemos",
+    "open_menu": "[NEEDS_TRANSLATION] Abrir menú",
+    "close_menu": "[NEEDS_TRANSLATION] Cerrar menú"
+  },
+  "footer": {
+    "section_trips": "[NEEDS_TRANSLATION] Viajes",
+    "section_journal": "[NEEDS_TRANSLATION] Diario",
+    "section_contact": "[NEEDS_TRANSLATION] Contacto",
+    "newsletter_eyebrow": "[NEEDS_TRANSLATION] Diario",
+    "newsletter_title": "[NEEDS_TRANSLATION] Rutas, polvo y notas de campo",
+    "newsletter_placeholder": "[NEEDS_TRANSLATION] Tu correo",
+    "newsletter_submit": "[NEEDS_TRANSLATION] Suscribirme",
+    "rights": "[NEEDS_TRANSLATION] Todos los derechos reservados.",
+    "instagram": "Instagram",
+    "email": "[NEEDS_TRANSLATION] Correo"
+  },
+  "lang_switcher": {
+    "label": "[NEEDS_TRANSLATION] Idioma",
+    "es": "Spanish",
+    "en": "English",
+    "pt": "Portuguese"
+  },
+  "whatsapp": {
+    "label": "[NEEDS_TRANSLATION] Hablar por WhatsApp",
+    "default_message": "[NEEDS_TRANSLATION] Hola, me interesa una expedición."
+  },
+  "common": {
+    "plan_trip": "[NEEDS_TRANSLATION] Planeá tu viaje",
+    "see_routes": "[NEEDS_TRANSLATION] Ver las rutas",
+    "read_journal": "[NEEDS_TRANSLATION] Leé el diario",
+    "talk_to_us": "[NEEDS_TRANSLATION] Hablemos",
+    "hold_a_spot": "[NEEDS_TRANSLATION] Reservá un lugar"
+  },
+  "home": {
+    "eyebrow": "[NEEDS_TRANSLATION] Moto On/Off · expediciones",
+    "headline": "[NEEDS_TRANSLATION] VIAJES QUE DEJAN MARCA",
+    "manifesto": "[NEEDS_TRANSLATION] Cruzamos los caminos que ponen a prueba lo que tenés adentro. Doce días, 2.200 kilómetros, todo ganado en la ruta."
+  }
+}

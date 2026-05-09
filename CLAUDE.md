@@ -175,7 +175,9 @@ If a request would violate one of these, push back before implementing.
 
 ## 5. Tailwind & Tokens
 
-The complete `tailwind.config.ts` is specified in the design system §8. It extends the theme with:
+> **Implementation note (Phase 0):** the project ships on **Tailwind v4**, which uses **CSS-first configuration** via `@theme` blocks in `app/globals.css` rather than a `tailwind.config.ts` file. The token names below are unchanged — only the **declaration site** moved from JS to CSS. Treat references to `tailwind.config.ts` in this document and `design.md §8` as historical: the same tokens live in `app/globals.css` under `@theme inline` blocks. The single brand-color rule, no-`border-radius` rule, no-pure-black/white rule, and all other hard rules apply identically.
+
+The token surface (regardless of declaration site) is:
 
 - `colors.brand.{red, red-deep, red-bright}` — burgundy-rust palette
 - `colors.ink.{DEFAULT, soft}` — warm-black, never pure black

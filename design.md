@@ -774,8 +774,10 @@ Next.js 14+ App Router, Tailwind, MDX for static content, Google Sheets for tour
 
 ### Tailwind theme tokens
 
+> **Implementation note (Phase 0):** the project runs on **Tailwind v4**, which uses CSS-first configuration. The JS config below is preserved as a **reference surface** (token names, values, scales). In code, these tokens live in `app/globals.css` under `@theme inline { ... }` blocks. Translate JS keys to CSS variables at write time: `colors.brand.red` → `--color-brand-red`, `fontSize.display-2xl` → `--text-display-2xl` (with companion `--text-display-2xl--line-height` and `--text-display-2xl--letter-spacing`), `boxShadow.sticker-red` → `--shadow-sticker-red`, etc. The visual contract is unchanged.
+
 ```ts
-// tailwind.config.ts
+// tailwind.config.ts (REFERENCE — actual config lives in app/globals.css under @theme blocks)
 import type { Config } from "tailwindcss";
 
 export default {

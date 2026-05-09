@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!--
+    Global SVG sprite — defined once, referenced everywhere via <use href="/sprites/distress.svg#id" />.
+    Inline this sprite at the top of <body> in app/layout.tsx so filters work cross-document.
+    See design.md §3 (typography distress) and §5 (X-bullets, hand-underlines, stamps, skull).
+  -->
+  <defs>
+    <!-- ── Woodblock distress filter ──────────────────────────────────────── -->
+    <!-- Apply via:  filter: url(#woodblock-distress);  on heavy display type only.
+         Body and UI text NEVER receive distress treatment (CLAUDE.md hard rule). -->
+    <filter id="woodblock-distress" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+      <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="1" seed="9" result="grain" />
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 1
+                                                       0 0 0 0 1
+                                                       0 0 0 0 1
+                                                       0 0 0 -0.5 1.05" result="grainAlpha" />
+      <feComposite in="displaced" in2="grainAlpha" operator="in" result="distressed" />
+      <feMerge>
+        <feMergeNode in="displaced" />
+        <feMergeNode in="distressed" />
+      </feMerge>
+    </filter>
+
+    <!-- ── X-bullet glyph — used for all bullet lists in this system ──────── -->
+    <symbol id="x-bullet" viewBox="0 0 20 20">
+      <path d="M3,3 L17,17 M17,3 L3,17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+    </symbol>
+
+    <!-- ── Hand-underline brush stroke — design.md §3 emphasis decoration ── -->
+    <symbol id="hand-underline" viewBox="0 0 200 12" preserveAspectRatio="none">
+      <path d="M2,8 C40,2 80,11 120,5 S180,9 198,4" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none" />
+    </symbol>
+
+    <!-- ── Stamp frame (rectangular border for <Stamp> primitive) ────────── -->
+    <symbol id="stamp-frame" viewBox="0 0 120 40">
+      <rect x="2" y="2" width="116" height="36" fill="none" stroke="currentColor" stroke-width="2" />
+      <rect x="6" y="6" width="108" height="28" fill="none" stroke="currentColor" stroke-width="0.7" stroke-dasharray="2 2" />
+    </symbol>
+
+    <!-- ── Skull / badge brand mark — placeholder geometry, refined post-client confirmation (open question §16) ── -->
+    <symbol id="skull-badge" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <!-- Skull cap -->
+        <path d="M32,4 C18,4 10,14 10,28 C10,34 12,40 16,42 L16,52 L48,52 L48,42 C52,40 54,34 54,28 C54,14 46,4 32,4 Z" />
+        <!-- Eye sockets (negative space via overlay) -->
+        <circle cx="22" cy="28" r="5" fill="#1f140e" />
+        <circle cx="42" cy="28" r="5" fill="#1f140e" />
+        <!-- Nose -->
+        <path d="M30,36 L32,42 L34,36 Z" fill="#1f140e" />
+        <!-- Chin notch -->
+        <rect x="22" y="48" width="4" height="6" fill="#1f140e" />
+        <rect x="30" y="48" width="4" height="6" fill="#1f140e" />
+        <rect x="38" y="48" width="4" height="6" fill="#1f140e" />
+        <!-- Outer ring -->
+        <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2" />
+      </g>
+    </symbol>
+  </defs>
+</svg>

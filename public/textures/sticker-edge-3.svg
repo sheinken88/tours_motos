@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" preserveAspectRatio="none" width="100%" height="100%">
+  <!-- Sticker-edge variant 3 — minimal irregularity, almost-straight. -->
+  <path d="M2,3 L24,4 L48,2 L74,4 L100,3 L128,4 L154,2 L178,4 L198,3 L197,16 L198,30 L196,44 L197,57 L178,56 L154,58 L128,56 L100,57 L74,56 L48,58 L24,56 L2,57 L3,44 L2,30 L4,16 Z"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+</svg>

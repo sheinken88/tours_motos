@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!--
+    Halftone-overlay placeholder. Tileable dot pattern in ink color.
+    Used as a fallback / decorative overlay. Real halftones are pre-processed PNG cutouts.
+  -->
+  <pattern id="halftone-dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+    <circle cx="4" cy="4" r="1.4" fill="#1f140e" />
+  </pattern>
+  <rect width="64" height="64" fill="url(#halftone-dots)" />
+</svg>

@@ -50,7 +50,7 @@ function PaperShowcase() {
     <section className="bg-paper-grain text-on-paper" data-zone="paper">
       <Container className="space-y-12 py-16">
         <ShowcaseHeader title="Paper zone" />
-        <PrimitiveBlocks />
+        <PrimitiveBlocks zone="paper" />
       </Container>
     </section>
   );
@@ -61,7 +61,7 @@ function RedShowcase() {
     <section className="bg-red-grunge text-on-red border-t-paper/20 border-t-2" data-zone="red">
       <Container className="space-y-12 py-16">
         <ShowcaseHeader title="Red zone" />
-        <PrimitiveBlocks />
+        <PrimitiveBlocks zone="red" />
       </Container>
     </section>
   );
@@ -78,7 +78,10 @@ function ShowcaseHeader({ title }: { title: string }) {
   );
 }
 
-function PrimitiveBlocks() {
+function PrimitiveBlocks({ zone }: { zone: "red" | "paper" }) {
+  // Tint variants chosen so each demo reads against its zone background.
+  const skullTintA = zone === "paper" ? "text-brand-red" : "text-paper-aged";
+  const skullTintB = zone === "paper" ? "text-paper-dark" : "text-paper-light";
   return (
     <>
       {/* DisplayHeading sizes */}
@@ -155,12 +158,14 @@ function PrimitiveBlocks() {
         </p>
       </Block>
 
-      {/* Stamps */}
+      {/* Stamps — Stamp uses currentColor; tint via parent or className */}
       <Block label="Stamp">
         <div className="flex flex-wrap items-center gap-4">
           <Stamp>EXPEDITION 14</Stamp>
           <Stamp tilt={2}>JUNE 2 · 2026</Stamp>
-          <Stamp tilt={-1}>SOLD OUT</Stamp>
+          <Stamp tilt={-1} className="opacity-70">
+            SOLD OUT
+          </Stamp>
         </div>
       </Block>
 
@@ -177,13 +182,17 @@ function PrimitiveBlocks() {
         </div>
       </Block>
 
-      {/* SkullBadge */}
-      <Block label="SkullBadge">
-        <div className="flex items-end gap-6">
-          <SkullBadge size="sm" />
-          <SkullBadge size="md" />
-          <SkullBadge size="lg" />
-          <SkullBadge size="xl" />
+      {/* SkullBadge — multiple sizes, multiple tints via currentColor.
+          Holes are transparent SVG mask cutouts so the page background shows through. */}
+      <Block label="SkullBadge — currentColor + transparent cutouts">
+        <div className="flex flex-wrap items-end gap-8">
+          <div className="flex items-end gap-3">
+            <SkullBadge size="sm" />
+            <SkullBadge size="md" />
+            <SkullBadge size="lg" />
+          </div>
+          <SkullBadge size="lg" className={skullTintA} />
+          <SkullBadge size="lg" className={skullTintB} />
         </div>
       </Block>
     </>
@@ -192,8 +201,8 @@ function PrimitiveBlocks() {
 
 function Block({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="border-t-2 border-dashed border-current/20 pt-6">
-      <p className="text-eyebrow tracking-eyebrow mb-4 font-mono text-xs uppercase opacity-60">
+    <div className="border-t-2 border-dashed border-current/25 pt-6">
+      <p className="text-eyebrow tracking-eyebrow mb-4 font-mono text-xs uppercase opacity-70">
         {label}
       </p>
       {children}

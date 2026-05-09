@@ -72,12 +72,13 @@ function StickerEdgeOutline({ edge }: { edge: Edge }) {
     >
       <path
         d={paths[edge]}
-        fill="transparent"
-        stroke="currentColor"
+        stroke="var(--sticker-fg, currentColor)"
         strokeWidth="2"
         strokeLinejoin="round"
         strokeLinecap="round"
-        className="transition-[fill] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:fill-current"
+        fill="var(--sticker-fg, currentColor)"
+        fillOpacity={0}
+        className="transition-[fill-opacity] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:[fill-opacity:1]"
       />
     </svg>
   );

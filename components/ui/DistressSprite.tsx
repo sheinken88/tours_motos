@@ -101,16 +101,27 @@ export function DistressSprite() {
         </symbol>
 
         <symbol id="skull-badge" viewBox="0 0 64 64">
-          <g fill="currentColor">
-            <path d="M32,4 C18,4 10,14 10,28 C10,34 12,40 16,42 L16,52 L48,52 L48,42 C52,40 54,34 54,28 C54,14 46,4 32,4 Z" />
-            <circle cx="22" cy="28" r="5" fill="#1f140e" />
-            <circle cx="42" cy="28" r="5" fill="#1f140e" />
-            <path d="M30,36 L32,42 L34,36 Z" fill="#1f140e" />
-            <rect x="22" y="48" width="4" height="6" fill="#1f140e" />
-            <rect x="30" y="48" width="4" height="6" fill="#1f140e" />
-            <rect x="38" y="48" width="4" height="6" fill="#1f140e" />
-            <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" strokeWidth="2" />
-          </g>
+          {/* Mask: white = visible, black = transparent cutout. Cutouts let
+              the page background show through, so the skull works on red,
+              paper, or any zone without hardcoding a hole color. */}
+          <mask id="skull-mask">
+            <rect width="64" height="64" fill="black" />
+            <path
+              d="M32,4 C18,4 10,14 10,28 C10,34 12,40 16,42 L16,52 L48,52 L48,42 C52,40 54,34 54,28 C54,14 46,4 32,4 Z"
+              fill="white"
+            />
+            <ellipse cx="22" cy="28" rx="4.2" ry="5" fill="black" />
+            <ellipse cx="42" cy="28" rx="4.2" ry="5" fill="black" />
+            <path d="M29.5,36 L32,42 L34.5,36 Z" fill="black" />
+            <rect x="21" y="46" width="3" height="6" fill="black" />
+            <rect x="26.5" y="46" width="3" height="6" fill="black" />
+            <rect x="32" y="46" width="3" height="6" fill="black" />
+            <rect x="37.5" y="46" width="3" height="6" fill="black" />
+          </mask>
+          {/* Outer ring */}
+          <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" strokeWidth="2" />
+          {/* Skull body — masked rect tinted with currentColor */}
+          <rect width="64" height="64" fill="currentColor" mask="url(#skull-mask)" />
         </symbol>
       </defs>
     </svg>

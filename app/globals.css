@@ -135,22 +135,26 @@
     opacity: 0.85;
   }
 
-  /* Sticker-outline button — outline + text in zone-foreground;
-     hover fills with that color and inverts text to zone-background. */
+  /* Sticker-outline button — outline drawn by an SVG path child of the button,
+     filled with --sticker-fg on hover. Text color flips to --sticker-bg on hover
+     so it stays readable against the filled path.
+     The SVG path uses `fill: var(--sticker-fg)` opacity 0 → 1 (handled in JSX). */
   [data-zone="paper"] .sticker-outline {
+    --sticker-fg: var(--color-ink);
+    --sticker-bg: var(--color-paper);
+
     color: var(--color-ink);
-    border-color: var(--color-ink);
   }
   [data-zone="paper"] .sticker-outline:hover {
-    background-color: var(--color-ink);
     color: var(--color-paper);
   }
   [data-zone="red"] .sticker-outline {
+    --sticker-fg: var(--color-paper);
+    --sticker-bg: var(--color-brand-red);
+
     color: var(--color-paper);
-    border-color: var(--color-paper);
   }
   [data-zone="red"] .sticker-outline:hover {
-    background-color: var(--color-paper);
     color: var(--color-brand-red);
   }
 

@@ -1,46 +1,75 @@
 import { setRequestLocale } from "next-intl/server";
-import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
-import { PaperZone } from "@/components/surfaces";
+import { Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import { Hero } from "@/components/sections/Hero";
+import { PaperZone, RedZone } from "@/components/surfaces";
+import { isLocale } from "@/lib/i18n/config";
+import { getTours } from "@/lib/sheets/queries";
+import { Link as I18nLink } from "@/lib/i18n/navigation";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
-/**
- * Phase 4 placeholder home. The Phase 6 hero validation gate will replace
- * this with the full poster composition.
- *
- * For Phase 4 we just exercise the i18n + shell wiring: dictionary keys
- * resolve, the locale URL prefix routes correctly, the Nav and Footer
- * (added in 4.3 / 4.5) wrap the surface.
- */
 export default async function Home({ params }: Props) {
   const { locale } = await params;
+  if (!isLocale(locale)) return null;
   setRequestLocale(locale);
-  const t = await getTranslations("home");
-  const tCommon = await getTranslations("common");
+
+  const tours = await getTours(locale);
 
   return (
-    <PaperZone density="heavy" className="flex min-h-screen flex-col justify-center">
-      <Container className="space-y-6">
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <DisplayHeading size="xl" as="h1">
-          {t("headline")}
-        </DisplayHeading>
-        <p className="max-w-prose font-sans text-base/relaxed">{t("manifesto")}</p>
-        <div className="flex flex-wrap gap-4">
-          <Button href={`/${locale}/tours`} edge={1} tilt="left" variant="sticker-filled">
-            {tCommon("plan_trip")}
-          </Button>
-          <Button href={`/${locale}/journal`} edge={2} tilt="right">
-            {tCommon("read_journal")}
-          </Button>
-        </div>
-        <div className="mt-12 border-t-2 border-dashed border-current/20 pt-6 text-sm opacity-70">
-          <p className="mb-2 font-mono text-xs uppercase">dev surfaces</p>
-          <div className="flex flex-wrap gap-3">
+    <>
+      <Hero locale={locale} />
+
+      {/* Tours preview — exercises the Phase 5 Sheets pipeline */}
+      <PaperZone density="default" tornBottom={3}>
+        <Container className="space-y-8">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Eyebrow rule>Rutas</Eyebrow>
+              <DisplayHeading size="xl" as="h2" className="mt-3">
+                Viajes que dejan marca
+              </DisplayHeading>
+            </div>
+            <I18nLink
+              href="/tours"
+              className="text-eyebrow tracking-eyebrow font-semibold uppercase underline-offset-4 hover:underline"
+            >
+              Ver todos →
+            </I18nLink>
+          </div>
+
+          <ul className="grid gap-6 md:grid-cols-3">
+            {tours.slice(0, 3).map((tour) => (
+              <li key={tour.slug}>
+                <I18nLink
+                  href={`/tours/${tour.slugs[locale]}`}
+                  className="bg-paper-light hover:shadow-sticker-ink ease-out-soft group flex h-full flex-col gap-4 border-2 border-current/20 p-6 transition-[box-shadow,transform] duration-200 hover:-translate-y-1"
+                >
+                  <Stamp className="text-accent-on-paper self-start">{tour.region}</Stamp>
+                  <DisplayHeading size="md" as="h3">
+                    {tour.title[locale]}
+                  </DisplayHeading>
+                  <p className="text-on-paper font-sans text-sm leading-relaxed opacity-80">
+                    {tour.duration_days} días · {tour.distance_km.toLocaleString("es-AR")} km ·{" "}
+                    {tour.difficulty}
+                  </p>
+                </I18nLink>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </PaperZone>
+
+      {/* Dev surfaces — kept for development convenience; remove when the
+          marketing surface is feature-complete. */}
+      <RedZone density="light">
+        <Container className="space-y-3">
+          <p className="text-eyebrow tracking-eyebrow font-mono text-xs uppercase opacity-70">
+            dev surfaces
+          </p>
+          <div className="flex flex-wrap gap-4 text-sm">
             <Link className="underline-offset-4 hover:underline" href="/dev/tokens">
               /dev/tokens
             </Link>
@@ -51,8 +80,8 @@ export default async function Home({ params }: Props) {
               /dev/zones
             </Link>
           </div>
-        </div>
-      </Container>
-    </PaperZone>
+        </Container>
+      </RedZone>
+    </>
   );
 }

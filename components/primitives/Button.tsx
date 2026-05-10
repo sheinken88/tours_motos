@@ -128,7 +128,7 @@ export function Button(props: ButtonProps) {
   }
 
   const buttonRest: ButtonHTMLAttributes<HTMLButtonElement> = {
-    type: "button",
+    type: props.type ?? "button",
     onClick: props.onClick,
     disabled: props.disabled,
     "aria-label": props["aria-label"],

@@ -1,14 +1,17 @@
 import type { MetadataRoute } from "next";
+import { listJournalEntries } from "@/lib/content/getJournalMdx";
+import { listLocalesForPost } from "@/lib/content/journalMdxRegistry";
 import { type Locale, locales } from "@/lib/i18n/config";
 import { getSiteUrl } from "@/lib/seo/site";
 import { getTours } from "@/lib/sheets/queries";
 
 /**
- * Sitemap — all locales × (home, tours index, individual tours,
- * static pages). Journal posts will be added in Phase 8.
+ * Sitemap — all locales × (home, tours index, individual tours, static pages,
+ * journal posts).
  *
- * hreflang alternates emitted per URL via the `alternates.languages` field
- * (Next 15+ MetadataRoute.Sitemap supports this).
+ * hreflang alternates emitted per URL via the `alternates.languages` field.
+ * Journal posts only emit alternates for locales where the MDX exists, so
+ * we don't point search engines at empty translations.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const site = getSiteUrl();
@@ -43,6 +46,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: {
         languages: Object.fromEntries(
           locales.map((loc) => [loc, `${site}/${loc}/tours/${tour.slugs[loc]}`]),
+        ),
+      },
+    });
+  }
+
+  // Journal posts — slug shared across locales, only emit alternates for
+  // locales where MDX content exists.
+  const journalEntries = await listJournalEntries(baseLocale);
+  for (const entry of journalEntries) {
+    const availableLocales = listLocalesForPost(entry.slug);
+    entries.push({
+      url: `${site}/${baseLocale}/journal/${entry.slug}`,
+      lastModified: new Date(entry.date),
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: {
+        languages: Object.fromEntries(
+          availableLocales.map((loc) => [loc, `${site}/${loc}/journal/${entry.slug}`]),
         ),
       },
     });

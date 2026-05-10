@@ -5,10 +5,9 @@ import {
   DisplayHeading,
   Eyebrow,
   HandUnderline,
-  StickyNote,
 } from "@/components/primitives";
 import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
-import { RedZone } from "@/components/surfaces";
+import { CutoutFigure, RedZone } from "@/components/surfaces";
 import { type Locale } from "@/lib/i18n/config";
 
 type HeroProps = {
@@ -16,20 +15,15 @@ type HeroProps = {
 };
 
 /**
- * Hero — the home-page red-zone composition. The Phase 6 validation gate.
- * Six layers per design.md §5 (back to front):
- *   1. Red field           — RedZone provides
- *   2. Mountain ridge      — PlaceholderMountains anchored bottom, bleeds into next zone via torn edge
- *   3. Rider cutout        — PlaceholderRider anchored bottom-right, bleeds past right margin
- *   4. DisplayHeading      — top-left, display-2xl, dictionary-driven copy
- *   5. Manifesto block     — paper-color body with HandUnderline emphasis word
- *   6. Sticky-note callout — overlapping the cutout, declarative 3–5 word claim
+ * Hero — the home-page red-zone composition.
+ * Layers (back to front):
+ *   1. Red field         — RedZone provides
+ *   2. Mountain ridge    — PlaceholderMountains anchored bottom, bleeds into next zone via torn edge
+ *   3. Rider cutout      — halftone PNG positioned in the right half
+ *   4. DisplayHeading    — top-left, display-2xl, dictionary-driven copy
+ *   5. Manifesto block   — paper-color body with HandUnderline emphasis word
  *
- * Static rendering for Phase 6. Motion choreography (one-shot 1.8s reveal)
- * comes in Phase 12.
- *
- * Placeholders (PlaceholderRider / PlaceholderMountains) are swapped for
- * pre-processed halftone PNGs in Phase 10 — Hero stays the same shape.
+ * Static rendering. Motion choreography comes in a later phase.
  */
 export async function Hero({ locale }: HeroProps) {
   const tHome = await getTranslations("home");
@@ -42,24 +36,18 @@ export async function Hero({ locale }: HeroProps) {
         <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
       </div>
 
-      {/*
-        Layer 3 — RIDER CUTOUT SLOT. Reserved for a real halftone-processed PNG
-        produced via /docs/halftone-pipeline.md. Drop the asset at
-        /public/images/halftone/rider-hero.png and render via:
-
-          <CutoutFigure
-            src="/images/halftone/rider-hero.png"
-            alt="..."
-            anchor="bottom-right"
-            bleed="right"
-            widthFraction={0.55}
-            paperOutline
-            priority
-          />
-
-        Procedural placeholders looked too cartoonish; runtime-filtered photos
-        looked muddy. Real halftone PNGs ship in Phase 10.
-      */}
+      {/* Layer 3 — rider cutout, anchored right and bleeding into the poster edge. */}
+      <CutoutFigure
+        src="/images/halftone/hero-rider-cutout.png"
+        alt={tHome("rider_alt")}
+        width={1086}
+        height={1448}
+        priority
+        anchor="bottom-right"
+        bleed="bottom"
+        widthFraction={0.46}
+        className="z-1 hidden opacity-95 md:block md:-translate-x-10 lg:-translate-x-12 xl:-translate-x-16 xl:opacity-100"
+      />
 
       {/* Foreground copy + CTAs */}
       <Container className="relative z-10 flex min-h-[78vh] flex-col justify-center md:min-h-[82vh]">
@@ -84,16 +72,6 @@ export async function Hero({ locale }: HeroProps) {
         </div>
       </Container>
 
-      {/* Layer 6 — sticky-note callout overlapping the cutout
-          (max 1 per page rule per CLAUDE.md §13 — used here as the
-          declarative signature line) */}
-      <StickyNote tilt={4} className="absolute right-[18%] bottom-[28%] hidden md:block" withX>
-        Ridden.
-        <br />
-        Earned.
-        <br />
-        Remembered.
-      </StickyNote>
     </RedZone>
   );
 }

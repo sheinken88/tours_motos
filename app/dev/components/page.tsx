@@ -93,10 +93,10 @@ function PrimitiveBlocks({ zone }: { zone: "red" | "paper" }) {
           Trips that leave marks
         </DisplayHeading>
         <DisplayHeading size="lg" as="h3" className="mt-6">
-          Patagonia Raw
+          Sobre las Nubes
         </DisplayHeading>
         <DisplayHeading size="md" as="h3" className="mt-4">
-          14 days · 2200 km
+          7 days · 1712 km
         </DisplayHeading>
       </Block>
 

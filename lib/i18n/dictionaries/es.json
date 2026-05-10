@@ -5,6 +5,9 @@
     "about": "Nosotros",
     "journal": "Diario",
     "gear": "Equipo",
+    "contact": "Contacto",
+    "calendar": "Calendario",
+    "custom": "A medida",
     "cta": "Hablemos",
     "open_menu": "Abrir menú",
     "close_menu": "Cerrar menú"
@@ -17,6 +20,8 @@
     "newsletter_title": "Rutas, polvo y notas de campo",
     "newsletter_placeholder": "Tu correo",
     "newsletter_submit": "Suscribirme",
+    "newsletter_success": "Listo. Gracias.",
+    "newsletter_error": "No pudimos guardar tu correo. Probá de nuevo.",
     "rights": "Todos los derechos reservados.",
     "instagram": "Instagram",
     "email": "Correo"
@@ -29,7 +34,8 @@
   },
   "whatsapp": {
     "label": "Hablar por WhatsApp",
-    "default_message": "Hola, me interesa una expedición."
+    "default_message": "Hola, me interesa una expedición.",
+    "tour_message": "Hola, me interesa la ruta {tour}."
   },
   "common": {
     "plan_trip": "Planeá tu viaje",
@@ -41,7 +47,33 @@
   "home": {
     "eyebrow": "Moto On/Off · expediciones",
     "headline": "VIAJES QUE DEJAN MARCA",
-    "manifesto": "Cruzamos los caminos que ponen a prueba lo que tenés adentro. Doce días, 2.200 kilómetros, todo ganado en la ruta."
+    "manifesto": "Cruzamos los caminos que ponen a prueba lo que tenés adentro. Doce días, 2.200 kilómetros, todo ganado en la ruta.",
+    "rider_alt": "Motociclista sobre una moto de aventura cargada, visto desde atrás"
+  },
+  "home_calendar": {
+    "eyebrow": "Próximas fechas",
+    "heading": "PRÓXIMAS SALIDAS",
+    "see_all": "Ver el calendario completo",
+    "empty": "Estamos confirmando las próximas fechas. Suscribite al diario para enterarte primero.",
+    "until": "hasta"
+  },
+  "home_custom": {
+    "eyebrow": "A medida",
+    "heading": "¿NO TE CIERRA NINGUNA?",
+    "body": "Si ninguna de estas rutas te termina de cerrar, armamos una. Pensada según tu manejo, los días que tenés y lo que querés cruzar.",
+    "cta": "Armá tu travesía"
+  },
+  "home_about": {
+    "eyebrow": "Quiénes somos",
+    "heading": "ARMADO EN LA RUTA",
+    "body": "No somos guías de paseo. Andamos las rutas que vendemos, una y otra vez, hasta que están listas para vos.",
+    "cta": "Conocé al equipo"
+  },
+  "home_journal": {
+    "eyebrow": "Diario de ruta",
+    "heading": "NOTAS DE CAMPO",
+    "intro": "Lo que se cuenta cuando bajamos del recorrido. Crónicas, fotos y aprendizajes.",
+    "see_all": "Leer el diario completo"
   },
   "tours_index": {
     "eyebrow": "Catálogo",
@@ -62,5 +94,163 @@
     "related_eyebrow": "Otras rutas",
     "related_heading": "Si esta no, esta",
     "missing_content": "Contenido en preparación."
+  },
+  "features": {
+    "eyebrow": "Cómo se rueda",
+    "heading": "ASÍ ANDAMOS",
+    "items": {
+      "remote_routes": {
+        "title": "RUTAS REMOTAS",
+        "body": "Tramos que casi nadie corre. Ripio, montaña y caminos que no salen en el mapa."
+      },
+      "local_people": {
+        "title": "GENTE LOCAL",
+        "body": "Comemos donde comen los puesteros. Dormimos donde nos abren la puerta."
+      },
+      "hard_riding": {
+        "title": "ANDAR DURO",
+        "body": "Días largos, altura, viento, polvo. Cada jornada es una conquista chica."
+      },
+      "sleep_where": {
+        "title": "DORMIR DONDE CAIGA",
+        "body": "Refugio de montaña, hostería de pueblo, carpa al borde del camino. Lo que la ruta dé."
+      }
+    }
+  },
+  "x_list": {
+    "eyebrow": "Esto no es para cualquiera",
+    "heading": "ESTO ES PARA VOS SI…",
+    "items": [
+      "Manejaste en ripio profundo y querés más.",
+      "Una ruta de tierra te entusiasma más que un resort.",
+      "Andás para descubrir de qué estás hecho.",
+      "Las historias que valen la pena contar son las que te cuestan."
+    ]
+  },
+  "journal_grid": {
+    "eyebrow": "Diario de ruta",
+    "heading": "NOTAS DE CAMPO",
+    "read_more": "Leer la nota"
+  },
+  "quote_section": {
+    "eyebrow": "Lo que se queda",
+    "hunter_thompson_quote": "No vas a encontrar hombres razonables en la cima de las montañas más altas.",
+    "hunter_thompson_attribution": "Hunter S. Thompson"
+  },
+  "manifesto": {
+    "eyebrow": "Manifiesto",
+    "heading": "LA RUTA NO PIDE PERMISO",
+    "p1": "Cruzamos cordilleras porque del otro lado uno vuelve distinto. No vendemos paseos: armamos travesías que se ganan con kilómetros, polvo y noches que se acuerdan.",
+    "p2": "Cada día tiene su precio: el viento de la Patagonia, el ripio del NOA, la altura de los Andes. Y cada día devuelve lo que no se mide en kilómetros.",
+    "emphasis": "lo que no se mide"
+  },
+  "about": {
+    "title": "Nosotros",
+    "eyebrow": "Quiénes somos",
+    "headline": "ARMADO EN LA RUTA",
+    "metadata_description": "Moto On/Off arma travesías en moto por la Patagonia, los Andes y el norte argentino. Rutas que ya rodamos, contadas por quien las anduvo.",
+    "subheadline": "No somos guías de paseo. Andamos las rutas que vendemos, una y otra vez, hasta que están listas para vos.",
+    "founder_eyebrow": "Fundador",
+    "founder_name": "Sebastián",
+    "founder_caption": "Patagonia, 2024. Día 9 de la travesía.",
+    "cta": "Conocenos por WhatsApp"
+  },
+  "custom": {
+    "title": "A medida",
+    "eyebrow": "A medida",
+    "headline": "ORGANIZAMOS TU VIAJE A MEDIDA",
+    "metadata_description": "Diseñamos travesías a medida en moto por Argentina y la Cordillera. Contanos qué te imaginás y lo convertimos en un viaje posible, 100% a tu medida.",
+    "subheadline": "Diseñamos la ruta a tu medida.",
+    "p1": "Además de nuestros tours, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
+    "p2": "Nos contás qué te imaginás, lo convertimos en un viaje posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
+    "includes_eyebrow": "Lo que armamos",
+    "includes_heading": "¿QUÉ INCLUYE?",
+    "includes_items": [
+      "Itinerario detallado con tiempos y kilómetros.",
+      "Hoteles sugeridos según la categoría deseada.",
+      "Archivos GPX o Google Maps para navegación.",
+      "Experiencias recomendadas según la zona de interés."
+    ],
+    "extras_eyebrow": "Si querés que te llevemos",
+    "extras_heading": "OPCIONALES",
+    "extras_items": [
+      "Traslado de la moto ida y vuelta a destino.",
+      "Guía en moto durante toda la travesía.",
+      "Vehículo de apoyo 4×4 y transporte de equipaje."
+    ],
+    "form_eyebrow": "Contanos tu idea",
+    "form_heading": "ESCRIBINOS Y ARMAMOS",
+    "talk_eyebrow": "O por WhatsApp",
+    "talk_heading": "PREFERÍS HABLAR DIRECTO",
+    "talk_body": "Escribinos por WhatsApp y arrancamos por ahí. Sin formularios, sin demoras."
+  },
+  "calendar": {
+    "title": "Calendario",
+    "eyebrow": "Salidas confirmadas",
+    "headline": "PRÓXIMAS FECHAS",
+    "metadata_description": "Calendario de salidas confirmadas por ruta. Reservá tu lugar antes que se agote.",
+    "intro": "Cada salida tiene cupo limitado. Los grupos son chicos a propósito.",
+    "no_departures": "No hay salidas confirmadas todavía. Suscribite al diario para enterarte primero.",
+    "month_format": "long",
+    "see_tour": "Ver la ruta",
+    "until": "hasta"
+  },
+  "contact": {
+    "title": "Contacto",
+    "eyebrow": "Hablemos",
+    "headline": "ESCRIBINOS",
+    "metadata_description": "Contactá a Moto On/Off por WhatsApp, correo o el formulario. Respondemos rápido.",
+    "intro": "Lo más rápido es WhatsApp. Si preferís el correo o el formulario, también te leemos.",
+    "channels_eyebrow": "Por dónde",
+    "whatsapp_label": "WhatsApp",
+    "whatsapp_body": "Lo levantamos en el día.",
+    "email_label": "Correo",
+    "email_body": "hello@motoonoff.com",
+    "form_eyebrow": "O dejanos un mensaje",
+    "form_heading": "FORMULARIO DE CONTACTO"
+  },
+  "journal_index": {
+    "title": "Diario",
+    "eyebrow": "Diario de ruta",
+    "headline": "NOTAS DE CAMPO",
+    "metadata_description": "Notas, crónicas y fotos de las rutas que rodamos. Diario de campo de Moto On/Off.",
+    "intro": "Lo que se cuenta cuando bajamos del recorrido. Crónicas, fotos y aprendizajes.",
+    "empty": "Pronto. Estamos escribiendo las primeras notas."
+  },
+  "journal_post": {
+    "back": "Volver al diario",
+    "share_eyebrow": "Compartir"
+  },
+  "form": {
+    "name_label": "Tu nombre",
+    "name_placeholder": "Cómo te llamás",
+    "email_label": "Tu correo",
+    "email_placeholder": "vos@correo.com",
+    "group_size_label": "Cuántos son",
+    "group_size_placeholder": "1, 2, 4…",
+    "preferred_dates_label": "Cuándo te gustaría",
+    "preferred_dates_placeholder": "Marzo 2027 / fines de semana / lo que tengas",
+    "tour_label": "Ruta que te interesa",
+    "tour_placeholder": "Elegí una (o dejá en blanco)",
+    "tour_any": "Cualquiera / no sé todavía",
+    "experience_label": "Experiencia en moto",
+    "experience_placeholder": "Cuántos años, qué moto, en qué andás",
+    "region_label": "Región o ruta soñada",
+    "region_placeholder": "Patagonia, Norte, Cordillera…",
+    "window_label": "Ventana de fechas",
+    "window_placeholder": "Octubre 2027, una semana, etc.",
+    "message_label": "Tu mensaje",
+    "message_placeholder": "Contanos un poco de vos y de lo que buscás.",
+    "pitch_label": "Tu idea",
+    "pitch_placeholder": "La ruta que tenés en la cabeza, los días que tenés, lo que no querés perderte.",
+    "submit": "Enviar",
+    "sending": "Enviando…",
+    "success_heading": "Recibimos tu mensaje.",
+    "success_body": "Te escribimos en menos de 48 hs. Mientras tanto, te lees el diario.",
+    "error_heading": "Algo no salió.",
+    "error_body": "Probá de nuevo en un rato o escribinos directo por WhatsApp.",
+    "required": "Completá este campo.",
+    "invalid_email": "Ese correo no parece válido.",
+    "invalid_number": "Tiene que ser un número."
   }
 }

@@ -32,10 +32,12 @@ const positiveInt = z
   .transform((s) => Number(s))
   .pipe(z.number().int().positive());
 
-const positiveNumber = z
+/** Used for prices: 0 is valid ("price on request") so we can publish tours
+ *  before the client has signed off on the final number. */
+const nonNegativeNumber = z
   .string()
   .transform((s) => Number(s))
-  .pipe(z.number().positive());
+  .pipe(z.number().nonnegative());
 
 const isoDate = z
   .string()
@@ -60,7 +62,7 @@ export const TourSchema = z.object({
   difficulty: z.enum(["easy", "moderate", "hard", "expert"]),
   duration_days: positiveInt,
   distance_km: positiveInt,
-  base_price_usd: positiveNumber,
+  base_price_usd: nonNegativeNumber,
   currency: z.enum(["USD", "ARS", "EUR"]).default("USD"),
   hero_image: trimmed,
   published: sheetsBool,

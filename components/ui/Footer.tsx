@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Container, Eyebrow, SkullBadge } from "@/components/primitives";
 import { PaperZone } from "@/components/surfaces";
+import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { Link } from "@/lib/i18n/navigation";
 import { NewsletterForm } from "./NewsletterForm";
 
@@ -17,10 +18,18 @@ import { NewsletterForm } from "./NewsletterForm";
  */
 export async function Footer() {
   const t = await getTranslations("footer");
+  const tWhatsApp = await getTranslations("whatsapp");
+  const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
 
   return (
     <footer>
-      <PaperZone tornTop={4} density="default">
+      {/*
+        No tornTop here — pages end with a paper zone, and the footer is also
+        paper, so a torn-red edge between two paper surfaces would render as
+        a stripe (it has nowhere to "tear toward"). Pages own zone transitions
+        on their own bottom edges; the footer joins the last page zone seamlessly.
+      */}
+      <PaperZone density="default">
         <Container className="grid gap-12 md:grid-cols-3">
           <div>
             <Eyebrow rule>{t("section_trips")}</Eyebrow>
@@ -64,7 +73,7 @@ export async function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               <li>
                 <a
-                  href="https://wa.me/5491100000000"
+                  href={whatsAppHref}
                   className="hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"

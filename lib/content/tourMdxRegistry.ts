@@ -17,25 +17,34 @@ import { type Locale } from "@/lib/i18n/config";
  * Returns null when no module exists for (slug, locale) — the tour page
  * renders a "content coming soon" stub flagged via the dictionary key
  * tour_detail.missing_content.
+ *
+ * The four launch tours per /docs/tours-source.md (client-provided
+ * 2026-05-10). EN/PT bodies are placeholders flagged [NEEDS_TRANSLATION]
+ * until the translator passes (CLAUDE.md §8 forbids machine translation).
  */
 
 type MdxModule = { default: ComponentType };
 
 const REGISTRY: Record<string, Partial<Record<Locale, () => Promise<MdxModule>>>> = {
-  "patagonia-raw": {
-    es: () => import("@/content/tours/patagonia-raw/es.mdx") as Promise<MdxModule>,
-    en: () => import("@/content/tours/patagonia-raw/en.mdx") as Promise<MdxModule>,
-    pt: () => import("@/content/tours/patagonia-raw/pt.mdx") as Promise<MdxModule>,
+  "sobre-las-nubes": {
+    es: () => import("@/content/tours/sobre-las-nubes/es.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/tours/sobre-las-nubes/en.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/tours/sobre-las-nubes/pt.mdx") as Promise<MdxModule>,
   },
-  "andes-cuyo-salta": {
-    es: () => import("@/content/tours/andes-cuyo-salta/es.mdx") as Promise<MdxModule>,
-    en: () => import("@/content/tours/andes-cuyo-salta/en.mdx") as Promise<MdxModule>,
-    pt: () => import("@/content/tours/andes-cuyo-salta/pt.mdx") as Promise<MdxModule>,
+  "gigantes-del-oeste": {
+    es: () => import("@/content/tours/gigantes-del-oeste/es.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/tours/gigantes-del-oeste/en.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/tours/gigantes-del-oeste/pt.mdx") as Promise<MdxModule>,
   },
-  "norte-jujuy-bolivia": {
-    es: () => import("@/content/tours/norte-jujuy-bolivia/es.mdx") as Promise<MdxModule>,
-    en: () => import("@/content/tours/norte-jujuy-bolivia/en.mdx") as Promise<MdxModule>,
-    pt: () => import("@/content/tours/norte-jujuy-bolivia/pt.mdx") as Promise<MdxModule>,
+  "volcanes-del-norte": {
+    es: () => import("@/content/tours/volcanes-del-norte/es.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/tours/volcanes-del-norte/en.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/tours/volcanes-del-norte/pt.mdx") as Promise<MdxModule>,
+  },
+  "cruces-del-sur": {
+    es: () => import("@/content/tours/cruces-del-sur/es.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/tours/cruces-del-sur/en.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/tours/cruces-del-sur/pt.mdx") as Promise<MdxModule>,
   },
 };
 

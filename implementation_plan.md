@@ -409,7 +409,7 @@ Each section is a pre-built composition — pages just stack them.
 - **11.1** — Compile every dictionary key plus every MDX page into a single translation packet for each locale.
 - **11.2** — Hand off to client / native translator. Spanish (Rioplatense first per CLAUDE.md §1), then English, then Portuguese. **No machine translation.**
 - **11.3** — Voice review against design.md §1.5 anti-patterns: every string passes the "could a luxury competitor say this?" test. Reject defensive framing, triple-real claims, travel-brochure verbs.
-- **11.4** — Localized slugs: each tour gets per-locale slugs in Sheets (`/es/tours/patagonia-aventura`, `/en/tours/patagonia-adventure`).
+- **11.4** — Localized slugs: each tour gets per-locale slugs in Sheets (e.g. `/es/tours/sobre-las-nubes`, `/en/tours/over-the-clouds`). Phase-9 launch ships with identical slugs across locales for the four locked tours; EN/PT divergence is allowed once the translator passes.
 - **11.5** — `hreflang` audit: every URL has alternates pointing at sibling locales.
 
 **Exit criterion:** zero `[NEEDS_TRANSLATION]` markers; all three locales render with native voice; client signs off.
@@ -486,7 +486,7 @@ Each section is a pre-built composition — pages just stack them.
 | Photography library / shoot decision | Phase 6.1 (hero gate), Phase 10 | Client |
 | Founder portrait | Phase 9.1 (About page) | Client |
 | Brand mark (skull/badge) confirmation | Phase 2.9, Phase 4.3 (Nav logo) | Client |
-| Tour list + localized slugs | Phase 5.2, Phase 7 | Client |
+| ~~Tour list~~ + localized slugs | ~~Phase 5.2, Phase 7~~ | ~~Client~~ — **list locked 2026-05-10**, see `/docs/tours-source.md`. EN/PT slug variants + `base_price_usd` still pending client. |
 | Custom tour intake fields | Phase 9.2 | Client |
 | Privacy policy + terms | Phase 13.3 | Client |
 | Translation packet review | Phase 11 | Client / native translator |

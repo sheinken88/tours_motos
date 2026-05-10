@@ -6,7 +6,14 @@
 
 ## 1. Project Overview
 
-**Moto On/Off** is a marketing + lead-generation website for an adventure motorcycle tour brand. The product is the _experience_ — tours through Patagonia, the Andes, North of Argentina and many gravel routes in Argentina, and similar. The site exists to convert visitors into inquiries (primarily via WhatsApp and contact email) and to rank for tour-specific search terms.
+**Moto On/Off** is a marketing + lead-generation website for an adventure motorcycle tour brand. The product is the _experience_ — multi-day expeditions through Salta, Jujuy, Mendoza, La Rioja, Catamarca, the Carretera Austral, and the Patagonian gravel network. The four launch tours are locked:
+
+- **Sobre las Nubes** — Salta y Jujuy · 7 días · 1712 km · 50% ripio · hasta 4895 msnm
+- **Gigantes del Oeste** — Mendoza a La Rioja · 8 días · 2400 km · 30% ripio · hasta 4600 msnm
+- **Volcanes del Norte** — Catamarca · 7 días · 50% ripio · hasta 4550 msnm
+- **Cruces del Sur** — Carretera Austral y Patagonia · 7 días · 2321 km · 45% ripio
+
+Full day-by-day itineraries live in `/docs/tours-source.md` — that file is the source of truth, the Sheets `Tours` tab and `lib/sheets/mock.ts` derive from it. The site exists to convert visitors into inquiries (primarily via WhatsApp and contact email) and to rank for tour-specific search terms.
 
 ### Brand positioning
 
@@ -290,7 +297,7 @@ Three locales required: **Spanish (default), English, Portuguese**.
 ### Conventions
 
 - Routing: `/es/...`, `/en/...`, `/pt/...`. No locale-less root route except a redirect to `/es/`.
-- Tour slugs are **localized** per language (e.g., `/es/tours/patagonia-aventura`, `/en/tours/patagonia-adventure`). The Sheets row holds a slug per language.
+- Tour slugs are **localized** per language (e.g., `/es/tours/sobre-las-nubes`, `/en/tours/over-the-clouds`). The Sheets row holds a slug per language. Phase-9 launch slugs are identical across locales (`sobre-las-nubes`, `gigantes-del-oeste`, `volcanes-del-norte`, `cruces-del-sur`); EN/PT slugs may diverge once the translator passes.
 - Dictionaries in `/lib/i18n/dictionaries/{es,en,pt}.json` for static UI strings.
 - MDX content has one file per locale per tour: `/content/tours/{slug}/{locale}.mdx`.
 - **Do not use auto-translation services** — all copy is human-written. The brand voice does not survive machine translation.
@@ -490,7 +497,7 @@ Track these in `/docs/open-questions.md` and resolve before launch:
 
 - Confirm burgundy-red shade — `#A8342A` is the recommended starting point; client may want to tune slightly.
 - Confirm kraft-paper shade — `#E8DCC4` is the recommended starting point.
-- Final tour list for launch, including localized slugs.
+- ~~Final tour list for launch~~ — **locked 2026-05-10** (see `/docs/tours-source.md` for the four launch tours and §1 above). EN/PT slug variants and `base_price_usd` still pending client confirmation.
 - Photography source — existing library? new shoot? license terms? **Halftone processing requires high-contrast source images** — flat midday phone shots will need re-shoots.
 - WhatsApp number(s) — single or per-region?
 - Google Sheet ownership — client's account or shared service workspace?

@@ -60,13 +60,13 @@ The Sheet must have **two tabs**: `Tours` and `Departures`. The first row of eac
 | `title_es` | string | Title in Spanish. Required. |
 | `title_en` | string | Title in English. Required. |
 | `title_pt` | string | Title in Portuguese. Required. |
-| `region` | string | Display label, e.g. "Patagonia", "Norte Argentino". |
+| `region` | string | Display label, e.g. "Salta y Jujuy", "Mendoza a La Rioja", "Patagonia". |
 | `difficulty` | enum | One of `easy` / `moderate` / `hard` / `expert`. |
 | `duration_days` | integer | Positive. |
 | `distance_km` | integer | Positive. |
-| `base_price_usd` | number | Positive. |
+| `base_price_usd` | number | Nonnegative — `0` is valid and renders as "consultar" until the client confirms pricing. |
 | `currency` | enum | `USD` / `ARS` / `EUR`. Defaults to `USD`. |
-| `hero_image` | string | Path under `/public`, e.g. `/images/halftone/patagonia-raw-hero.png`. |
+| `hero_image` | string | Path under `/public`, e.g. `/images/halftone/sobre-las-nubes-hero.png`. |
 | `published` | boolean | `TRUE` / `FALSE` / `yes` / `no` / `1` / `0`. Empty = `FALSE`. Only `TRUE` rows ship. |
 
 #### Tab `Departures`

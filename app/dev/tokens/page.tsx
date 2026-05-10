@@ -110,7 +110,7 @@ function TypographySection() {
             className="font-display text-display-lg text-accent-on-paper uppercase"
             style={{ filter: "url(#woodblock-distress)" }}
           >
-            Patagonia Raw
+            Sobre las Nubes
           </p>
         </div>
 

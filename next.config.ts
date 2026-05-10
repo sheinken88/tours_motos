@@ -9,6 +9,7 @@ const withMDX = createMDX({
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  devIndicators: false,
 };
 
 export default withNextIntl(withMDX(nextConfig));

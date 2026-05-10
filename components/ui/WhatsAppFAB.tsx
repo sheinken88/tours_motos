@@ -2,13 +2,24 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
+
+type ZoneUnderFab = "red" | "paper";
 
 /**
  * WhatsAppFAB — sticker-styled floating button that stamps into view once
  * the user scrolls past the hero. design.md §6 microinteractions.
  *
- * Number is read from NEXT_PUBLIC_WHATSAPP_NUMBER. Per-locale message
- * template is read from the dictionary's `whatsapp.default_message` key.
+ * Number is read from NEXT_PUBLIC_WHATSAPP_NUMBER via buildWhatsAppLink().
+ * Per-locale message template is read from the dictionary's
+ * `whatsapp.default_message` key.
+ *
+ * Color inversion: the FAB needs maximum contrast against whatever zone
+ * is behind it. We sample the element under the FAB's anchor point on
+ * scroll, walk up to the nearest `[data-zone]` ancestor, and flip the
+ * button colors:
+ *   - over a paper zone → red button + paper glyph
+ *   - over a red zone   → paper button + ink glyph (default)
  *
  * Honors `prefers-reduced-motion`: skips the stamp-in animation, renders
  * final state immediately.
@@ -16,19 +27,53 @@ import { useEffect, useState } from "react";
 export function WhatsAppFAB() {
   const t = useTranslations("whatsapp");
   const [visible, setVisible] = useState(false);
+  const [zoneUnder, setZoneUnder] = useState<ZoneUnderFab>("red");
 
   useEffect(() => {
-    function onScroll() {
+    // FAB anchor in viewport coords — bottom-right corner offset to roughly
+    // the FAB's center. We probe slightly above + left of the visual button
+    // so the lookup hits the underlying section, not the FAB itself.
+    function readState() {
       setVisible(window.scrollY > 600);
+
+      const probeX = window.innerWidth - 48;
+      const probeY = window.innerHeight - 48;
+      const elements =
+        typeof document !== "undefined" && typeof document.elementsFromPoint === "function"
+          ? document.elementsFromPoint(probeX, probeY)
+          : [];
+      // Skip the FAB's own DOM (it sits at this point) — find the first
+      // ancestor with a data-zone attribute. Default to "red" so we keep
+      // the current visual when the FAB is over the hero or a child without
+      // a zone wrapper.
+      let resolved: ZoneUnderFab = "red";
+      for (const el of elements) {
+        if (el instanceof HTMLElement && el.dataset.zone) {
+          const dz = el.dataset.zone;
+          if (dz === "paper" || dz === "red") {
+            resolved = dz;
+            break;
+          }
+        }
+      }
+      setZoneUnder(resolved);
     }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    readState();
+    window.addEventListener("scroll", readState, { passive: true });
+    window.addEventListener("resize", readState);
+    return () => {
+      window.removeEventListener("scroll", readState);
+      window.removeEventListener("resize", readState);
+    };
   }, []);
 
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5491100000000";
-  const message = encodeURIComponent(t("default_message"));
-  const href = `https://wa.me/${number}?text=${message}`;
+  const href = buildWhatsAppLink({ message: t("default_message") });
+
+  // Invert button colors so the FAB always pops off the underlying zone.
+  const colorClass =
+    zoneUnder === "paper"
+      ? "bg-brand-red text-paper shadow-sticker-ink"
+      : "bg-paper text-ink shadow-sticker-ink";
 
   return (
     <a
@@ -36,7 +81,7 @@ export function WhatsAppFAB() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("label")}
-      className={`bg-paper text-ink shadow-sticker-ink fixed right-6 bottom-6 z-30 inline-flex h-14 w-14 -rotate-3 items-center justify-center transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:rotate-0 motion-reduce:transition-none ${
+      className={`fixed right-6 bottom-6 z-30 inline-flex h-14 w-14 -rotate-3 items-center justify-center transition-[transform,opacity,background-color,color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:rotate-0 motion-reduce:transition-none ${colorClass} ${
         visible
           ? "translate-y-0 rotate-[-3deg] opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"

@@ -5,6 +5,9 @@
     "about": "[NEEDS_TRANSLATION] Nosotros",
     "journal": "[NEEDS_TRANSLATION] Diario",
     "gear": "[NEEDS_TRANSLATION] Equipo",
+    "contact": "[NEEDS_TRANSLATION] Contacto",
+    "calendar": "[NEEDS_TRANSLATION] Calendario",
+    "custom": "[NEEDS_TRANSLATION] A medida",
     "cta": "[NEEDS_TRANSLATION] Hablemos",
     "open_menu": "[NEEDS_TRANSLATION] Abrir menú",
     "close_menu": "[NEEDS_TRANSLATION] Cerrar menú"
@@ -17,6 +20,8 @@
     "newsletter_title": "[NEEDS_TRANSLATION] Rutas, polvo y notas de campo",
     "newsletter_placeholder": "[NEEDS_TRANSLATION] Tu correo",
     "newsletter_submit": "[NEEDS_TRANSLATION] Suscribirme",
+    "newsletter_success": "[NEEDS_TRANSLATION] Listo. Gracias.",
+    "newsletter_error": "[NEEDS_TRANSLATION] No pudimos guardar tu correo. Probá de nuevo.",
     "rights": "[NEEDS_TRANSLATION] Todos los derechos reservados.",
     "instagram": "Instagram",
     "email": "[NEEDS_TRANSLATION] Correo"
@@ -29,7 +34,8 @@
   },
   "whatsapp": {
     "label": "[NEEDS_TRANSLATION] Hablar por WhatsApp",
-    "default_message": "[NEEDS_TRANSLATION] Hola, me interesa una expedición."
+    "default_message": "[NEEDS_TRANSLATION] Hola, me interesa una expedición.",
+    "tour_message": "[NEEDS_TRANSLATION] Hola, me interesa la ruta {tour}."
   },
   "common": {
     "plan_trip": "[NEEDS_TRANSLATION] Planeá tu viaje",
@@ -41,7 +47,33 @@
   "home": {
     "eyebrow": "[NEEDS_TRANSLATION] Moto On/Off · expediciones",
     "headline": "[NEEDS_TRANSLATION] VIAJES QUE DEJAN MARCA",
-    "manifesto": "[NEEDS_TRANSLATION] Cruzamos los caminos que ponen a prueba lo que tenés adentro."
+    "manifesto": "[NEEDS_TRANSLATION] Cruzamos los caminos que ponen a prueba lo que tenés adentro.",
+    "rider_alt": "[NEEDS_TRANSLATION] Motociclista sobre una moto de aventura cargada, visto desde atrás"
+  },
+  "home_calendar": {
+    "eyebrow": "[NEEDS_TRANSLATION] Próximas fechas",
+    "heading": "[NEEDS_TRANSLATION] PRÓXIMAS SALIDAS",
+    "see_all": "[NEEDS_TRANSLATION] Ver el calendario completo",
+    "empty": "[NEEDS_TRANSLATION] Estamos confirmando las próximas fechas.",
+    "until": "[NEEDS_TRANSLATION] hasta"
+  },
+  "home_custom": {
+    "eyebrow": "[NEEDS_TRANSLATION] A medida",
+    "heading": "[NEEDS_TRANSLATION] ¿NO TE CIERRA NINGUNA?",
+    "body": "[NEEDS_TRANSLATION] Si ninguna de estas rutas te termina de cerrar, armamos una.",
+    "cta": "[NEEDS_TRANSLATION] Armá tu travesía"
+  },
+  "home_about": {
+    "eyebrow": "[NEEDS_TRANSLATION] Quiénes somos",
+    "heading": "[NEEDS_TRANSLATION] ARMADO EN LA RUTA",
+    "body": "[NEEDS_TRANSLATION] No somos guías de paseo. Andamos las rutas que vendemos.",
+    "cta": "[NEEDS_TRANSLATION] Conocé al equipo"
+  },
+  "home_journal": {
+    "eyebrow": "[NEEDS_TRANSLATION] Diario de ruta",
+    "heading": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
+    "intro": "[NEEDS_TRANSLATION] Lo que se cuenta cuando bajamos del recorrido.",
+    "see_all": "[NEEDS_TRANSLATION] Leer el diario completo"
   },
   "tours_index": {
     "eyebrow": "[NEEDS_TRANSLATION] Catálogo",
@@ -62,5 +94,163 @@
     "related_eyebrow": "[NEEDS_TRANSLATION] Otras rutas",
     "related_heading": "[NEEDS_TRANSLATION] Si esta no, esta",
     "missing_content": "[NEEDS_TRANSLATION] Contenido en preparación."
+  },
+  "features": {
+    "eyebrow": "[NEEDS_TRANSLATION] Cómo se rueda",
+    "heading": "[NEEDS_TRANSLATION] ASÍ ANDAMOS",
+    "items": {
+      "remote_routes": {
+        "title": "[NEEDS_TRANSLATION] RUTAS REMOTAS",
+        "body": "[NEEDS_TRANSLATION] Tramos que casi nadie corre."
+      },
+      "local_people": {
+        "title": "[NEEDS_TRANSLATION] GENTE LOCAL",
+        "body": "[NEEDS_TRANSLATION] Comemos donde comen los puesteros."
+      },
+      "hard_riding": {
+        "title": "[NEEDS_TRANSLATION] ANDAR DURO",
+        "body": "[NEEDS_TRANSLATION] Días largos, altura, viento, polvo."
+      },
+      "sleep_where": {
+        "title": "[NEEDS_TRANSLATION] DORMIR DONDE CAIGA",
+        "body": "[NEEDS_TRANSLATION] Refugio de montaña, hostería de pueblo, carpa al borde del camino."
+      }
+    }
+  },
+  "x_list": {
+    "eyebrow": "[NEEDS_TRANSLATION] Esto no es para cualquiera",
+    "heading": "[NEEDS_TRANSLATION] ESTO ES PARA VOS SI…",
+    "items": [
+      "[NEEDS_TRANSLATION] Manejaste en ripio profundo y querés más.",
+      "[NEEDS_TRANSLATION] Una ruta de tierra te entusiasma más que un resort.",
+      "[NEEDS_TRANSLATION] Andás para descubrir de qué estás hecho.",
+      "[NEEDS_TRANSLATION] Las historias que valen la pena contar son las que te cuestan."
+    ]
+  },
+  "journal_grid": {
+    "eyebrow": "[NEEDS_TRANSLATION] Diario de ruta",
+    "heading": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
+    "read_more": "[NEEDS_TRANSLATION] Leer la nota"
+  },
+  "quote_section": {
+    "eyebrow": "[NEEDS_TRANSLATION] Lo que se queda",
+    "hunter_thompson_quote": "[NEEDS_TRANSLATION] No vas a encontrar hombres razonables en la cima de las montañas más altas.",
+    "hunter_thompson_attribution": "Hunter S. Thompson"
+  },
+  "manifesto": {
+    "eyebrow": "[NEEDS_TRANSLATION] Manifiesto",
+    "heading": "[NEEDS_TRANSLATION] LA RUTA NO PIDE PERMISO",
+    "p1": "[NEEDS_TRANSLATION] Cruzamos cordilleras porque del otro lado uno vuelve distinto.",
+    "p2": "[NEEDS_TRANSLATION] Cada día tiene su precio: el viento de la Patagonia, el ripio del NOA, la altura de los Andes.",
+    "emphasis": "[NEEDS_TRANSLATION] lo que no se mide"
+  },
+  "about": {
+    "title": "[NEEDS_TRANSLATION] Nosotros",
+    "eyebrow": "[NEEDS_TRANSLATION] Quiénes somos",
+    "headline": "[NEEDS_TRANSLATION] ARMADO EN LA RUTA",
+    "metadata_description": "[NEEDS_TRANSLATION] Moto On/Off arma travesías en moto por la Patagonia, los Andes y el norte argentino.",
+    "subheadline": "[NEEDS_TRANSLATION] No somos guías de paseo. Andamos las rutas que vendemos.",
+    "founder_eyebrow": "[NEEDS_TRANSLATION] Fundador",
+    "founder_name": "[NEEDS_TRANSLATION] Sebastián",
+    "founder_caption": "[NEEDS_TRANSLATION] Patagonia, 2024. Día 9 de la travesía.",
+    "cta": "[NEEDS_TRANSLATION] Conocenos por WhatsApp"
+  },
+  "custom": {
+    "title": "[NEEDS_TRANSLATION] A medida",
+    "eyebrow": "[NEEDS_TRANSLATION] A medida",
+    "headline": "[NEEDS_TRANSLATION] ORGANIZAMOS TU VIAJE A MEDIDA",
+    "metadata_description": "[NEEDS_TRANSLATION] Diseñamos travesías a medida en moto por Argentina y la Cordillera.",
+    "subheadline": "[NEEDS_TRANSLATION] Diseñamos la ruta a tu medida.",
+    "p1": "[NEEDS_TRANSLATION] Además de nuestros tours, te ofrecemos la posibilidad de crear un viaje totalmente personalizado.",
+    "p2": "[NEEDS_TRANSLATION] Nos contás qué te imaginás, lo convertimos en un viaje posible, 100% a tu medida.",
+    "includes_eyebrow": "[NEEDS_TRANSLATION] Lo que armamos",
+    "includes_heading": "[NEEDS_TRANSLATION] ¿QUÉ INCLUYE?",
+    "includes_items": [
+      "[NEEDS_TRANSLATION] Itinerario detallado con tiempos y kilómetros.",
+      "[NEEDS_TRANSLATION] Hoteles sugeridos según la categoría deseada.",
+      "[NEEDS_TRANSLATION] Archivos GPX o Google Maps para navegación.",
+      "[NEEDS_TRANSLATION] Experiencias recomendadas según la zona de interés."
+    ],
+    "extras_eyebrow": "[NEEDS_TRANSLATION] Si querés que te llevemos",
+    "extras_heading": "[NEEDS_TRANSLATION] OPCIONALES",
+    "extras_items": [
+      "[NEEDS_TRANSLATION] Traslado de la moto ida y vuelta a destino.",
+      "[NEEDS_TRANSLATION] Guía en moto durante toda la travesía.",
+      "[NEEDS_TRANSLATION] Vehículo de apoyo 4×4 y transporte de equipaje."
+    ],
+    "form_eyebrow": "[NEEDS_TRANSLATION] Contanos tu idea",
+    "form_heading": "[NEEDS_TRANSLATION] ESCRIBINOS Y ARMAMOS",
+    "talk_eyebrow": "[NEEDS_TRANSLATION] O por WhatsApp",
+    "talk_heading": "[NEEDS_TRANSLATION] PREFERÍS HABLAR DIRECTO",
+    "talk_body": "[NEEDS_TRANSLATION] Escribinos por WhatsApp y arrancamos por ahí."
+  },
+  "calendar": {
+    "title": "[NEEDS_TRANSLATION] Calendario",
+    "eyebrow": "[NEEDS_TRANSLATION] Salidas confirmadas",
+    "headline": "[NEEDS_TRANSLATION] PRÓXIMAS FECHAS",
+    "metadata_description": "[NEEDS_TRANSLATION] Calendario de salidas confirmadas por ruta.",
+    "intro": "[NEEDS_TRANSLATION] Cada salida tiene cupo limitado.",
+    "no_departures": "[NEEDS_TRANSLATION] No hay salidas confirmadas todavía.",
+    "month_format": "long",
+    "see_tour": "[NEEDS_TRANSLATION] Ver la ruta",
+    "until": "[NEEDS_TRANSLATION] hasta"
+  },
+  "contact": {
+    "title": "[NEEDS_TRANSLATION] Contacto",
+    "eyebrow": "[NEEDS_TRANSLATION] Hablemos",
+    "headline": "[NEEDS_TRANSLATION] ESCRIBINOS",
+    "metadata_description": "[NEEDS_TRANSLATION] Contactá a Moto On/Off por WhatsApp, correo o el formulario.",
+    "intro": "[NEEDS_TRANSLATION] Lo más rápido es WhatsApp.",
+    "channels_eyebrow": "[NEEDS_TRANSLATION] Por dónde",
+    "whatsapp_label": "WhatsApp",
+    "whatsapp_body": "[NEEDS_TRANSLATION] Lo levantamos en el día.",
+    "email_label": "[NEEDS_TRANSLATION] Correo",
+    "email_body": "hello@motoonoff.com",
+    "form_eyebrow": "[NEEDS_TRANSLATION] O dejanos un mensaje",
+    "form_heading": "[NEEDS_TRANSLATION] FORMULARIO DE CONTACTO"
+  },
+  "journal_index": {
+    "title": "[NEEDS_TRANSLATION] Diario",
+    "eyebrow": "[NEEDS_TRANSLATION] Diario de ruta",
+    "headline": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
+    "metadata_description": "[NEEDS_TRANSLATION] Notas, crónicas y fotos de las rutas que rodamos.",
+    "intro": "[NEEDS_TRANSLATION] Lo que se cuenta cuando bajamos del recorrido.",
+    "empty": "[NEEDS_TRANSLATION] Pronto. Estamos escribiendo las primeras notas."
+  },
+  "journal_post": {
+    "back": "[NEEDS_TRANSLATION] Volver al diario",
+    "share_eyebrow": "[NEEDS_TRANSLATION] Compartir"
+  },
+  "form": {
+    "name_label": "[NEEDS_TRANSLATION] Tu nombre",
+    "name_placeholder": "[NEEDS_TRANSLATION] Cómo te llamás",
+    "email_label": "[NEEDS_TRANSLATION] Tu correo",
+    "email_placeholder": "[NEEDS_TRANSLATION] vos@correo.com",
+    "group_size_label": "[NEEDS_TRANSLATION] Cuántos son",
+    "group_size_placeholder": "[NEEDS_TRANSLATION] 1, 2, 4…",
+    "preferred_dates_label": "[NEEDS_TRANSLATION] Cuándo te gustaría",
+    "preferred_dates_placeholder": "[NEEDS_TRANSLATION] Marzo 2027 / fines de semana / lo que tengas",
+    "tour_label": "[NEEDS_TRANSLATION] Ruta que te interesa",
+    "tour_placeholder": "[NEEDS_TRANSLATION] Elegí una (o dejá en blanco)",
+    "tour_any": "[NEEDS_TRANSLATION] Cualquiera / no sé todavía",
+    "experience_label": "[NEEDS_TRANSLATION] Experiencia en moto",
+    "experience_placeholder": "[NEEDS_TRANSLATION] Cuántos años, qué moto, en qué andás",
+    "region_label": "[NEEDS_TRANSLATION] Región o ruta soñada",
+    "region_placeholder": "[NEEDS_TRANSLATION] Patagonia, Norte, Cordillera…",
+    "window_label": "[NEEDS_TRANSLATION] Ventana de fechas",
+    "window_placeholder": "[NEEDS_TRANSLATION] Octubre 2027, una semana, etc.",
+    "message_label": "[NEEDS_TRANSLATION] Tu mensaje",
+    "message_placeholder": "[NEEDS_TRANSLATION] Contanos un poco de vos y de lo que buscás.",
+    "pitch_label": "[NEEDS_TRANSLATION] Tu idea",
+    "pitch_placeholder": "[NEEDS_TRANSLATION] La ruta que tenés en la cabeza.",
+    "submit": "[NEEDS_TRANSLATION] Enviar",
+    "sending": "[NEEDS_TRANSLATION] Enviando…",
+    "success_heading": "[NEEDS_TRANSLATION] Recibimos tu mensaje.",
+    "success_body": "[NEEDS_TRANSLATION] Te escribimos en menos de 48 hs.",
+    "error_heading": "[NEEDS_TRANSLATION] Algo no salió.",
+    "error_body": "[NEEDS_TRANSLATION] Probá de nuevo en un rato.",
+    "required": "[NEEDS_TRANSLATION] Completá este campo.",
+    "invalid_email": "[NEEDS_TRANSLATION] Ese correo no parece válido.",
+    "invalid_number": "[NEEDS_TRANSLATION] Tiene que ser un número."
   }
 }

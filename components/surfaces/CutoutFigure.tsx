@@ -1,7 +1,7 @@
 import { type ImageProps } from "next/image";
 import { HalftoneImage } from "./HalftoneImage";
 
-type Anchor = "bottom-right" | "bottom-left" | "right" | "left" | "center";
+type Anchor = "bottom-right" | "bottom-left" | "bottom-center" | "right" | "left" | "center";
 type Bleed = "right" | "left" | "bottom" | "both" | "none";
 
 type CutoutFigureProps = Omit<ImageProps, "priority"> & {
@@ -19,6 +19,7 @@ type CutoutFigureProps = Omit<ImageProps, "priority"> & {
 const anchorClass: Record<Anchor, string> = {
   "bottom-right": "absolute bottom-0 right-0",
   "bottom-left": "absolute bottom-0 left-0",
+  "bottom-center": "absolute bottom-0 left-1/2 -translate-x-1/2",
   right: "absolute right-0 top-1/2 -translate-y-1/2",
   left: "absolute left-0 top-1/2 -translate-y-1/2",
   center: "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",

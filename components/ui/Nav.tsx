@@ -21,9 +21,10 @@ import { LangSwitcher } from "./LangSwitcher";
 
 const NAV_ITEMS = [
   { href: "/tours", labelKey: "trips" },
+  { href: "/calendar", labelKey: "calendar" },
+  { href: "/custom", labelKey: "custom" },
   { href: "/about", labelKey: "about" },
   { href: "/journal", labelKey: "journal" },
-  { href: "/contact", labelKey: "destinations" },
 ] as const;
 
 export function Nav() {
@@ -69,15 +70,24 @@ export function Nav() {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        {/* Desktop links — hover reveals the brand hand-underline SVG (same
+            mark used by the LangSwitcher's active locale). */}
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-eyebrow tracking-eyebrow text-paper relative font-semibold uppercase after:absolute after:bottom-[-4px] after:left-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-200 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:w-full"
+              className="group/navlink text-eyebrow tracking-eyebrow text-paper relative font-semibold uppercase"
             >
               {t(item.labelKey)}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
+                viewBox="0 0 200 12"
+                preserveAspectRatio="none"
+              >
+                <use href="#hand-underline" />
+              </svg>
             </Link>
           ))}
         </nav>

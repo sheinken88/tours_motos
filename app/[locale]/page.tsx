@@ -1,12 +1,13 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Container } from "@/components/primitives";
+import Image from "next/image";
+import { Container, DisplayHeading, Eyebrow } from "@/components/primitives";
+import { InquiryForm, type InquiryTourOption } from "@/components/forms";
 import {
   CalendarStrip,
   Hero,
   JournalGrid,
   type JournalPost,
   PageTeaser,
-  QuoteWithFigure,
   TourGrid,
 } from "@/components/sections";
 import { PaperZone, RedZone } from "@/components/surfaces";
@@ -24,17 +25,24 @@ export default async function Home({ params }: Props) {
   if (!isLocale(locale)) return null;
   setRequestLocale(locale);
 
-  const [tToursIdx, tCustom, tAbout, tJournal, tQuote, tours, journalEntries] = await Promise.all([
-    getTranslations({ locale, namespace: "tours_index" }),
-    getTranslations({ locale, namespace: "home_custom" }),
-    getTranslations({ locale, namespace: "home_about" }),
-    getTranslations({ locale, namespace: "home_journal" }),
-    getTranslations({ locale, namespace: "quote_section" }),
-    getTours(locale),
-    listJournalEntries(locale),
-  ]);
+  const [tToursIdx, tCustom, tAbout, tJournal, tContact, tHome, tours, journalEntries] =
+    await Promise.all([
+      getTranslations({ locale, namespace: "tours_index" }),
+      getTranslations({ locale, namespace: "home_custom" }),
+      getTranslations({ locale, namespace: "home_about" }),
+      getTranslations({ locale, namespace: "home_journal" }),
+      getTranslations({ locale, namespace: "contact" }),
+      getTranslations({ locale, namespace: "home" }),
+      getTours(locale),
+      listJournalEntries(locale),
+    ]);
 
   const tGrid = await getTranslations({ locale, namespace: "journal_grid" });
+
+  const tourOptions: InquiryTourOption[] = tours.map((tourEntry) => ({
+    slug: tourEntry.slug,
+    title: tourEntry.title[locale],
+  }));
 
   // Map journal MDX entries to the JournalGrid props shape.
   const journalPosts: JournalPost[] = journalEntries.slice(0, 3).map((entry) => ({
@@ -129,25 +137,37 @@ export default async function Home({ params }: Props) {
         </div>
       </PaperZone>
 
-      {/* 7 · Quote anchor with halftone figure (red) ────────────────────────
-          Photo uses mix-blend-multiply so the source's white sky drops out
-          and only the figure reads against the red field. A radial mask
-          feathers all four edges (~6%) so the figure diffuses into the
-          field uniformly without eating structural detail like the wheel. */}
-      <RedZone density="default" tornBottom={1}>
-        <QuoteWithFigure
-          quote={tQuote("hunter_thompson_quote")}
-          attribution={tQuote("hunter_thompson_attribution")}
-          figure={
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src="/images/halftone/hunter-thompson-bike.webp"
-              alt="Hunter S. Thompson aiming a revolver while seated on a motorcycle"
-              className="absolute inset-0 h-full w-full object-contain object-right-bottom mix-blend-multiply [-webkit-mask-image:radial-gradient(ellipse_at_center,black_75%,transparent_100%)] [mask-image:radial-gradient(ellipse_at_center,black_75%,transparent_100%)]"
-              draggable={false}
-            />
-          }
-        />
+      {/* 7 · Contact form (red) ──────────────────────────────────────────
+          Two-column grid: form on the left, rider cutout on the right.
+          Image uses object-contain inside a self-stretched cell so it
+          scales to match the form column's height without overflowing
+          or floating disconnected at the bottom. */}
+      <RedZone density="default">
+        <Container>
+          <div className="grid items-stretch gap-12 md:grid-cols-2 md:gap-16">
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <Eyebrow rule>{tContact("eyebrow")}</Eyebrow>
+                <DisplayHeading size="2xl" as="h2">
+                  {tContact("headline")}
+                </DisplayHeading>
+                <p className="max-w-prose font-sans text-lg leading-relaxed">
+                  {tContact("intro")}
+                </p>
+              </div>
+              <InquiryForm locale={locale} kind="contact" tours={tourOptions} />
+            </div>
+            <div className="relative hidden h-full w-full md:block">
+              <Image
+                src="/images/halftone/hero-rider-cutout.png"
+                alt={tHome("rider_alt")}
+                fill
+                sizes="(min-width: 768px) 50vw, 0px"
+                className="pointer-events-none select-none object-contain object-bottom"
+              />
+            </div>
+          </div>
+        </Container>
       </RedZone>
     </>
   );

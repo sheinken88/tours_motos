@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { type Locale } from "@/lib/i18n/config";
 import { Link } from "@/lib/i18n/navigation";
 import { type Tour } from "@/lib/sheets/schemas";
+import { HalftoneImage } from "../surfaces/HalftoneImage";
 import { DisplayHeading } from "./DisplayHeading";
 import { Stamp } from "./Stamp";
 
@@ -52,16 +54,15 @@ export function TourCard({ tour, locale, numberLocale = "es-AR" }: TourCardProps
       className="bg-paper-light text-on-paper hover:shadow-sticker-ink ease-out-soft group flex h-full flex-col border-2 border-current/20 transition-[box-shadow,transform] duration-200 hover:-translate-y-1"
       aria-label={title}
     >
-      {/* Hero slot — Phase 10 swaps to a halftone PNG via tour.hero_image.
-          For now: paper-aged field with the region stamp, so the card has
-          presence without a real image. */}
+      {/* Hero slot. Z-stack (bottom → top):
+          1. paper-aged field + halftone overlay (always — graceful fallback
+             for tours whose halftone PNG has not shipped yet).
+          2. HalftoneImage cropped to 4:3 (if hero_image resolves) — the
+             default visible state.
+          3. Color JPG (if hero_image_color resolves) layered on top at
+             opacity-0, crossfading to opacity-100 on card hover.
+          4. Region stamp, tilted top-left, on top of everything. */}
       <div className="bg-paper-aged relative aspect-[4/3] overflow-hidden">
-        <div className="absolute top-4 left-4">
-          <Stamp tilt={-2} className="text-accent-on-paper bg-paper-light/80 backdrop-blur-[1px]">
-            {tour.region}
-          </Stamp>
-        </div>
-        {/* Subtle halftone overlay for visual texture until the photo lands */}
         <div
           className="absolute inset-0 opacity-30"
           style={{
@@ -69,6 +70,32 @@ export function TourCard({ tour, locale, numberLocale = "es-AR" }: TourCardProps
             backgroundRepeat: "repeat",
           }}
         />
+        {tour.hero_image ? (
+          <HalftoneImage
+            src={tour.hero_image}
+            alt={`${title} — ${tour.region}`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover"
+          />
+        ) : null}
+        {tour.hero_image_color ? (
+          <Image
+            src={tour.hero_image_color}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            draggable={false}
+            loading="eager"
+            className="ease-out-soft absolute inset-0 object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          />
+        ) : null}
+        <div className="absolute top-4 left-4">
+          <Stamp tilt={-2} className="text-accent-on-paper bg-paper-light/80 backdrop-blur-[1px]">
+            {tour.region}
+          </Stamp>
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 p-6">

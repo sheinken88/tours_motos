@@ -64,7 +64,21 @@ export const TourSchema = z.object({
   distance_km: positiveInt,
   base_price_usd: nonNegativeNumber,
   currency: z.enum(["USD", "ARS", "EUR"]).default("USD"),
-  hero_image: trimmed,
+  /** Halftone PNG path under `/public`, e.g.
+   *  `/images/tours/sobre_las_nubes/sobre_las_nubes_1_halftone.png`.
+   *  May be empty: a tour can publish before its halftone asset is delivered —
+   *  the card renders a paper-aged placeholder until the image lands. */
+  hero_image: z
+    .string()
+    .transform((s) => s.trim())
+    .pipe(z.string()),
+  /** Optional sibling color JPG used for the hover-reveal crossfade on the
+   *  tour card. Paired with `hero_image` — same crop, same scene. Empty when
+   *  the color counterpart hasn't been delivered (the card stays halftone-only). */
+  hero_image_color: z
+    .string()
+    .transform((s) => s.trim())
+    .pipe(z.string()),
   published: sheetsBool,
 });
 
@@ -128,6 +142,7 @@ function shapeTourRow(cells: RawCells): unknown {
     base_price_usd: cells.base_price_usd ?? "",
     currency: cells.currency ?? "USD",
     hero_image: cells.hero_image ?? "",
+    hero_image_color: cells.hero_image_color ?? "",
     published: cells.published ?? "FALSE",
   };
 }

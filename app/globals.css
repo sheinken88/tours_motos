@@ -37,7 +37,7 @@
   --font-script: var(--font-permanent-marker), cursive;
 
   /* Display sizes — clamp() for responsive scaling, line-height + letter-spacing baked in */
-  --text-display-2xl: clamp(4rem, 9vw, 8.5rem);
+  --text-display-2xl: clamp(3.5rem, 8vw, 7.5rem);
   --text-display-2xl--line-height: 0.92;
   --text-display-2xl--letter-spacing: -0.015em;
 

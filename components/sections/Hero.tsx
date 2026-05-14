@@ -4,11 +4,15 @@ import {
   Container,
   DisplayHeading,
   Eyebrow,
-  HandUnderline,
 } from "@/components/primitives";
 import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
 import { CutoutFigure, RedZone } from "@/components/surfaces";
 import { type Locale } from "@/lib/i18n/config";
+import { getTours } from "@/lib/sheets/queries";
+import {
+  RotatingManifesto,
+  type ManifestoVariant,
+} from "./RotatingManifesto";
 
 type HeroProps = {
   locale: Locale;
@@ -26,8 +30,16 @@ type HeroProps = {
  * Static rendering. Motion choreography comes in a later phase.
  */
 export async function Hero({ locale }: HeroProps) {
-  const tHome = await getTranslations("home");
-  const tCommon = await getTranslations("common");
+  const [tHome, tCommon, tours] = await Promise.all([
+    getTranslations("home"),
+    getTranslations("common"),
+    getTours(locale),
+  ]);
+
+  const teasers = tHome.raw("route_teasers") as Record<string, string>;
+  const variants: ManifestoVariant[] = tours
+    .map((tour) => ({ slug: tour.slug, teaser: teasers[tour.slug] ?? "" }))
+    .filter((v) => v.teaser.length > 0);
 
   return (
     <RedZone density="heavy" tornBottom={2} className="relative overflow-hidden">
@@ -57,10 +69,9 @@ export async function Hero({ locale }: HeroProps) {
           <DisplayHeading size="2xl" as="h1">
             {tHome("headline")}
           </DisplayHeading>
-          {/* Layer 5 — manifesto with hand-underline emphasis */}
-          <p className="text-on-red max-w-prose font-sans text-lg leading-relaxed sm:text-xl">
-            {tHome("manifesto")} <HandUnderline>2.200 km</HandUnderline>.
-          </p>
+          {/* Layer 5 — per-route teaser, rotates across the catalog. Each
+              variant names a signature place from that tour. */}
+          <RotatingManifesto variants={variants} />
           <div className="flex flex-wrap gap-4 pt-2">
             <Button href={`/${locale}/tours`} edge={1} tilt="left" variant="sticker-filled">
               {tCommon("plan_trip")}

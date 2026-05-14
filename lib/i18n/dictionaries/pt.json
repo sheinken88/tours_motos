@@ -46,9 +46,14 @@
   },
   "home": {
     "eyebrow": "[NEEDS_TRANSLATION] Moto On/Off · expediciones",
-    "headline": "[NEEDS_TRANSLATION] VIAJES QUE DEJAN MARCA",
-    "manifesto": "[NEEDS_TRANSLATION] Cruzamos los caminos que ponen a prueba lo que tenés adentro.",
-    "rider_alt": "[NEEDS_TRANSLATION] Motociclista sobre una moto de aventura cargada, visto desde atrás"
+    "headline": "[NEEDS_TRANSLATION] RUTAS QUE NO ESTÁN EN EL MAPA",
+    "rider_alt": "[NEEDS_TRANSLATION] Motociclista sobre una moto de aventura cargada, visto desde atrás",
+    "route_teasers": {
+      "sobre-las-nubes": "[NEEDS_TRANSLATION] Salta y Jujuy en 7 días. Cruzás el Abra del Acay a 4.895 m, el paso más alto de la Ruta 40.",
+      "gigantes-del-oeste": "[NEEDS_TRANSLATION] Mendoza a La Rioja en 8 días. Subís a Laguna Brava, 4.300 m, donde descansa un avión y caminan los flamencos.",
+      "volcanes-del-norte": "[NEEDS_TRANSLATION] Catamarca en 7 días. Antofagasta de la Sierra, el Campo de Piedra Pómez y las dunas de Tatón.",
+      "cruces-del-sur": "[NEEDS_TRANSLATION] Carretera Austral en 7 días. Paso Roballos, el Lago General Carrera y ripio de punta a punta."
+    }
   },
   "home_calendar": {
     "eyebrow": "[NEEDS_TRANSLATION] Próximas fechas",

@@ -20,27 +20,6 @@ import { type Departure, type Tour } from "./schemas";
 
 export const MOCK_TOURS: Tour[] = [
   {
-    slug: "sobre-las-nubes",
-    title: {
-      es: "Sobre las Nubes",
-      en: "Sobre las Nubes",
-      pt: "Sobre las Nubes",
-    },
-    slugs: {
-      es: "sobre-las-nubes",
-      en: "sobre-las-nubes",
-      pt: "sobre-las-nubes",
-    },
-    region: "Salta y Jujuy",
-    difficulty: "moderate",
-    duration_days: 7,
-    distance_km: 1712,
-    base_price_usd: 0,
-    currency: "USD",
-    hero_image: "/images/halftone/sobre-las-nubes-hero.png",
-    published: true,
-  },
-  {
     slug: "gigantes-del-oeste",
     title: {
       es: "Gigantes del Oeste",
@@ -58,7 +37,30 @@ export const MOCK_TOURS: Tour[] = [
     distance_km: 2400,
     base_price_usd: 0,
     currency: "USD",
-    hero_image: "/images/halftone/gigantes-del-oeste-hero.png",
+    hero_image: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_halftone.png",
+    hero_image_color: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_color.jpg",
+    published: true,
+  },
+  {
+    slug: "sobre-las-nubes",
+    title: {
+      es: "Sobre las Nubes",
+      en: "Sobre las Nubes",
+      pt: "Sobre las Nubes",
+    },
+    slugs: {
+      es: "sobre-las-nubes",
+      en: "sobre-las-nubes",
+      pt: "sobre-las-nubes",
+    },
+    region: "Salta y Jujuy",
+    difficulty: "moderate",
+    duration_days: 7,
+    distance_km: 1712,
+    base_price_usd: 0,
+    currency: "USD",
+    hero_image: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_halftone.png",
+    hero_image_color: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg",
     published: true,
   },
   {
@@ -83,7 +85,8 @@ export const MOCK_TOURS: Tour[] = [
     distance_km: 1917,
     base_price_usd: 0,
     currency: "USD",
-    hero_image: "/images/halftone/volcanes-del-norte-hero.png",
+    hero_image: "/images/tours/volcanes_del_norte/volcanes_del_norte_1_halftone.png",
+    hero_image_color: "/images/tours/volcanes_del_norte/volcanes_del_norte_1_color.jpg",
     published: true,
   },
   {
@@ -105,6 +108,7 @@ export const MOCK_TOURS: Tour[] = [
     base_price_usd: 0,
     currency: "USD",
     hero_image: "/images/halftone/cruces-del-sur-hero.png",
+    hero_image_color: "",
     published: true,
   },
 ];

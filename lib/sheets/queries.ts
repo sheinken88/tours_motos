@@ -1,9 +1,30 @@
 import "server-only";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { unstable_cache } from "next/cache";
 import { type Locale } from "@/lib/i18n/config";
 import { hasRealCredentials, readSheet } from "./client";
 import { MOCK_DEPARTURES, MOCK_TOURS } from "./mock";
 import { type Departure, type Tour, parseDepartures, parseTours } from "./schemas";
+
+/**
+ * Clear `hero_image` and `hero_image_color` on tours whose assets haven't
+ * shipped yet so the card renders the paper-aged placeholder (and skips the
+ * hover crossfade) instead of broken next/image markers. Schema accepts
+ * empty strings; the TourCard treats empty as "no image / no color pair".
+ *
+ * Server-only — uses fs, runs once per cache miss (10 min TTL).
+ */
+function resolveHeroImages(tours: Tour[]): Tour[] {
+  const onDisk = (publicPath: string) =>
+    publicPath.startsWith("/") && existsSync(join(process.cwd(), "public", publicPath));
+  return tours.map((tour) => ({
+    ...tour,
+    hero_image: tour.hero_image && onDisk(tour.hero_image) ? tour.hero_image : "",
+    hero_image_color:
+      tour.hero_image_color && onDisk(tour.hero_image_color) ? tour.hero_image_color : "",
+  }));
+}
 
 /**
  * Query layer over the Sheets CMS. Every reader is cached for 10 minutes
@@ -32,12 +53,12 @@ async function fetchTours(): Promise<Tour[]> {
     if (process.env.NODE_ENV !== "production") {
       console.info("[sheets] credentials missing — serving mock tours");
     }
-    return MOCK_TOURS.filter((t) => t.published);
+    return resolveHeroImages(MOCK_TOURS.filter((t) => t.published));
   }
 
   try {
     const { headers, rows } = await readSheet(TOURS_RANGE);
-    return parseTours(headers, rows);
+    return resolveHeroImages(parseTours(headers, rows));
   } catch (error) {
     console.error("[sheets] fetchTours failed", error);
     // Empty array is the safest fallback — Phase 7 pages render their

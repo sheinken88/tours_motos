@@ -144,7 +144,7 @@ export default async function Home({ params }: Props) {
           or floating disconnected at the bottom. */}
       <RedZone density="default">
         <Container>
-          <div className="grid items-stretch gap-12 md:grid-cols-2 md:gap-16">
+          <div className="grid items-stretch gap-12 md:grid-cols-[1fr_1.4fr] md:gap-16">
             <div className="space-y-8">
               <div className="space-y-3">
                 <Eyebrow rule>{tContact("eyebrow")}</Eyebrow>
@@ -157,13 +157,13 @@ export default async function Home({ params }: Props) {
               </div>
               <InquiryForm locale={locale} kind="contact" tours={tourOptions} />
             </div>
-            <div className="relative hidden h-full w-full md:block">
+            <div className="relative hidden h-full w-full translate-x-16 md:block lg:translate-x-24 xl:translate-x-32">
               <Image
                 src="/images/halftone/hero-rider-cutout.png"
                 alt={tHome("rider_alt")}
                 fill
-                sizes="(min-width: 768px) 50vw, 0px"
-                className="pointer-events-none select-none object-contain object-bottom"
+                sizes="(min-width: 768px) 60vw, 0px"
+                className="pointer-events-none scale-125 select-none object-contain object-right-bottom md:scale-[1.35] lg:scale-[1.45]"
               />
             </div>
           </div>

@@ -118,6 +118,7 @@ export default async function CalendarPage({ params }: Props) {
                   <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {items.map((d) => {
                       const tour = tourBySlug.get(d.tour_slug);
+                      const notes = d.notes[locale];
                       const tourTitle = tour?.title[locale] ?? d.tour_slug;
                       const tourSlug = tour?.slugs[locale] ?? d.tour_slug;
                       const start = dayFormatter.format(new Date(d.start_date));
@@ -143,10 +144,8 @@ export default async function CalendarPage({ params }: Props) {
                           >
                             {tourTitle} →
                           </I18nLink>
-                          {d.notes ? (
-                            <p className="font-sans text-sm leading-relaxed opacity-80">
-                              {d.notes}
-                            </p>
+                          {notes ? (
+                            <p className="font-sans text-sm leading-relaxed opacity-80">{notes}</p>
                           ) : null}
                         </li>
                       );

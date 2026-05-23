@@ -1,83 +1,155 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
-import { RedZone } from "@/components/surfaces";
+import { HalftoneImage, RedZone, RoutePlaceholderPanel } from "@/components/surfaces";
 import { type Locale } from "@/lib/i18n/config";
 import { type Tour } from "@/lib/sheets/schemas";
 
 type TourHeroProps = {
   tour: Tour;
   locale: Locale;
-  /** Tagline from MDX frontmatter — shown below the headline. */
-  tagline?: string;
 };
+
+type RoutePrintProps = {
+  tour: Tour;
+  locale: Locale;
+  priority?: boolean;
+  className?: string;
+  sizes?: string;
+};
+
+function RoutePrint({
+  tour,
+  locale,
+  priority = false,
+  className = "",
+  sizes = "(min-width: 1024px) 58vw, 100vw",
+}: RoutePrintProps) {
+  const imageAlt = tour.hero_image_alt[locale] || tour.title[locale];
+  const routeImage = tour.hero_image_color || tour.hero_image;
+
+  return (
+    <figure
+      className={`group/route-print border-paper/30 overflow-hidden border-y-2 bg-transparent ${className}`}
+      style={{
+        clipPath: "polygon(0 10%, 100% 0, 100% 90%, 80% 100%, 0 88%)",
+      }}
+    >
+      {routeImage ? (
+        tour.hero_image_color ? (
+          <Image
+            src={routeImage}
+            alt={imageAlt}
+            width={1846}
+            height={852}
+            sizes={sizes}
+            priority={priority}
+            loading={priority ? "eager" : undefined}
+            unoptimized
+            className="h-full w-full object-cover object-bottom opacity-90 contrast-125 saturate-75"
+          />
+        ) : (
+          <HalftoneImage
+            src={routeImage}
+            alt={imageAlt}
+            width={1846}
+            height={852}
+            sizes={sizes}
+            priority={priority}
+            loading={priority ? "eager" : undefined}
+            unoptimized
+            className="h-full w-full object-cover object-bottom opacity-90 contrast-125"
+          />
+        )
+      ) : (
+        <RoutePlaceholderPanel
+          id={tour.slug}
+          className="absolute inset-0 opacity-80 mix-blend-multiply"
+        />
+      )}
+      <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply" />
+      {tour.hero_image_color && tour.hero_image ? (
+        <HalftoneImage
+          src={tour.hero_image}
+          alt={imageAlt}
+          width={1846}
+          height={852}
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? "eager" : undefined}
+          unoptimized
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom opacity-35 mix-blend-multiply contrast-125"
+        />
+      ) : null}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
+        style={{
+          backgroundImage: "url(/textures/halftone-overlay.svg)",
+          backgroundRepeat: "repeat",
+        }}
+        aria-hidden="true"
+      />
+    </figure>
+  );
+}
 
 /**
  * TourHero — per-tour variant of the home Hero. Same red-zone composition
  * (mountain ridge, torn bottom edge) with tour-specific copy:
- *   - Eyebrow: region · days · km
+ *   - Eyebrow: route region
  *   - Headline: tour title from Sheets
- *   - Tagline: from MDX frontmatter
- *   - Stamp: difficulty
  *   - CTAs: Hold a spot (sticker-filled) + Talk to us (sticker-outline)
+ *   - Image: route proof printed into the red field and tucked behind the
+ *     mountain layer, rather than a freestanding photo card.
  *
- * The rider/cutout slot is reserved for tour.hero_image (Phase 10 PNG).
+ * The detailed stats stay in the paper overview immediately below, so the hero
+ * does not repeat the same duration, distance, ripio, and altitude data.
  */
-export async function TourHero({ tour, locale, tagline }: TourHeroProps) {
+export async function TourHero({ tour, locale }: TourHeroProps) {
   const tCommon = await getTranslations("common");
-  const numberLocale = locale === "en" ? "en-US" : locale === "pt" ? "pt-BR" : "es-AR";
-  const km = tour.distance_km.toLocaleString(numberLocale);
-  const days = tour.duration_days;
-  const daysWord = locale === "en" ? "days" : locale === "pt" ? "dias" : "días";
+  const region = tour.region[locale];
 
   return (
-    <RedZone density="heavy" tornBottom={2}>
+    <RedZone density="heavy" tornBottom={2} className="overflow-hidden">
+      <RoutePrint
+        tour={tour}
+        locale={locale}
+        priority
+        className="pointer-events-none absolute right-[-18vw] bottom-[15vh] z-[3] hidden h-[54vh] w-[60vw] rotate-1 lg:block xl:h-[56vh] xl:w-[58vw] 2xl:right-[-7vw] 2xl:w-[56vw]"
+        sizes="(min-width: 1536px) 56vw, (min-width: 1280px) 58vw, 60vw"
+      />
+
       {/* Mountain ridge anchored bottom, bleeds into next zone */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] opacity-90">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[52%] opacity-90">
         <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
       </div>
 
-      {/*
-        Tour cutout slot — reserved for tour.hero_image (Phase 10 PNG).
-        Drop the asset and render via:
-          <CutoutFigure
-            src={tour.hero_image}
-            alt={tour.title[locale]}
-            anchor="bottom-right"
-            bleed="right"
-            widthFraction={0.55}
-            paperOutline
-            priority
-          />
-      */}
-
-      <Container className="relative z-10 flex min-h-[68vh] flex-col justify-center md:min-h-[72vh]">
-        <div className="max-w-[760px] space-y-6">
-          <div className="flex flex-wrap items-center gap-4">
-            <Eyebrow>{tour.region}</Eyebrow>
-            <Stamp tilt={-2}>
-              {days} {daysWord}
-            </Stamp>
-            <Stamp tilt={1}>{km} km</Stamp>
-          </div>
+      <Container className="relative z-10 flex min-h-[74vh] flex-col justify-center lg:min-h-[78vh]">
+        <div className="max-w-[760px] space-y-6 lg:max-w-[700px] xl:max-w-[760px]">
+          <Eyebrow>{region}</Eyebrow>
           <DisplayHeading size="2xl" as="h1">
             {tour.title[locale]}
           </DisplayHeading>
-          {tagline ? (
-            <p className="text-on-red max-w-prose font-sans text-lg leading-relaxed sm:text-xl">
-              {tagline}
-            </p>
-          ) : null}
+          <div className="relative -mx-5 pt-2 sm:-mx-8 md:mx-0 lg:hidden">
+            <RoutePrint
+              tour={tour}
+              locale={locale}
+              priority
+              sizes="100vw"
+              className="relative h-[17rem] -rotate-1"
+            />
+          </div>
           <div className="flex flex-wrap gap-4 pt-2">
             <Button
-              href={`/contact?tour=${tour.slug}`}
+              href={`/${locale}/contact?tour=${tour.slugs[locale]}`}
               edge={1}
               tilt="left"
               variant="sticker-filled"
             >
               {tCommon("hold_a_spot")}
             </Button>
-            <Button href="/contact" edge={2} tilt="right">
+            <Button href={`/${locale}/contact`} edge={2} tilt="right">
               {tCommon("talk_to_us")}
             </Button>
           </div>

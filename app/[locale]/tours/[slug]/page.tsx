@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import { TourCmsContent, TourMdxContent } from "@/components/sections";
 import { TourGrid } from "@/components/sections/TourGrid";
 import { TourHero } from "@/components/sections/TourHero";
 import { PaperZone, RedZone } from "@/components/surfaces";
@@ -11,7 +12,7 @@ import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { Link as I18nLink } from "@/lib/i18n/navigation";
 import { breadcrumbSchema, tourTripSchema } from "@/lib/seo/jsonld";
 import { tourMetadata } from "@/lib/seo/metadata";
-import { getDeparturesByTour, getTourBySlug, getTours } from "@/lib/sheets/queries";
+import { getTourPageBySlug, getTours } from "@/lib/sheets/queries";
 
 export const revalidate = 600;
 
@@ -40,11 +41,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
 
-  const tour = await getTourBySlug(locale, slug);
-  if (!tour) return {};
+  const tourPage = await getTourPageBySlug(locale, slug);
+  if (!tourPage) return {};
 
+  const { tour } = tourPage;
   const fm = await getTourFrontmatter(tour.slug, locale);
-  const description = fm?.description ?? tour.title[locale];
+  const description =
+    tour.seo_description[locale] || tour.summary[locale] || fm?.description || tour.title[locale];
   return tourMetadata({ tour, locale, description });
 }
 
@@ -53,21 +56,24 @@ export default async function TourDetail({ params }: Props) {
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const tour = await getTourBySlug(locale, slug);
-  if (!tour) notFound();
+  const tourPage = await getTourPageBySlug(locale, slug);
+  if (!tourPage) notFound();
 
-  const [allTours, departures, fm, MdxBody, t, tCommon] = await Promise.all([
+  const { tour, departures } = tourPage;
+
+  const [allTours, fm, MdxBody, t, tCommon] = await Promise.all([
     getTours(locale),
-    getDeparturesByTour(tour.slug),
     getTourFrontmatter(tour.slug, locale),
     getTourMdxComponent(tour.slug, locale),
     getTranslations({ locale, namespace: "tour_detail" }),
     getTranslations({ locale, namespace: "common" }),
   ]);
 
-  const tagline = fm?.tagline ?? "";
-  const description = fm?.description ?? tour.title[locale];
+  const description =
+    tour.seo_description[locale] || tour.summary[locale] || fm?.description || tour.title[locale];
   const related = allTours.filter((t) => t.slug !== tour.slug);
+  const hasCmsBody =
+    tourPage.itinerary.length > 0 || tourPage.sections.length > 0 || tourPage.gallery.length > 0;
 
   // JSON-LD schemas — embedded as <script> tags below
   const tripSchema = tourTripSchema({ tour, departures, locale, description });
@@ -95,21 +101,13 @@ export default async function TourDetail({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
 
-      <TourHero tour={tour} locale={locale} tagline={tagline} />
+      <TourHero tour={tour} locale={locale} />
 
-      {/* Long-form content from MDX. If no MDX exists for this locale,
-          show the missing-content stub. */}
-      <PaperZone density="default" tornBottom={1}>
-        <Container width="narrow">
-          {MdxBody ? (
-            <article className="prose-tour">
-              <MdxBody />
-            </article>
-          ) : (
-            <p className="font-sans text-base opacity-70">{t("missing_content")}</p>
-          )}
-        </Container>
-      </PaperZone>
+      {hasCmsBody ? (
+        <TourCmsContent content={tourPage} locale={locale} />
+      ) : (
+        <TourMdxContent tour={tour} locale={locale} MdxBody={MdxBody} />
+      )}
 
       {/* Departures + price strip */}
       <RedZone density="default" tornBottom={2}>
@@ -125,6 +123,7 @@ export default async function TourDetail({ params }: Props) {
           ) : (
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {departures.map((d) => {
+                const notes = d.notes[locale];
                 const startLabel = dateFormatter.format(new Date(d.start_date));
                 const endLabel = dateFormatter.format(new Date(d.end_date));
                 const statusLabel =
@@ -146,8 +145,8 @@ export default async function TourDetail({ params }: Props) {
                       <br />
                       <span className="opacity-70">→ {endLabel}</span>
                     </p>
-                    {d.notes ? (
-                      <p className="font-sans text-sm leading-relaxed opacity-80">{d.notes}</p>
+                    {notes ? (
+                      <p className="font-sans text-sm leading-relaxed opacity-80">{notes}</p>
                     ) : null}
                   </li>
                 );

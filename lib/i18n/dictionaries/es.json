@@ -75,10 +75,10 @@
     "cta": "Conocé al equipo"
   },
   "home_journal": {
-    "eyebrow": "Diario de ruta",
+    "eyebrow": "Diario de Rutas",
     "heading": "NOTAS DE CAMPO",
-    "intro": "Lo que se cuenta cuando bajamos del recorrido. Crónicas, fotos y aprendizajes.",
-    "see_all": "Leer el diario completo"
+    "intro": "Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
+    "see_all": "Ver todas las rutas"
   },
   "tours_index": {
     "eyebrow": "Catálogo",
@@ -89,7 +89,20 @@
     "empty": "Estamos preparando la próxima temporada. Volvé pronto."
   },
   "tour_detail": {
+    "overview_eyebrow": "Ruta",
+    "duration_label": "Duración",
+    "distance_label": "Distancia",
+    "ripio_label": "Ripio",
+    "max_altitude_label": "Altura máxima",
+    "days_unit": "días",
+    "gallery_eyebrow": "Fotos de ruta",
+    "itinerary_eyebrow": "Recorrido",
     "itinerary_heading": "Día por día",
+    "day_label": "Día",
+    "highlights_label": "Destacados",
+    "included_heading": "Qué incluye",
+    "not_included_heading": "Qué no incluye",
+    "need_to_know_heading": "Lo que conviene saber",
     "departures_eyebrow": "Salidas",
     "departures_heading": "Próximas fechas",
     "no_departures": "Sin fechas confirmadas por ahora — escribinos y armamos una.",
@@ -133,9 +146,9 @@
     ]
   },
   "journal_grid": {
-    "eyebrow": "Diario de ruta",
+    "eyebrow": "Diario de Rutas",
     "heading": "NOTAS DE CAMPO",
-    "read_more": "Leer la nota"
+    "read_more": "Cómo se armó"
   },
   "quote_section": {
     "eyebrow": "Lo que se queda",
@@ -215,11 +228,11 @@
     "form_heading": "FORMULARIO DE CONTACTO"
   },
   "journal_index": {
-    "title": "Diario",
-    "eyebrow": "Diario de ruta",
+    "title": "Diario de Rutas",
+    "eyebrow": "Diario de Rutas",
     "headline": "NOTAS DE CAMPO",
-    "metadata_description": "Notas, crónicas y fotos de las rutas que rodamos. Diario de campo de Moto On/Off.",
-    "intro": "Lo que se cuenta cuando bajamos del recorrido. Crónicas, fotos y aprendizajes.",
+    "metadata_description": "Cómo se armó cada ruta de Moto On/Off. Notas de scouting, tramos que probamos y descartamos, lo que terminó en el itinerario.",
+    "intro": "Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Acá están las notas de cómo se armó cada una: los tramos que probamos, los que descartamos, y por qué la versión final es la que es.",
     "empty": "Pronto. Estamos escribiendo las primeras notas."
   },
   "journal_post": {

@@ -23,6 +23,11 @@ export function tourTripSchema({ tour, departures, locale, description }: TourTr
   const site = getSiteUrl();
   const slug = tour.slugs[locale];
   const url = `${site}/${locale}/tours/${slug}`;
+  const image = tour.hero_image
+    ? tour.hero_image.startsWith("http")
+      ? tour.hero_image
+      : `${site}${tour.hero_image}`
+    : undefined;
 
   const offers = departures
     .filter((d) => d.tour_slug === tour.slug && d.status !== "sold_out")
@@ -50,7 +55,7 @@ export function tourTripSchema({ tour, departures, locale, description }: TourTr
     description,
     inLanguage: localeCodes[locale],
     url,
-    image: `${site}${tour.hero_image}`,
+    ...(image ? { image } : null),
     provider: {
       "@type": "TravelAgency",
       name: SITE_NAME,
@@ -58,7 +63,7 @@ export function tourTripSchema({ tour, departures, locale, description }: TourTr
     },
     itinerary: {
       "@type": "ItemList",
-      name: tour.region,
+      name: tour.region[locale],
       numberOfItems: tour.duration_days,
     },
     touristType: tour.difficulty,

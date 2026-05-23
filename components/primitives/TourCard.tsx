@@ -38,6 +38,7 @@ const difficultyLabel: Record<Tour["difficulty"], { es: string; en: string; pt: 
  */
 export function TourCard({ tour, locale, numberLocale = "es-AR" }: TourCardProps) {
   const title = tour.title[locale];
+  const region = tour.region[locale];
   const slug = tour.slugs[locale];
   const km = tour.distance_km.toLocaleString(numberLocale);
   const days =
@@ -73,7 +74,7 @@ export function TourCard({ tour, locale, numberLocale = "es-AR" }: TourCardProps
         {tour.hero_image ? (
           <HalftoneImage
             src={tour.hero_image}
-            alt={`${title} — ${tour.region}`}
+            alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
@@ -93,7 +94,7 @@ export function TourCard({ tour, locale, numberLocale = "es-AR" }: TourCardProps
         ) : null}
         <div className="absolute top-4 left-4">
           <Stamp tilt={-2} className="text-accent-on-paper bg-paper-light/80 backdrop-blur-[1px]">
-            {tour.region}
+            {region}
           </Stamp>
         </div>
       </div>

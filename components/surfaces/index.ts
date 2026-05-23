@@ -9,3 +9,4 @@ export { PaperPanel } from "./PaperPanel";
 export { PaperZone } from "./PaperZone";
 export { RedZone } from "./RedZone";
 export { TornEdge, type TornEdgeVariant } from "./TornEdge";
+export { RoutePlaceholderPanel, TourImagePoster } from "./TourImagePoster";

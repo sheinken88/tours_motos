@@ -76,7 +76,7 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ slug: s
           fontWeight: 700,
         }}
       >
-        <span>{tour.region}</span>
+        <span>{tour.region[locale]}</span>
         <span style={{ opacity: 0.5 }}>·</span>
         <span>
           {tour.duration_days} {locale === "en" ? "days" : locale === "pt" ? "dias" : "días"}

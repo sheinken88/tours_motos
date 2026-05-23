@@ -1,163 +1,314 @@
 # Google Sheets CMS Setup
 
-> One-time setup. After this is done the client edits a single Sheet to add tours, change dates, or update availability — engineering doesn't need to ship a deploy. Cache TTL is 10 minutes; the `/api/revalidate` bookmark forces an immediate refresh.
+> One-time setup plus the client-editable content contract. After this is wired,
+> the client can add tours, edit tour-page copy, manage departures, and reference
+> images from a single Google Sheet. The site reads with a read-only service
+> account, validates every row, caches for 10 minutes, and can be refreshed via
+> `/api/revalidate`.
 
 ---
 
 ## Architecture
 
-- **Service account** with **read-only** access to one shared Spreadsheet.
-- Credentials live in `GOOGLE_SHEETS_CREDENTIALS` (base64-encoded JSON) and the spreadsheet ID lives in `GOOGLE_SHEETS_TOURS_ID`. Both are environment variables on Vercel and locally in `.env.local`.
-- The site reads the Sheet on demand, caches for 10 minutes, and falls back to the last-good cached version if Sheets is unreachable. So a client typo or a Sheets API blip never breaks the live site.
-- A revalidation API at `/api/revalidate` flushes the cache when the client hits a bookmarked URL with a secret token.
+- **Source of truth:** one Google Sheet with five tabs:
+  `Tours`, `Itinerary`, `Departures`, `Includes`, `Gallery`.
+- **Auth:** Google Sheets API with a read-only service account.
+- **Runtime:** Next.js server components read Sheets through `lib/sheets/`.
+- **Validation:** every tab is parsed through Zod. Malformed rows are skipped
+  and logged; the rest of the site continues rendering.
+- **Caching:** data is cached for 10 minutes with Next cache tags. The manual
+  revalidate endpoint flushes tour/departure data immediately when needed.
+- **Images:** first pass accepts public/local image URLs or Google Drive file
+  IDs. Drive is convenient for the client, but a real CDN is still preferred
+  for the final production image pipeline.
 
 ---
 
 ## One-time GCP setup
 
-> Estimated time: 10–15 minutes. Do this once with a Google account that will own the service account long-term.
+1. Open Google Cloud Console: https://console.cloud.google.com/
+2. Create or select a project, e.g. `moto-onoff-cms`.
+3. Enable **Google Sheets API**:
+   APIs & Services → Library → Google Sheets API → Enable.
+4. Create a service account:
+   APIs & Services → Credentials → Create Credentials → Service account.
+5. Skip project roles. The account only needs direct access to one Sheet.
+6. Create a JSON key:
+   Service account → Keys → Add Key → Create new key → JSON.
+7. Copy the service account email. It looks like:
+   `moto-onoff-sheets-reader@<project>.iam.gserviceaccount.com`.
 
-1. **Open Google Cloud Console**: https://console.cloud.google.com/
-2. **Create or select a project**: top-bar → New Project. Name it `moto-onoff-cms` (or similar). Note the project ID.
-3. **Enable the Sheets API**:
-   - Left nav → APIs & Services → Library
-   - Search "Google Sheets API"
-   - Click → Enable
-4. **Create a service account**:
-   - APIs & Services → Credentials → Create Credentials → Service account
-   - Name: `moto-onoff-sheets-reader`
-   - Grant access: **skip** (no GCP role needed; the only access this account needs is to one Sheet, granted in step 6)
-   - Done
-5. **Generate a JSON key for the service account**:
-   - Click the service account → Keys tab → Add Key → Create new key → JSON → Create
-   - A `.json` file downloads. **Treat this like a password.** Don't commit it.
-6. **Note the service account email** (looks like `moto-onoff-sheets-reader@<project>.iam.gserviceaccount.com`). You'll use this in step 8.
+Treat the JSON key like a password. Never commit it.
 
 ---
 
 ## One-time Sheet setup
 
-> Done by whoever owns the Sheet (typically the client).
-
-7. **Create a new Google Sheet** in Drive. Name it `Moto On/Off — CMS` or similar.
-8. **Share the Sheet with the service account email** from step 6:
-   - Share → enter the email → role: **Viewer** → Send.
-   - The service account doesn't have a real inbox, so the share email bouncing is fine.
-9. **Note the spreadsheet ID** from the URL. The Sheet URL looks like `https://docs.google.com/spreadsheets/d/<THIS_IS_THE_ID>/edit`. Copy that ID — it's `GOOGLE_SHEETS_TOURS_ID`.
-
-### Sheet schema
-
-The Sheet must have **two tabs**: `Tours` and `Departures`. The first row of each tab is the header row, frozen.
-
-#### Tab `Tours`
-
-| Header | Type | Notes |
-| --- | --- | --- |
-| `slug` | string | Canonical slug; `/es/tours/<slug>` by default. `kebab-case`. |
-| `slug_es` | string | Optional locale-specific slug. Falls back to `slug`. |
-| `slug_en` | string | Optional. |
-| `slug_pt` | string | Optional. |
-| `title_es` | string | Title in Spanish. Required. |
-| `title_en` | string | Title in English. Required. |
-| `title_pt` | string | Title in Portuguese. Required. |
-| `region` | string | Display label, e.g. "Salta y Jujuy", "Mendoza a La Rioja", "Patagonia". |
-| `difficulty` | enum | One of `easy` / `moderate` / `hard` / `expert`. |
-| `duration_days` | integer | Positive. |
-| `distance_km` | integer | Positive. |
-| `base_price_usd` | number | Nonnegative — `0` is valid and renders as "consultar" until the client confirms pricing. |
-| `currency` | enum | `USD` / `ARS` / `EUR`. Defaults to `USD`. |
-| `hero_image` | string | Path under `/public`, e.g. `/images/halftone/sobre-las-nubes-hero.png`. |
-| `published` | boolean | `TRUE` / `FALSE` / `yes` / `no` / `1` / `0`. Empty = `FALSE`. Only `TRUE` rows ship. |
-
-#### Tab `Departures`
-
-| Header | Type | Notes |
-| --- | --- | --- |
-| `tour_slug` | string | Must match a `slug` in the `Tours` tab. |
-| `start_date` | date | `YYYY-MM-DD`. |
-| `end_date` | date | `YYYY-MM-DD`. |
-| `capacity` | integer | Positive. |
-| `spots_remaining` | integer | Non-negative. |
-| `status` | enum | `open` / `low` / `sold_out`. |
-| `notes` | string | Optional. Free text, displayed on the tour page. |
-
-A row that fails validation is **skipped + logged** — the rest of the Sheet still ships. Check Vercel logs for `[sheets] skipped malformed ...` if a tour disappears.
+1. Create a Google Sheet named `Moto On/Off — CMS`.
+2. Share it with the service account email as **Viewer**.
+3. Copy the spreadsheet ID from the URL:
+   `https://docs.google.com/spreadsheets/d/<THIS_IS_THE_ID>/edit`.
+4. Create exactly these tabs:
+   `Tours`, `Itinerary`, `Departures`, `Includes`, `Gallery`.
+5. Freeze row 1 in every tab.
+6. Protect row 1 so the client cannot accidentally rename/delete headers.
+7. Add dropdown validations for enum fields listed below.
 
 ---
 
-## Wiring credentials into Vercel + local dev
+## Tab: `Tours`
 
-10. **Encode the service account JSON to base64**:
+One row per tour. This controls the tour card, SEO metadata, hero content, and
+the route facts displayed on the detail page.
 
-    ```bash
-    base64 -i path/to/service-account.json | pbcopy
-    # macOS — copies to clipboard
-    ```
-
-    On Linux: `base64 -w0 service-account.json | xclip -selection clipboard`.
-
-11. **Set Vercel environment variables**:
-    - Project → Settings → Environment Variables
-    - Add:
-      - `GOOGLE_SHEETS_CREDENTIALS` = (paste the base64 string)
-      - `GOOGLE_SHEETS_TOURS_ID` = (the ID from step 9)
-      - `REVALIDATE_SECRET` = (a long random string — `openssl rand -hex 32`)
-    - Apply to Production + Preview + Development.
-
-12. **Set local `.env.local`** (gitignored — never commit):
-
-    ```env
-    GOOGLE_SHEETS_CREDENTIALS=<paste base64>
-    GOOGLE_SHEETS_TOURS_ID=<paste sheet ID>
-    REVALIDATE_SECRET=<some-long-random-string>
-    ```
-
-13. **Verify**: hit `/api/tours` locally — `source` should switch from `"mock"` to `"configured"` and the data should match the Sheet.
-
----
-
-## Mock fallback (Phase 5–7 dev)
-
-Before real credentials land, `lib/sheets/mock.ts` ships three sample Argentine tours so pages render. The fallback fires when:
-
-- `GOOGLE_SHEETS_CREDENTIALS` is missing, OR
-- `GOOGLE_SHEETS_CREDENTIALS` equals the literal string `PLACEHOLDER_BASE64_SERVICE_ACCOUNT_JSON`, OR
-- `GOOGLE_SHEETS_TOURS_ID` is missing or equals `PLACEHOLDER_SHEET_ID`.
-
-Switching to real data is purely an environment-variable change — no code edits.
-
----
-
-## Client refresh bookmark
-
-After the Sheet is edited, the cache picks up changes automatically within 10 minutes. For an instant refresh:
-
-1. Bookmark this URL (replace `<SECRET>` with the value of `REVALIDATE_SECRET`):
-
-   `javascript:fetch('https://motoonoff.com/api/revalidate?secret=<SECRET>',{method:'POST'}).then(r=>r.json()).then(d=>alert('OK · '+d.tags.join(', ')+' refreshed'))`
-
-   (A javascript: bookmark — clicking it from any tab fires the revalidate.)
-
-2. Or for a CLI:
-
-   ```bash
-   curl -X POST -H "x-revalidate-secret: <SECRET>" https://motoonoff.com/api/revalidate
-   ```
-
-The response shape is `{ revalidated: true, tags: [...], timestamp: "..." }`. A 401 means the secret is wrong.
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `slug` | yes | string | Stable join key. Use kebab-case. Do not change after publishing. |
+| `sort_order` | no | integer | Display order on indexes. Empty = `0`. |
+| `published` | yes | boolean | `TRUE`/`FALSE`. New tours should start as `FALSE`. |
+| `slug_es` | yes | string | Spanish URL slug. Usually same as `slug`. |
+| `slug_en` | yes | string | English URL slug. Can match ES until translations are final. |
+| `slug_pt` | yes | string | Portuguese URL slug. Can match ES until translations are final. |
+| `title_es` | yes | text | Tour title. |
+| `title_en` | yes | text | Human-written English title. |
+| `title_pt` | yes | text | Human-written Portuguese title. |
+| `region_es` | yes | text | Example: `Salta y Jujuy`. |
+| `region_en` | yes | text | Localized region label. |
+| `region_pt` | yes | text | Localized region label. |
+| `difficulty` | yes | enum | `easy`, `moderate`, `hard`, `expert`. |
+| `duration_days` | yes | integer | Positive number. |
+| `distance_km` | yes | integer | Total route distance. |
+| `ripio_percent` | no | integer | Percent gravel/dirt. Leave empty if unknown. |
+| `max_altitude_m` | no | integer | Max altitude in meters. Leave empty if not relevant. |
+| `base_price_usd` | yes | number | `0` means “consultar”. |
+| `currency` | yes | enum | `USD`, `ARS`, `EUR`. |
+| `hero_image` | no | URL/path | Local path like `/images/tours/...png` or public URL. |
+| `hero_image_drive_id` | no | string | Drive file ID fallback if `hero_image` is empty. |
+| `hero_image_color` | no | URL/path | Optional color sibling for hover reveals. |
+| `hero_image_color_drive_id` | no | string | Drive file ID fallback for color image. |
+| `hero_image_alt_es` | yes | text | Meaningful image alt text. |
+| `hero_image_alt_en` | yes | text | Meaningful image alt text. |
+| `hero_image_alt_pt` | yes | text | Meaningful image alt text. |
+| `summary_es` | yes | text | Detail-page overview paragraph. |
+| `summary_en` | yes | text | Human-written translation. |
+| `summary_pt` | yes | text | Human-written translation. |
+| `tagline_es` | no | text | Short hero line under title. |
+| `tagline_en` | no | text | Human-written translation. |
+| `tagline_pt` | no | text | Human-written translation. |
+| `seo_title_es` | no | text | Optional override; otherwise title is used. |
+| `seo_title_en` | no | text | Optional override. |
+| `seo_title_pt` | no | text | Optional override. |
+| `seo_description_es` | no | text | 140–160 chars preferred. |
+| `seo_description_en` | no | text | 140–160 chars preferred. |
+| `seo_description_pt` | no | text | 140–160 chars preferred. |
 
 ---
 
-## Failure-mode summary (CLAUDE.md §6)
+## Tab: `Itinerary`
+
+One row per day per tour. A 7-day tour has 7 rows.
+
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `tour_slug` | yes | string | Must match `Tours.slug`. |
+| `day_number` | yes | integer | Starts at `1`. |
+| `title_es` | yes | text | Example: `Salta Capital → Cachi`. |
+| `title_en` | yes | text | Human-written translation. |
+| `title_pt` | yes | text | Human-written translation. |
+| `route_from` | no | text | Optional structured start point. |
+| `route_to` | no | text | Optional structured end point. |
+| `distance_km` | no | integer | Day distance. |
+| `surface_es` | no | text | Example: `70% asfalto`. |
+| `surface_en` | no | text | Human-written translation. |
+| `surface_pt` | no | text | Human-written translation. |
+| `max_altitude_m` | no | integer | Day max altitude. |
+| `body_es` | yes | text | Day description. |
+| `body_en` | yes | text | Human-written translation. |
+| `body_pt` | yes | text | Human-written translation. |
+| `highlights_es` | no | pipe list | Separate items with `\|`: `Abra del Acay \| Salinas Grandes`. |
+| `highlights_en` | no | pipe list | Human-written translation. |
+| `highlights_pt` | no | pipe list | Human-written translation. |
+
+Use one cell per language for the day body. Do not ask the client to write
+Markdown; the site handles layout, headings, stamps, and X-bullets.
+
+---
+
+## Tab: `Departures`
+
+One row per scheduled departure.
+
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `tour_slug` | yes | string | Must match `Tours.slug`. |
+| `start_date` | yes | date | `YYYY-MM-DD`. |
+| `end_date` | yes | date | `YYYY-MM-DD`. |
+| `capacity` | yes | integer | Positive number. |
+| `spots_remaining` | yes | integer | `0` or greater. |
+| `status` | yes | enum | `open`, `low`, `sold_out`. |
+| `price` | no | number | Departure-specific override. Empty = `0`. |
+| `currency` | yes | enum | `USD`, `ARS`, `EUR`. |
+| `notes_es` | no | text | Short public note. |
+| `notes_en` | no | text | Human-written translation. |
+| `notes_pt` | no | text | Human-written translation. |
+
+If exact availability might change faster than the cache, keep CTA language
+consultative: “Hold a spot” / “Talk to us” rather than “Buy now”.
+
+---
+
+## Tab: `Includes`
+
+One row per bullet. This tab powers “Qué incluye”, “Qué no incluye”, and
+“Lo que conviene saber”.
+
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `tour_slug` | yes | string | Must match `Tours.slug`. |
+| `type` | yes | enum | `included`, `not_included`, `need_to_know`. |
+| `sort_order` | no | integer | Display order within that type. |
+| `text_es` | yes | text | Bullet text. |
+| `text_en` | yes | text | Human-written translation. |
+| `text_pt` | yes | text | Human-written translation. |
+
+---
+
+## Tab: `Gallery`
+
+One row per image.
+
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `tour_slug` | yes | string | Must match `Tours.slug`. |
+| `sort_order` | no | integer | Display order. |
+| `featured` | no | boolean | Future use. |
+| `image_url` | no | URL/path | Preferred if image is already CDN/local. |
+| `image_drive_id` | no | string | Drive file ID fallback if `image_url` is empty. |
+| `alt_es` | yes | text | Meaningful image alt text. |
+| `alt_en` | yes | text | Human-written translation. |
+| `alt_pt` | yes | text | Human-written translation. |
+| `caption_es` | no | text | Optional public caption. |
+| `caption_en` | no | text | Human-written translation. |
+| `caption_pt` | no | text | Human-written translation. |
+
+---
+
+## Image workflow
+
+### First-pass Drive workflow
+
+1. Client uploads image files to a shared Google Drive folder.
+2. File is shared as **Anyone with the link can view**.
+3. Paste the Drive file ID into `hero_image_drive_id` or `image_drive_id`.
+
+The file ID is the part after `/d/` in a URL like:
+
+```text
+https://drive.google.com/file/d/FILE_ID_HERE/view
+```
+
+The app converts that ID into a direct Drive image URL. This is convenient, but
+Drive is not a real CDN: hotlinking, redirects, throttling, and large originals
+can hurt performance.
+
+### Preferred production workflow
+
+Use Drive as the client upload inbox, then move approved/processed images to a
+real delivery location:
+
+- local `/public/images/...` assets for launch-critical images, or
+- a CDN/image host such as Cloudinary, ImageKit, or Vercel Blob.
+
+The Sheet schema already supports this via `hero_image` and `image_url`, so the
+delivery source can change without changing page code.
+
+Brand reminder: marketing images should be halftone-processed before final use.
+Drive upload alone does not create the brand treatment.
+
+---
+
+## Environment variables
+
+Encode the service account JSON:
+
+```bash
+base64 -i path/to/service-account.json | pbcopy
+```
+
+Set these locally in `.env.local` and in Vercel:
+
+```env
+GOOGLE_SHEETS_CREDENTIALS=<base64 service account json>
+GOOGLE_SHEETS_TOURS_ID=<spreadsheet id>
+REVALIDATE_SECRET=<long random string>
+```
+
+Generate a revalidate secret with:
+
+```bash
+openssl rand -hex 32
+```
+
+---
+
+## Verify locally
+
+Run the site and hit:
+
+```text
+/api/tours
+```
+
+Expected:
+
+- `source` switches from `mock` to `configured`.
+- tour count matches published rows in `Tours`.
+- malformed rows are skipped and logged with `[sheets] skipped malformed ...`.
+
+---
+
+## Manual refresh bookmark
+
+The cache refreshes automatically within 10 minutes. For instant refresh after
+a big Sheet edit, bookmark this URL with the production domain and secret:
+
+```text
+javascript:fetch('https://motoonoff.com/api/revalidate?secret=<SECRET>',{method:'POST'}).then(r=>r.json()).then(d=>alert('OK · '+d.tags.join(', ')+' refreshed'))
+```
+
+Or via CLI:
+
+```bash
+curl -X POST -H "x-revalidate-secret: <SECRET>" https://motoonoff.com/api/revalidate
+```
+
+---
+
+## Client-proofing checklist
+
+- Freeze and protect row 1 in every tab.
+- Protect hidden helper/example columns if added.
+- Use dropdowns for:
+  `published`, `difficulty`, `currency`, `status`, `type`, `featured`.
+- Keep `published = FALSE` until all required rows exist in all three languages.
+- Never change `slug` after a tour is published unless redirects are planned.
+- Use `tour_slug` joins, not tour titles.
+- Add a hidden `README` tab with the column explanations from this file.
+- Keep a sample unpublished tour row for the client to duplicate.
+- Review Vercel logs after the first real content entry pass.
+
+---
+
+## Failure modes
 
 | What broke | What happens |
 | --- | --- |
 | Sheets API unreachable | Cached payload keeps serving until the next successful fetch. |
-| Invalid row in `Tours` | Row is skipped + logged. Other rows ship. |
-| `published = FALSE` | Row is excluded from production. |
-| Service account loses Sheet access | Pages stay live on cached payload. Next revalidation sets `tours = []` → tour index falls back to its empty state. |
-| `GOOGLE_SHEETS_CREDENTIALS` removed in prod | Mock data ships. Surfaces stay live but show only the three sample tours. |
+| One malformed row | That row is skipped and logged; other rows render. |
+| `published = FALSE` | Tour is excluded from public pages. |
+| Missing itinerary row | Other tour content still renders; missing day is simply absent. |
+| Service account loses Sheet access | Existing cached pages remain; fresh cache reads return empty data and log errors. |
+| Credentials missing locally | Mock data renders so development can continue. |
 
----
-
-_Update this doc when the schema changes. The schema is the single contract between engineering and the client._
+Update this document whenever the schema changes. This is the contract between
+the client-facing Sheet and the website.

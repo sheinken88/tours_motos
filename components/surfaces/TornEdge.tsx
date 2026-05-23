@@ -43,6 +43,8 @@ type TornEdgeProps = {
 export function TornEdge({ variant = 1, direction = "down", to, className = "" }: TornEdgeProps) {
   const path = TORN_PATHS[variant];
   const fillColor = to === "red" ? "var(--color-brand-red)" : "var(--color-paper)";
+  const texture = TORN_TEXTURES[to];
+  const textureId = `torn-edge-texture-${to}-${variant}`;
   // Shift one pixel into the destination zone so sub-pixel rounding can't
   // open a hairline seam between the torn shape and the next zone's fill.
   const positionClass =
@@ -57,10 +59,31 @@ export function TornEdge({ variant = 1, direction = "down", to, className = "" }
       aria-hidden
       focusable="false"
     >
+      <defs>
+        <pattern
+          id={textureId}
+          patternUnits="userSpaceOnUse"
+          width={texture.size}
+          height={texture.size}
+        >
+          <image
+            href={texture.href}
+            width={texture.size}
+            height={texture.size}
+            preserveAspectRatio="none"
+          />
+        </pattern>
+      </defs>
       <path d={path} fill={fillColor} />
+      <path d={path} fill={`url(#${textureId})`} />
     </svg>
   );
 }
+
+const TORN_TEXTURES: Record<Zone, { href: string; size: number }> = {
+  red: { href: "/textures/red-grunge.svg", size: 320 },
+  paper: { href: "/textures/paper-grain.svg", size: 256 },
+};
 
 // Paths overshoot to y=42 (viewBox is 0 0 1440 42) so the destination color
 // extends one user-unit past the SVG's nominal bottom. Combined with the

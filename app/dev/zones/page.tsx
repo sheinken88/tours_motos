@@ -24,10 +24,8 @@ export const metadata: Metadata = {
  * CutoutFigure, HalftoneImage, and LandscapeBanner are exercised by static
  * analysis (typecheck + build); their visual smoke test waits for a real .png.
  *
- * Known issue (tracked in backlog): a faint pale band sits along each torn
- * edge at the y-range covered by the path's tip-to-dip variation. The rugged
- * irregular path is the desired look; the band reads as a transition seam.
- * Defer to Phase 6 hero gate or Phase 12 polish.
+ * Torn edges render with the destination zone texture, so the transition reads
+ * as torn paper instead of a flat SVG strip over a textured section.
  */
 export default function ZonesPage() {
   return (

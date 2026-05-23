@@ -12,4 +12,5 @@ export { QuoteSection } from "./QuoteSection";
 export { QuoteWithFigure } from "./QuoteWithFigure";
 export { TourGrid } from "./TourGrid";
 export { TourHero } from "./TourHero";
+export { TourCmsContent, TourMdxContent } from "./TourCmsContent";
 export { XListSection } from "./XListSection";

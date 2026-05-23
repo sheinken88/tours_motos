@@ -21,14 +21,17 @@ import { type Locale } from "@/lib/i18n/config";
 type MdxModule = { default: ComponentType };
 
 const JOURNAL_REGISTRY: Record<string, Partial<Record<Locale, () => Promise<MdxModule>>>> = {
-  "patagonia-dia-3": {
-    es: () => import("@/content/journal/patagonia-dia-3/es.mdx") as Promise<MdxModule>,
+  "armar-sobre-las-nubes": {
+    es: () => import("@/content/journal/armar-sobre-las-nubes/es.mdx") as Promise<MdxModule>,
   },
-  "cruzar-la-puna": {
-    es: () => import("@/content/journal/cruzar-la-puna/es.mdx") as Promise<MdxModule>,
+  "armar-gigantes-del-oeste": {
+    es: () => import("@/content/journal/armar-gigantes-del-oeste/es.mdx") as Promise<MdxModule>,
   },
-  "ruta-40-norte": {
-    es: () => import("@/content/journal/ruta-40-norte/es.mdx") as Promise<MdxModule>,
+  "armar-volcanes-del-norte": {
+    es: () => import("@/content/journal/armar-volcanes-del-norte/es.mdx") as Promise<MdxModule>,
+  },
+  "armar-cruces-del-sur": {
+    es: () => import("@/content/journal/armar-cruces-del-sur/es.mdx") as Promise<MdxModule>,
   },
 };
 

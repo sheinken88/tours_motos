@@ -4,76 +4,129 @@ import { join } from "node:path";
 import { unstable_cache } from "next/cache";
 import { type Locale } from "@/lib/i18n/config";
 import { hasRealCredentials, readSheet } from "./client";
-import { MOCK_DEPARTURES, MOCK_TOURS } from "./mock";
-import { type Departure, type Tour, parseDepartures, parseTours } from "./schemas";
+import {
+  MOCK_DEPARTURES,
+  MOCK_GALLERY,
+  MOCK_ITINERARY,
+  MOCK_TOUR_SECTIONS,
+  MOCK_TOURS,
+} from "./mock";
+import {
+  type Departure,
+  type GalleryImage,
+  type ItineraryDay,
+  type Tour,
+  type TourPageContent,
+  type TourSection,
+  parseDepartures,
+  parseGalleryImages,
+  parseItinerary,
+  parseTourSections,
+  parseTours,
+} from "./schemas";
 
 /**
- * Clear `hero_image` and `hero_image_color` on tours whose assets haven't
- * shipped yet so the card renders the paper-aged placeholder (and skips the
- * hover crossfade) instead of broken next/image markers. Schema accepts
- * empty strings; the TourCard treats empty as "no image / no color pair".
- *
- * Server-only — uses fs, runs once per cache miss (10 min TTL).
- */
-function resolveHeroImages(tours: Tour[]): Tour[] {
-  const onDisk = (publicPath: string) =>
-    publicPath.startsWith("/") && existsSync(join(process.cwd(), "public", publicPath));
-  return tours.map((tour) => ({
-    ...tour,
-    hero_image: tour.hero_image && onDisk(tour.hero_image) ? tour.hero_image : "",
-    hero_image_color:
-      tour.hero_image_color && onDisk(tour.hero_image_color) ? tour.hero_image_color : "",
-  }));
-}
-
-/**
- * Query layer over the Sheets CMS. Every reader is cached for 10 minutes
- * (CLAUDE.md §6) and tagged so /api/revalidate can flush surgically.
- *
- * Failure modes (CLAUDE.md §6):
- *   - Sheets unreachable → unstable_cache keeps serving the last good payload.
- *   - Specific row malformed → skipped + logged; remaining rows ship.
- *   - No credentials → mock data (lib/sheets/mock.ts) so dev / preview
- *     environments and CI keep working without a service account.
- *
- * Surface types are stable regardless of source: callers don't know whether
- * data came from Sheets or the mock. Phase 7 pages consume `Tour[]` and
- * `Departure[]` directly.
+ * Query layer over the Sheets CMS. Every reader is cached for 10 minutes and
+ * tagged so /api/revalidate can flush surgically. Callers consume stable typed
+ * data whether the source is Google Sheets or the local mock.
  */
 
 const REVALIDATE_SECONDS = 600;
 
-const TOURS_RANGE = "Tours!A1:Z1000";
-const DEPARTURES_RANGE = "Departures!A1:Z1000";
+const TOURS_RANGE = "Tours!A1:AZ1000";
+const ITINERARY_RANGE = "Itinerary!A1:AZ3000";
+const SECTIONS_RANGE = "Includes!A1:AZ3000";
+const GALLERY_RANGE = "Gallery!A1:AZ3000";
+const DEPARTURES_RANGE = "Departures!A1:AZ1000";
 
-// ─── Sources ────────────────────────────────────────────────────────────────
+// ─── Images ────────────────────────────────────────────────────────────────
+
+function isRemoteImage(publicPath: string): boolean {
+  return /^https?:\/\//i.test(publicPath);
+}
+
+function isLocalPublicImage(publicPath: string): boolean {
+  return publicPath.startsWith("/") && existsSync(join(process.cwd(), "public", publicPath));
+}
+
+/**
+ * Clear local image paths whose assets have not shipped yet. Remote/Drive URLs
+ * are left intact and validated by Next image remotePatterns at render time.
+ */
+function resolveHeroImages(tours: Tour[]): Tour[] {
+  const resolves = (src: string) => src && (isRemoteImage(src) || isLocalPublicImage(src));
+  return tours.map((tour) => ({
+    ...tour,
+    hero_image: resolves(tour.hero_image) ? tour.hero_image : "",
+    hero_image_color: resolves(tour.hero_image_color) ? tour.hero_image_color : "",
+  }));
+}
+
+// ─── Sheet fetch helpers ───────────────────────────────────────────────────
+
+async function fetchSheetRows(range: string) {
+  const { headers, rows } = await readSheet(range);
+  return { headers, rows };
+}
 
 async function fetchTours(): Promise<Tour[]> {
   if (!hasRealCredentials()) {
     if (process.env.NODE_ENV !== "production") {
       console.info("[sheets] credentials missing — serving mock tours");
     }
-    return resolveHeroImages(MOCK_TOURS.filter((t) => t.published));
+    return resolveHeroImages(MOCK_TOURS.filter((tour) => tour.published));
   }
 
   try {
-    const { headers, rows } = await readSheet(TOURS_RANGE);
+    const { headers, rows } = await fetchSheetRows(TOURS_RANGE);
     return resolveHeroImages(parseTours(headers, rows));
   } catch (error) {
     console.error("[sheets] fetchTours failed", error);
-    // Empty array is the safest fallback — Phase 7 pages render their
-    // empty-state UI and the cache layer keeps the last good payload.
+    return [];
+  }
+}
+
+async function fetchItinerary(): Promise<ItineraryDay[]> {
+  if (!hasRealCredentials()) return MOCK_ITINERARY;
+
+  try {
+    const { headers, rows } = await fetchSheetRows(ITINERARY_RANGE);
+    return parseItinerary(headers, rows);
+  } catch (error) {
+    console.error("[sheets] fetchItinerary failed", error);
+    return [];
+  }
+}
+
+async function fetchTourSections(): Promise<TourSection[]> {
+  if (!hasRealCredentials()) return MOCK_TOUR_SECTIONS;
+
+  try {
+    const { headers, rows } = await fetchSheetRows(SECTIONS_RANGE);
+    return parseTourSections(headers, rows);
+  } catch (error) {
+    console.error("[sheets] fetchTourSections failed", error);
+    return [];
+  }
+}
+
+async function fetchGallery(): Promise<GalleryImage[]> {
+  if (!hasRealCredentials()) return MOCK_GALLERY;
+
+  try {
+    const { headers, rows } = await fetchSheetRows(GALLERY_RANGE);
+    return parseGalleryImages(headers, rows);
+  } catch (error) {
+    console.error("[sheets] fetchGallery failed", error);
     return [];
   }
 }
 
 async function fetchDepartures(): Promise<Departure[]> {
-  if (!hasRealCredentials()) {
-    return MOCK_DEPARTURES;
-  }
+  if (!hasRealCredentials()) return MOCK_DEPARTURES;
 
   try {
-    const { headers, rows } = await readSheet(DEPARTURES_RANGE);
+    const { headers, rows } = await fetchSheetRows(DEPARTURES_RANGE);
     return parseDepartures(headers, rows);
   } catch (error) {
     console.error("[sheets] fetchDepartures failed", error);
@@ -88,6 +141,21 @@ const cachedTours = unstable_cache(fetchTours, ["sheets:tours"], {
   tags: ["tours"],
 });
 
+const cachedItinerary = unstable_cache(fetchItinerary, ["sheets:itinerary"], {
+  revalidate: REVALIDATE_SECONDS,
+  tags: ["tours"],
+});
+
+const cachedTourSections = unstable_cache(fetchTourSections, ["sheets:tour-sections"], {
+  revalidate: REVALIDATE_SECONDS,
+  tags: ["tours"],
+});
+
+const cachedGallery = unstable_cache(fetchGallery, ["sheets:gallery"], {
+  revalidate: REVALIDATE_SECONDS,
+  tags: ["tours"],
+});
+
 const cachedDepartures = unstable_cache(fetchDepartures, ["sheets:departures"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["departures"],
@@ -96,28 +164,59 @@ const cachedDepartures = unstable_cache(fetchDepartures, ["sheets:departures"], 
 // ─── Public queries ─────────────────────────────────────────────────────────
 
 export async function getTours(_locale: Locale): Promise<Tour[]> {
-  // Locale awareness is in the Tour shape itself (per-locale slugs and
-  // titles). We accept the locale arg today so consumers don't have to
-  // refactor when we eventually filter by locale-specific publish state.
   return cachedTours();
 }
 
 export async function getTourBySlug(locale: Locale, slug: string): Promise<Tour | null> {
   const tours = await cachedTours();
-  return tours.find((t) => t.slug === slug || t.slugs[locale] === slug) ?? null;
+  return tours.find((tour) => tour.slug === slug || tour.slugs[locale] === slug) ?? null;
+}
+
+export async function getTourPageBySlug(
+  locale: Locale,
+  slug: string,
+): Promise<TourPageContent | null> {
+  const [tours, itinerary, sections, gallery, departures] = await Promise.all([
+    cachedTours(),
+    cachedItinerary(),
+    cachedTourSections(),
+    cachedGallery(),
+    cachedDepartures(),
+  ]);
+
+  const tour = tours.find(
+    (candidate) => candidate.slug === slug || candidate.slugs[locale] === slug,
+  );
+  if (!tour) return null;
+
+  return {
+    tour,
+    itinerary: itinerary
+      .filter((day) => day.tour_slug === tour.slug)
+      .sort((a, b) => a.day_number - b.day_number),
+    sections: sections
+      .filter((section) => section.tour_slug === tour.slug)
+      .sort((a, b) => a.sort_order - b.sort_order),
+    gallery: gallery
+      .filter((image) => image.tour_slug === tour.slug)
+      .sort((a, b) => a.sort_order - b.sort_order),
+    departures: departures
+      .filter((departure) => departure.tour_slug === tour.slug)
+      .sort((a, b) => a.start_date.localeCompare(b.start_date)),
+  };
 }
 
 export async function getUpcomingDepartures(): Promise<Departure[]> {
   const today = new Date().toISOString().slice(0, 10);
   const departures = await cachedDepartures();
   return departures
-    .filter((d) => d.start_date >= today)
+    .filter((departure) => departure.start_date >= today)
     .sort((a, b) => a.start_date.localeCompare(b.start_date));
 }
 
 export async function getDeparturesByTour(slug: string): Promise<Departure[]> {
   const departures = await cachedDepartures();
   return departures
-    .filter((d) => d.tour_slug === slug)
+    .filter((departure) => departure.tour_slug === slug)
     .sort((a, b) => a.start_date.localeCompare(b.start_date));
 }

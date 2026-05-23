@@ -20,6 +20,7 @@ type TourImagePosterProps = {
   showColorOnHover?: boolean;
   compact?: boolean;
   useTourFallback?: boolean;
+  showLabel?: boolean;
 };
 
 function safeId(value: string) {
@@ -30,6 +31,10 @@ function placeholderVariant(id: string) {
   return (
     Array.from(id).reduce((total, char) => total + char.charCodeAt(0), 0) % routeForegrounds.length
   );
+}
+
+function isHalftoneAsset(src: string) {
+  return src.toLowerCase().endsWith(".png");
 }
 
 const routeForegrounds = [
@@ -155,12 +160,17 @@ export function TourImagePoster({
   showColorOnHover = true,
   compact = false,
   useTourFallback = true,
+  showLabel = true,
 }: TourImagePosterProps) {
-  const resolvedImage = imageSrc || (useTourFallback ? tour.hero_image : "");
-  const resolvedColor = colorSrc || (useTourFallback ? tour.hero_image_color : "");
+  const usesTourFallbackImage = !imageSrc && useTourFallback;
+  const resolvedImage = imageSrc || (usesTourFallbackImage ? tour.hero_image : "");
+  const resolvedColor = colorSrc || (usesTourFallbackImage ? tour.hero_image_color : "");
   const title = tour.title[locale];
   const region = tour.region[locale];
   const imageAlt = alt || tour.hero_image_alt[locale] || title;
+  const useHalftoneImage =
+    usesTourFallbackImage && resolvedImage ? isHalftoneAsset(resolvedImage) : false;
+  const hoverColorSrc = resolvedColor || (!useHalftoneImage && resolvedImage ? resolvedImage : "");
 
   return (
     <figure
@@ -179,7 +189,7 @@ export function TourImagePoster({
           }}
           aria-hidden="true"
         />
-        {resolvedImage ? (
+        {resolvedImage && useHalftoneImage ? (
           <HalftoneImage
             src={resolvedImage}
             alt={imageAlt}
@@ -188,12 +198,22 @@ export function TourImagePoster({
             priority={priority}
             className={`mix-blend-multiply ${imageClassName}`}
           />
+        ) : resolvedImage ? (
+          <Image
+            src={resolvedImage}
+            alt={imageAlt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            draggable={false}
+            className={`opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0 ${imageClassName}`}
+          />
         ) : (
           <RoutePlaceholderPanel id={tour.slug} className="absolute inset-0" />
         )}
-        {resolvedColor ? (
+        {hoverColorSrc ? (
           <Image
-            src={resolvedColor}
+            src={hoverColorSrc}
             alt=""
             aria-hidden="true"
             fill
@@ -204,11 +224,13 @@ export function TourImagePoster({
             }`}
           />
         ) : null}
-        <div className="absolute top-4 left-4 z-[2] flex flex-wrap gap-2">
-          <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
-            {label || region}
-          </span>
-        </div>
+        {showLabel ? (
+          <div className="absolute top-4 left-4 z-[2] flex flex-wrap gap-2">
+            <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
+              {label || region}
+            </span>
+          </div>
+        ) : null}
       </div>
       {caption ? (
         <figcaption

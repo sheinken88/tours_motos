@@ -62,6 +62,11 @@ function resolveHeroImages(tours: Tour[]): Tour[] {
   }));
 }
 
+function supplementMissingTourRows<T extends { tour_slug: string }>(rows: T[], fallback: T[]): T[] {
+  const populatedTours = new Set(rows.map((row) => row.tour_slug));
+  return [...rows, ...fallback.filter((row) => !populatedTours.has(row.tour_slug))];
+}
+
 // ─── Sheet fetch helpers ───────────────────────────────────────────────────
 
 async function fetchSheetRows(range: string) {
@@ -91,7 +96,7 @@ async function fetchItinerary(): Promise<ItineraryDay[]> {
 
   try {
     const { headers, rows } = await fetchSheetRows(ITINERARY_RANGE);
-    return parseItinerary(headers, rows);
+    return supplementMissingTourRows(parseItinerary(headers, rows), MOCK_ITINERARY);
   } catch (error) {
     console.error("[sheets] fetchItinerary failed", error);
     return [];
@@ -103,7 +108,7 @@ async function fetchTourSections(): Promise<TourSection[]> {
 
   try {
     const { headers, rows } = await fetchSheetRows(SECTIONS_RANGE);
-    return parseTourSections(headers, rows);
+    return supplementMissingTourRows(parseTourSections(headers, rows), MOCK_TOUR_SECTIONS);
   } catch (error) {
     console.error("[sheets] fetchTourSections failed", error);
     return [];
@@ -115,7 +120,7 @@ async function fetchGallery(): Promise<GalleryImage[]> {
 
   try {
     const { headers, rows } = await fetchSheetRows(GALLERY_RANGE);
-    return parseGalleryImages(headers, rows);
+    return supplementMissingTourRows(parseGalleryImages(headers, rows), MOCK_GALLERY);
   } catch (error) {
     console.error("[sheets] fetchGallery failed", error);
     return [];

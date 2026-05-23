@@ -31,7 +31,7 @@ function RoutePrint({
 
   return (
     <figure
-      className={`group/route-print border-paper/30 overflow-hidden border-y-2 bg-transparent ${className}`}
+      className={`group/route-print border-paper/30 relative isolate overflow-hidden border-y-2 bg-transparent ${className}`}
       style={{
         clipPath: "polygon(0 10%, 100% 0, 100% 90%, 80% 100%, 0 88%)",
       }}
@@ -46,8 +46,7 @@ function RoutePrint({
             sizes={sizes}
             priority={priority}
             loading={priority ? "eager" : undefined}
-            unoptimized
-            className="h-full w-full object-cover object-bottom opacity-90 contrast-125 saturate-75"
+            className="h-full w-full object-cover object-bottom opacity-95 contrast-125 saturate-75"
           />
         ) : (
           <HalftoneImage
@@ -58,8 +57,7 @@ function RoutePrint({
             sizes={sizes}
             priority={priority}
             loading={priority ? "eager" : undefined}
-            unoptimized
-            className="h-full w-full object-cover object-bottom opacity-90 contrast-125"
+            className="h-full w-full object-cover object-bottom opacity-95 contrast-125"
           />
         )
       ) : (
@@ -78,7 +76,6 @@ function RoutePrint({
           sizes={sizes}
           priority={priority}
           loading={priority ? "eager" : undefined}
-          unoptimized
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom opacity-35 mix-blend-multiply contrast-125"
         />
       ) : null}
@@ -112,34 +109,20 @@ export async function TourHero({ tour, locale }: TourHeroProps) {
 
   return (
     <RedZone density="heavy" tornBottom={2} className="overflow-hidden">
-      <RoutePrint
-        tour={tour}
-        locale={locale}
-        priority
-        className="pointer-events-none absolute right-[-18vw] bottom-[15vh] z-[3] hidden h-[54vh] w-[60vw] rotate-1 lg:block xl:h-[56vh] xl:w-[58vw] 2xl:right-[-7vw] 2xl:w-[56vw]"
-        sizes="(min-width: 1536px) 56vw, (min-width: 1280px) 58vw, 60vw"
-      />
-
       {/* Mountain ridge anchored bottom, bleeds into next zone */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[52%] opacity-90">
         <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
       </div>
 
-      <Container className="relative z-10 flex min-h-[74vh] flex-col justify-center lg:min-h-[78vh]">
-        <div className="max-w-[760px] space-y-6 lg:max-w-[700px] xl:max-w-[760px]">
+      <Container className="relative z-10 grid min-h-[64vh] gap-10 lg:min-h-[68vh] lg:grid-cols-[minmax(0,0.9fr)_minmax(24rem,0.82fr)] lg:items-center xl:min-h-[72vh]">
+        <div className="max-w-[760px] space-y-6 lg:max-w-[620px]">
           <Eyebrow>{region}</Eyebrow>
           <DisplayHeading size="2xl" as="h1">
             {tour.title[locale]}
           </DisplayHeading>
-          <div className="relative -mx-5 pt-2 sm:-mx-8 md:mx-0 lg:hidden">
-            <RoutePrint
-              tour={tour}
-              locale={locale}
-              priority
-              sizes="100vw"
-              className="relative h-[17rem] -rotate-1"
-            />
-          </div>
+          <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed md:text-2xl">
+            {tour.summary[locale]}
+          </p>
           <div className="flex flex-wrap gap-4 pt-2">
             <Button
               href={`/${locale}/contact?tour=${tour.slugs[locale]}`}
@@ -153,6 +136,16 @@ export async function TourHero({ tour, locale }: TourHeroProps) {
               {tCommon("talk_to_us")}
             </Button>
           </div>
+        </div>
+
+        <div className="relative -mx-5 sm:-mx-8 md:mx-0">
+          <RoutePrint
+            tour={tour}
+            locale={locale}
+            priority
+            sizes="(min-width: 1024px) 44vw, 100vw"
+            className="h-72 -rotate-1 sm:h-[22rem] lg:h-[30rem] lg:rotate-1 xl:h-[34rem]"
+          />
         </div>
       </Container>
     </RedZone>

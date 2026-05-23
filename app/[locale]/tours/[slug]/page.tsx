@@ -7,7 +7,11 @@ import { TourGrid } from "@/components/sections/TourGrid";
 import { TourHero } from "@/components/sections/TourHero";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildTourWhatsAppLink } from "@/lib/contact/whatsappLink";
-import { getTourFrontmatter } from "@/lib/content/getTourMdx";
+import {
+  fillMissingTourSections,
+  getTourFrontmatter,
+  getTourPracticalSectionsFromMdx,
+} from "@/lib/content/getTourMdx";
 import { getTourMdxComponent } from "@/lib/content/tourMdxRegistry";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { breadcrumbSchema, tourTripSchema } from "@/lib/seo/jsonld";
@@ -76,10 +80,11 @@ export default async function TourDetail({ params }: Props) {
 
   const { tour, departures } = tourPage;
 
-  const [allTours, fm, MdxBody, t, tCommon, tWhatsApp] = await Promise.all([
+  const [allTours, fm, MdxBody, mdxPracticalSections, t, tCommon, tWhatsApp] = await Promise.all([
     getTours(locale),
     getTourFrontmatter(tour.slug, locale),
     getTourMdxComponent(tour.slug, locale),
+    getTourPracticalSectionsFromMdx(tour.slug, locale),
     getTranslations({ locale, namespace: "tour_detail" }),
     getTranslations({ locale, namespace: "common" }),
     getTranslations({ locale, namespace: "whatsapp" }),
@@ -89,6 +94,10 @@ export default async function TourDetail({ params }: Props) {
     tour.seo_description[locale] || tour.summary[locale] || fm?.description || tour.title[locale];
   const related = allTours.filter((t) => t.slug !== tour.slug);
   const hasStructuredBody = tourPage.itinerary.length > 0 || tourPage.sections.length > 0;
+  const contentWithPracticalFallback = {
+    ...tourPage,
+    sections: fillMissingTourSections(tourPage.sections, mdxPracticalSections),
+  };
 
   // JSON-LD schemas — embedded as <script> tags below
   const tripSchema = tourTripSchema({ tour, departures, locale, description });
@@ -123,7 +132,7 @@ export default async function TourDetail({ params }: Props) {
       <TourHero tour={tour} locale={locale} />
 
       {hasStructuredBody ? (
-        <TourCmsContent content={tourPage} locale={locale} />
+        <TourCmsContent content={contentWithPracticalFallback} locale={locale} />
       ) : (
         <TourMdxContent tour={tour} locale={locale} gallery={tourPage.gallery} MdxBody={MdxBody} />
       )}

@@ -179,7 +179,17 @@
     "founder_eyebrow": "Fundador",
     "founder_name": "Sebastián",
     "founder_caption": "Patagonia, 2024. Día 9 de la travesía.",
-    "cta": "Conocenos por WhatsApp"
+    "cta": "Conocenos por WhatsApp",
+    "cta_heading": "CONTANOS QUÉ QUERÉS CRUZAR",
+    "cta_body": "Contanos qué moto manejás, cuántos días tenés y qué ruta te llama. Te respondemos con una ventana posible, el nivel de exigencia y los próximos pasos.",
+    "cta_secondary": "Ir al contacto",
+    "cta_prompt_heading": "Mandanos 3 datos",
+    "cta_prompt_meta": "Por WhatsApp",
+    "cta_prompts": [
+      "Qué ruta te llama y cuándo podrías salir.",
+      "Qué moto manejás y cuánta experiencia tenés en ripio.",
+      "Si querés sumarte a una salida o armar algo a medida."
+    ]
   },
   "custom": {
     "title": "A medida",

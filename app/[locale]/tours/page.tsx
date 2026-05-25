@@ -65,13 +65,14 @@ export default async function ToursIndex({ params }: Props) {
         </Container>
       </RedZone>
 
-      <PaperZone density="default">
+      <PaperZone density="heavy" className="overflow-hidden">
         <TourGrid
           tours={tours}
           locale={locale}
           eyebrow={t("all_routes_eyebrow")}
           heading={t("all_routes_heading")}
           emptyMessage={t("empty")}
+          variant="posterWall"
         />
       </PaperZone>
     </>

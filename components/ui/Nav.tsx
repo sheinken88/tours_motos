@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Button, SkullBadge } from "@/components/primitives";
+import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { Link } from "@/lib/i18n/navigation";
 import { LangSwitcher } from "./LangSwitcher";
 
@@ -19,18 +20,31 @@ import { LangSwitcher } from "./LangSwitcher";
  * (open question §16). For now: SkullBadge + "MOTO ON/OFF" in display caps.
  */
 
-const NAV_ITEMS = [
+const PRIMARY_NAV_ITEMS = [
   { href: "/tours", labelKey: "trips" },
   { href: "/calendar", labelKey: "calendar" },
   { href: "/custom", labelKey: "custom" },
+] as const;
+
+const SECONDARY_NAV_ITEMS = [
   { href: "/about", labelKey: "about" },
   { href: "/journal", labelKey: "journal" },
 ] as const;
 
+function WhatsAppGlyph() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden fill="currentColor">
+      <path d="M12.04 2C6.5 2 2 6.5 2 12.04c0 1.78.46 3.51 1.34 5.04L2 22l5.06-1.32c1.48.81 3.13 1.24 4.98 1.24h.01C17.6 21.92 22 17.42 22 11.88 22 9.21 20.96 6.7 19.08 4.82A9.93 9.93 0 0 0 12.04 2zm0 18.16h-.01a8.16 8.16 0 0 1-4.16-1.13l-.3-.18-3.09.81.83-3.01-.2-.31a8.16 8.16 0 0 1 12.62-10.26 8.1 8.1 0 0 1 2.4 5.78c0 4.5-3.66 8.16-8.16 8.16zm4.47-6.11c-.24-.12-1.45-.71-1.67-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.97-1.21-.73-.65-1.22-1.45-1.36-1.7-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.83-.84 2.02 0 1.19.86 2.34.98 2.5.12.16 1.69 2.59 4.1 3.63.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z" />
+    </svg>
+  );
+}
+
 export function Nav() {
   const t = useTranslations("nav");
+  const tWhatsApp = useTranslations("whatsapp");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
 
   useEffect(() => {
     function onScroll() {
@@ -59,7 +73,7 @@ export function Nav() {
     <header
       data-zone="red"
       className={`fixed inset-x-0 top-0 z-40 transition-[background-color,backdrop-filter] duration-300 ${
-        scrolled ? "bg-brand-red/85 backdrop-blur-sm" : "bg-transparent"
+        scrolled ? "bg-red-grunge backdrop-blur-sm" : "bg-transparent"
       }`}
     >
       <div className="text-on-red mx-auto flex w-full max-w-[var(--container-content)] items-center justify-between px-5 py-4 md:px-8 xl:px-16">
@@ -70,14 +84,33 @@ export function Nav() {
           </span>
         </Link>
 
-        {/* Desktop links — hover reveals the brand hand-underline SVG (same
-            mark used by the LangSwitcher's active locale). */}
-        <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
-          {NAV_ITEMS.map((item) => (
+        {/* Desktop links — hover reveals the brand hand-underline SVG. */}
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">
+          {PRIMARY_NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group/navlink text-eyebrow tracking-eyebrow text-paper relative font-semibold uppercase"
+              className="group/navlink text-eyebrow tracking-eyebrow text-paper relative font-bold uppercase"
+            >
+              {t(item.labelKey)}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
+                viewBox="0 0 200 12"
+                preserveAspectRatio="none"
+              >
+                <use href="#hand-underline" />
+              </svg>
+            </Link>
+          ))}
+          <span aria-hidden className="font-display text-paper/35 -rotate-6 text-sm">
+            /
+          </span>
+          {SECONDARY_NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group/navlink tracking-eyebrow text-paper/65 hover:text-paper relative text-xs font-semibold uppercase transition-colors"
             >
               {t(item.labelKey)}
               <svg
@@ -92,10 +125,19 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <LangSwitcher />
-          <Button href="/contact" edge={2} tilt="right" arrow={false}>
-            {t("cta")}
+          <Button
+            href={whatsAppHref}
+            external
+            edge={2}
+            tilt="right"
+            arrow={false}
+          >
+            <span className="inline-flex items-center gap-2">
+              <WhatsAppGlyph />
+              {t("cta")}
+            </span>
           </Button>
         </div>
 
@@ -155,7 +197,7 @@ export function Nav() {
           </div>
 
           <nav className="mt-12 flex flex-col gap-6" aria-label="Primary mobile">
-            {NAV_ITEMS.map((item) => (
+            {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -169,8 +211,18 @@ export function Nav() {
 
           <div className="mt-auto flex items-center justify-between gap-6 pt-12">
             <LangSwitcher />
-            <Button href="/contact" edge={1} tilt="left" variant="sticker-filled">
-              {t("cta")}
+            <Button
+              href={whatsAppHref}
+              external
+              edge={1}
+              tilt="left"
+              variant="sticker-filled"
+              arrow={false}
+            >
+              <span className="inline-flex items-center gap-2">
+                <WhatsAppGlyph />
+                {t("cta")}
+              </span>
             </Button>
           </div>
         </div>

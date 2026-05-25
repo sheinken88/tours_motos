@@ -207,7 +207,7 @@ export const MOCK_TOURS: Tour[] = [
     hero_image_color: "/images/tours/cruces_del_sur/cruces_del_sur_1_color.jpeg",
     hero_image_drive_id: "",
     hero_image_color_drive_id: "",
-    hero_image_alt: t("Ruta de ripio patagónica"),
+    hero_image_alt: t("Riders avanzando por un camino de ripio en Patagonia"),
     summary: t(
       "Carretera Austral, pasos fronterizos y ripio patagónico. 2321 km para cruzar bosques, lagos, viento y rutas que se recuerdan por lo que exigieron.",
     ),

@@ -179,7 +179,17 @@
     "founder_eyebrow": "[NEEDS_TRANSLATION] Fundador",
     "founder_name": "[NEEDS_TRANSLATION] Sebastián",
     "founder_caption": "[NEEDS_TRANSLATION] Patagonia, 2024. Día 9 de la travesía.",
-    "cta": "[NEEDS_TRANSLATION] Conocenos por WhatsApp"
+    "cta": "[NEEDS_TRANSLATION] Conocenos por WhatsApp",
+    "cta_heading": "[NEEDS_TRANSLATION] CONTANOS QUÉ QUERÉS CRUZAR",
+    "cta_body": "[NEEDS_TRANSLATION] Contanos qué moto manejás, cuántos días tenés y qué ruta te llama. Te respondemos con una ventana posible, el nivel de exigencia y los próximos pasos.",
+    "cta_secondary": "[NEEDS_TRANSLATION] Ir al contacto",
+    "cta_prompt_heading": "[NEEDS_TRANSLATION] Mandanos 3 datos",
+    "cta_prompt_meta": "[NEEDS_TRANSLATION] Por WhatsApp",
+    "cta_prompts": [
+      "[NEEDS_TRANSLATION] Qué ruta te llama y cuándo podrías salir.",
+      "[NEEDS_TRANSLATION] Qué moto manejás y cuánta experiencia tenés en ripio.",
+      "[NEEDS_TRANSLATION] Si querés sumarte a una salida o armar algo a medida."
+    ]
   },
   "custom": {
     "title": "[NEEDS_TRANSLATION] A medida",

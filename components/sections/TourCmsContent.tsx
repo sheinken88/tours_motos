@@ -516,6 +516,14 @@ function DayRoadbookCard({
   );
 }
 
+function isFeaturedRoadbookDay(tour: Tour, day: ItineraryDay) {
+  return (
+    day.day_number === 1 ||
+    day.day_number % 5 === 0 ||
+    (tour.slug === "cruces-del-sur" && day.day_number === 4)
+  );
+}
+
 /**
  * TourCmsContent — renders the client-editable Google Sheets tour body as a
  * set of poster zones: route dossier, day-by-day route, and practical details.
@@ -655,7 +663,7 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
                     highlightsLabel={t("highlights_label")}
                     metadataLabels={metadataLabels}
                     image={image}
-                    featured={day.day_number === 1 || day.day_number % 5 === 0}
+                    featured={isFeaturedRoadbookDay(tour, day)}
                   />
                 );
               })}

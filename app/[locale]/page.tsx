@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { InquiryForm, type InquiryTourOption } from "@/components/forms";
@@ -12,13 +13,52 @@ import {
 } from "@/components/sections";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { listJournalEntries } from "@/lib/content/getJournalMdx";
-import { isLocale } from "@/lib/i18n/config";
+import { isLocale, locales, type Locale } from "@/lib/i18n/config";
 import { Link as I18nLink } from "@/lib/i18n/navigation";
+import { localeAlternates } from "@/lib/seo/metadata";
+import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
 import { getTours } from "@/lib/sheets/queries";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+const homeTitle = "Moto On/Off — Expediciones en moto por Argentina";
+const homeDescription =
+  "Travesías en moto por Argentina: Salta, Jujuy, Mendoza, Catamarca y Patagonia. Ripio, altura y distancia para riders que quieren cruzar más.";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+
+  const site = getSiteUrl();
+  const url = `${site}/${locale}`;
+  const pathByLocale = Object.fromEntries(locales.map((loc) => [loc, ""])) as Record<
+    Locale,
+    string
+  >;
+
+  return {
+    title: homeTitle,
+    description: homeDescription,
+    alternates: {
+      canonical: url,
+      ...localeAlternates({ pathByLocale }),
+    },
+    openGraph: {
+      type: "website",
+      title: homeTitle,
+      description: homeDescription,
+      url,
+      siteName: SITE_NAME,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: homeTitle,
+      description: homeDescription,
+    },
+  };
+}
 
 export default async function Home({ params }: Props) {
   const { locale } = await params;
@@ -139,10 +179,9 @@ export default async function Home({ params }: Props) {
 
       {/* 7 · Contact form (red) ──────────────────────────────────────────
           Two-column grid: form on the left, rider cutout on the right.
-          Image uses object-contain inside a self-stretched cell so it
-          scales to match the form column's height without overflowing
-          or floating disconnected at the bottom. */}
-      <RedZone density="default">
+          The red band sits above the following paper footer so the scaled
+          cutout can bleed across that boundary instead of being painted over. */}
+      <RedZone density="default" className="z-10 overflow-visible">
         <Container>
           <div className="grid items-stretch gap-12 md:grid-cols-[1fr_1.4fr] md:gap-16">
             <div className="space-y-8">
@@ -157,13 +196,13 @@ export default async function Home({ params }: Props) {
               </div>
               <InquiryForm locale={locale} kind="contact" tours={tourOptions} />
             </div>
-            <div className="relative hidden h-full w-full translate-x-16 md:block lg:translate-x-24 xl:translate-x-32">
+            <div className="relative hidden h-full w-full translate-x-16 overflow-visible md:block lg:translate-x-24 xl:translate-x-32">
               <Image
                 src="/images/halftone/hero-rider-cutout.png"
                 alt={tHome("rider_alt")}
                 fill
                 sizes="(min-width: 768px) 60vw, 0px"
-                className="pointer-events-none scale-125 select-none object-contain object-right-bottom md:scale-[1.35] lg:scale-[1.45]"
+                className="pointer-events-none translate-y-16 scale-125 select-none object-contain object-right-bottom md:scale-[1.35] lg:translate-y-20 lg:scale-[1.45]"
               />
             </div>
           </div>

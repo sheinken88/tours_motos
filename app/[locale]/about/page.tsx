@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Button, Container, DisplayHeading, Eyebrow, Stamp, XIcon } from "@/components/primitives";
+import {
+  Button,
+  Container,
+  DisplayHeading,
+  Eyebrow,
+  Stamp,
+  TourCard,
+  XIcon,
+} from "@/components/primitives";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { getPageFrontmatter } from "@/lib/content/getPageMdx";
@@ -10,6 +18,8 @@ import { getPageMdxComponent } from "@/lib/content/pageMdxRegistry";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
+import { getTours } from "@/lib/sheets/queries";
+import { type Tour } from "@/lib/sheets/schemas";
 
 export const revalidate = 600;
 
@@ -41,23 +51,23 @@ const terrainList = [
 const commitmentTestimonials = [
   {
     quote:
-      "Pensé que venía a sumar kilómetros. Volví con la cabeza más firme después de cruzar altura, ripio y cansancio en grupo.",
-    rider: "Nombre pendiente",
-    meta: "Ruta ON/OFF · testimonio provisorio",
+      "La ruta en moto hasta El Balcón del Pissis fue lo más impactante que he visto en mi vida. La vista del volcán a 4.500 metros fue mágica.",
+    rider: "Martín Gonzalez",
+    meta: "Volcanes del Norte · Balcón del Pissis",
     tilt: -1.5,
   },
   {
     quote:
-      "La ruta estuvo medida: tramos largos, paradas justas y ese silencio después de pasar el ripio difícil.",
-    rider: "Nombre pendiente",
-    meta: "Norte argentino · testimonio provisorio",
+      "El grupo que se formó en esos 7 días fue espectacular, ya hicimos 2 asados desde que volvimos.",
+    rider: "Juan Carrera",
+    meta: "Volcanes del Norte · 7 días de ruta",
     tilt: 1.25,
   },
   {
     quote:
-      "Llegar fue una parte. Sostener el ritmo, ayudar al de al lado y cerrar el día con la ruta ganada fue lo que quedó.",
-    rider: "Nombre pendiente",
-    meta: "Patagonia · testimonio provisorio",
+      "El Campo de Piedra Pómez fue como estar en otro planeta. Cada día fue una sorpresa. Nunca pensé que existían lugares así.",
+    rider: "Lucas Taccone",
+    meta: "Volcanes del Norte · Campo de Piedra Pómez",
     tilt: -1,
   },
 ] satisfies Array<{
@@ -221,7 +231,7 @@ function CommitmentTestimonialCard({
             “
           </span>
           <Stamp tilt={tilt > 0 ? -2 : 2} className="text-accent-on-paper shrink-0">
-            Provisorio
+            Volcanes
           </Stamp>
         </div>
         <blockquote className="font-sans text-lg leading-relaxed md:text-xl">{quote}</blockquote>
@@ -231,6 +241,35 @@ function CommitmentTestimonialCard({
         </figcaption>
       </figure>
     </article>
+  );
+}
+
+function AboutRouteCards({ tours, locale }: { tours: Tour[]; locale: Locale }) {
+  const visible = tours.slice(0, 4);
+  if (visible.length === 0) return null;
+
+  return (
+    <div className="border-paper/25 space-y-8 border-t-2 border-dashed pt-12">
+      <div className="grid gap-5 lg:grid-cols-[0.7fr_1fr] lg:items-end">
+        <div className="space-y-3">
+          <Eyebrow rule>Rutas probadas</Eyebrow>
+          <DisplayHeading size="xl" as="h2">
+            ELEGÍ LO QUE VAS A CRUZAR
+          </DisplayHeading>
+        </div>
+        <p className="text-muted-on-red max-w-3xl font-sans text-lg leading-relaxed">
+          Salta y Jujuy, Mendoza a La Rioja, Catamarca o Patagonia. Cuatro rutas rodadas antes de
+          ponerles nombre.
+        </p>
+      </div>
+      <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        {visible.map((tour, index) => (
+          <li key={tour.slug}>
+            <TourCard tour={tour} locale={locale} index={index} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -271,11 +310,12 @@ export default async function AboutPage({ params }: Props) {
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, tWhatsApp, tCommon, MdxBody] = await Promise.all([
+  const [t, tWhatsApp, tCommon, MdxBody, tours] = await Promise.all([
     getTranslations({ locale, namespace: "about" }),
     getTranslations({ locale, namespace: "whatsapp" }),
     getTranslations({ locale, namespace: "common" }),
     getPageMdxComponent("about", locale),
+    getTours(locale),
   ]);
 
   const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
@@ -497,6 +537,7 @@ export default async function AboutPage({ params }: Props) {
               <CommitmentTestimonialCard key={testimonial.quote} {...testimonial} />
             ))}
           </div>
+          <AboutRouteCards tours={tours} locale={locale} />
         </Container>
       </RedZone>
 

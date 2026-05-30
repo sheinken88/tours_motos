@@ -140,7 +140,7 @@ export default async function CalendarPage({ params }: Props) {
                           </p>
                           <I18nLink
                             href={`/tours/${tourSlug}`}
-                            className="text-eyebrow tracking-eyebrow text-accent-on-paper font-semibold uppercase underline-offset-4 hover:underline"
+                            className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
                           >
                             {tourTitle} →
                           </I18nLink>

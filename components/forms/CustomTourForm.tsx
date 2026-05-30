@@ -44,7 +44,7 @@ export function CustomTourForm({ locale }: CustomTourFormProps) {
   }
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form action={formAction} className="space-y-6" data-whatsapp-fab="hide">
       <input type="hidden" name="locale" value={locale} />
       <Honeypot />
 

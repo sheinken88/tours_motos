@@ -1,10 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import {
-  Button,
-  Container,
-  DisplayHeading,
-  Eyebrow,
-} from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
 import { RedZone } from "@/components/surfaces";
 import { type Locale } from "@/lib/i18n/config";
@@ -24,10 +19,7 @@ type HeroProps = {
  * Static rendering. Motion choreography comes in a later phase.
  */
 export async function Hero({ locale }: HeroProps) {
-  const [tHome, tCommon] = await Promise.all([
-    getTranslations("home"),
-    getTranslations("common"),
-  ]);
+  const [tHome, tCommon] = await Promise.all([getTranslations("home"), getTranslations("common")]);
 
   return (
     <RedZone density="heavy" tornBottom={2} className="relative overflow-hidden">
@@ -51,13 +43,12 @@ export async function Hero({ locale }: HeroProps) {
             <Button href={`/${locale}/tours`} edge={1} tilt="left" variant="sticker-filled">
               {tCommon("plan_trip")}
             </Button>
-            <Button href={`/${locale}/journal`} edge={2} tilt="right">
+            <Button href={`/${locale}/taller-de-rutas`} edge={2} tilt="right">
               {tCommon("read_journal")}
             </Button>
           </div>
         </div>
       </Container>
-
     </RedZone>
   );
 }

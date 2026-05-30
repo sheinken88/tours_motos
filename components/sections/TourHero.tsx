@@ -144,7 +144,7 @@ export async function TourHero({ tour, locale }: TourHeroProps) {
             locale={locale}
             priority
             sizes="(min-width: 1024px) 44vw, 100vw"
-            className="h-72 -rotate-1 sm:h-[22rem] lg:h-[30rem] lg:rotate-1 xl:h-[34rem]"
+            className="h-72 sm:h-[22rem] md:-rotate-1 lg:h-[30rem] lg:rotate-1 xl:h-[34rem]"
           />
         </div>
       </Container>

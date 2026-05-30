@@ -87,7 +87,7 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(function F
         required={required}
         aria-invalid={Boolean(error)}
         aria-describedby={describedBy}
-        className={`bg-paper-light border-ink/30 text-on-paper placeholder:text-on-paper/40 focus-visible:border-ink focus-visible:outline-ink w-full border-2 px-4 py-3 font-sans text-sm focus-visible:outline-2 focus-visible:outline-offset-2 ${className}`}
+        className={`bg-paper-light border-ink/30 text-on-paper placeholder:text-on-paper/40 focus-visible:border-ink focus-visible:outline-ink min-h-12 w-full border-2 px-4 py-3 font-sans text-base focus-visible:outline-2 focus-visible:outline-offset-2 md:text-sm ${className}`}
         {...rest}
       />
     </FieldShell>
@@ -121,7 +121,7 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
           required={required}
           aria-invalid={Boolean(error)}
           aria-describedby={describedBy}
-          className={`bg-paper-light border-ink/30 text-on-paper placeholder:text-on-paper/40 focus-visible:border-ink focus-visible:outline-ink w-full resize-y border-2 px-4 py-3 font-sans text-sm leading-relaxed focus-visible:outline-2 focus-visible:outline-offset-2 ${className}`}
+          className={`bg-paper-light border-ink/30 text-on-paper placeholder:text-on-paper/40 focus-visible:border-ink focus-visible:outline-ink min-h-32 w-full resize-y border-2 px-4 py-3 font-sans text-base leading-relaxed focus-visible:outline-2 focus-visible:outline-offset-2 md:text-sm ${className}`}
           {...rest}
         />
       </FieldShell>
@@ -155,7 +155,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(functio
         required={required}
         aria-invalid={Boolean(error)}
         aria-describedby={describedBy}
-        className={`bg-paper-light border-ink/30 text-on-paper focus-visible:border-ink focus-visible:outline-ink w-full border-2 px-4 py-3 font-sans text-sm focus-visible:outline-2 focus-visible:outline-offset-2 ${className}`}
+        className={`bg-paper-light border-ink/30 text-on-paper focus-visible:border-ink focus-visible:outline-ink min-h-12 w-full border-2 px-4 py-3 font-sans text-base focus-visible:outline-2 focus-visible:outline-offset-2 md:text-sm ${className}`}
         {...(rest as React.SelectHTMLAttributes<HTMLSelectElement>)}
       >
         {children}

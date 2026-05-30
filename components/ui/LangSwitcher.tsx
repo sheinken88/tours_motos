@@ -28,7 +28,7 @@ export function LangSwitcher() {
     <div
       role="group"
       aria-label={t("label")}
-      className="flex items-center gap-1 text-xs tracking-eyebrow text-paper/50"
+      className="tracking-eyebrow text-paper/50 flex items-center gap-1 text-xs"
     >
       {locales.map((loc, index) => {
         const isActive = loc === active;
@@ -40,7 +40,7 @@ export function LangSwitcher() {
               disabled={isPending}
               aria-current={isActive ? "true" : undefined}
               aria-label={localeNames[loc]}
-              className={`px-1 py-1 font-semibold uppercase transition-colors ${
+              className={`inline-flex min-h-11 min-w-11 items-center justify-center px-1 py-1 font-semibold uppercase transition-colors ${
                 isActive ? "text-paper" : "hover:text-paper/80"
               } disabled:cursor-wait`}
             >

@@ -59,7 +59,7 @@ export async function CalendarStrip({ locale, limit = 3 }: CalendarStripProps) {
         </div>
         <I18nLink
           href="/calendar"
-          className="text-eyebrow tracking-eyebrow font-semibold uppercase underline-offset-4 hover:underline"
+          className="text-eyebrow tracking-eyebrow inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
         >
           {t("see_all")} →
         </I18nLink>
@@ -93,7 +93,7 @@ export async function CalendarStrip({ locale, limit = 3 }: CalendarStripProps) {
                 </p>
                 <I18nLink
                   href={`/tours/${tourSlug}`}
-                  className="text-eyebrow tracking-eyebrow font-semibold uppercase underline-offset-4 hover:underline"
+                  className="text-eyebrow tracking-eyebrow inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
                 >
                   {tourTitle} →
                 </I18nLink>

@@ -26,7 +26,7 @@
 - [ ] **Founder portrait** for About page — needed for halftone cutout treatment. Phase 9 ships an empty portrait slot in the about page; Phase 10 fills the PNG.
 - [ ] **Brand mark** — confirm skull/badge concept or design alternative.
 - [ ] **Quote sources** — public-domain mix vs founder-original copy (legal review owned by client).
-- [ ] **Journal author bio** — name + voice attribution for journal posts. Phase 9 seeds three ES placeholder posts that the client must replace or sign off on.
+- [ ] **Taller de Rutas author bio** — name + voice attribution for workshop posts. Phase 9 seeds ES placeholder posts that the client must replace or sign off on.
 - [ ] **Inquiry destination email** — `INQUIRY_NOTIFICATION_EMAIL` value (where leads land).
 
 ## For project setup

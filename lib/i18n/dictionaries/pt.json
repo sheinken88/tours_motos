@@ -3,7 +3,7 @@
     "trips": "[NEEDS_TRANSLATION] Viajes",
     "destinations": "[NEEDS_TRANSLATION] Destinos",
     "about": "[NEEDS_TRANSLATION] Nosotros",
-    "journal": "[NEEDS_TRANSLATION] Diario",
+    "journal": "[NEEDS_TRANSLATION] Taller de Rutas",
     "gear": "[NEEDS_TRANSLATION] Equipo",
     "contact": "[NEEDS_TRANSLATION] Contacto",
     "calendar": "[NEEDS_TRANSLATION] Calendario",
@@ -14,9 +14,9 @@
   },
   "footer": {
     "section_trips": "[NEEDS_TRANSLATION] Viajes",
-    "section_journal": "[NEEDS_TRANSLATION] Diario",
+    "section_journal": "[NEEDS_TRANSLATION] Taller de Rutas",
     "section_contact": "[NEEDS_TRANSLATION] Contacto",
-    "newsletter_eyebrow": "[NEEDS_TRANSLATION] Diario",
+    "newsletter_eyebrow": "[NEEDS_TRANSLATION] Taller",
     "newsletter_title": "[NEEDS_TRANSLATION] Rutas, polvo y notas de campo",
     "newsletter_placeholder": "[NEEDS_TRANSLATION] Tu correo",
     "newsletter_submit": "[NEEDS_TRANSLATION] Suscribirme",
@@ -40,7 +40,7 @@
   "common": {
     "plan_trip": "[NEEDS_TRANSLATION] Planeá tu viaje",
     "see_routes": "[NEEDS_TRANSLATION] Ver las rutas",
-    "read_journal": "[NEEDS_TRANSLATION] Leé el diario",
+    "read_journal": "[NEEDS_TRANSLATION] Leer las notas",
     "talk_to_us": "[NEEDS_TRANSLATION] Hablemos",
     "hold_a_spot": "[NEEDS_TRANSLATION] Reservá un lugar"
   },
@@ -75,10 +75,10 @@
     "cta": "[NEEDS_TRANSLATION] Conocé al equipo"
   },
   "home_journal": {
-    "eyebrow": "[NEEDS_TRANSLATION] Diario de ruta",
+    "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
     "heading": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
-    "intro": "[NEEDS_TRANSLATION] Lo que se cuenta cuando bajamos del recorrido.",
-    "see_all": "[NEEDS_TRANSLATION] Leer el diario completo"
+    "intro": "[NEEDS_TRANSLATION] Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
+    "see_all": "[NEEDS_TRANSLATION] Entrar al taller"
   },
   "tours_index": {
     "eyebrow": "[NEEDS_TRANSLATION] Catálogo",
@@ -154,9 +154,9 @@
     ]
   },
   "journal_grid": {
-    "eyebrow": "[NEEDS_TRANSLATION] Diario de ruta",
+    "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
     "heading": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
-    "read_more": "[NEEDS_TRANSLATION] Leer la nota"
+    "read_more": "[NEEDS_TRANSLATION] Cómo se armó"
   },
   "quote_section": {
     "eyebrow": "[NEEDS_TRANSLATION] Lo que se queda",
@@ -246,16 +246,71 @@
     "form_heading": "[NEEDS_TRANSLATION] FORMULARIO DE CONTACTO"
   },
   "journal_index": {
-    "title": "[NEEDS_TRANSLATION] Diario",
-    "eyebrow": "[NEEDS_TRANSLATION] Diario de ruta",
-    "headline": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
-    "metadata_description": "[NEEDS_TRANSLATION] Notas, crónicas y fotos de las rutas que rodamos.",
-    "intro": "[NEEDS_TRANSLATION] Lo que se cuenta cuando bajamos del recorrido.",
+    "title": "[NEEDS_TRANSLATION] Taller de Rutas",
+    "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
+    "headline": "[NEEDS_TRANSLATION] PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
+    "metadata_description": "[NEEDS_TRANSLATION] Cómo diseñamos rutas en moto: exploración, tramos probados, variantes descartadas y decisiones reales antes de abrir cada tour.",
+    "intro": "[NEEDS_TRANSLATION] Cada ruta nace mucho antes del viaje. Nace explorando caminos, equivocándonos, volviendo atrás y buscando una versión mejor. Antes de abrir un tour, lo rodamos en condiciones reales: tiempos, combustible, altura, clima, cansancio y nivel técnico.",
+    "hero_note": "[NEEDS_TRANSLATION] El mapa propone. El terreno corrige.",
+    "proof_eyebrow": "[NEEDS_TRANSLATION] Detrás de cada tour",
+    "proof_heading": "[NEEDS_TRANSLATION] ESTO NO SALE DE UN MAPA",
+    "proof_body": "[NEEDS_TRANSLATION] Rodamos variantes, hablamos con locales, medimos tiempos y volvemos cuando algo no cierra. La ruta final es la que aguanta el terreno, la temporada y el grupo.",
+    "proof_items": [
+      "[NEEDS_TRANSLATION] Probamos caminos antes de ponerles nombre.",
+      "[NEEDS_TRANSLATION] Descartamos tramos cuando el clima, el sentido o la logística no cierran.",
+      "[NEEDS_TRANSLATION] Medimos combustible, horas de manejo, altura y cansancio real.",
+      "[NEEDS_TRANSLATION] Mantenemos una red local que nos avisa cómo está cada camino."
+    ],
+    "stats": [
+      {
+        "value": "4",
+        "label": "[NEEDS_TRANSLATION] rutas abiertas"
+      },
+      {
+        "value": "2+",
+        "label": "[NEEDS_TRANSLATION] vueltas por ruta"
+      },
+      {
+        "value": "[NEEDS_TRANSLATION] Cada día",
+        "label": "[NEEDS_TRANSLATION] con alternativa"
+      },
+      {
+        "value": "[NEEDS_TRANSLATION] Red local",
+        "label": "[NEEDS_TRANSLATION] en cada destino"
+      }
+    ],
+    "process_eyebrow": "[NEEDS_TRANSLATION] Cómo probamos",
+    "process_heading": "[NEEDS_TRANSLATION] DEL PRIMER TRACK A LA RUTA FINAL",
+    "process_items": [
+      {
+        "title": "[NEEDS_TRANSLATION] Exploramos",
+        "body": "[NEEDS_TRANSLATION] Salimos con una idea y dejamos que el terreno la rompa. El mapa dice una cosa; el ripio, la lluvia y la altura dicen otra."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Abrimos variantes",
+        "body": "[NEEDS_TRANSLATION] Probamos sentidos, horarios, paradas, combustible y noches posibles. Una ruta no es una línea: es una decisión por día."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Descartamos",
+        "body": "[NEEDS_TRANSLATION] Hay caminos que son lindos pero no sostienen un grupo. Quedan afuera si no dan seguridad, ritmo o margen."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Volvemos",
+        "body": "[NEEDS_TRANSLATION] Cambiamos época, clima y nivel de riders. La versión final entra al tour cuando ya sabemos por qué existe."
+      }
+    ],
+    "stories_eyebrow": "[NEEDS_TRANSLATION] Historias del taller",
+    "stories_heading": "[NEEDS_TRANSLATION] LAS VERSIONES QUE SOBREVIVIERON",
+    "cta_eyebrow": "[NEEDS_TRANSLATION] La ruta final",
+    "cta_heading": "[NEEDS_TRANSLATION] VIAJÁS SOBRE UNA RUTA QUE YA NOS PROBÓ",
+    "cta_body": "[NEEDS_TRANSLATION] El tour limpio está en la página comercial. Acá queda el barro: lo que probamos, lo que salió mal y lo que terminó entrando.",
+    "cta_primary": "[NEEDS_TRANSLATION] Ver las rutas",
+    "cta_secondary": "[NEEDS_TRANSLATION] Hablemos",
     "empty": "[NEEDS_TRANSLATION] Pronto. Estamos escribiendo las primeras notas."
   },
   "journal_post": {
-    "back": "[NEEDS_TRANSLATION] Volver al diario",
-    "share_eyebrow": "[NEEDS_TRANSLATION] Compartir"
+    "back": "[NEEDS_TRANSLATION] Volver al taller",
+    "share_eyebrow": "[NEEDS_TRANSLATION] Más del taller"
   },
   "form": {
     "name_label": "[NEEDS_TRANSLATION] Tu nombre",
@@ -265,7 +320,7 @@
     "group_size_label": "[NEEDS_TRANSLATION] Cuántos son",
     "group_size_placeholder": "[NEEDS_TRANSLATION] 1, 2, 4…",
     "preferred_dates_label": "[NEEDS_TRANSLATION] Cuándo te gustaría",
-    "preferred_dates_placeholder": "[NEEDS_TRANSLATION] Marzo 2027 / fines de semana / lo que tengas",
+    "preferred_dates_placeholder": "[NEEDS_TRANSLATION] Marzo 2027 / fines / flexible",
     "tour_label": "[NEEDS_TRANSLATION] Ruta que te interesa",
     "tour_placeholder": "[NEEDS_TRANSLATION] Elegí una (o dejá en blanco)",
     "tour_any": "[NEEDS_TRANSLATION] Cualquiera / no sé todavía",
@@ -282,7 +337,7 @@
     "submit": "[NEEDS_TRANSLATION] Enviar",
     "sending": "[NEEDS_TRANSLATION] Enviando…",
     "success_heading": "[NEEDS_TRANSLATION] Recibimos tu mensaje.",
-    "success_body": "[NEEDS_TRANSLATION] Te escribimos en menos de 48 hs.",
+    "success_body": "[NEEDS_TRANSLATION] Te escribimos en menos de 48 hs. Mientras tanto, leé las notas del taller.",
     "error_heading": "[NEEDS_TRANSLATION] Algo no salió.",
     "error_body": "[NEEDS_TRANSLATION] Probá de nuevo en un rato.",
     "required": "[NEEDS_TRANSLATION] Completá este campo.",

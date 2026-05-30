@@ -89,7 +89,7 @@ export default async function ContactPage({ params, searchParams }: Props) {
                 href={whatsAppHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-eyebrow tracking-eyebrow text-accent-on-paper font-semibold uppercase underline-offset-4 hover:underline"
+                className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
               >
                 {t("whatsapp_label")} →
               </a>
@@ -101,7 +101,7 @@ export default async function ContactPage({ params, searchParams }: Props) {
               </DisplayHeading>
               <a
                 href={`mailto:${t("email_body")}`}
-                className="text-eyebrow tracking-eyebrow text-accent-on-paper font-semibold uppercase underline-offset-4 hover:underline"
+                className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
               >
                 {t("email_label")} →
               </a>

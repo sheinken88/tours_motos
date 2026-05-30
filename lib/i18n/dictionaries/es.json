@@ -3,7 +3,7 @@
     "trips": "Viajes",
     "destinations": "Destinos",
     "about": "Nosotros",
-    "journal": "Diario",
+    "journal": "Taller de Rutas",
     "gear": "Equipo",
     "contact": "Contacto",
     "calendar": "Calendario",
@@ -14,9 +14,9 @@
   },
   "footer": {
     "section_trips": "Viajes",
-    "section_journal": "Diario",
+    "section_journal": "Taller de Rutas",
     "section_contact": "Contacto",
-    "newsletter_eyebrow": "Diario",
+    "newsletter_eyebrow": "Taller",
     "newsletter_title": "Rutas, polvo y notas de campo",
     "newsletter_placeholder": "Tu correo",
     "newsletter_submit": "Suscribirme",
@@ -40,7 +40,7 @@
   "common": {
     "plan_trip": "Planeá tu viaje",
     "see_routes": "Ver las rutas",
-    "read_journal": "Leé el diario",
+    "read_journal": "Leer las notas",
     "talk_to_us": "Hablemos",
     "hold_a_spot": "Reservá un lugar"
   },
@@ -59,7 +59,7 @@
     "eyebrow": "Próximas fechas",
     "heading": "PRÓXIMAS SALIDAS",
     "see_all": "Ver el calendario completo",
-    "empty": "Estamos confirmando las próximas fechas. Suscribite al diario para enterarte primero.",
+    "empty": "Estamos confirmando las próximas fechas. Suscribite para enterarte primero.",
     "until": "hasta"
   },
   "home_custom": {
@@ -75,10 +75,10 @@
     "cta": "Conocé al equipo"
   },
   "home_journal": {
-    "eyebrow": "Diario de Rutas",
+    "eyebrow": "Taller de Rutas",
     "heading": "NOTAS DE CAMPO",
     "intro": "Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
-    "see_all": "Ver todas las rutas"
+    "see_all": "Entrar al taller"
   },
   "tours_index": {
     "eyebrow": "Catálogo",
@@ -154,7 +154,7 @@
     ]
   },
   "journal_grid": {
-    "eyebrow": "Diario de Rutas",
+    "eyebrow": "Taller de Rutas",
     "heading": "NOTAS DE CAMPO",
     "read_more": "Cómo se armó"
   },
@@ -226,7 +226,7 @@
     "headline": "PRÓXIMAS FECHAS",
     "metadata_description": "Calendario de salidas confirmadas por ruta. Reservá tu lugar antes que se agote.",
     "intro": "Cada salida tiene cupo limitado. Los grupos son chicos a propósito.",
-    "no_departures": "No hay salidas confirmadas todavía. Suscribite al diario para enterarte primero.",
+    "no_departures": "No hay salidas confirmadas todavía. Suscribite para enterarte primero.",
     "month_format": "long",
     "see_tour": "Ver la ruta",
     "until": "hasta"
@@ -246,16 +246,71 @@
     "form_heading": "FORMULARIO DE CONTACTO"
   },
   "journal_index": {
-    "title": "Diario de Rutas",
-    "eyebrow": "Diario de Rutas",
-    "headline": "NOTAS DE CAMPO",
-    "metadata_description": "Cómo se armó cada ruta de Moto On/Off. Notas de scouting, tramos que probamos y descartamos, lo que terminó en el itinerario.",
-    "intro": "Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Acá están las notas de cómo se armó cada una: los tramos que probamos, los que descartamos, y por qué la versión final es la que es.",
+    "title": "Taller de Rutas",
+    "eyebrow": "Taller de Rutas",
+    "headline": "PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
+    "metadata_description": "Cómo diseñamos rutas en moto: exploración, tramos probados, variantes descartadas y decisiones reales antes de abrir cada tour.",
+    "intro": "Cada ruta nace mucho antes del viaje. Nace explorando caminos, equivocándonos, volviendo atrás y buscando una versión mejor. Antes de abrir un tour, lo rodamos en condiciones reales: tiempos, combustible, altura, clima, cansancio y nivel técnico.",
+    "hero_note": "El mapa propone. El terreno corrige.",
+    "proof_eyebrow": "Detrás de cada tour",
+    "proof_heading": "ESTO NO SALE DE UN MAPA",
+    "proof_body": "Rodamos variantes, hablamos con locales, medimos tiempos y volvemos cuando algo no cierra. La ruta final es la que aguanta el terreno, la temporada y el grupo.",
+    "proof_items": [
+      "Probamos caminos antes de ponerles nombre.",
+      "Descartamos tramos cuando el clima, el sentido o la logística no cierran.",
+      "Medimos combustible, horas de manejo, altura y cansancio real.",
+      "Mantenemos una red local que nos avisa cómo está cada camino."
+    ],
+    "stats": [
+      {
+        "value": "4",
+        "label": "rutas abiertas"
+      },
+      {
+        "value": "2+",
+        "label": "vueltas por ruta"
+      },
+      {
+        "value": "Cada día",
+        "label": "con alternativa"
+      },
+      {
+        "value": "Red local",
+        "label": "en cada destino"
+      }
+    ],
+    "process_eyebrow": "Cómo probamos",
+    "process_heading": "DEL PRIMER TRACK A LA RUTA FINAL",
+    "process_items": [
+      {
+        "title": "Exploramos",
+        "body": "Salimos con una idea y dejamos que el terreno la rompa. El mapa dice una cosa; el ripio, la lluvia y la altura dicen otra."
+      },
+      {
+        "title": "Abrimos variantes",
+        "body": "Probamos sentidos, horarios, paradas, combustible y noches posibles. Una ruta no es una línea: es una decisión por día."
+      },
+      {
+        "title": "Descartamos",
+        "body": "Hay caminos que son lindos pero no sostienen un grupo. Quedan afuera si no dan seguridad, ritmo o margen."
+      },
+      {
+        "title": "Volvemos",
+        "body": "Cambiamos época, clima y nivel de riders. La versión final entra al tour cuando ya sabemos por qué existe."
+      }
+    ],
+    "stories_eyebrow": "Historias del taller",
+    "stories_heading": "LAS VERSIONES QUE SOBREVIVIERON",
+    "cta_eyebrow": "La ruta final",
+    "cta_heading": "VIAJÁS SOBRE UNA RUTA QUE YA NOS PROBÓ",
+    "cta_body": "El tour limpio está en la página comercial. Acá queda el barro: lo que probamos, lo que salió mal y lo que terminó entrando.",
+    "cta_primary": "Ver las rutas",
+    "cta_secondary": "Hablemos",
     "empty": "Pronto. Estamos escribiendo las primeras notas."
   },
   "journal_post": {
-    "back": "Volver al diario",
-    "share_eyebrow": "Compartir"
+    "back": "Volver al taller",
+    "share_eyebrow": "Más del taller"
   },
   "form": {
     "name_label": "Tu nombre",
@@ -265,7 +320,7 @@
     "group_size_label": "Cuántos son",
     "group_size_placeholder": "1, 2, 4…",
     "preferred_dates_label": "Cuándo te gustaría",
-    "preferred_dates_placeholder": "Marzo 2027 / fines de semana / lo que tengas",
+    "preferred_dates_placeholder": "Marzo 2027 / fines / flexible",
     "tour_label": "Ruta que te interesa",
     "tour_placeholder": "Elegí una (o dejá en blanco)",
     "tour_any": "Cualquiera / no sé todavía",
@@ -282,7 +337,7 @@
     "submit": "Enviar",
     "sending": "Enviando…",
     "success_heading": "Recibimos tu mensaje.",
-    "success_body": "Te escribimos en menos de 48 hs. Mientras tanto, te lees el diario.",
+    "success_body": "Te escribimos en menos de 48 hs. Mientras tanto, leé las notas del taller.",
     "error_heading": "Algo no salió.",
     "error_body": "Probá de nuevo en un rato o escribinos directo por WhatsApp.",
     "required": "Completá este campo.",

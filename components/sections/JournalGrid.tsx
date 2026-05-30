@@ -39,7 +39,7 @@ type JournalGridProps = {
  * halftone image well + paper title bar + stamped date.
  *
  * Per CLAUDE.md §15 step 13 + design.md §5 (TourCard sibling). Cards link
- * to /journal/[slug] via locale-aware navigation.
+ * to /taller-de-rutas/[slug] via locale-aware navigation.
  *
  * Phase 9 wires this to a real MDX-driven journal source; Phase 8 hands
  * posts in via prop so the section is reuse-ready independent of data
@@ -103,7 +103,7 @@ function JournalCard({
 
   return (
     <I18nLink
-      href={`/journal/${post.slug}`}
+      href={`/taller-de-rutas/${post.slug}`}
       className="group block border-2 border-current transition-transform duration-200 hover:-translate-y-1"
     >
       {/* Image well — placeholder for Phase 8, real halftone in Phase 9/10 */}

@@ -7,7 +7,7 @@ import { NewsletterForm } from "./NewsletterForm";
 
 /**
  * Footer — paper zone with torn top edge. Skull mark center; three columns
- * (trips / journal / contact); newsletter inline form on the right; locale
+ * (trips / route workshop / contact); newsletter inline form on the right; locale
  * switcher and copyright at the bottom.
  *
  * Server Component. Newsletter form is a Client Component below.
@@ -33,19 +33,28 @@ export async function Footer() {
         <Container className="grid gap-12 md:grid-cols-3">
           <div>
             <Eyebrow rule>{t("section_trips")}</Eyebrow>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-3 text-sm">
               <li>
-                <Link href="/tours" className="hover:underline">
+                <Link
+                  href="/tours"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                >
                   /tours
                 </Link>
               </li>
               <li>
-                <Link href="/calendar" className="hover:underline">
+                <Link
+                  href="/calendar"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                >
                   /calendar
                 </Link>
               </li>
               <li>
-                <Link href="/custom" className="hover:underline">
+                <Link
+                  href="/custom"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                >
                   /custom
                 </Link>
               </li>
@@ -54,14 +63,20 @@ export async function Footer() {
 
           <div>
             <Eyebrow rule>{t("section_journal")}</Eyebrow>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-3 text-sm">
               <li>
-                <Link href="/journal" className="hover:underline">
-                  /journal
+                <Link
+                  href="/taller-de-rutas"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                >
+                  /taller-de-rutas
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
+                <Link
+                  href="/about"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                >
                   /about
                 </Link>
               </li>
@@ -70,11 +85,11 @@ export async function Footer() {
 
           <div>
             <Eyebrow rule>{t("section_contact")}</Eyebrow>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-3 text-sm">
               <li>
                 <a
                   href={whatsAppHref}
-                  className="hover:underline"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -84,7 +99,7 @@ export async function Footer() {
               <li>
                 <a
                   href="https://instagram.com/motoonoff"
-                  className="hover:underline"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -92,7 +107,10 @@ export async function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@motoonoff.com" className="hover:underline">
+                <a
+                  href="mailto:hello@motoonoff.com"
+                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                >
                   hello@motoonoff.com
                 </a>
               </li>

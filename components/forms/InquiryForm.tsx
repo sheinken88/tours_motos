@@ -68,7 +68,7 @@ export function InquiryForm({
   }
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form action={formAction} className="space-y-6" data-whatsapp-fab="hide">
       <input type="hidden" name="locale" value={locale} />
       {tourSlug ? <input type="hidden" name="tour_slug" value={tourSlug} /> : null}
       <Honeypot />

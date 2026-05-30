@@ -113,7 +113,7 @@ export default async function Home({ params }: Props) {
           <Container>
             <I18nLink
               href="/tours"
-              className="text-eyebrow tracking-eyebrow text-accent-on-paper font-semibold uppercase underline-offset-4 hover:underline"
+              className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
             >
               {tToursIdx("all_routes_eyebrow")} →
             </I18nLink>
@@ -167,8 +167,8 @@ export default async function Home({ params }: Props) {
           {journalPosts.length > 0 ? (
             <Container>
               <I18nLink
-                href="/journal"
-                className="text-eyebrow tracking-eyebrow text-accent-on-paper font-semibold uppercase underline-offset-4 hover:underline"
+                href="/taller-de-rutas"
+                className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
               >
                 {tJournal("see_all")} →
               </I18nLink>
@@ -190,9 +190,7 @@ export default async function Home({ params }: Props) {
                 <DisplayHeading size="2xl" as="h2">
                   {tContact("headline")}
                 </DisplayHeading>
-                <p className="max-w-prose font-sans text-lg leading-relaxed">
-                  {tContact("intro")}
-                </p>
+                <p className="max-w-prose font-sans text-lg leading-relaxed">{tContact("intro")}</p>
               </div>
               <InquiryForm locale={locale} kind="contact" tours={tourOptions} />
             </div>
@@ -202,7 +200,7 @@ export default async function Home({ params }: Props) {
                 alt={tHome("rider_alt")}
                 fill
                 sizes="(min-width: 768px) 60vw, 0px"
-                className="pointer-events-none translate-y-16 scale-125 select-none object-contain object-right-bottom md:scale-[1.35] lg:translate-y-20 lg:scale-[1.45]"
+                className="pointer-events-none translate-y-16 scale-125 object-contain object-right-bottom select-none md:scale-[1.35] lg:translate-y-20 lg:scale-[1.45]"
               />
             </div>
           </div>

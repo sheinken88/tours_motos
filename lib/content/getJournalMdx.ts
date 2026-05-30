@@ -10,7 +10,7 @@ export type JournalFrontmatter = {
   date: string;
   excerpt: string;
   tags?: string[];
-  /** Optional hero image path under /public/images/journal/. */
+  /** Optional public image path for the workshop card/hero. */
   image?: string;
   /** Alt text for the hero image. */
   imageAlt?: string;

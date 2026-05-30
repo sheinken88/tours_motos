@@ -353,14 +353,14 @@ function RoadbookStrip({
   return (
     <nav
       aria-label={dayLabel}
-      className="border-paper/30 bg-brand-red/95 sticky top-16 z-20 -mx-5 border-y-2 px-5 py-3 backdrop-blur-sm sm:-mx-8 sm:px-8 md:mx-0 md:border-2 xl:top-20"
+      className="border-paper/30 bg-brand-red/95 z-20 -mx-5 border-y-2 px-5 py-3 backdrop-blur-sm sm:-mx-8 sm:px-8 md:sticky md:top-16 md:mx-0 md:border-2 xl:top-20"
     >
-      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-7">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-7">
         {itinerary.map((day) => (
           <a
             key={`${day.tour_slug}-strip-${day.day_number}`}
             href={`#day-${day.day_number}`}
-            className="border-paper/30 bg-brand-red-deep/20 hover:bg-brand-red-deep/45 focus-visible:outline-paper min-h-20 border-2 p-3 transition-[transform,background-color] duration-200 ease-out hover:-translate-y-0.5"
+            className="border-paper/30 bg-brand-red-deep/20 hover:bg-brand-red-deep/45 focus-visible:outline-paper min-h-16 border-2 p-3 transition-[transform,background-color] duration-200 ease-out hover:-translate-y-0.5 sm:min-h-20"
           >
             <span className="font-display text-paper block text-sm tracking-[var(--tracking-cta)] uppercase">
               {dayLabel} {day.day_number}
@@ -464,7 +464,7 @@ function DayRoadbookCard({
       id={`day-${day.day_number}`}
       data-zone="paper"
       className={`bg-paper-grain text-on-paper shadow-sticker-ink border-paper/30 overflow-hidden border-2 ${
-        featured ? "scroll-mt-40 lg:col-span-2" : "scroll-mt-40"
+        featured ? "scroll-mt-24 md:scroll-mt-40 lg:col-span-2" : "scroll-mt-24 md:scroll-mt-40"
       }`}
     >
       <article

@@ -311,13 +311,13 @@ Use sparingly — once per screen, on the single most important word.
 ### Grid
 
 ```css
---container-max: 1440px;
---container-content: 1240px;
+--container-max: 1536px;
+--container-content: 1536px;
 --container-narrow: 720px;
---container-padding: clamp(1.25rem, 4vw, 4rem);
+--container-padding: clamp(1.25rem, 3.5vw, 3.5rem);
 ```
 
-Use a 12-column grid with 24px gutters as the _default_, then escape it deliberately:
+Use a 12-column grid with 24px gutters as the _default_. Large desktop screens should feel like a wide poster field, not a narrow article column; keep prose constrained locally with `max-width` instead of choking the whole page. Escape the grid deliberately:
 
 - Display headlines may extend past content padding into the gutter.
 - Cutout silhouettes bleed off the right or bottom edge of a zone.
@@ -789,8 +789,8 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: { DEFAULT: "1.25rem", lg: "2rem", xl: "4rem" },
-      screens: { "2xl": "1440px" },
+      padding: "clamp(1.25rem, 3.5vw, 3.5rem)",
+      screens: { "2xl": "1536px" },
     },
     extend: {
       colors: {

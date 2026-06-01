@@ -87,7 +87,7 @@ export function WhatsAppFAB() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("label")}
-      className={`fixed right-6 bottom-6 z-30 inline-flex h-14 w-14 -rotate-3 items-center justify-center transition-[transform,opacity,background-color,color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:rotate-0 motion-reduce:transition-none ${colorClass} ${
+      className={`fixed right-3 bottom-5 z-30 inline-flex h-14 w-14 -rotate-3 items-center justify-center transition-[transform,opacity,background-color,color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:rotate-0 motion-reduce:transition-none md:right-5 md:bottom-6 ${colorClass} ${
         visible && !suppressed
           ? "translate-y-0 rotate-[-3deg] opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"

@@ -27,13 +27,13 @@ export async function Hero({ locale }: HeroProps) {
       <HeroVideo />
 
       {/* Layer 2 — mountain ridge, full width, anchored bottom, bleeds into the next zone */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[60%] opacity-90">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[54%] opacity-90">
         <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
       </div>
 
       {/* Foreground copy + CTAs */}
       <Container className="relative z-10 flex min-h-[78vh] flex-col justify-center md:min-h-[82vh]">
-        <div className="max-w-[640px] -translate-y-6 space-y-6 md:-translate-y-10">
+        <div className="max-w-[56rem] -translate-y-6 space-y-6 md:-translate-y-10">
           {/* Layer 4 — eyebrow + display heading */}
           <Eyebrow>{tHome("eyebrow")}</Eyebrow>
           <DisplayHeading size="2xl" as="h1">

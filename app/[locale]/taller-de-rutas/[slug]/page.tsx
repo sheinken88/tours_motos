@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Button, Container, DisplayHeading, Eyebrow, Stamp, XIcon } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { getJournalFrontmatter, listJournalEntries } from "@/lib/content/getJournalMdx";
 import {
@@ -10,12 +10,18 @@ import {
   listJournalSlugs,
   listLocalesForPost,
 } from "@/lib/content/journalMdxRegistry";
-import { getWorkshopCase, type WorkshopCaseImage } from "@/lib/content/workshopCases";
+import {
+  getWorkshopCase,
+  type WorkshopCaseImage,
+  type WorkshopDecisionSection,
+} from "@/lib/content/workshopCases";
 import { isLocale, localeCodes, type Locale } from "@/lib/i18n/config";
 import { Link as I18nLink } from "@/lib/i18n/navigation";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
 
 export const revalidate = 600;
+
+const decisionIconKinds = ["in", "out", "adjust"] as const;
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -97,37 +103,94 @@ export default async function TallerDeRutasPost({ params }: Props) {
   const fallbackImage = buildFallbackImage(fm);
   const heroImage = dossier?.hero ?? fallbackImage;
   const galleryImages = dossier ? [dossier.hero, ...dossier.images] : [fallbackImage];
+  const decisionSection: WorkshopDecisionSection = dossier?.decisionSection ?? {
+    eyebrow: "Decisiones de diseño",
+    title: "LO QUE ENTRÓ Y LO QUE QUEDÓ AFUERA",
+    intro:
+      "Una ruta se diseña cuando alguien decide qué no entra. Acá está la parte que no suele verse en una ficha comercial.",
+  };
 
   return (
     <>
-      <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
-        <Container>
-          <div className="grid gap-10 pt-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(360px,1.22fr)] lg:items-end lg:pt-14">
-            <div className="space-y-6">
-              <I18nLink
-                href="/taller-de-rutas"
-                className="text-eyebrow tracking-eyebrow inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
-              >
-                ← {t("back")}
-              </I18nLink>
-              <div className="flex flex-wrap gap-3">
-                <Stamp className="self-start" tilt={-2}>
+      <RedZone density="light" tornBottom={1} className="overflow-hidden !pt-0 !pb-0">
+        {/* Full-bleed cinematic banner: one halftone landscape, headline + CTA
+            overlaid bottom-left over an ink gradient. The whole zone IS the poster. */}
+        <div className="relative w-full">
+          {/* Background layers fill the banner; the in-flow Container below sets the
+              height, so a tall headline grows the banner instead of clipping.
+              Banner image — duotone/halftone treatment to match CasePhoto jpgs */}
+          <Image
+            src={heroImage.src}
+            alt={heroImage.alt}
+            fill
+            priority
+            sizes="100vw"
+            draggable={false}
+            className="object-cover object-center opacity-90 contrast-125 grayscale"
+          />
+          {/* Halftone dot texture, multiplied into the photo */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply"
+            style={{
+              backgroundImage: "url(/textures/halftone-overlay.svg)",
+              backgroundRepeat: "repeat",
+            }}
+            aria-hidden="true"
+          />
+          {/* Brand-red veil descending from the top so the fixed navbar reads,
+              matching the red zone the nav normally sits over on the home hero. */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[2]"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(168,52,42,0.85) 0%, rgba(168,52,42,0.55) 14%, rgba(168,52,42,0.18) 28%, rgba(168,52,42,0) 42%)",
+            }}
+            aria-hidden="true"
+          />
+          {/* Ink gradient rising from the bottom-left so the headline always reads */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[2]"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(31,20,14,0.92) 0%, rgba(31,20,14,0.78) 28%, rgba(31,20,14,0.28) 55%, rgba(31,20,14,0) 80%)",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Back link, pinned below the fixed navbar over the banner */}
+          <Container className="absolute inset-x-0 top-0 z-[4] pt-24 md:pt-28">
+            <I18nLink
+              href="/taller-de-rutas"
+              className="text-eyebrow tracking-eyebrow text-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
+            >
+              ← {t("back")}
+            </I18nLink>
+          </Container>
+
+          {/* In-flow copy — bottom-left. min-height makes the banner cinematic, but
+              tall content grows it past that, with top padding clearing nav + back link. */}
+          <Container className="relative z-[3] flex min-h-[80vh] flex-col justify-end pt-40 pb-14 md:min-h-[86vh] md:pt-44 md:pb-20">
+            <div className="max-w-2xl space-y-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <Stamp className="text-paper self-start" tilt={-2}>
                   {dateLabel}
                 </Stamp>
                 {dossier ? (
-                  <Stamp className="self-start" tilt={2}>
+                  <Stamp className="text-paper self-start" tilt={2}>
                     {dossier.region}
                   </Stamp>
                 ) : null}
               </div>
-              <DisplayHeading size="xl" as="h1" className="max-w-[10ch]">
+              <DisplayHeading size="2xl" as="h1" className="max-w-[14ch]">
                 {fm.title}
               </DisplayHeading>
               {fm.excerpt ? (
-                <p className="max-w-prose font-sans text-lg leading-relaxed">{fm.excerpt}</p>
+                <p className="text-paper/85 max-w-prose font-sans text-lg leading-relaxed">
+                  {fm.excerpt}
+                </p>
               ) : null}
               {dossier ? (
-                <div className="flex flex-wrap items-center gap-4 pt-2">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
                   <Button
                     href={`/${locale}/tours/${dossier.tourSlug}`}
                     variant="sticker-filled"
@@ -136,42 +199,17 @@ export default async function TallerDeRutasPost({ params }: Props) {
                   >
                     Ver tour final
                   </Button>
-                  <p className="text-eyebrow tracking-eyebrow max-w-60 font-bold uppercase opacity-80">
-                    {dossier.kicker}
-                  </p>
                 </div>
               ) : null}
             </div>
-
-            <div className="grid gap-4 sm:grid-cols-5 lg:gap-5">
-              <CasePhoto
-                image={heroImage}
-                priority
-                sizes="(min-width: 1024px) 48vw, 92vw"
-                aspectClassName="aspect-[16/10]"
-                className="sm:col-span-3 lg:-rotate-1"
-              />
-              <div className="grid gap-4 sm:col-span-2 lg:gap-5">
-                {galleryImages.slice(1, 3).map((image, index) => (
-                  <CasePhoto
-                    key={`${image.src}-${index}`}
-                    image={image}
-                    sizes="(min-width: 1024px) 22vw, 46vw"
-                    aspectClassName="aspect-[4/3]"
-                    className={index % 2 === 0 ? "lg:rotate-1" : "lg:-rotate-1"}
-                    compact
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </RedZone>
 
       <PaperZone density="default" tornBottom={2}>
         <Container>
           <div className="grid gap-8 lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start">
-            <aside className="bg-paper-light border-ink/30 shadow-sticker-ink border-2 p-6 lg:sticky lg:top-28">
+            <aside className="bg-paper-light border-ink/30 shadow-sticker-ink border-2 p-6 md:p-8 lg:sticky lg:top-28 lg:p-10">
               <Eyebrow>{dossier ? "Dossier de ruta" : "Taller de ruta"}</Eyebrow>
               <DisplayHeading size="md" as="h2" distress={false} className="mt-4">
                 {dossier ? dossier.routeName : "Ruta probada"}
@@ -181,11 +219,11 @@ export default async function TallerDeRutasPost({ params }: Props) {
                   <p className="mt-4 font-sans text-sm leading-relaxed opacity-80">
                     {dossier.fieldNote}
                   </p>
-                  <dl className="mt-6 grid grid-cols-2 gap-3">
+                  <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
                     {dossier.stats.map((stat) => (
                       <div
                         key={`${stat.value}-${stat.label}`}
-                        className="border-ink/25 border-t pt-3"
+                        className="border-ink/25 min-h-20 border-t pt-3"
                       >
                         <dt className="text-eyebrow tracking-eyebrow text-accent-on-paper font-bold uppercase">
                           {stat.label}
@@ -203,7 +241,10 @@ export default async function TallerDeRutasPost({ params }: Props) {
               ) : null}
             </aside>
 
-            <article className="prose-tour prose-tour-columns bg-paper-light border-ink/30 border-2 p-6 md:p-10">
+            <article
+              className="prose-tour prose-tour-columns bg-paper-light border-ink/30 border-2 p-6 md:p-10"
+              data-whatsapp-fab="hide"
+            >
               <MdxBody />
             </article>
           </div>
@@ -211,33 +252,38 @@ export default async function TallerDeRutasPost({ params }: Props) {
       </PaperZone>
 
       {dossier ? (
-        <RedZone density="default" tornBottom={3}>
+        <RedZone density="default" tornBottom={3} className="!pb-14 md:!pb-16">
           <Container className="space-y-10">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(320px,0.65fr)] lg:items-end">
               <div className="space-y-3">
-                <Eyebrow rule>Decisiones de diseño</Eyebrow>
+                <Eyebrow rule>{decisionSection.eyebrow}</Eyebrow>
                 <DisplayHeading size="xl" as="h2" className="max-w-[11ch]">
-                  LO QUE ENTRÓ Y LO QUE QUEDÓ AFUERA
+                  {decisionSection.title}
                 </DisplayHeading>
               </div>
-              <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">
-                Una ruta se diseña cuando alguien decide qué no entra. Acá está la parte que no
-                suele verse en una ficha comercial.
-              </p>
+              {decisionSection.intro ? (
+                <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">
+                  {decisionSection.intro}
+                </p>
+              ) : null}
             </div>
 
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]">
               <CasePhoto
-                image={dossier.images[1] ?? dossier.hero}
+                image={decisionSection.image ?? dossier.images[1] ?? dossier.hero}
                 sizes="(min-width: 1024px) 52vw, 92vw"
                 aspectClassName="aspect-[16/9]"
                 className="lg:-rotate-1"
+                treatment="color"
               />
-              <ul className="grid gap-4">
-                {dossier.decisions.map((decision) => (
+              <ul className="grid gap-4" data-whatsapp-fab="hide">
+                {dossier.decisions.map((decision, index) => (
                   <li key={decision.label} className="border-paper/45 border-2 p-5">
                     <div className="flex items-start gap-3">
-                      <XIcon className="mt-1 h-5 w-5 shrink-0" />
+                      <DecisionIcon
+                        kind={decision.kind ?? decisionIconKinds[index] ?? "adjust"}
+                        className="mt-1 h-5 w-5 shrink-0"
+                      />
                       <div>
                         <p className="text-eyebrow tracking-eyebrow font-bold uppercase opacity-75">
                           {decision.label}
@@ -255,21 +301,28 @@ export default async function TallerDeRutasPost({ params }: Props) {
         </RedZone>
       ) : null}
 
-      <PaperZone density="default" tornBottom={others.length > 0 ? 2 : undefined}>
+      <PaperZone
+        density="default"
+        tornBottom={others.length > 0 ? 2 : undefined}
+        className="!pb-14 md:!pb-16"
+      >
         <Container className="space-y-10">
           <div className="space-y-3">
             <Eyebrow rule>Fotos de scouting</Eyebrow>
-            <DisplayHeading size="xl" as="h2" className="max-w-[10ch]">
+            <DisplayHeading size="xl" as="h2" className="max-w-[18ch] lg:max-w-[22ch]">
               EL TERRENO ANTES DEL TOUR
             </DisplayHeading>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            data-whatsapp-fab="hide"
+          >
             {galleryImages.slice(0, 4).map((image, index) => (
               <CasePhoto
                 key={`${image.src}-${index}`}
                 image={image}
                 sizes="(min-width: 1024px) 24vw, (min-width: 640px) 46vw, 92vw"
-                aspectClassName={index === 0 ? "aspect-[4/5]" : "aspect-[4/3]"}
+                aspectClassName="aspect-[4/3]"
                 className={index % 2 === 0 ? "lg:-rotate-1" : "lg:rotate-1"}
                 compact
               />
@@ -279,7 +332,7 @@ export default async function TallerDeRutasPost({ params }: Props) {
       </PaperZone>
 
       {others.length > 0 ? (
-        <RedZone density="default">
+        <RedZone density="default" className="overflow-visible !pb-24 md:!pb-28">
           <Container className="space-y-8">
             <div>
               <Eyebrow rule>{t("share_eyebrow")}</Eyebrow>
@@ -287,7 +340,7 @@ export default async function TallerDeRutasPost({ params }: Props) {
                 {t("back")}
               </DisplayHeading>
             </div>
-            <ul className="grid gap-6 sm:grid-cols-2">
+            <ul className="grid gap-6 sm:grid-cols-2" data-whatsapp-fab="hide">
               {others.map((entry, index) => {
                 const related = getWorkshopCase(entry.slug);
                 const image = related?.hero ?? buildFallbackImage(entry);
@@ -345,20 +398,32 @@ export default async function TallerDeRutasPost({ params }: Props) {
 function CasePhoto({
   image,
   priority = false,
+  loading,
   sizes,
   aspectClassName,
   className = "",
   compact = false,
+  treatment = "halftone",
 }: {
   image: WorkshopCaseImage;
   priority?: boolean;
+  loading?: "eager" | "lazy";
   sizes: string;
   aspectClassName: string;
   className?: string;
   compact?: boolean;
+  treatment?: "halftone" | "color";
 }) {
+  const isColor = treatment === "color";
+  const imageClassName = isColor
+    ? "object-cover opacity-100 transition-[filter,opacity,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:brightness-105"
+    : "object-cover opacity-90 mix-blend-multiply contrast-125 grayscale transition-[filter,opacity,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:opacity-100 group-hover/photo:grayscale-0";
+  const overlayClassName = isColor
+    ? "pointer-events-none absolute inset-0 z-[1] opacity-10 mix-blend-multiply"
+    : "pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply";
+
   return (
-    <figure className={`group/photo ${className}`}>
+    <figure className={`group/photo self-start ${className}`}>
       <div
         className={`bg-paper-grain shadow-sticker-ink border-ink/70 relative overflow-hidden border-2 ${aspectClassName}`}
       >
@@ -368,11 +433,12 @@ function CasePhoto({
           fill
           sizes={sizes}
           priority={priority}
+          loading={priority ? undefined : loading}
           draggable={false}
-          className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale transition-[filter,opacity,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:opacity-100 group-hover/photo:grayscale-0"
+          className={imageClassName}
         />
         <div
-          className="pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply"
+          className={overlayClassName}
           style={{
             backgroundImage: "url(/textures/halftone-overlay.svg)",
             backgroundRepeat: "repeat",
@@ -386,8 +452,8 @@ function CasePhoto({
         </div>
       </div>
       <figcaption
-        className={`mt-3 max-w-prose font-sans leading-relaxed opacity-75 ${
-          compact ? "text-xs" : "text-sm"
+        className={`mt-3 max-w-prose font-sans leading-relaxed opacity-85 ${
+          compact ? "text-sm" : "text-sm md:text-base"
         }`}
       >
         {image.caption}
@@ -408,4 +474,43 @@ function buildFallbackImage(fm: {
     label: "Taller de ruta",
     caption: fm.excerpt ?? "",
   };
+}
+
+function DecisionIcon({
+  kind,
+  className = "",
+}: {
+  kind: (typeof decisionIconKinds)[number];
+  className?: string;
+}) {
+  if (kind === "in") {
+    return (
+      <svg className={className} viewBox="0 0 20 20" aria-hidden focusable="false">
+        <path d="M9 3h2v14H9V3Z" fill="currentColor" />
+        <path d="M3 9h14v2H3V9Z" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (kind === "adjust") {
+    return (
+      <svg className={className} viewBox="0 0 20 20" aria-hidden focusable="false">
+        <path
+          d="M4 6h9.4l-2.2-2.2 1.5-1.4L17.4 7l-4.7 4.6-1.5-1.4L13.4 8H4V6Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16 14H6.6l2.2 2.2-1.5 1.4L2.6 13l4.7-4.6 1.5 1.4L6.6 12H16v2Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className={className} viewBox="0 0 20 20" aria-hidden focusable="false">
+      <path d="m4.2 3.1 12.7 12.7-1.4 1.4L2.8 4.5l1.4-1.4Z" fill="currentColor" />
+      <path d="M15.5 3.1 2.8 15.8l1.4 1.4L16.9 4.5l-1.4-1.4Z" fill="currentColor" />
+    </svg>
+  );
 }

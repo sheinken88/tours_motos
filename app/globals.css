@@ -79,8 +79,10 @@
 
   /* ── Container ──────────────────────────────────────────────────────────── */
 
-  --container-content: 77.5rem; /* 1240px */
+  --container-max: 96rem; /* 1536px - poster-width layout for large displays */
+  --container-content: var(--container-max);
   --container-narrow: 45rem; /* 720px */
+  --container-padding: clamp(1.25rem, 3.5vw, 3.5rem);
 
   /* Border radius — CLAUDE.md hard rule: no border-radius on primary UI. */
   --radius-none: 0;
@@ -203,6 +205,7 @@
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

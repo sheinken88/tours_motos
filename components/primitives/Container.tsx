@@ -11,10 +11,11 @@ type ContainerProps = HTMLAttributes<HTMLElement> & {
  * Container — max-width wrapper with the responsive padding from design.md §4.
  *
  * Two width tiers:
- *   - `content` (default): 1240px max — normal page content
+ *   - `content` (default): 1536px max — normal poster-width page content
  *   - `narrow`: 720px max — prose-heavy body copy, journal posts
  *
- * Padding scales: 20px → 32px → 64px (mobile → md → xl).
+ * Padding follows --container-padding so wide screens gain canvas without
+ * letting mobile gutters collapse.
  * Use inside RedZone / PaperZone wrappers to constrain content width
  * while letting the zone background bleed full-width.
  */
@@ -28,7 +29,7 @@ export function Container({
     width === "narrow" ? "max-w-[var(--container-narrow)]" : "max-w-[var(--container-content)]";
   return (
     <Element
-      className={`mx-auto w-full px-5 md:px-8 xl:px-16 ${widthClass} ${className}`}
+      className={`mx-auto w-full px-[var(--container-padding)] ${widthClass} ${className}`}
       {...rest}
     />
   );

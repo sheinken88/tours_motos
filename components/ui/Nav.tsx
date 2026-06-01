@@ -76,7 +76,7 @@ export function Nav() {
         scrolled ? "bg-red-grunge backdrop-blur-sm" : "bg-transparent"
       }`}
     >
-      <div className="text-on-red mx-auto flex w-full max-w-[var(--container-content)] items-center justify-between px-5 py-4 md:px-8 xl:px-16">
+      <div className="text-on-red mx-auto flex w-full max-w-[var(--container-content)] items-center justify-between px-[var(--container-padding)] py-4">
         <Link
           href="/"
           className="flex min-h-11 min-w-11 items-center gap-3"
@@ -89,7 +89,7 @@ export function Nav() {
         </Link>
 
         {/* Desktop links — hover reveals the brand hand-underline SVG. */}
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">
+        <nav className="hidden items-center gap-5 xl:flex xl:gap-8 2xl:gap-10" aria-label="Primary">
           {PRIMARY_NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
@@ -129,7 +129,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex xl:gap-5">
           <LangSwitcher />
           <Button href={whatsAppHref} external edge={2} tilt="right" arrow={false}>
             <span className="inline-flex items-center gap-2">
@@ -144,7 +144,7 @@ export function Nav() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t("open_menu")}
-          className="text-paper inline-flex h-11 w-11 items-center justify-center lg:hidden"
+          className="text-paper inline-flex h-11 w-11 items-center justify-center xl:hidden"
         >
           <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden>
             <path
@@ -161,7 +161,7 @@ export function Nav() {
       {open ? (
         <div
           data-zone="red"
-          className="bg-red-grunge text-on-red fixed inset-0 z-50 flex flex-col overflow-y-auto p-5 sm:p-6 lg:hidden"
+          className="bg-red-grunge text-on-red fixed inset-0 z-50 flex flex-col overflow-y-auto p-5 sm:p-6 xl:hidden"
           role="dialog"
           aria-modal="true"
         >

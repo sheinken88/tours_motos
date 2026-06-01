@@ -114,8 +114,8 @@ export async function TourHero({ tour, locale }: TourHeroProps) {
         <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
       </div>
 
-      <Container className="relative z-10 grid min-h-[64vh] gap-10 lg:min-h-[68vh] lg:grid-cols-[minmax(0,0.9fr)_minmax(24rem,0.82fr)] lg:items-center xl:min-h-[72vh]">
-        <div className="max-w-[760px] space-y-6 lg:max-w-[620px]">
+      <Container className="relative z-10 grid min-h-[64vh] gap-10 lg:min-h-[68vh] lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.8fr)] lg:items-center xl:min-h-[72vh]">
+        <div className="max-w-[50rem] space-y-6">
           <Eyebrow>{region}</Eyebrow>
           <DisplayHeading size="2xl" as="h1">
             {tour.title[locale]}

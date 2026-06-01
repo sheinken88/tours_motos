@@ -181,7 +181,7 @@ export default async function Home({ params }: Props) {
           Two-column grid: form on the left, rider cutout on the right.
           The red band sits above the following paper footer so the scaled
           cutout can bleed across that boundary instead of being painted over. */}
-      <RedZone density="default" className="z-10 overflow-visible">
+      <RedZone density="default" className="z-10 overflow-x-clip overflow-y-visible">
         <Container>
           <div className="grid items-stretch gap-12 md:grid-cols-[1fr_1.4fr] md:gap-16">
             <div className="space-y-8">

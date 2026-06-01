@@ -6,8 +6,8 @@ import {
 } from "react";
 
 /**
- * Form primitives for the brand. Paper-input + ink-arrow aesthetic that
- * matches the NewsletterForm in the footer (CLAUDE.md §15 step 16).
+ * Form primitives for the brand. Rectangular inputs, brand focus rings, and
+ * no ornamental softness.
  *
  * Hard rules enforced here:
  *   - No border-radius (CLAUDE.md §13).

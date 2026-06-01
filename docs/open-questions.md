@@ -35,7 +35,6 @@
 - [ ] **Production domain** — confirm with client.
 - [ ] **GMB profile** — Google Reviews summary needs the GMB URL.
 - [ ] **Resend API key** — `RESEND_API_KEY` value (forms degrade to console.log without it).
-- [ ] **Resend audience id** — `RESEND_AUDIENCE_ID` for the newsletter form (degrades to console.log without it).
 - [ ] **Inquiry → Sheets mirror** — should inquiry submissions also append to a `Inquiries` tab in the existing tour Sheet? Phase 9 ships email-only; mirror is a one-line addition to `lib/contact/sendInquiry.ts` once the destination is chosen.
 - [ ] **GA4 measurement ID** — `NEXT_PUBLIC_GA_ID` value.
 

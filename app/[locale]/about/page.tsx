@@ -33,19 +33,49 @@ const nosotrosImages = {
   riders: "/images/nosotros/20260331_120545.jpg",
   road: "/images/nosotros/20220905_150725.jpg",
   workshop: "/images/nosotros/20260402_180621.jpg",
+  camp: "/images/nosotros/WhatsApp Image 2026-04-15 at 17.06.08.jpeg",
 } as const;
 
+const nosotrosCarouselImages = [
+  {
+    src: nosotrosImages.group,
+    alt: "Grupo de riders de Moto On/Off reunido durante una travesía",
+  },
+  {
+    src: nosotrosImages.dunes,
+    alt: "Riders cruzando una zona de dunas y cordillera",
+  },
+  {
+    src: nosotrosImages.riders,
+    alt: "Motos de aventura avanzando por una ruta de ripio",
+  },
+  {
+    src: nosotrosImages.road,
+    alt: "Moto de aventura cargada en un camino de montaña",
+  },
+  {
+    src: nosotrosImages.workshop,
+    alt: "Riders de Moto On/Off en una parada de ruta",
+  },
+  {
+    src: nosotrosImages.camp,
+    alt: "Riders compartiendo una parada durante un viaje en moto",
+  },
+] as const;
+
 const routePrinciples = [
-  "Diseñamos rutas ON/OFF que combinan asfalto, ripio y manejo real.",
-  "Rodamos cada itinerario antes de venderlo: lo testeamos, lo ajustamos y volvemos a medirlo.",
-  "Planificamos hoteles, paradas, horarios de manejo y tramos de descanso para que el viaje fluya.",
-  "Armamos grupos chicos, con foco en la confianza, el ritmo y el equipo humano.",
+  "Cada kilómetro de nuestras rutas en moto fueron diseñadas previamente, testeadas y ajustadas para que vivas el viaje con libertad.",
+  "Planificamos cada viaje en moto al detalle, desde los hoteles, las paradas y las horas de manejo.",
+  "Brindamos apoyo y organización para que la experiencia sea intensa y auténtica.",
+  "Hacemos especial foco en el grupo humano.",
 ];
 
 const terrainList = [
-  "Zonas volcánicas y desiertos de altura.",
-  "Bosques con lagos, montañas nevadas y yungas cerradas.",
-  "Catamarca, Carretera Austral, Patagonia y el norte argentino.",
+  "Zonas volcánicas.",
+  "Desiertos.",
+  "Bosques con lagos.",
+  "Montañas nevadas.",
+  "Yungas cerradas.",
 ];
 
 const commitmentTestimonials = [
@@ -129,6 +159,31 @@ function PosterPhoto({
         }}
         aria-hidden="true"
       />
+    </div>
+  );
+}
+
+function NosotrosCarousel() {
+  return (
+    <div
+      className="border-ink/30 bg-paper-light shadow-sticker-ink border-2 p-4 md:p-5"
+      aria-label="Fotos de Moto On/Off"
+    >
+      <div className="grid auto-cols-[minmax(16rem,76vw)] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-3 [scroll-snap-type:x_mandatory] md:auto-cols-[minmax(22rem,38vw)] lg:auto-cols-[minmax(24rem,30vw)]">
+        {nosotrosCarouselImages.map((image, index) => (
+          <div
+            key={image.src}
+            className={`[scroll-snap-align:start] ${index % 2 === 0 ? "-rotate-1" : "rotate-1"}`}
+          >
+            <PosterPhoto
+              src={image.src}
+              alt={image.alt}
+              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 38vw, 76vw"
+              className="aspect-[4/3]"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -388,9 +443,8 @@ export default async function AboutPage({ params }: Props) {
                 RUTAS QUE VAN MÁS ALLÁ DEL ASFALTO
               </DisplayHeading>
               <p className="max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
-                Diseñamos experiencias de moto ON/OFF que te prueban en ruta, ripio y grupo. Cada
-                kilómetro fue rodado antes, ajustado después y pensado para que vuelvas manejando
-                distinto.
+                Diseñamos rutas que van más allá del asfalto. Creamos experiencias de aventura en
+                moto que te transforman en un mejor piloto.
               </p>
             </div>
             <div className="relative min-h-80 lg:min-h-[34rem]">
@@ -409,24 +463,29 @@ export default async function AboutPage({ params }: Props) {
       </RedZone>
 
       <PaperZone density="default" tornBottom={2}>
-        <Container>
+        <Container className="space-y-12">
+          <NosotrosCarousel />
+
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
             <div className="space-y-8">
               <div className="space-y-4">
                 <Eyebrow rule>Nosotros</Eyebrow>
                 <DisplayHeading size="xl" as="h2">
-                  ARMAMOS VIAJES QUE SE GANAN MANEJANDO
+                  TOURS EN MOTO CON ENFOQUE OFFROAD
                 </DisplayHeading>
               </div>
               <div className="space-y-5 font-sans text-lg leading-relaxed">
                 <p>
-                  Creamos tours en moto para riders de distintos niveles, siempre con enfoque
-                  offroad. Desde expediciones por Catamarca hasta viajes por la Carretera Austral,
-                  cada ruta tiene una razón para existir.
+                  Ofrecemos tours en moto para todo público con un enfoque Offroad, desde
+                  expediciones por Catamarca hasta viajes en moto por la Carretera Austral.
                 </p>
                 <p>
-                  No repetimos moldes. Todas nuestras rutas son distintas entre sí: volcán,
-                  desierto, bosque, lago, nieve, yunga. El terreno cambia. La exigencia también.
+                  Todos nuestros tours en moto son distintos entre sí. Diseñamos experiencias de
+                  moto ON/OFF que combinan ruta, ripio y aventura.
+                </p>
+                <p>
+                  Viajando en moto por zonas volcánicas, desiertos, bosques con lagos, montañas
+                  nevadas o yungas cerradas.
                 </p>
               </div>
               <div className="border-ink text-ink grid max-w-2xl grid-cols-3 border-2">
@@ -465,7 +524,7 @@ export default async function AboutPage({ params }: Props) {
             <div className="space-y-3">
               <Eyebrow rule>Cómo lo hacemos</Eyebrow>
               <DisplayHeading size="xl" as="h2">
-                DISEÑAMOS. RODAMOS. AJUSTAMOS.
+                DISEÑADAS, TESTEADAS Y AJUSTADAS
               </DisplayHeading>
             </div>
             <ul className="grid gap-4 font-sans text-lg leading-relaxed md:grid-cols-2">
@@ -487,15 +546,15 @@ export default async function AboutPage({ params }: Props) {
               <div className="space-y-5">
                 <Eyebrow rule>Terreno humano</Eyebrow>
                 <DisplayHeading size="xl" as="h2">
-                  EL GRUPO TAMBIÉN ES PARTE DE LA RUTA
+                  NO HACEMOS TOURS MASIVOS
                 </DisplayHeading>
               </div>
               <div className="space-y-6">
                 <p className="max-w-3xl font-sans text-lg leading-relaxed">
-                  Brindamos apoyo y organización para que la experiencia sea intensa, auténtica y
-                  posible. Hacemos foco en el grupo humano porque el viaje no se sostiene solo con
-                  kilómetros: se sostiene con confianza, ritmo compartido y gente que se anima a
-                  cruzar.
+                  No hacemos tours masivos. Planificamos cada viaje en moto al detalle, desde los
+                  hoteles, las paradas y las horas de manejo. Brindamos apoyo y organización para
+                  que la experiencia sea intensa y auténtica. Hacemos especial foco en el grupo
+                  humano.
                 </p>
                 <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed md:grid-cols-3">
                   {terrainList.map((item) => (
@@ -528,7 +587,7 @@ export default async function AboutPage({ params }: Props) {
             </div>
             <p className="max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
               Animamos a la gente a una experiencia que va más allá del camino. Más de 6 años de
-              ruta respaldan nuestro compromiso.
+              experiencia respaldan nuestro compromiso.
             </p>
           </div>
 

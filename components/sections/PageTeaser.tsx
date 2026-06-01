@@ -42,14 +42,19 @@ export function PageTeaser({
   emphasis = false,
 }: PageTeaserProps) {
   const alignmentClass = align === "center" ? "items-center text-center" : "items-start";
+  const proseAlignmentClass = align === "center" ? "mx-auto" : "";
   return (
     <Container>
-      <div className={`flex max-w-prose flex-col gap-6 ${alignmentClass}`}>
+      <div className={`flex max-w-4xl flex-col gap-6 ${alignmentClass}`}>
         <Eyebrow rule>{eyebrow}</Eyebrow>
         <DisplayHeading size="xl" as="h2">
           {heading}
         </DisplayHeading>
-        <p className="font-sans text-lg leading-relaxed sm:text-xl">{body}</p>
+        <p
+          className={`max-w-prose font-sans text-lg leading-relaxed sm:text-xl ${proseAlignmentClass}`}
+        >
+          {body}
+        </p>
         <Button
           href={href}
           edge={edge}

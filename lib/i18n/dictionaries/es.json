@@ -16,12 +16,9 @@
     "section_trips": "Viajes",
     "section_journal": "Taller de Rutas",
     "section_contact": "Contacto",
-    "newsletter_eyebrow": "Taller",
-    "newsletter_title": "Rutas, polvo y notas de campo",
-    "newsletter_placeholder": "Tu correo",
-    "newsletter_submit": "Suscribirme",
-    "newsletter_success": "Listo. Gracias.",
-    "newsletter_error": "No pudimos guardar tu correo. Probá de nuevo.",
+    "cta_eyebrow": "Próximo paso",
+    "cta_title": "¿QUÉ RUTA TE VA A PROBAR?",
+    "cta_body": "Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.",
     "rights": "Todos los derechos reservados.",
     "instagram": "Instagram",
     "email": "Correo"
@@ -101,7 +98,7 @@
     "gallery_eyebrow": "Fotos de ruta",
     "itinerary_eyebrow": "Recorrido",
     "itinerary_heading": "Día por día",
-    "itinerary_hook": "El mapa ordena los días. La ruta decide cuál te prueba.",
+    "itinerary_hook": "Cada día suma kilómetros, ripio y altura. Vos llevás la cuenta en el cuerpo.",
     "day_label": "Día",
     "highlights_label": "Destacados",
     "practical_eyebrow": "Detalles del viaje",
@@ -173,9 +170,9 @@
   "about": {
     "title": "Nosotros",
     "eyebrow": "Quiénes somos",
-    "headline": "ARMADO EN LA RUTA",
-    "metadata_description": "Moto On/Off arma travesías en moto por la Patagonia, los Andes y el norte argentino. Rutas que ya rodamos, contadas por quien las anduvo.",
-    "subheadline": "No somos guías de paseo. Andamos las rutas que vendemos, una y otra vez, hasta que están listas para vos.",
+    "headline": "RUTAS QUE VAN MÁS ALLÁ DEL ASFALTO",
+    "metadata_description": "Moto On/Off diseña tours en moto con enfoque offroad por Catamarca, Carretera Austral, Patagonia y el norte argentino. Rutas testeadas, grupos chicos y aventura real.",
+    "subheadline": "Diseñamos experiencias de aventura en moto que te transforman en un mejor piloto.",
     "founder_eyebrow": "Fundador",
     "founder_name": "Sebastián",
     "founder_caption": "Patagonia, 2024. Día 9 de la travesía.",
@@ -248,62 +245,61 @@
   "journal_index": {
     "title": "Taller de Rutas",
     "eyebrow": "Taller de Rutas",
-    "headline": "PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
-    "metadata_description": "Cómo diseñamos rutas en moto: exploración, tramos probados, variantes descartadas y decisiones reales antes de abrir cada tour.",
-    "intro": "Cada ruta nace mucho antes del viaje. Nace explorando caminos, equivocándonos, volviendo atrás y buscando una versión mejor. Antes de abrir un tour, lo rodamos en condiciones reales: tiempos, combustible, altura, clima, cansancio y nivel técnico.",
-    "hero_note": "El mapa propone. El terreno corrige.",
-    "proof_eyebrow": "Detrás de cada tour",
-    "proof_heading": "ESTO NO SALE DE UN MAPA",
-    "proof_body": "Rodamos variantes, hablamos con locales, medimos tiempos y volvemos cuando algo no cierra. La ruta final es la que aguanta el terreno, la temporada y el grupo.",
+    "headline": "CÓMO DISEÑAMOS LOS TOUR",
+    "metadata_description": "Cada tour en moto nace de exploración, equivocación y reintentos. Rutas testeadas, expediciones en moto y decisiones tomadas en el terreno.",
+    "intro": "Cada tour nace mucho antes del viaje. Nace explorando caminos, equivocándonos, volviendo atrás y buscando rutas mejores. Antes de lanzar un recorrido, viajamos varias veces al destino probando alternativas, tiempos, caminos y niveles de dificultad reales.",
+    "proof_eyebrow": "Detrás de cada paisaje",
+    "proof_heading": "HAY HORAS DE EXPLORACION",
+    "proof_body": "No improvisamos rutas: las vivimos primero. Nuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con riders de todos los niveles para que vos viajes con libertad total.",
     "proof_items": [
-      "Probamos caminos antes de ponerles nombre.",
-      "Descartamos tramos cuando el clima, el sentido o la logística no cierran.",
-      "Medimos combustible, horas de manejo, altura y cansancio real.",
-      "Mantenemos una red local que nos avisa cómo está cada camino."
+      "Mostramos cómo preparamos las rutas y cómo probamos los caminos antes que los clientes.",
+      "Probamos alternativas, tiempos, caminos y niveles de dificultad reales.",
+      "Realizamos recorridos con pilotos de distintos niveles de experiencia.",
+      "Tenemos una red de contactos locales que nos informa las condiciones de los caminos."
     ],
     "stats": [
       {
-        "value": "4",
-        "label": "rutas abiertas"
+        "value": "Exploración",
+        "label": "y experiencia real"
       },
       {
-        "value": "2+",
-        "label": "vueltas por ruta"
+        "value": "Rutas",
+        "label": "testeadas"
       },
       {
-        "value": "Cada día",
-        "label": "con alternativa"
+        "value": "Aventura",
+        "label": "diseñada"
       },
       {
         "value": "Red local",
-        "label": "en cada destino"
+        "label": "condiciones reales"
       }
     ],
     "process_eyebrow": "Cómo probamos",
-    "process_heading": "DEL PRIMER TRACK A LA RUTA FINAL",
+    "process_heading": "EXPLORAR, AJUSTAR, VOLVER",
     "process_items": [
       {
-        "title": "Exploramos",
-        "body": "Salimos con una idea y dejamos que el terreno la rompa. El mapa dice una cosa; el ripio, la lluvia y la altura dicen otra."
+        "title": "Exploración",
+        "body": "Cada tour nace de explorar, equivocarse y volver a intentarlo. Diseñamos rutas y variantes que primero tuvimos que descubrir."
       },
       {
-        "title": "Abrimos variantes",
-        "body": "Probamos sentidos, horarios, paradas, combustible y noches posibles. Una ruta no es una línea: es una decisión por día."
+        "title": "Ajustes",
+        "body": "Las rutas tienen un sentido. No es lo mismo hacer una ruta de norte a sur que de sur a norte: cambia la dificultad tecnica, la inmersion dentro del paisaje y la experiencia."
       },
       {
-        "title": "Descartamos",
-        "body": "Hay caminos que son lindos pero no sostienen un grupo. Quedan afuera si no dan seguridad, ritmo o margen."
+        "title": "Problemas reales",
+        "body": "Cuando el clima nos hizo volver, cuando el mapa estaba equivocado o cuando una ruta quedó descartada, volvimos meses después."
       },
       {
-        "title": "Volvemos",
-        "body": "Cambiamos época, clima y nivel de riders. La versión final entra al tour cuando ya sabemos por qué existe."
+        "title": "Red Local",
+        "body": "Contamos con contactos locales que nos mantienen informados sobre el estado de los caminos y las condiciones reales de cada destino."
       }
     ],
-    "stories_eyebrow": "Historias del taller",
-    "stories_heading": "LAS VERSIONES QUE SOBREVIVIERON",
-    "cta_eyebrow": "La ruta final",
-    "cta_heading": "VIAJÁS SOBRE UNA RUTA QUE YA NOS PROBÓ",
-    "cta_body": "El tour limpio está en la página comercial. Acá queda el barro: lo que probamos, lo que salió mal y lo que terminó entrando.",
+    "stories_eyebrow": "Taller de Rutas",
+    "stories_heading": "DECISIONES DE DISEÑO DEL TOUR",
+    "cta_eyebrow": "Cómo terminó entrando al tour",
+    "cta_heading": "EXPLORAMOS ANTES PARA QUE VOS VIAJES CON LIBERTAD",
+    "cta_body": "La idea no es improvisar la aventura. Es diseñarla para disfrutarla de verdad.",
     "cta_primary": "Ver las rutas",
     "cta_secondary": "Hablemos",
     "empty": "Pronto. Estamos escribiendo las primeras notas."

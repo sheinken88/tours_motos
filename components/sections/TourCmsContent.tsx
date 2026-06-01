@@ -407,7 +407,7 @@ function DayRouteImage({
         alt={image.alt[locale] || tour.title[locale]}
         fill
         sizes="(min-width: 1024px) 440px, (min-width: 768px) 42vw, 100vw"
-        className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0"
+        className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0 transition-transform duration-300 ease-out group-hover/day-card:scale-[1.03]"
       />
       <Image
         src={image.image_url}
@@ -415,7 +415,7 @@ function DayRouteImage({
         aria-hidden="true"
         fill
         sizes="(min-width: 1024px) 440px, (min-width: 768px) 42vw, 100vw"
-        className="object-cover opacity-0 transition-opacity duration-300 ease-out group-hover/day-image:opacity-100"
+        className="object-cover opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover/day-card:scale-[1.03] group-hover/day-card:opacity-100 group-hover/day-image:opacity-100"
       />
       <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply" />
       <div
@@ -463,7 +463,7 @@ function DayRoadbookCard({
     <li
       id={`day-${day.day_number}`}
       data-zone="paper"
-      className={`bg-paper-grain text-on-paper shadow-sticker-ink border-paper/30 overflow-hidden border-2 ${
+      className={`group/day-card bg-paper-grain text-on-paper shadow-sticker-ink hover:shadow-sticker-red border-paper/30 overflow-hidden border-2 transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-1 ${
         featured ? "scroll-mt-24 md:scroll-mt-40 lg:col-span-2" : "scroll-mt-24 md:scroll-mt-40"
       }`}
     >
@@ -628,7 +628,7 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
         <RedZone density="default" tornBottom={2} data-whatsapp-fab="hide">
           <Container className="space-y-10">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,0.76fr)_minmax(18rem,0.34fr)] lg:items-end">
-              <div className="space-y-3">
+              <div className="space-y-5">
                 <Eyebrow>{t("itinerary_eyebrow")}</Eyebrow>
                 <DisplayHeading size="xl" as="h2">
                   {t("itinerary_heading")}

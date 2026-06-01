@@ -70,55 +70,74 @@ export default async function TallerDeRutasIndex({ params }: Props) {
   const storyCases = listWorkshopCases(entries.map((entry) => entry.slug));
   const visualCases = storyCases.length > 0 ? storyCases : Object.values(WORKSHOP_CASES);
   const heroCase = WORKSHOP_CASES["armar-volcanes-del-norte"] ?? visualCases[0];
-  const heroSupport = [
-    WORKSHOP_CASES["armar-cruces-del-sur"],
-    WORKSHOP_CASES["armar-gigantes-del-oeste"],
-  ].filter((item): item is WorkshopCase => Boolean(item));
   const ctaCase = WORKSHOP_CASES["armar-cruces-del-sur"];
 
   return (
     <>
-      <RedZone density="heavy" tornBottom={2} className="overflow-hidden">
-        <Container>
-          <div className="grid gap-12 pt-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(360px,1.18fr)] lg:items-end lg:pt-14">
-            <div className="space-y-7">
-              <Eyebrow>{t("eyebrow")}</Eyebrow>
-              <DisplayHeading size="2xl" as="h1" className="max-w-[10ch]">
+      <RedZone density="light" tornBottom={2} className="overflow-hidden !pt-0 !pb-0">
+        {/* Full-bleed cinematic banner — one halftone landscape, copy overlaid
+            bottom-left. Red veil at the top keeps the fixed navbar legible. */}
+        <div className="relative w-full">
+          {/* Background layers fill the banner; the in-flow Container below sets the
+              height, so a tall headline grows the banner instead of clipping. */}
+          {heroCase ? (
+            <Image
+              src={heroCase.hero.src}
+              alt={heroCase.hero.alt}
+              fill
+              priority
+              sizes="100vw"
+              draggable={false}
+              className="object-cover object-center opacity-90 contrast-125 grayscale"
+            />
+          ) : null}
+          {/* Halftone dot texture, multiplied into the photo */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply"
+            style={{
+              backgroundImage: "url(/textures/halftone-overlay.svg)",
+              backgroundRepeat: "repeat",
+            }}
+            aria-hidden="true"
+          />
+          {/* Brand-red veil descending from the top so the fixed navbar reads */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[2]"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(168,52,42,0.85) 0%, rgba(168,52,42,0.55) 14%, rgba(168,52,42,0.18) 28%, rgba(168,52,42,0) 42%)",
+            }}
+            aria-hidden="true"
+          />
+          {/* Ink gradient rising from the bottom-left so the headline always reads */}
+          <div
+            className="pointer-events-none absolute inset-0 z-[2]"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(31,20,14,0.92) 0%, rgba(31,20,14,0.78) 28%, rgba(31,20,14,0.28) 55%, rgba(31,20,14,0) 80%)",
+            }}
+            aria-hidden="true"
+          />
+
+          {/* In-flow copy — bottom-left. min-height makes the banner cinematic, but
+              tall content grows it past that, with top padding clearing the fixed nav. */}
+          <Container className="relative z-[3] flex min-h-[80vh] flex-col justify-end pt-28 pb-14 md:min-h-[86vh] md:pt-32 md:pb-20">
+            <div className="w-full max-w-[74rem] space-y-5">
+              <Eyebrow className="text-paper mb-10 md:mb-12">{t("eyebrow")}</Eyebrow>
+              <DisplayHeading size="2xl" as="h1" className="max-w-[17ch] xl:max-w-[18ch]">
                 {t("headline")}
               </DisplayHeading>
-              <p className="max-w-prose font-sans text-lg leading-relaxed">{t("intro")}</p>
-              <Stamp tilt={-2} className="bg-paper text-brand-red border-paper">
-                {t("hero_note")}
-              </Stamp>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-5 lg:gap-5">
-              {heroCase ? (
-                <WorkshopPhoto
-                  image={heroCase.hero}
-                  label={localize(locale, heroCase.region)}
-                  priority
-                  sizes="(min-width: 1024px) 46vw, 92vw"
-                  aspectClassName="aspect-[16/11]"
-                  className="sm:col-span-3 lg:-rotate-1"
-                />
-              ) : null}
-              <div className="grid gap-4 sm:col-span-2 lg:gap-5">
-                {heroSupport.map((item, index) => (
-                  <WorkshopPhoto
-                    key={item.slug}
-                    image={item.hero}
-                    label={localize(locale, item.region)}
-                    sizes="(min-width: 1024px) 22vw, 46vw"
-                    aspectClassName="aspect-[4/3]"
-                    className={index % 2 === 0 ? "lg:rotate-1" : "lg:-rotate-1"}
-                    compact
-                  />
-                ))}
+              <p className="text-paper/85 max-w-prose font-sans text-lg leading-relaxed">
+                {t("intro")}
+              </p>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
+                <Button href={`/${locale}/tours`} variant="sticker-filled" edge={1} tilt="left">
+                  {t("cta_primary")}
+                </Button>
               </div>
             </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </RedZone>
 
       <PaperZone density="default" tornBottom={3}>
@@ -184,7 +203,7 @@ export default async function TallerDeRutasIndex({ params }: Props) {
             <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">
               {localize(
                 locale,
-                "El taller no es una promesa bonita: son decisiones tomadas con la moto parada, el clima encima y el grupo en la cabeza.",
+                "La idea no es improvisar la aventura. Es diseñarla para disfrutarla de verdad.",
               )}
             </p>
           </div>
@@ -299,7 +318,7 @@ function WorkshopStoryWall({
         <p className="max-w-prose font-sans text-sm leading-relaxed opacity-75 lg:text-base">
           {localize(
             locale,
-            "Cada nota muestra una decisión: lo que probamos, lo que descartamos y por qué la ruta final quedó así.",
+            "El taller tiene que mostrar proceso real: pruebas, errores, logística y decisiones tomadas en el terreno.",
           )}
         </p>
       </div>

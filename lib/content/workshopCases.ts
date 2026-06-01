@@ -8,11 +8,19 @@ export type WorkshopCaseImage = {
 export type WorkshopDecision = {
   label: string;
   body: string;
+  kind?: "in" | "out" | "adjust";
 };
 
 export type WorkshopStat = {
   value: string;
   label: string;
+};
+
+export type WorkshopDecisionSection = {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  image?: WorkshopCaseImage;
 };
 
 export type WorkshopCase = {
@@ -27,6 +35,7 @@ export type WorkshopCase = {
   images: WorkshopCaseImage[];
   stats: WorkshopStat[];
   decisions: WorkshopDecision[];
+  decisionSection?: WorkshopDecisionSection;
 };
 
 export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
@@ -35,54 +44,59 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     tourSlug: "sobre-las-nubes",
     routeName: "Sobre las Nubes",
     region: "Salta y Jujuy",
-    kicker: "Cuatro vueltas antes de dejar el Acay como vara.",
-    quote: "Si la ruta no se rodó cuatro veces, no es una ruta. Es una idea.",
+    kicker: "Tres viajes, épocas descartadas.",
+    quote: "El punto más alto de toda la Ruta 40 no podía faltar en este viaje.",
     fieldNote:
-      "El norte cambió cuando dejamos de pensar en un circuito lindo y empezamos a medir altura, sueño, combustible y margen real para un grupo.",
+      "Buscamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto y mostrar los pueblos más pequeños, adentrados en la montaña.",
     hero: {
       src: "/images/tours/sobre_las_nubes/20260311_100314.jpg",
       alt: "Dos motos detenidas en una ruta de altura de Salta y Jujuy.",
-      label: "Prueba de altura",
-      caption: "El día de altura tenía que correrse entero, no en tramos sueltos.",
+      label: "Buscando alternativas",
+      caption:
+        "Queríamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto.",
     },
     images: [
       {
         src: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg",
         alt: "Montañas sobre un mar de nubes en Salta.",
-        label: "4895 msnm",
-        caption: "El Abra del Acay quedó como el punto que ordena la ruta.",
+        label: "Tres viajes, épocas descartadas",
+        caption: "Entre 2021 y 2022 fuimos tres veces.",
       },
       {
         src: "/images/tours/sobre_las_nubes/Fondo.jpg",
         alt: "Camino de ripio entre cerros del norte argentino.",
-        label: "Variante probada",
-        caption: "Cada sentido cambia la llegada, el cansancio y la luz.",
+        label: "Versión final: un viaje que desafía",
+        caption: "Lo fácil hubiera sido evitar los caminos secundarios de tierra, arena y ripio.",
       },
       {
         src: "/images/tours/sobre_las_nubes/20260402_180621.jpg",
         alt: "Ruta de montaña al atardecer en el norte argentino.",
-        label: "Cierre del día",
-        caption: "La logística se gana cuando todavía queda sol.",
+        label: "Abra del Acay",
+        caption: "La mejor versión es entrando por el sur: más progresivo, más épico.",
       },
     ],
     stats: [
-      { value: "4", label: "viajes de prueba" },
-      { value: "1712", label: "km finales" },
-      { value: "4895", label: "msnm" },
-      { value: "50%", label: "ripio" },
+      { value: "3", label: "viajes de exploración" },
+      { value: "2", label: "variantes probadas" },
+      { value: "2", label: "test runs" },
+      { value: "3", label: "ajustes" },
+      { value: "3", label: "circuitos descartados" },
     ],
+    decisionSection: {
+      eyebrow: "Tramos descartados",
+      title: "TRAMOS DESCARTADOS",
+      intro: "Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.",
+    },
     decisions: [
       {
-        label: "Entró",
-        body: "Abra del Acay al tercer día, cuando el cuerpo ya viene aclimatado.",
+        label: "Iruya",
+        body: "Decidimos dejar Iruya fuera del recorrido no por su dificultad, sino porque requería una jornada dedicada exclusivamente a ese destino. Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.",
+        kind: "out",
       },
       {
-        label: "Salió",
-        body: "Dormir en La Poma: buen pueblo, logística floja para seis motos.",
-      },
-      {
-        label: "Ajustamos",
-        body: "Hornocal y Caspala quedaron juntos para que el día tenga sentido completo.",
+        label: "Nazareno",
+        body: "Derrumbes frecuentes en la zona del Abra de la Cruz y sectores cercanos, que pueden cortar el camino sin aviso. Crecida repentina de ríos, especialmente después de lluvias en altura, lo que vuelve imposible el cruce incluso para motos livianas.",
+        kind: "out",
       },
     ],
   },
@@ -91,54 +105,68 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     tourSlug: "gigantes-del-oeste",
     routeName: "Gigantes del Oeste",
     region: "Mendoza a La Rioja",
-    kicker: "Tres temporadas para entender cuándo la cordillera deja pasar.",
-    quote: "La fecha no la elige el calendario. La elige Laguna Brava.",
+    kicker: "El Cuyo que no se conoce.",
+    quote: "Cada tramo quedó elegido por una razón: seguridad, fluidez, vistas y emoción.",
     fieldNote:
-      "Gigantes se armó midiendo ventanas: nieve, viento, cierres de paso, horarios de frontera y el cansancio que llega antes de Vinchina.",
+      "Mendoza, San Juan y La Rioja tienen rutas increíbles. Nosotros queríamos unir caminos que casi nadie combina.",
     hero: {
       src: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_color.jpg",
       alt: "Riders detenidos en una ruta de alta montaña del oeste argentino.",
-      label: "Ruta probada",
-      caption: "Laguna Brava fijó la temporada y el ritmo del viaje.",
+      label: "El Cuyo que no se conoce",
+      caption: "Queríamos un viaje que no fuera la típica vuelta por una sola provincia.",
     },
     images: [
       {
         src: "/images/tours/gigantes_del_oeste/20231105_141145.jpg",
         alt: "Dos motos frente a una quebrada de montaña en Cuyo.",
-        label: "Vuelta de scouting",
-        caption: "Volver sin llegar también deja información.",
+        label: "Aventura, historia y silencio",
+        caption: "365 curvas, una por cada día del año.",
       },
       {
         src: "/images/tours/gigantes_del_oeste/20231107_162749.jpg",
         alt: "Camino de montaña con motos avanzando en el oeste argentino.",
-        label: "Mina La Mejicana",
-        caption: "El tramo que separa la ruta de un paseo turístico.",
+        label: "Unificar rutas",
+        caption: "El desafío fue armar un viaje que tomará lo mejor de cada provincia.",
       },
       {
         src: "/images/tours/gigantes_del_oeste/IMG-20260421-WA0103.jpg",
         alt: "Moto en ripio de altura durante una prueba de ruta.",
-        label: "Día largo",
-        caption: "La altura se mide en kilómetros y en paciencia.",
+        label: "Versión final",
+        caption: "Terminamos el viaje cansados, felices… y con ganas de volver a hacerlo.",
       },
     ],
     stats: [
-      { value: "3", label: "temporadas" },
-      { value: "2400", label: "km finales" },
-      { value: "4600", label: "msnm" },
-      { value: "30%", label: "ripio" },
+      { value: "4", label: "viajes de exploración" },
+      { value: "1", label: "variante probadas" },
+      { value: "2", label: "ajustes de ruta" },
+      { value: "2", label: "tramos descartados" },
+      { value: "1", label: "versión final que nos dejó orgullosos" },
     ],
+    decisionSection: {
+      eyebrow: "Tramos que descartamos",
+      title: "TRAMOS QUE DESCARTAMOS",
+      intro: "Cada tramo quedó elegido por una razón: seguridad, fluidez, vistas y emoción.",
+    },
     decisions: [
       {
-        label: "Entró",
-        body: "Laguna Brava cuando la ventana de clima empezó a ser consistente.",
+        label: "Paso Agua Negra",
+        body: "Un paso fronterizo espectacular, pero demasiado impredecible: viento blanco, cierres repentinos de frontera y riesgo alto para grupos. Lo probamos, pero no garantiza continuidad ni seguridad. Quedó afuera.",
+        kind: "out",
       },
       {
-        label: "Salió",
-        body: "Paso de Agua Negra: el horario de cierre nos comía la jornada.",
+        label: "Corona del Inca",
+        body: "El camino es más técnico, más expuesto y con zonas de arena profunda. Para un tour de viaje —no de enduro— no suma. Optamos por hacer el recorrido de Laguna Brava, la variante: más progresiva y más disfrutable.",
+        kind: "out",
       },
       {
-        label: "Ajustamos",
-        body: "Talampaya volvió partido en dos para sostener ritmo y descanso.",
+        label: "Quebrada del Yeso",
+        body: "Una variante en el tramo del día de Laguna Brava, era un antiguo tramo que corría el Dakar. Hermoso circuito internado en el antiguo lecho del río, pero presenta barro y condiciones de manejo avanzado, optamos por la variable más tranquila.",
+        kind: "out",
+      },
+      {
+        label: "Ruta 153, San Juan",
+        body: "Ruta muy trabada debido a que ya no la mantienen, divertido para hacer un enduro suave, pero se desviaba del track original y no valia la pena debido a que era muy trabada.",
+        kind: "out",
       },
     ],
   },
@@ -147,54 +175,73 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     tourSlug: "volcanes-del-norte",
     routeName: "Volcanes del Norte",
     region: "Catamarca",
-    kicker: "Seis viajes para separar una ruta de una idea.",
-    quote: "La Puna no premia al apurado. Te deja pasar cuando volvés mejor.",
+    kicker: "Cuatro viajes, distintas respuestas.",
+    quote: "Las rutas tienen un sentido.",
     fieldNote:
-      "Catamarca pidió volver: cambiar meses, invertir sentidos, probar riders de distinto nivel y aceptar que algunas rutas merecen su propio viaje.",
+      "Pruebas en campo reales, notas sobre la ruta y meses de planificación, dieron lugar a la versión final.",
     hero: {
       src: "/images/tours/volcanes_del_norte/volcanes_del_norte_1_color.jpg",
       alt: "Riders avanzando por ripio en una ruta volcánica de Catamarca.",
-      label: "Ruta final",
-      caption: "El ripio, la altura y el clima eligieron qué se quedaba.",
+      label: "La Primera Idea",
+      caption: "Todo empezó con un punto en el mapa: Antofagasta de la Sierra.",
     },
     images: [
       {
         src: "/images/tours/volcanes_del_norte/1.jpg",
         alt: "Riders en una planicie de ripio de la Puna catamarqueña.",
-        label: "Campo de prueba",
-        caption: "La distancia parece simple hasta que cambia el viento.",
+        label: "Cuatro viajes",
+        caption: "Entre 2021 y 2023 recorrimos Catamarca en diferentes estaciones.",
       },
       {
         src: "/images/tours/volcanes_del_norte/5.png",
         alt: "Camino ancho de altura en Catamarca.",
-        label: "Variante",
-        caption: "Algunas rutas parecen perfectas en el mapa y se rompen en el terreno.",
+        label: "Ruta equilibrada",
+        caption: "El tour necesitaba contraste.",
       },
       {
         src: "/images/tours/volcanes_del_norte/11.jpeg",
         alt: "Riders junto a una moto en la montaña nevada de Catamarca.",
-        label: "Equipo",
-        caption: "Probamos con riders distintos para medir cómo pega cada etapa.",
+        label: "Ajustes",
+        caption: "Recorrimos variantes, invertimos etapas y ajustamos el recorrido hasta encontrar el equilibrio correcto.",
       },
     ],
     stats: [
-      { value: "6", label: "viajes de exploración" },
-      { value: "1917", label: "km finales" },
-      { value: "4550", label: "msnm" },
-      { value: "50%", label: "ripio" },
+      { value: "4", label: "viajes de exploración" },
+      { value: "5", label: "variantes probadas" },
+      { value: "2", label: "test runs" },
+      { value: "4", label: "ajustes" },
+      { value: "2", label: "circuitos descartados" },
     ],
+    decisionSection: {
+      eyebrow: "Tramos que descartamos",
+      title: "TRAMOS QUE DESCARTAMOS",
+      intro: "Preferimos priorizar el ritmo general del viaje y el disfrute del recorrido.",
+    },
     decisions: [
       {
-        label: "Entró",
-        body: "Dunas de Tatón, porque el día necesitaba contraste.",
+        label: "Campo de piedra Pómez via arenales de las papas",
+        body: "Una de las variantes más espectaculares para llegar a Campo de Piedra Pómez. Durante la temporada de lluvias, el acceso por Las Papas puede quedar intransitable y los largos arenales requieren experiencia real de manejo. Descartada por dificultad técnica.",
+        kind: "out",
       },
       {
-        label: "Salió",
-        body: "Volcán Galán: demasiado largo, demasiado aislado, otro viaje.",
+        label: "Volcan Peinado",
+        body: "De lo más impactante de Catamarca, descartado por las condiciones extremas. Aislación absoluta, gran altitud y una jornada de 11 hs de manejo por todo tipo de camino.",
+        kind: "out",
       },
       {
-        label: "Ajustamos",
-        body: "Capillitas quedó como cierre porque la ruta necesitaba ganar el final.",
+        label: "Laguna verde",
+        body: "Descartamos esa variante ya que la jornada sería demasiado larga y físicamente exigente.",
+        kind: "out",
+      },
+      {
+        label: "Cuesta de zapata",
+        body: "Sección que une Tinogasta con Belén por un camino entretenido de manejar. Destinado a ser el tercer día del tour, fue descartado ya que priorizamos un día de manejo de recuperación de los pilotos.",
+        kind: "out",
+      },
+      {
+        label: "Volcan Galan",
+        body: "La sensación de manejar la moto por el interior del volcán es algo único. Aunque exploramos incorporarlo a este recorrido, finalmente quedó afuera por su dificultad técnica y exigencia física.",
+        kind: "out",
       },
     ],
   },

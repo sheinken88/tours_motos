@@ -97,7 +97,7 @@ export function TourGrid({
             <div className="space-y-3">
               {eyebrow ? <Eyebrow rule>{eyebrow}</Eyebrow> : null}
               {heading ? (
-                <DisplayHeading size="xl" as="h2" className="max-w-[10ch]">
+                <DisplayHeading size="xl" as="h2" className="max-w-[12ch] 2xl:max-w-[14ch]">
                   {heading}
                 </DisplayHeading>
               ) : null}

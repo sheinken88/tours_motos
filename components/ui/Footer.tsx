@@ -1,16 +1,15 @@
 import { getTranslations } from "next-intl/server";
-import { Container, Eyebrow, SkullBadge } from "@/components/primitives";
+import { Button, Container, Eyebrow, SkullBadge } from "@/components/primitives";
 import { PaperZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { Link } from "@/lib/i18n/navigation";
-import { NewsletterForm } from "./NewsletterForm";
 
 /**
- * Footer — paper zone with torn top edge. Skull mark center; three columns
- * (trips / route workshop / contact); newsletter inline form on the right; locale
- * switcher and copyright at the bottom.
+ * Footer — paper zone with nav-matched link groups, contact paths, and a
+ * conversion CTA for riders who are ready to talk through a route.
  *
- * Server Component. Newsletter form is a Client Component below.
+ * Server Component. Keep the footer free of speculative forms; WhatsApp and
+ * email are the real conversion paths for v1.
  *
  * Trust signals (Google Reviews summary, tire-track ornaments) are deferred
  * until the GMB profile is confirmed (open Q §16) and the design specifies
@@ -18,8 +17,21 @@ import { NewsletterForm } from "./NewsletterForm";
  */
 export async function Footer() {
   const t = await getTranslations("footer");
+  const tNav = await getTranslations("nav");
+  const tCommon = await getTranslations("common");
   const tWhatsApp = await getTranslations("whatsapp");
   const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
+
+  const primaryLinks = [
+    { href: "/tours", label: tNav("trips") },
+    { href: "/calendar", label: tNav("calendar") },
+    { href: "/custom", label: tNav("custom") },
+  ] as const;
+
+  const secondaryLinks = [
+    { href: "/about", label: tNav("about") },
+    { href: "/taller-de-rutas", label: tNav("journal") },
+  ] as const;
 
   return (
     <footer>
@@ -34,52 +46,32 @@ export async function Footer() {
           <div>
             <Eyebrow rule>{t("section_trips")}</Eyebrow>
             <ul className="mt-3 text-sm">
-              <li>
-                <Link
-                  href="/tours"
-                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
-                >
-                  /tours
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/calendar"
-                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
-                >
-                  /calendar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/custom"
-                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
-                >
-                  /custom
-                </Link>
-              </li>
+              {primaryLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <Eyebrow rule>{t("section_journal")}</Eyebrow>
             <ul className="mt-3 text-sm">
-              <li>
-                <Link
-                  href="/taller-de-rutas"
-                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
-                >
-                  /taller-de-rutas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
-                >
-                  /about
-                </Link>
-              </li>
+              {secondaryLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -126,7 +118,25 @@ export async function Footer() {
                 Moto On/Off · {new Date().getFullYear()} — {t("rights")}
               </p>
             </div>
-            <NewsletterForm />
+            <div className="flex flex-col items-start gap-5">
+              <Eyebrow rule>{t("cta_eyebrow")}</Eyebrow>
+              <div className="max-w-xl space-y-4">
+                <p className="font-display text-display-md text-accent-on-paper uppercase">
+                  {t("cta_title")}
+                </p>
+                <p className="text-muted-on-paper max-w-prose text-sm leading-relaxed">
+                  {t("cta_body")}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <Button href={whatsAppHref} external edge={2} tilt="right" variant="sticker-filled">
+                  {tNav("cta")}
+                </Button>
+                <Button href="/tours" edge={3} tilt="left">
+                  {tCommon("see_routes")}
+                </Button>
+              </div>
+            </div>
           </div>
         </Container>
       </PaperZone>

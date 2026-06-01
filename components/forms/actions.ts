@@ -2,10 +2,9 @@
 
 import { type Locale, isLocale } from "@/lib/i18n/config";
 import { sendInquiry, type InquiryKind } from "@/lib/contact/sendInquiry";
-import { sendNewsletter } from "@/lib/contact/sendNewsletter";
 
 /**
- * Server Actions for the brand's three forms. Kept in one file so all the
+ * Server Actions for the brand's inquiry forms. Kept in one file so all the
  * form-side wire-up sits next to its server counterpart and shares the
  * FormState shape that the client useActionState hook reads.
  *
@@ -88,19 +87,3 @@ export const submitTourInquiry = inquiryActionFor({ kind: "tour" });
 export const submitCustomInquiry = inquiryActionFor({ kind: "custom" });
 
 export const initialInquiryState: FormState = initialState;
-
-// ── Newsletter ───────────────────────────────────────────────────────────────
-
-export async function submitNewsletter(_prev: FormState, formData: FormData): Promise<FormState> {
-  const locale = readLocale(formData);
-  const email = readString(formData, "email");
-  const honeypot = readString(formData, "company");
-
-  const result = await sendNewsletter({ email, locale, honeypot });
-  if (!result.ok) {
-    return { status: "error", message: result.error };
-  }
-  return { status: "success" };
-}
-
-export const initialNewsletterState: FormState = initialState;

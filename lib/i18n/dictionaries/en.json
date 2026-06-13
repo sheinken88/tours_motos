@@ -189,13 +189,71 @@
     ]
   },
   "custom": {
-    "title": "[NEEDS_TRANSLATION] A medida",
-    "eyebrow": "[NEEDS_TRANSLATION] A medida",
+    "title": "[NEEDS_TRANSLATION] Viajes a medida",
+    "eyebrow": "[NEEDS_TRANSLATION] Custom Tours // Viajes a medida // Tours personalizados",
     "headline": "[NEEDS_TRANSLATION] ORGANIZAMOS TU VIAJE A MEDIDA",
-    "metadata_description": "[NEEDS_TRANSLATION] Diseñamos travesías a medida en moto por Argentina y la Cordillera.",
-    "subheadline": "[NEEDS_TRANSLATION] Diseñamos la ruta a tu medida.",
-    "p1": "[NEEDS_TRANSLATION] Además de nuestros tours, te ofrecemos la posibilidad de crear un viaje totalmente personalizado.",
-    "p2": "[NEEDS_TRANSLATION] Nos contás qué te imaginás, lo convertimos en un viaje posible, 100% a tu medida.",
+    "metadata_description": "[NEEDS_TRANSLATION] Diseñamos rutas en moto a medida por Argentina y la Cordillera según tu nivel de manejo, terreno, duración ideal y experiencia buscada.",
+    "subheadline": "[NEEDS_TRANSLATION] Diseñamos la ruta en moto a tu medida.",
+    "hero_primary_cta": "[NEEDS_TRANSLATION] Organizar mi viaje",
+    "hero_secondary_cta": "[NEEDS_TRANSLATION] Contar mi idea",
+    "hero_image_alt": "[NEEDS_TRANSLATION] Rider de aventura junto a su moto preparado para salir a la ruta",
+    "hero_stats": [
+      { "value": "3-12", "label": "[NEEDS_TRANSLATION] días de ruta" },
+      { "value": "GPX", "label": "[NEEDS_TRANSLATION] track listo" },
+      { "value": "ON/OFF", "label": "[NEEDS_TRANSLATION] ripio y asfalto" }
+    ],
+    "permit_label": "[NEEDS_TRANSLATION] Viaje en moto",
+    "permit_value": "[NEEDS_TRANSLATION] 100% a medida",
+    "permit_meta": "[NEEDS_TRANSLATION] Nivel de manejo, terreno, duración ideal y experiencia.",
+    "sticky_note": "[NEEDS_TRANSLATION] Tu ruta. Tu ritmo.",
+    "brief_eyebrow": "[NEEDS_TRANSLATION] Viajes a medida",
+    "brief_heading": "[NEEDS_TRANSLATION] DISEÑAMOS LA RUTA SEGÚN TU MANERA DE MANEJAR",
+    "p1": "[NEEDS_TRANSLATION] Además de nuestros tours en moto, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
+    "p2": "[NEEDS_TRANSLATION] Nos contás qué te imaginás, lo convertimos en un viaje en moto posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
+    "brief_stamp_1": "[NEEDS_TRANSLATION] Viaje posible",
+    "brief_stamp_2": "[NEEDS_TRANSLATION] Ruta a medida",
+    "brief_image_alt_1": "[NEEDS_TRANSLATION] Camino de altura en el norte argentino usado como referencia para viajes a medida",
+    "brief_image_alt_2": "[NEEDS_TRANSLATION] Ruta de montaña en Cuyo para diseñar una travesía en moto",
+    "brief_image_alt_3": "[NEEDS_TRANSLATION] Camino patagónico de ripio para una expedición a medida",
+    "brief_cards": [
+      {
+        "title": "[NEEDS_TRANSLATION] NIVEL DE MANEJO",
+        "body": "[NEEDS_TRANSLATION] Pensamos la ruta según tu experiencia, ritmo de manejo y confianza en distintos terrenos."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] TIPO DE TERRENO",
+        "body": "[NEEDS_TRANSLATION] Ruta, ripio, montaña, arena, altura o caminos mixtos según lo que querés vivir."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] DURACIÓN IDEAL",
+        "body": "[NEEDS_TRANSLATION] Ajustamos kilómetros, tiempos y jornadas al viaje que imaginás y los días disponibles."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] ALTERNATIVAS",
+        "body": "[NEEDS_TRANSLATION] Sumamos opciones de camino, navegación, hoteles y experiencias recomendadas por zona."
+      }
+    ],
+    "process_eyebrow": "[NEEDS_TRANSLATION] Cómo lo armamos",
+    "process_heading": "[NEEDS_TRANSLATION] DE TU IDEA A UN VIAJE EN MOTO POSIBLE",
+    "process_body": "[NEEDS_TRANSLATION] Nos contás qué te imaginás y lo llevamos a un plan concreto: tiempos, kilómetros, navegación, hoteles y alternativas de camino.",
+    "process_steps": [
+      {
+        "title": "[NEEDS_TRANSLATION] Nos contás la idea",
+        "body": "[NEEDS_TRANSLATION] Nivel de manejo, tipo de terreno, duración ideal y experiencia que querés vivir."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Convertimos la ruta",
+        "body": "[NEEDS_TRANSLATION] La pasamos a un viaje posible con tiempos, kilómetros y jornadas reales."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Marcamos alternativas",
+        "body": "[NEEDS_TRANSLATION] Definimos tipos de camino, opciones de navegación y variantes según zona."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Sumamos apoyo",
+        "body": "[NEEDS_TRANSLATION] Si lo necesitás, agregamos traslado, guía en moto, 4x4 y transporte de equipaje."
+      }
+    ],
     "includes_eyebrow": "[NEEDS_TRANSLATION] Lo que armamos",
     "includes_heading": "[NEEDS_TRANSLATION] ¿QUÉ INCLUYE?",
     "includes_items": [
@@ -204,18 +262,42 @@
       "[NEEDS_TRANSLATION] Archivos GPX o Google Maps para navegación.",
       "[NEEDS_TRANSLATION] Experiencias recomendadas según la zona de interés."
     ],
-    "extras_eyebrow": "[NEEDS_TRANSLATION] Si querés que te llevemos",
-    "extras_heading": "[NEEDS_TRANSLATION] OPCIONALES",
+    "extras_eyebrow": "[NEEDS_TRANSLATION] Opcional",
+    "extras_heading": "[NEEDS_TRANSLATION] APOYO EN RUTA",
     "extras_items": [
       "[NEEDS_TRANSLATION] Traslado de la moto ida y vuelta a destino.",
-      "[NEEDS_TRANSLATION] Guía en moto durante toda la travesía.",
+      "[NEEDS_TRANSLATION] Guía en moto.",
       "[NEEDS_TRANSLATION] Vehículo de apoyo 4×4 y transporte de equipaje."
     ],
     "form_eyebrow": "[NEEDS_TRANSLATION] Contanos tu idea",
-    "form_heading": "[NEEDS_TRANSLATION] ESCRIBINOS Y ARMAMOS",
+    "form_heading": "[NEEDS_TRANSLATION] CONTANOS QUÉ TE IMAGINÁS",
+    "form_intro": "[NEEDS_TRANSLATION] No hace falta tener todo cerrado. Con tu nivel de manejo, terreno preferido y duración ideal ya podemos empezar.",
+    "route_ideas": [
+      {
+        "title": "[NEEDS_TRANSLATION] Nivel",
+        "meta": "[NEEDS_TRANSLATION] Cómo manejás",
+        "body": "[NEEDS_TRANSLATION] Contanos tu experiencia sobre ripio, ruta, altura, arena o caminos de montaña."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Terreno",
+        "meta": "[NEEDS_TRANSLATION] Qué te gusta",
+        "body": "[NEEDS_TRANSLATION] Elegimos caminos según el tipo de terreno que querés rodar durante el viaje."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Duración",
+        "meta": "[NEEDS_TRANSLATION] Cuántos días",
+        "body": "[NEEDS_TRANSLATION] Ajustamos el itinerario a los días disponibles y al ritmo ideal del grupo."
+      }
+    ],
     "talk_eyebrow": "[NEEDS_TRANSLATION] O por WhatsApp",
     "talk_heading": "[NEEDS_TRANSLATION] PREFERÍS HABLAR DIRECTO",
-    "talk_body": "[NEEDS_TRANSLATION] Escribinos por WhatsApp y arrancamos por ahí."
+    "talk_body": "[NEEDS_TRANSLATION] Escribinos por WhatsApp y arrancamos por ahí. Con unos datos básicos podemos convertir tu idea en una propuesta posible.",
+    "talk_cta": "[NEEDS_TRANSLATION] Abrir WhatsApp",
+    "prompt_items": [
+      "[NEEDS_TRANSLATION] Tu nivel de manejo.",
+      "[NEEDS_TRANSLATION] El tipo de terreno que te gusta.",
+      "[NEEDS_TRANSLATION] La duración ideal del viaje."
+    ]
   },
   "calendar": {
     "title": "[NEEDS_TRANSLATION] Calendario",

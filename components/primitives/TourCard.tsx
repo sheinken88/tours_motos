@@ -163,7 +163,12 @@ export function TourCard({
       {poster ? (
         <div className="relative flex flex-1 flex-col gap-5 p-5 md:p-6">
           <div className="flex items-start justify-between gap-5">
-            <DisplayHeading size="md" as="h3" distress={false} className="max-w-[12ch]">
+            <DisplayHeading
+              size="md"
+              as="h3"
+              distress={false}
+              className="!text-brand-red max-w-[12ch]"
+            >
               {title}
             </DisplayHeading>
             <span
@@ -214,7 +219,7 @@ export function TourCard({
         </div>
       ) : (
         <div className="flex flex-col gap-3 p-6">
-          <DisplayHeading size="md" as="h3" distress={false}>
+          <DisplayHeading size="md" as="h3" distress={false} className="!text-brand-red">
             {title}
           </DisplayHeading>
           <p className="font-sans text-sm leading-relaxed opacity-80">

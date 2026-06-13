@@ -193,10 +193,10 @@ export default async function TallerDeRutasIndex({ params }: Props) {
 
       <RedZone density="default" tornBottom={4}>
         <Container className="space-y-10">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,1.05fr)] lg:items-end">
-            <div className="max-w-3xl space-y-3">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,1.14fr)] lg:items-end">
+            <div className="max-w-4xl space-y-3">
               <Eyebrow rule>{t("process_eyebrow")}</Eyebrow>
-              <DisplayHeading size="xl" as="h2" className="max-w-[11ch]">
+              <DisplayHeading size="xl" as="h2" className="max-w-[18ch]">
                 {t("process_heading")}
               </DisplayHeading>
             </div>
@@ -223,16 +223,17 @@ export default async function TallerDeRutasIndex({ params }: Props) {
               ))}
             </ol>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
               {visualCases.slice(0, 4).map((item, index) => (
                 <WorkshopPhoto
                   key={item.slug}
                   image={item.images[index % item.images.length] ?? item.hero}
                   label={localize(locale, item.routeName)}
-                  sizes="(min-width: 1024px) 24vw, 46vw"
-                  aspectClassName={index === 0 ? "aspect-[4/5]" : "aspect-[4/3]"}
-                  className={index === 0 ? "sm:row-span-2 lg:-rotate-1" : "lg:rotate-1"}
+                  sizes="(min-width: 1024px) 24vw, (min-width: 640px) 46vw, 92vw"
+                  aspectClassName="aspect-[4/3]"
+                  className={index % 2 === 0 ? "lg:-rotate-1" : "lg:rotate-1"}
                   compact
+                  showCaption={false}
                 />
               ))}
             </div>
@@ -408,6 +409,7 @@ function WorkshopPhoto({
   aspectClassName,
   className = "",
   compact = false,
+  showCaption = true,
 }: {
   image: WorkshopCaseImage;
   label: string;
@@ -416,6 +418,7 @@ function WorkshopPhoto({
   aspectClassName: string;
   className?: string;
   compact?: boolean;
+  showCaption?: boolean;
 }) {
   return (
     <figure className={`group/photo ${className}`}>
@@ -445,13 +448,15 @@ function WorkshopPhoto({
           </span>
         </div>
       </div>
-      <figcaption
-        className={`mt-3 max-w-prose font-sans leading-relaxed opacity-75 ${
-          compact ? "text-xs" : "text-sm"
-        }`}
-      >
-        {image.caption}
-      </figcaption>
+      {showCaption ? (
+        <figcaption
+          className={`mt-3 max-w-prose font-sans leading-relaxed opacity-75 ${
+            compact ? "text-xs" : "text-sm"
+          }`}
+        >
+          {image.caption}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

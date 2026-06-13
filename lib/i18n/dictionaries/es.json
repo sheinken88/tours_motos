@@ -189,13 +189,71 @@
     ]
   },
   "custom": {
-    "title": "A medida",
-    "eyebrow": "A medida",
+    "title": "Viajes a medida",
+    "eyebrow": "Custom Tours // Viajes a medida // Tours personalizados",
     "headline": "ORGANIZAMOS TU VIAJE A MEDIDA",
-    "metadata_description": "Diseñamos travesías a medida en moto por Argentina y la Cordillera. Contanos qué te imaginás y lo convertimos en un viaje posible, 100% a tu medida.",
-    "subheadline": "Diseñamos la ruta a tu medida.",
-    "p1": "Además de nuestros tours, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
-    "p2": "Nos contás qué te imaginás, lo convertimos en un viaje posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
+    "metadata_description": "Diseñamos rutas en moto a medida por Argentina y la Cordillera según tu nivel de manejo, terreno, duración ideal y experiencia buscada.",
+    "subheadline": "Diseñamos la ruta en moto a tu medida.",
+    "hero_primary_cta": "Organizar mi viaje",
+    "hero_secondary_cta": "Contar mi idea",
+    "hero_image_alt": "Rider de aventura junto a su moto preparado para salir a la ruta",
+    "hero_stats": [
+      { "value": "3-12", "label": "días de ruta" },
+      { "value": "GPX", "label": "track listo" },
+      { "value": "ON/OFF", "label": "ripio y asfalto" }
+    ],
+    "permit_label": "Viaje en moto",
+    "permit_value": "100% a medida",
+    "permit_meta": "Nivel de manejo, terreno, duración ideal y experiencia.",
+    "sticky_note": "Tu ruta. Tu ritmo.",
+    "brief_eyebrow": "Viajes a medida",
+    "brief_heading": "DISEÑAMOS LA RUTA SEGÚN TU MANERA DE MANEJAR",
+    "p1": "Además de nuestros tours en moto, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
+    "p2": "Nos contás qué te imaginás, lo convertimos en un viaje en moto posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
+    "brief_stamp_1": "Viaje posible",
+    "brief_stamp_2": "Ruta a medida",
+    "brief_image_alt_1": "Camino de altura en el norte argentino usado como referencia para viajes a medida",
+    "brief_image_alt_2": "Ruta de montaña en Cuyo para diseñar una travesía en moto",
+    "brief_image_alt_3": "Camino patagónico de ripio para una expedición a medida",
+    "brief_cards": [
+      {
+        "title": "NIVEL DE MANEJO",
+        "body": "Pensamos la ruta según tu experiencia, ritmo de manejo y confianza en distintos terrenos."
+      },
+      {
+        "title": "TIPO DE TERRENO",
+        "body": "Ruta, ripio, montaña, arena, altura o caminos mixtos según lo que querés vivir."
+      },
+      {
+        "title": "DURACIÓN IDEAL",
+        "body": "Ajustamos kilómetros, tiempos y jornadas al viaje que imaginás y los días disponibles."
+      },
+      {
+        "title": "ALTERNATIVAS",
+        "body": "Sumamos opciones de camino, navegación, hoteles y experiencias recomendadas por zona."
+      }
+    ],
+    "process_eyebrow": "Cómo lo armamos",
+    "process_heading": "DE TU IDEA A UN VIAJE EN MOTO POSIBLE",
+    "process_body": "Nos contás qué te imaginás y lo llevamos a un plan concreto: tiempos, kilómetros, navegación, hoteles y alternativas de camino.",
+    "process_steps": [
+      {
+        "title": "Nos contás la idea",
+        "body": "Nivel de manejo, tipo de terreno, duración ideal y experiencia que querés vivir."
+      },
+      {
+        "title": "Convertimos la ruta",
+        "body": "La pasamos a un viaje posible con tiempos, kilómetros y jornadas reales."
+      },
+      {
+        "title": "Marcamos alternativas",
+        "body": "Definimos tipos de camino, opciones de navegación y variantes según zona."
+      },
+      {
+        "title": "Sumamos apoyo",
+        "body": "Si lo necesitás, agregamos traslado, guía en moto, 4x4 y transporte de equipaje."
+      }
+    ],
     "includes_eyebrow": "Lo que armamos",
     "includes_heading": "¿QUÉ INCLUYE?",
     "includes_items": [
@@ -204,18 +262,42 @@
       "Archivos GPX o Google Maps para navegación.",
       "Experiencias recomendadas según la zona de interés."
     ],
-    "extras_eyebrow": "Si querés que te llevemos",
-    "extras_heading": "OPCIONALES",
+    "extras_eyebrow": "Opcional",
+    "extras_heading": "APOYO EN RUTA",
     "extras_items": [
       "Traslado de la moto ida y vuelta a destino.",
-      "Guía en moto durante toda la travesía.",
+      "Guía en moto.",
       "Vehículo de apoyo 4×4 y transporte de equipaje."
     ],
     "form_eyebrow": "Contanos tu idea",
-    "form_heading": "ESCRIBINOS Y ARMAMOS",
+    "form_heading": "CONTANOS QUÉ TE IMAGINÁS",
+    "form_intro": "No hace falta tener todo cerrado. Con tu nivel de manejo, terreno preferido y duración ideal ya podemos empezar.",
+    "route_ideas": [
+      {
+        "title": "Nivel",
+        "meta": "Cómo manejás",
+        "body": "Contanos tu experiencia sobre ripio, ruta, altura, arena o caminos de montaña."
+      },
+      {
+        "title": "Terreno",
+        "meta": "Qué te gusta",
+        "body": "Elegimos caminos según el tipo de terreno que querés rodar durante el viaje."
+      },
+      {
+        "title": "Duración",
+        "meta": "Cuántos días",
+        "body": "Ajustamos el itinerario a los días disponibles y al ritmo ideal del grupo."
+      }
+    ],
     "talk_eyebrow": "O por WhatsApp",
     "talk_heading": "PREFERÍS HABLAR DIRECTO",
-    "talk_body": "Escribinos por WhatsApp y arrancamos por ahí. Sin formularios, sin demoras."
+    "talk_body": "Escribinos por WhatsApp y arrancamos por ahí. Con unos datos básicos podemos convertir tu idea en una propuesta posible.",
+    "talk_cta": "Abrir WhatsApp",
+    "prompt_items": [
+      "Tu nivel de manejo.",
+      "El tipo de terreno que te gusta.",
+      "La duración ideal del viaje."
+    ]
   },
   "calendar": {
     "title": "Calendario",

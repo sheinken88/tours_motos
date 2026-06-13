@@ -7,11 +7,11 @@ import { type Locale } from "@/lib/i18n/config";
  * per-locale templates.
  *
  * NEXT_PUBLIC_WHATSAPP_NUMBER is the production source. CLAUDE.md §13 forbids
- * hardcoding the number anywhere else. The fallback string keeps dev/preview
- * working without leaking a real number.
+ * hardcoding the number anywhere else. The fallback mirrors the confirmed
+ * contact number so dev/preview links never point at a placeholder.
  */
 
-const FALLBACK_NUMBER = "5491100000000";
+const FALLBACK_NUMBER = "5491135939730";
 
 type BuildOptions = {
   /** Pre-filled message text — emoji-safe, no URL-encoding needed by caller. */

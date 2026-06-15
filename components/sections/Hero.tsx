@@ -36,7 +36,7 @@ export async function Hero({ locale }: HeroProps) {
         <div className="max-w-[56rem] -translate-y-6 space-y-6 md:-translate-y-10">
           {/* Layer 4 — eyebrow + display heading */}
           <Eyebrow>{tHome("eyebrow")}</Eyebrow>
-          <DisplayHeading size="2xl" as="h1">
+          <DisplayHeading size="2xl" as="h1" className="leading-display">
             {tHome("headline")}
           </DisplayHeading>
           <div className="flex flex-wrap gap-4 pt-2">

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { getJournalFrontmatter, listJournalEntries } from "@/lib/content/getJournalMdx";
 import {
@@ -12,9 +13,11 @@ import {
 } from "@/lib/content/journalMdxRegistry";
 import {
   getWorkshopCase,
+  type WorkshopCase,
   type WorkshopCaseImage,
   type WorkshopDecisionSection,
 } from "@/lib/content/workshopCases";
+import { parseCalendarDate } from "@/lib/date";
 import { isLocale, localeCodes, type Locale } from "@/lib/i18n/config";
 import { Link as I18nLink } from "@/lib/i18n/navigation";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
@@ -97,11 +100,14 @@ export default async function TallerDeRutasPost({ params }: Props) {
     month: "long",
     year: "numeric",
   });
-  const dateLabel = dateFormatter.format(new Date(fm.date)).toUpperCase();
+  const dateLabel = dateFormatter.format(parseCalendarDate(fm.date)).toUpperCase();
   const others = entries.filter((entry) => entry.slug !== slug).slice(0, 2);
   const dossier = getWorkshopCase(slug);
   const fallbackImage = buildFallbackImage(fm);
   const heroImage = dossier?.hero ?? fallbackImage;
+  const heroPrintHalftone = fm.image;
+  const heroTitle = dossier?.routeName ?? fm.title;
+  const heroIntro = dossier?.fieldNote ?? fm.excerpt;
   const galleryImages = dossier ? [dossier.hero, ...dossier.images] : [fallbackImage];
   const decisionSection: WorkshopDecisionSection = dossier?.decisionSection ?? {
     eyebrow: "Decisiones de diseño",
@@ -112,65 +118,37 @@ export default async function TallerDeRutasPost({ params }: Props) {
 
   return (
     <>
-      <RedZone density="light" tornBottom={1} className="overflow-hidden !pt-0 !pb-0">
-        {/* Full-bleed cinematic banner: one halftone landscape, headline + CTA
-            overlaid bottom-left over an ink gradient. The whole zone IS the poster. */}
-        <div className="relative w-full">
-          {/* Background layers fill the banner; the in-flow Container below sets the
-              height, so a tall headline grows the banner instead of clipping.
-              Banner image — duotone/halftone treatment to match CasePhoto jpgs */}
-          <Image
-            src={heroImage.src}
-            alt={heroImage.alt}
-            fill
-            priority
-            sizes="100vw"
-            draggable={false}
-            className="object-cover object-center opacity-90 contrast-125 grayscale"
-          />
-          {/* Halftone dot texture, multiplied into the photo */}
+      <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden>
           <div
-            className="pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply"
+            className="absolute top-28 -right-24 h-72 w-[44rem] -rotate-6 opacity-20 mix-blend-screen"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(90deg, transparent 0 22px, color-mix(in srgb, var(--color-paper) 64%, transparent) 22px 28px, transparent 28px 42px)",
+            }}
+          />
+          <div
+            className="absolute -bottom-8 left-0 h-44 w-full opacity-20 mix-blend-multiply"
             style={{
               backgroundImage: "url(/textures/halftone-overlay.svg)",
               backgroundRepeat: "repeat",
             }}
-            aria-hidden="true"
           />
-          {/* Brand-red veil descending from the top so the fixed navbar reads,
-              matching the red zone the nav normally sits over on the home hero. */}
-          <div
-            className="pointer-events-none absolute inset-0 z-[2]"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(168,52,42,0.85) 0%, rgba(168,52,42,0.55) 14%, rgba(168,52,42,0.18) 28%, rgba(168,52,42,0) 42%)",
-            }}
-            aria-hidden="true"
+          <PlaceholderMountains
+            className="absolute inset-x-0 bottom-0 h-[48%] w-full opacity-70"
+            tint="ink"
           />
-          {/* Ink gradient rising from the bottom-left so the headline always reads */}
-          <div
-            className="pointer-events-none absolute inset-0 z-[2]"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(31,20,14,0.92) 0%, rgba(31,20,14,0.78) 28%, rgba(31,20,14,0.28) 55%, rgba(31,20,14,0) 80%)",
-            }}
-            aria-hidden="true"
-          />
+        </div>
 
-          {/* Back link, pinned below the fixed navbar over the banner */}
-          <Container className="absolute inset-x-0 top-0 z-[4] pt-24 md:pt-28">
+        <Container className="relative z-10 grid min-h-[72vh] gap-10 pt-14 lg:min-h-[76vh] lg:grid-cols-[minmax(0,0.95fr)_minmax(24rem,0.85fr)] lg:items-center xl:min-h-[78vh]">
+          <div className="max-w-[50rem] space-y-6 lg:pl-8 xl:pl-14 2xl:pl-20">
             <I18nLink
               href="/taller-de-rutas"
               className="text-eyebrow tracking-eyebrow text-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
             >
               ← {t("back")}
             </I18nLink>
-          </Container>
-
-          {/* In-flow copy — bottom-left. min-height makes the banner cinematic, but
-              tall content grows it past that, with top padding clearing nav + back link. */}
-          <Container className="relative z-[3] flex min-h-[80vh] flex-col justify-end pt-40 pb-14 md:min-h-[86vh] md:pt-44 md:pb-20">
-            <div className="max-w-2xl space-y-5">
+            <div className="space-y-5">
               <div className="flex flex-wrap items-center gap-3">
                 <Stamp className="text-paper self-start" tilt={-2}>
                   {dateLabel}
@@ -181,12 +159,15 @@ export default async function TallerDeRutasPost({ params }: Props) {
                   </Stamp>
                 ) : null}
               </div>
-              <DisplayHeading size="2xl" as="h1" className="max-w-[14ch]">
-                {fm.title}
-              </DisplayHeading>
-              {fm.excerpt ? (
-                <p className="text-paper/85 max-w-prose font-sans text-lg leading-relaxed">
-                  {fm.excerpt}
+              <div className="space-y-3">
+                <Eyebrow>{dossier ? "Taller de ruta" : "Taller de rutas"}</Eyebrow>
+                <DisplayHeading size="2xl" as="h1" className="leading-display max-w-[11ch]">
+                  {heroTitle}
+                </DisplayHeading>
+              </div>
+              {heroIntro ? (
+                <p className="text-paper/90 max-w-2xl font-sans text-lg leading-relaxed md:text-xl">
+                  {heroIntro}
                 </p>
               ) : null}
               {dossier ? (
@@ -202,8 +183,14 @@ export default async function TallerDeRutasPost({ params }: Props) {
                 </div>
               ) : null}
             </div>
-          </Container>
-        </div>
+          </div>
+
+          <WorkshopHeroDossier
+            dossier={dossier}
+            halftoneSrc={heroPrintHalftone}
+            image={heroImage}
+          />
+        </Container>
       </RedZone>
 
       <PaperZone density="default" tornBottom={2}>
@@ -234,9 +221,6 @@ export default async function TallerDeRutasPost({ params }: Props) {
                       </div>
                     ))}
                   </dl>
-                  <blockquote className="border-brand-red mt-6 border-l-4 pl-4 font-sans text-sm leading-relaxed font-semibold">
-                    “{dossier.quote}”
-                  </blockquote>
                 </>
               ) : null}
             </aside>
@@ -369,12 +353,17 @@ export default async function TallerDeRutasPost({ params }: Props) {
                         />
                         <div className="absolute top-4 left-4 z-[2]">
                           <Stamp tilt={index % 2 === 0 ? -2 : 2}>
-                            {related?.region ?? dateFormatter.format(new Date(entry.date))}
+                            {related?.region ?? dateFormatter.format(parseCalendarDate(entry.date))}
                           </Stamp>
                         </div>
                       </div>
                       <div className="p-5">
-                        <DisplayHeading size="md" as="h3" distress={false}>
+                        <DisplayHeading
+                          size="md"
+                          as="h3"
+                          distress={false}
+                          style={{ color: "var(--color-brand-red)" }}
+                        >
                           {entry.title}
                         </DisplayHeading>
                         {entry.excerpt ? (
@@ -392,6 +381,141 @@ export default async function TallerDeRutasPost({ params }: Props) {
         </RedZone>
       ) : null}
     </>
+  );
+}
+
+function WorkshopHeroDossier({
+  dossier,
+  halftoneSrc,
+  image,
+}: {
+  dossier?: WorkshopCase | null;
+  halftoneSrc?: string;
+  image: WorkshopCaseImage;
+}) {
+  const workshopStats = (dossier?.stats ?? []).slice(0, 3);
+  const workshopDecisions = (dossier?.decisions ?? []).slice(0, 2);
+  const imageSrc = halftoneSrc ?? image.src;
+
+  return (
+    <div className="relative -mx-5 py-4 sm:-mx-8 md:mx-0 lg:py-6">
+      <div className="border-paper/25 absolute top-8 right-5 bottom-3 left-8 rotate-2 border-2 opacity-45" />
+      <div
+        className="bg-paper-grain text-on-paper shadow-sticker-ink border-paper/80 relative isolate overflow-hidden border-2 p-5 sm:p-6 lg:p-7"
+        style={{
+          clipPath: "polygon(0 2.5%, 98% 0, 100% 94%, 88% 100%, 2% 97%)",
+          transform: "rotate(1.1deg)",
+        }}
+      >
+        <div
+          className="absolute inset-0 opacity-45"
+          style={{
+            backgroundImage:
+              "linear-gradient(color-mix(in srgb, var(--color-ink) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 10%, transparent) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 opacity-20 mix-blend-multiply"
+          style={{
+            backgroundImage: "url(/textures/halftone-overlay.svg)",
+            backgroundRepeat: "repeat",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 flex items-start justify-between gap-5">
+          <div>
+            <p className="font-display text-accent-on-paper text-3xl leading-none uppercase sm:text-4xl lg:text-[2.7rem]">
+              Mesa de taller
+            </p>
+            <p className="tracking-eyebrow mt-2 font-sans text-[0.65rem] font-bold uppercase opacity-70">
+              trazar / probar / ajustar
+            </p>
+          </div>
+          <Stamp tilt={3} className="text-accent-on-paper">
+            Rev.{" "}
+            {String(Math.max(workshopStats.length + workshopDecisions.length, 1)).padStart(2, "0")}
+          </Stamp>
+        </div>
+
+        <div className="relative z-10 mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_11rem]">
+          <div className="border-ink/70 bg-paper-light relative aspect-[16/10] overflow-hidden border-2">
+            <Image
+              src={imageSrc}
+              alt={image.alt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 30vw, 92vw"
+              draggable={false}
+              className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
+              style={{
+                backgroundImage: "url(/textures/halftone-overlay.svg)",
+                backgroundRepeat: "repeat",
+              }}
+              aria-hidden="true"
+            />
+            <div className="absolute top-3 left-3">
+              <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
+                Foto de prueba
+              </span>
+            </div>
+          </div>
+
+          <dl className="border-ink/50 bg-paper-light/65 grid content-start border-2">
+            {workshopStats.map((stat, index) => (
+              <div
+                key={`${stat.value}-${stat.label}`}
+                className={`border-ink/30 px-3 py-3 ${index < workshopStats.length - 1 ? "border-b" : ""}`}
+              >
+                <dt className="tracking-eyebrow font-sans text-[0.55rem] leading-tight font-bold uppercase opacity-70">
+                  {stat.label}
+                </dt>
+                <dd className="font-display text-accent-on-paper mt-1 text-3xl leading-none uppercase">
+                  {stat.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="relative z-10 mt-5 grid gap-4 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-stretch">
+          <div className="border-ink/50 bg-paper-light/80 border-2 p-4">
+            <p className="font-display text-accent-on-paper text-base leading-none uppercase sm:text-lg">
+              {image.label}
+            </p>
+            <p className="mt-2 font-sans text-sm leading-relaxed opacity-80">{image.caption}</p>
+          </div>
+
+          {workshopDecisions.length > 0 ? (
+            <div className="bg-brand-red text-on-red border-paper/75 border-2 p-4">
+              <p className="tracking-eyebrow font-sans text-[0.6rem] font-bold uppercase opacity-75">
+                Quedó afuera
+              </p>
+              <div className="mt-3 grid gap-3">
+                {workshopDecisions.map((decision) => (
+                  <div
+                    key={decision.label}
+                    className="border-paper/35 border-t pt-3 first:border-t-0 first:pt-0"
+                  >
+                    <p className="font-display text-base leading-none uppercase">
+                      {decision.label}
+                    </p>
+                    <p className="mt-1 line-clamp-2 font-sans text-xs leading-relaxed opacity-80">
+                      {decision.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 }
 

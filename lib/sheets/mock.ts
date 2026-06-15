@@ -960,4 +960,38 @@ export const MOCK_GALLERY: GalleryImage[] = [
   }),
 ];
 
-export const MOCK_DEPARTURES: Departure[] = [];
+export const MOCK_DEPARTURES: Departure[] = [
+  {
+    tour_slug: "sobre-las-nubes",
+    start_date: "2026-08-01",
+    end_date: "2026-08-07",
+    capacity: 8,
+    spots_remaining: 8,
+    status: "open",
+    price: 0,
+    currency: "USD",
+    notes: t("Abra del Acay, Quebrada de las Flechas y 1712 km ganados en el NOA."),
+  },
+  {
+    tour_slug: "volcanes-del-norte",
+    start_date: "2026-09-12",
+    end_date: "2026-09-18",
+    capacity: 8,
+    spots_remaining: 8,
+    status: "open",
+    price: 0,
+    currency: "USD",
+    notes: t("Catamarca alta: volcanes, puna, salares y jornadas largas de ripio."),
+  },
+  {
+    tour_slug: "cruces-del-sur",
+    start_date: "2026-11-07",
+    end_date: "2026-11-13",
+    capacity: 8,
+    spots_remaining: 8,
+    status: "open",
+    price: 0,
+    currency: "USD",
+    notes: t("Patagonia y Carretera Austral con viento, bosque, frontera y ripio."),
+  },
+];

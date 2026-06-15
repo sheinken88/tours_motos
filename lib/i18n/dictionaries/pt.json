@@ -56,31 +56,87 @@
     "eyebrow": "[NEEDS_TRANSLATION] Próximas fechas",
     "heading": "[NEEDS_TRANSLATION] PRÓXIMAS SALIDAS",
     "see_all": "[NEEDS_TRANSLATION] Ver el calendario completo",
+    "intro": "[NEEDS_TRANSLATION] Tres ventanas confirmadas para ganar ruta este año: norte de altura, volcanes de Catamarca y ripio patagónico.",
+    "confirmed_label": "[NEEDS_TRANSLATION] Calendario confirmado",
+    "available_label": "[NEEDS_TRANSLATION] salidas disponibles",
+    "departure_label": "[NEEDS_TRANSLATION] Salida",
+    "card_cta": "[NEEDS_TRANSLATION] Ver salida",
+    "card_fallback": "[NEEDS_TRANSLATION] Salida de {month} con cupos a confirmar.",
+    "footer_note": "[NEEDS_TRANSLATION] Las fechas se abren con grupos chicos. Si una ruta te llama, escribinos antes de que la ventana se cierre.",
     "empty": "[NEEDS_TRANSLATION] Estamos confirmando las próximas fechas.",
     "until": "[NEEDS_TRANSLATION] hasta"
   },
   "home_custom": {
     "eyebrow": "[NEEDS_TRANSLATION] A medida",
-    "heading": "[NEEDS_TRANSLATION] ¿NO TE CIERRA NINGUNA?",
-    "body": "[NEEDS_TRANSLATION] Si ninguna de estas rutas te termina de cerrar, armamos una.",
-    "cta": "[NEEDS_TRANSLATION] Armá tu travesía"
+    "heading": "[NEEDS_TRANSLATION] RUTAS A MEDIDA PARA PONERTE A PRUEBA",
+    "body": "[NEEDS_TRANSLATION] Contanos cuántos días tenés, qué moto manejás y qué querés cruzar: altura, ripio, arena, frontera. Lo convertimos en una travesía posible, con kilómetros medidos y margen para ganarla.",
+    "cta": "[NEEDS_TRANSLATION] Armá tu travesía",
+    "board_eyebrow": "[NEEDS_TRANSLATION] Brief de ruta",
+    "board_title": "[NEEDS_TRANSLATION] Vos marcás el norte",
+    "board_body": "[NEEDS_TRANSLATION] Nosotros devolvemos recorrido, ritmo, noches y alternativas de camino.",
+    "stats": [
+      { "value": "4-12", "label": "[NEEDS_TRANSLATION] días posibles" },
+      { "value": "ON/OFF", "label": "[NEEDS_TRANSLATION] terreno mixto" },
+      { "value": "GPX", "label": "[NEEDS_TRANSLATION] track listo" }
+    ],
+    "route_stops": [
+      "[NEEDS_TRANSLATION] Idea",
+      "[NEEDS_TRANSLATION] Ruta",
+      "[NEEDS_TRANSLATION] Salida"
+    ],
+    "items": [
+      "[NEEDS_TRANSLATION] Moto y nivel de manejo.",
+      "[NEEDS_TRANSLATION] Días disponibles y ritmo deseado.",
+      "[NEEDS_TRANSLATION] Ripio, altura, arena o frontera.",
+      "[NEEDS_TRANSLATION] Kilómetros que querés ganarte."
+    ]
   },
   "home_about": {
     "eyebrow": "[NEEDS_TRANSLATION] Quiénes somos",
-    "heading": "[NEEDS_TRANSLATION] ARMADO EN LA RUTA",
-    "body": "[NEEDS_TRANSLATION] No somos guías de paseo. Andamos las rutas que vendemos.",
-    "cta": "[NEEDS_TRANSLATION] Conocé al equipo"
+    "heading": "[NEEDS_TRANSLATION] EL EQUIPO DETRÁS DE CADA RUTA",
+    "body": "[NEEDS_TRANSLATION] Armamos cada salida sobre el terreno: rodamos, medimos, descartamos tramos y volvemos hasta que la ruta queda lista para vos.",
+    "cta": "[NEEDS_TRANSLATION] Conocé al equipo",
+    "proofs": [
+      { "value": "4", "label": "[NEEDS_TRANSLATION] rutas de temporada" },
+      { "value": "GPX", "label": "[NEEDS_TRANSLATION] ajustado en campo" },
+      { "value": "ON/OFF", "label": "[NEEDS_TRANSLATION] ripio y asfalto" }
+    ],
+    "field_notes": [
+      "[NEEDS_TRANSLATION] Medimos horas reales de manejo, no líneas en un mapa.",
+      "[NEEDS_TRANSLATION] Marcamos combustible, descanso y puntos de salida.",
+      "[NEEDS_TRANSLATION] Probamos ripio, altura y clima antes de abrir cupos.",
+      "[NEEDS_TRANSLATION] Volvemos a ajustar cuando la ruta cambia."
+    ],
+    "dossier_eyebrow": "[NEEDS_TRANSLATION] Bitácora",
+    "dossier_title": "[NEEDS_TRANSLATION] RUTA EN PRUEBA",
+    "dossier_meta": "[NEEDS_TRANSLATION] Rodada",
+    "dossier_items": [
+      {
+        "title": "[NEEDS_TRANSLATION] Tramo",
+        "body": "[NEEDS_TRANSLATION] Entra si suma manejo, paisaje y margen para el grupo."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Ritmo",
+        "body": "[NEEDS_TRANSLATION] Cada jornada se arma para llegar entero y con algo conquistado."
+      },
+      {
+        "title": "[NEEDS_TRANSLATION] Plan B",
+        "body": "[NEEDS_TRANSLATION] Combustible, descanso y escape quedan marcados antes de salir."
+      }
+    ],
+    "photo_alt": "[NEEDS_TRANSLATION] Riders de Moto On/Off revisando una parada de ruta durante una travesía"
   },
   "home_journal": {
     "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "heading": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
+    "heading": "[NEEDS_TRANSLATION] CÓMO PROBAMOS Y ARMAMOS LAS RUTAS",
     "intro": "[NEEDS_TRANSLATION] Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
     "see_all": "[NEEDS_TRANSLATION] Entrar al taller"
   },
   "tours_index": {
-    "eyebrow": "[NEEDS_TRANSLATION] Catálogo",
+    "eyebrow": "[NEEDS_TRANSLATION] Viajes",
     "headline": "[NEEDS_TRANSLATION] RUTAS QUE TE CAMBIAN",
     "intro": "[NEEDS_TRANSLATION] Cada ruta es una que ya rodamos.",
+    "hero_image_alt": "[NEEDS_TRANSLATION] Tres motos cruzando una planicie de altura entre salares, arena negra y montañas.",
     "all_routes_eyebrow": "[NEEDS_TRANSLATION] Todas las rutas",
     "all_routes_heading": "[NEEDS_TRANSLATION] Elegí tu travesía",
     "empty": "[NEEDS_TRANSLATION] Estamos preparando la próxima temporada."
@@ -152,7 +208,7 @@
   },
   "journal_grid": {
     "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "heading": "[NEEDS_TRANSLATION] NOTAS DE CAMPO",
+    "heading": "[NEEDS_TRANSLATION] PRIMERO RODAMOS",
     "read_more": "[NEEDS_TRANSLATION] Cómo se armó"
   },
   "quote_section": {
@@ -305,6 +361,28 @@
     "headline": "[NEEDS_TRANSLATION] PRÓXIMAS FECHAS",
     "metadata_description": "[NEEDS_TRANSLATION] Calendario de salidas confirmadas por ruta.",
     "intro": "[NEEDS_TRANSLATION] Cada salida tiene cupo limitado.",
+    "hero_stamp": "[NEEDS_TRANSLATION] Cupos limitados",
+    "hero_note": "[NEEDS_TRANSLATION] Fechas reales, cupos reales y rutas que se confirman cuando el terreno, el clima y el grupo cierran.",
+    "hero_image_alt": "[NEEDS_TRANSLATION] Moto de aventura cruzando una ruta de montaña en el norte argentino",
+    "season_eyebrow": "[NEEDS_TRANSLATION] Temporada en marcha",
+    "season_heading": "[NEEDS_TRANSLATION] EL MAPA YA TIENE FECHAS",
+    "season_intro": "[NEEDS_TRANSLATION] Este tablero se actualiza desde la hoja de salidas. Cuando una fecha cambia, la ruta se mueve acá sin maquillaje.",
+    "confirmed_label": "[NEEDS_TRANSLATION] salidas confirmadas",
+    "open_label": "[NEEDS_TRANSLATION] con cupos",
+    "spots_label": "[NEEDS_TRANSLATION] lugares disponibles",
+    "next_label": "[NEEDS_TRANSLATION] Próxima salida",
+    "board_eyebrow": "[NEEDS_TRANSLATION] Orden de salida",
+    "board_heading": "[NEEDS_TRANSLATION] EL TRACK DE LA TEMPORADA",
+    "board_intro": "[NEEDS_TRANSLATION] Cada tarjeta marca una ventana de ruta: fecha, cupos, tramo y estado. Elegí el mes; después hablamos de la moto.",
+    "legend_label": "[NEEDS_TRANSLATION] Estado de cupos",
+    "departures_unit": "[NEEDS_TRANSLATION] salida(s)",
+    "departure_label": "[NEEDS_TRANSLATION] Salida",
+    "spots_remaining_label": "[NEEDS_TRANSLATION] lugares",
+    "cta_eyebrow": "[NEEDS_TRANSLATION] Tu lugar",
+    "cta_heading": "[NEEDS_TRANSLATION] SI LA FECHA CIERRA, LA RUTA EMPIEZA ACÁ",
+    "cta_body": "[NEEDS_TRANSLATION] Escribinos con la salida que querés rodar. Te pasamos disponibilidad, próximos pasos y lo que necesitás preparar.",
+    "cta_primary": "[NEEDS_TRANSLATION] Hablar por la fecha",
+    "cta_secondary": "[NEEDS_TRANSLATION] Ver las rutas",
     "no_departures": "[NEEDS_TRANSLATION] No hay salidas confirmadas todavía.",
     "month_format": "long",
     "see_tour": "[NEEDS_TRANSLATION] Ver la ruta",

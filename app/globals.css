@@ -41,6 +41,8 @@
   --text-display-2xl--line-height: 0.92;
   --text-display-2xl--letter-spacing: -0.015em;
 
+  --leading-display: 1.08;
+
   --text-display-xl: clamp(2.5rem, 6vw, 5rem);
   --text-display-xl--line-height: 0.98;
   --text-display-xl--letter-spacing: -0.015em;
@@ -296,13 +298,13 @@
     break-inside: avoid;
   }
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     .prose-tour ul {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     .prose-tour-columns {
       column-count: 2;
       column-gap: 3rem;

@@ -142,7 +142,7 @@ export default async function SectionsPage({ params }: Props) {
         <JournalGrid
           posts={mockPosts}
           eyebrow="Diario de ruta"
-          heading="NOTAS DE CAMPO"
+          heading="PRIMERO RODAMOS"
           readMoreLabel="Leer la nota"
         />
       </PaperZone>
@@ -156,7 +156,7 @@ export default async function SectionsPage({ params }: Props) {
         <JournalGrid
           posts={mockPosts}
           eyebrow="Diario de ruta"
-          heading="NOTAS DE CAMPO"
+          heading="PRIMERO RODAMOS"
           readMoreLabel="Leer la nota"
         />
       </RedZone>

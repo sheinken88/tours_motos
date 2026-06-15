@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { listJournalEntries } from "@/lib/content/getJournalMdx";
 import { listLocalesForPost } from "@/lib/content/journalMdxRegistry";
+import { parseCalendarDate } from "@/lib/date";
 import { type Locale, locales } from "@/lib/i18n/config";
 import { getSiteUrl } from "@/lib/seo/site";
 import { getTours } from "@/lib/sheets/queries";
@@ -66,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const availableLocales = listLocalesForPost(entry.slug);
     entries.push({
       url: `${site}/${baseLocale}/taller-de-rutas/${entry.slug}`,
-      lastModified: new Date(entry.date),
+      lastModified: parseCalendarDate(entry.date),
       changeFrequency: "monthly",
       priority: 0.5,
       alternates: {

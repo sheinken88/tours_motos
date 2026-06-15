@@ -1,4 +1,4 @@
-import { Container, Eyebrow, TourCard } from "@/components/primitives";
+import { Button, Container, Eyebrow, TourCard } from "@/components/primitives";
 import { DisplayHeading } from "@/components/primitives/DisplayHeading";
 import { type Locale } from "@/lib/i18n/config";
 import { type Tour } from "@/lib/sheets/schemas";
@@ -15,7 +15,10 @@ type TourGridProps = {
   /** Empty-state copy when tours is []. */
   emptyMessage?: string;
   /** Route index page gets a more editorial poster-wall treatment. */
-  variant?: "standard" | "posterWall";
+  variant?: "standard" | "posterWall" | "homeShowcase";
+  /** Optional CTA rendered by editorial variants. */
+  ctaHref?: string;
+  ctaLabel?: string;
 };
 
 const posterWallCellClass = [
@@ -23,6 +26,13 @@ const posterWallCellClass = [
   "lg:col-span-3 lg:mt-10",
   "lg:col-span-3 lg:-mt-6",
   "lg:col-span-3 lg:mt-4",
+];
+
+const homeShowcaseCellClass = [
+  "lg:col-span-7 lg:row-span-4",
+  "lg:col-span-5 lg:row-span-3",
+  "lg:col-span-5 lg:row-span-4",
+  "lg:col-span-7 lg:row-span-3",
 ];
 
 const wallLabels: Record<
@@ -75,15 +85,108 @@ export function TourGrid({
   limit,
   emptyMessage,
   variant = "standard",
+  ctaHref,
+  ctaLabel,
 }: TourGridProps) {
   const visible = typeof limit === "number" ? tours.slice(0, limit) : tours;
   const posterWall = variant === "posterWall";
+  const homeShowcase = variant === "homeShowcase";
   const totalKm = visible.reduce((total, tour) => total + tour.distance_km, 0);
   const altitudes = visible
     .map((tour) => tour.max_altitude_m ?? 0)
     .filter((altitude) => altitude > 0);
   const highestAltitude = altitudes.length > 0 ? Math.max(...altitudes) : null;
   const labels = wallLabels[locale];
+
+  if (homeShowcase) {
+    return (
+      <Container className="relative isolate">
+        <div
+          className="border-brand-red/20 pointer-events-none absolute top-24 right-6 left-6 hidden h-[72%] -rotate-1 border-2 border-dashed lg:block"
+          aria-hidden="true"
+        />
+        <div
+          className="bg-brand-red/10 border-brand-red/20 bg-halftone pointer-events-none absolute -top-10 right-0 hidden h-40 w-40 rotate-3 border-2 mix-blend-multiply lg:block"
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end">
+          <div className="space-y-5">
+            {eyebrow ? <Eyebrow rule>{eyebrow}</Eyebrow> : null}
+            {heading ? (
+              <DisplayHeading size="xl" as="h2" className="max-w-[11ch]">
+                {heading}
+              </DisplayHeading>
+            ) : null}
+          </div>
+
+          {visible.length > 0 ? (
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="bg-brand-red text-paper shadow-sticker-ink border-ink -rotate-1 border-2 p-4">
+                <p className="font-display text-5xl leading-none">
+                  {String(visible.length).padStart(2, "0")}
+                </p>
+                <p className="font-display mt-1 text-xs tracking-[var(--tracking-cta)] uppercase">
+                  {labels.routes} {labels.ridden}
+                </p>
+              </div>
+              <div className="bg-paper-light border-ink/60 shadow-sticker-ink rotate-1 border-2 p-4">
+                <p className="font-display text-accent-on-paper text-5xl leading-none">
+                  {totalKm.toLocaleString("es-AR")}
+                </p>
+                <p className="font-display mt-1 text-xs tracking-[var(--tracking-cta)] uppercase">
+                  {labels.totalKm}
+                </p>
+              </div>
+              {highestAltitude ? (
+                <div className="bg-paper-aged border-ink/60 shadow-sticker-ink -rotate-1 border-2 p-4">
+                  <p className="font-display text-accent-on-paper text-5xl leading-none">
+                    {highestAltitude.toLocaleString("es-AR")}
+                  </p>
+                  <p className="font-display mt-1 text-xs tracking-[var(--tracking-cta)] uppercase">
+                    {labels.highPoint}
+                  </p>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+
+        {visible.length === 0 ? (
+          emptyMessage ? (
+            <p className="relative z-10 mt-8 font-sans text-sm opacity-70">{emptyMessage}</p>
+          ) : null
+        ) : (
+          <div className="relative z-10 mt-12 space-y-10">
+            <ul className="grid gap-7 md:grid-cols-2 lg:auto-rows-[7rem] lg:grid-cols-12 lg:gap-x-8 lg:gap-y-14">
+              {visible.map((tour, index) => (
+                <li
+                  key={tour.slug}
+                  className={homeShowcaseCellClass[index % homeShowcaseCellClass.length]}
+                >
+                  <TourCard
+                    tour={tour}
+                    locale={locale}
+                    variant="photo"
+                    index={index}
+                    className="h-full"
+                  />
+                </li>
+              ))}
+            </ul>
+
+            {ctaHref && ctaLabel ? (
+              <div>
+                <Button href={ctaHref} edge={2} tilt="right" variant="sticker-outline">
+                  {ctaLabel}
+                </Button>
+              </div>
+            ) : null}
+          </div>
+        )}
+      </Container>
+    );
+  }
 
   if (posterWall) {
     return (

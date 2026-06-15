@@ -1,14 +1,14 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Container, DisplayHeading, Eyebrow } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow, XIcon } from "@/components/primitives";
 import { InquiryForm, type InquiryTourOption } from "@/components/forms";
 import {
   CalendarStrip,
+  CustomRouteTeaser,
   Hero,
   JournalGrid,
   type JournalPost,
-  PageTeaser,
   TourGrid,
 } from "@/components/sections";
 import { PaperZone, RedZone } from "@/components/surfaces";
@@ -21,6 +21,21 @@ import { getTours } from "@/lib/sheets/queries";
 
 type Props = {
   params: Promise<{ locale: string }>;
+};
+
+type HomeCustomStat = {
+  value: string;
+  label: string;
+};
+
+type HomeAboutSectionProps = {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  href: string;
+  ctaLabel: string;
+  fieldNotes: string[];
+  photoAlt: string;
 };
 
 const homeTitle = "Moto On/Off — Expediciones en moto por Argentina";
@@ -94,6 +109,10 @@ export default async function Home({ params }: Props) {
     image: entry.image,
     imageAlt: entry.imageAlt,
   }));
+  const customStats = tCustom.raw("stats") as HomeCustomStat[];
+  const customItems = tCustom.raw("items") as string[];
+  const customRouteStops = tCustom.raw("route_stops") as string[];
+  const aboutFieldNotes = tAbout.raw("field_notes") as string[];
 
   return (
     <>
@@ -101,24 +120,17 @@ export default async function Home({ params }: Props) {
       <Hero locale={locale} />
 
       {/* 2 · Tours preview (paper) ──────────────────────────────────────── */}
-      <PaperZone density="default" tornBottom={3}>
-        <div className="flex flex-col gap-8">
-          <TourGrid
-            tours={tours}
-            locale={locale}
-            limit={3}
-            eyebrow={tToursIdx("eyebrow")}
-            heading={tToursIdx("headline")}
-          />
-          <Container>
-            <I18nLink
-              href="/tours"
-              className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
-            >
-              {tToursIdx("all_routes_eyebrow")} →
-            </I18nLink>
-          </Container>
-        </div>
+      <PaperZone density="default" tornBottom={3} className="overflow-x-clip">
+        <TourGrid
+          tours={tours}
+          locale={locale}
+          limit={4}
+          eyebrow={tToursIdx("eyebrow")}
+          heading={tToursIdx("headline")}
+          variant="homeShowcase"
+          ctaHref={`/${locale}/tours`}
+          ctaLabel={tToursIdx("all_routes_eyebrow")}
+        />
       </PaperZone>
 
       {/* 3 · Calendar strip (red) ───────────────────────────────────────── */}
@@ -127,29 +139,32 @@ export default async function Home({ params }: Props) {
       </RedZone>
 
       {/* 4 · Custom teaser (paper) ──────────────────────────────────────── */}
-      <PaperZone density="default" tornBottom={4}>
-        <PageTeaser
+      <PaperZone density="default" tornBottom={4} className="overflow-x-clip">
+        <CustomRouteTeaser
           eyebrow={tCustom("eyebrow")}
           heading={tCustom("heading")}
           body={tCustom("body")}
           href={`/${locale}/custom`}
           ctaLabel={tCustom("cta")}
-          edge={1}
-          tilt="left"
-          emphasis
+          boardEyebrow={tCustom("board_eyebrow")}
+          boardTitle={tCustom("board_title")}
+          boardBody={tCustom("board_body")}
+          stats={customStats}
+          items={customItems}
+          routeStops={customRouteStops}
         />
       </PaperZone>
 
       {/* 5 · About teaser (red) ─────────────────────────────────────────── */}
       <RedZone density="default" tornBottom={1}>
-        <PageTeaser
+        <HomeAboutSection
           eyebrow={tAbout("eyebrow")}
           heading={tAbout("heading")}
           body={tAbout("body")}
           href={`/${locale}/about`}
           ctaLabel={tAbout("cta")}
-          edge={2}
-          tilt="right"
+          fieldNotes={aboutFieldNotes}
+          photoAlt={tAbout("photo_alt")}
         />
       </RedZone>
 
@@ -194,7 +209,7 @@ export default async function Home({ params }: Props) {
               </div>
               <InquiryForm locale={locale} kind="contact" tours={tourOptions} />
             </div>
-            <div className="relative hidden h-full w-full translate-x-16 overflow-visible md:block lg:translate-x-24 xl:translate-x-32">
+            <div className="relative hidden h-full w-full translate-x-4 overflow-visible md:block lg:translate-x-8 xl:translate-x-12">
               <Image
                 src="/images/halftone/hero-rider-cutout.png"
                 alt={tHome("rider_alt")}
@@ -207,5 +222,83 @@ export default async function Home({ params }: Props) {
         </Container>
       </RedZone>
     </>
+  );
+}
+
+function HomeAboutSection({
+  eyebrow,
+  heading,
+  body,
+  href,
+  ctaLabel,
+  fieldNotes,
+  photoAlt,
+}: HomeAboutSectionProps) {
+  return (
+    <Container className="relative isolate">
+      <p
+        className="font-display text-paper/[0.07] pointer-events-none absolute -top-10 right-0 hidden text-[8.75rem] leading-none uppercase select-none lg:block xl:text-[10rem]"
+        aria-hidden="true"
+      >
+        Equipo
+      </p>
+      <div
+        className="border-paper/20 pointer-events-none absolute top-16 right-10 hidden h-48 w-72 -rotate-2 border-2 border-dashed lg:block"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-16">
+        <div className="space-y-8">
+          <div className="max-w-4xl space-y-6">
+            <Eyebrow rule>{eyebrow}</Eyebrow>
+            <DisplayHeading size="xl" as="h2" className="max-w-[11ch]" style={{ lineHeight: 1.18 }}>
+              {heading}
+            </DisplayHeading>
+            <p className="max-w-2xl font-sans text-lg leading-relaxed sm:text-xl">{body}</p>
+          </div>
+
+          {fieldNotes.length > 0 ? (
+            <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed sm:grid-cols-2">
+              {fieldNotes.map((note) => (
+                <li key={note} className="flex items-start gap-3">
+                  <XIcon className="mt-1 h-5 w-5 shrink-0" />
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          <Button href={href} edge={2} tilt="right" variant="sticker-outline">
+            {ctaLabel}
+          </Button>
+        </div>
+
+        <div className="relative min-h-[24rem] sm:min-h-[28rem] lg:min-h-[34rem]">
+          <figure
+            className="bg-paper-aged border-paper/45 absolute top-0 right-0 h-full w-[92%] rotate-1 overflow-hidden border-2 sm:w-[88%] lg:w-[86%]"
+            style={{
+              clipPath: "polygon(0 7%, 100% 0, 97% 91%, 78% 100%, 4% 94%)",
+            }}
+          >
+            <Image
+              src="/images/nosotros/20260402_180621.jpg"
+              alt={photoAlt}
+              fill
+              sizes="(min-width: 1024px) 44vw, 88vw"
+              className="object-cover object-center opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0"
+            />
+            <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply" />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
+              style={{
+                backgroundImage: "url(/textures/halftone-overlay.svg)",
+                backgroundRepeat: "repeat",
+              }}
+              aria-hidden="true"
+            />
+          </figure>
+        </div>
+      </div>
+    </Container>
   );
 }

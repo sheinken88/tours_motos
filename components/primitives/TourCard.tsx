@@ -12,7 +12,7 @@ type TourCardProps = {
   /** Localized formatter for the kilometers number — defaults to es-AR. */
   numberLocale?: string;
   /** Poster cards add richer stats and a slightly pasted-on composition. */
-  variant?: "standard" | "poster";
+  variant?: "standard" | "poster" | "photo";
   /** Zero-based visual index, used for route numbering and poster tilt. */
   index?: number;
   className?: string;
@@ -77,6 +77,7 @@ export function TourCard({
   const diff = difficultyLabel[tour.difficulty][locale];
   const labels = statLabels[locale];
   const poster = variant === "poster";
+  const photo = variant === "photo";
   const gravelValue = tour.ripio_percent === null ? "-" : `${tour.ripio_percent}%`;
 
   const cardClass = poster
@@ -88,23 +89,102 @@ export function TourCard({
         posterTiltClass[index % posterTiltClass.length],
         className,
       ].join(" ")
-    : [
-        "bg-paper-light text-on-paper hover:shadow-sticker-ink",
-        "ease-out-soft group flex h-full flex-col border-2 border-current/20",
-        "transition-[box-shadow,transform] duration-200 hover:-translate-y-1",
-        className,
-      ].join(" ");
+    : photo
+      ? [
+          "bg-paper-light text-on-paper shadow-sticker-ink hover:shadow-sticker-red",
+          "ease-out-soft group relative isolate flex min-h-[24rem] flex-col overflow-hidden border-2 border-ink/70",
+          "transition-[box-shadow,transform] duration-200 hover:-translate-y-2 hover:rotate-0",
+          "focus-visible:rotate-0",
+          posterTiltClass[index % posterTiltClass.length],
+          className,
+        ].join(" ")
+      : [
+          "bg-paper-light text-on-paper hover:shadow-sticker-ink",
+          "ease-out-soft group flex h-full flex-col border-2 border-current/20",
+          "transition-[box-shadow,transform] duration-200 hover:-translate-y-1",
+          className,
+        ].join(" ");
 
   return (
     <Link href={`/tours/${slug}`} className={cardClass} aria-label={title}>
-      {poster ? (
-        <span
-          className="bg-paper-aged border-ink/35 pointer-events-none absolute -top-3 right-8 z-20 h-6 w-20 -rotate-2 border-2 opacity-90 mix-blend-multiply"
-          aria-hidden="true"
-        />
+      {photo ? (
+        <>
+          <div className="bg-paper-aged relative min-h-0 flex-1 overflow-hidden">
+            <div
+              className="bg-halftone absolute inset-0 z-[1] opacity-35 mix-blend-multiply transition-opacity duration-200 group-hover:opacity-55"
+              aria-hidden="true"
+            />
+            {tour.hero_image ? (
+              <HalftoneImage
+                src={tour.hero_image}
+                alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
+                fill
+                sizes="(min-width: 1280px) 42vw, (min-width: 768px) 50vw, 100vw"
+                className="object-cover mix-blend-multiply"
+              />
+            ) : null}
+            {tour.hero_image_color ? (
+              <Image
+                src={tour.hero_image_color}
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="(min-width: 1280px) 42vw, (min-width: 768px) 50vw, 100vw"
+                draggable={false}
+                className="ease-out-soft absolute inset-0 object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+            ) : null}
+            <div className="absolute top-4 right-4 left-4 z-[3] flex items-start justify-between gap-4">
+              <Stamp tilt={-2} className="text-accent-on-paper bg-paper-light/90">
+                {region}
+              </Stamp>
+              <Stamp tilt={2} className="bg-brand-red text-paper border-paper/80">
+                {routeLabel[locale]} {routeNumber}
+              </Stamp>
+            </div>
+          </div>
+
+          <div className="border-ink/70 bg-paper-grain relative z-10 border-t-2 p-4 sm:p-5">
+            <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
+              <DisplayHeading
+                size="md"
+                as="h3"
+                distress={false}
+                className="!text-brand-red max-w-[10ch]"
+              >
+                {title}
+              </DisplayHeading>
+              <span
+                className="font-display text-accent-on-paper hidden text-5xl leading-none opacity-80 sm:block"
+                aria-hidden="true"
+              >
+                {routeNumber}
+              </span>
+            </div>
+            <p className="mt-3 line-clamp-2 font-sans text-sm leading-relaxed opacity-85">
+              {tour.tagline[locale] || tour.summary[locale]}
+            </p>
+            <p className="font-display border-ink/25 mt-4 flex flex-wrap gap-x-4 gap-y-1 border-t-2 pt-3 text-xs tracking-[var(--tracking-cta)] uppercase">
+              <span>{days}</span>
+              <span>{km} km</span>
+              <span>
+                {gravelValue} {labels.gravel}
+              </span>
+            </p>
+          </div>
+        </>
       ) : null}
 
-      {/* Hero slot. Z-stack (bottom → top):
+      {photo ? null : (
+        <>
+          {poster ? (
+            <span
+              className="bg-paper-aged border-ink/35 pointer-events-none absolute -top-3 right-8 z-20 h-6 w-20 -rotate-2 border-2 opacity-90 mix-blend-multiply"
+              aria-hidden="true"
+            />
+          ) : null}
+
+          {/* Hero slot. Z-stack (bottom → top):
           1. paper-aged field + halftone overlay (always — graceful fallback
              for tours whose halftone PNG has not shipped yet).
           2. HalftoneImage cropped to 4:3 (if hero_image resolves) — the
@@ -112,120 +192,127 @@ export function TourCard({
           3. Color JPG (if hero_image_color resolves) layered on top at
              opacity-0, crossfading to opacity-100 on card hover.
           4. Region stamp, tilted top-left, on top of everything. */}
-      <div
-        className={`bg-paper-aged relative overflow-hidden ${
-          poster ? "border-ink/60 aspect-[16/10] border-b-2" : "aspect-[4/3]"
-        }`}
-      >
-        <div
-          className={`absolute inset-0 z-[1] mix-blend-multiply transition-opacity duration-200 ${
-            poster ? "opacity-35 group-hover:opacity-55" : "opacity-30"
-          }`}
-          style={{
-            backgroundImage: "url(/textures/halftone-overlay.svg)",
-            backgroundRepeat: "repeat",
-          }}
-        />
-        {tour.hero_image ? (
-          <HalftoneImage
-            src={tour.hero_image}
-            alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className={`object-cover ${poster ? "mix-blend-multiply" : ""}`}
-          />
-        ) : null}
-        {tour.hero_image_color ? (
-          <Image
-            src={tour.hero_image_color}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            draggable={false}
-            className="ease-out-soft absolute inset-0 object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          />
-        ) : null}
-        <div className="absolute top-4 left-4 z-[3]">
-          <Stamp tilt={-2} className="text-accent-on-paper bg-paper-light/80 backdrop-blur-[1px]">
-            {region}
-          </Stamp>
-        </div>
-        {poster ? (
-          <div className="absolute right-4 bottom-4 z-[3]">
-            <Stamp tilt={2} className="bg-brand-red text-paper border-paper/80">
-              {routeLabel[locale]} {routeNumber}
-            </Stamp>
-          </div>
-        ) : null}
-      </div>
-
-      {poster ? (
-        <div className="relative flex flex-1 flex-col gap-5 p-5 md:p-6">
-          <div className="flex items-start justify-between gap-5">
-            <DisplayHeading
-              size="md"
-              as="h3"
-              distress={false}
-              className="!text-brand-red max-w-[12ch]"
-            >
-              {title}
-            </DisplayHeading>
-            <span
-              className="font-display text-accent-on-paper text-5xl leading-none opacity-75"
-              aria-hidden="true"
-            >
-              {routeNumber}
-            </span>
-          </div>
-
-          {tour.tagline[locale] ? (
-            <p className="font-sans text-sm leading-relaxed opacity-80">{tour.tagline[locale]}</p>
-          ) : null}
-
-          <dl className="border-ink/25 mt-auto grid grid-cols-3 border-y-2 py-3">
-            <div>
-              <dt className="font-display text-[0.64rem] tracking-[var(--tracking-cta)] uppercase opacity-60">
-                {labels.days}
-              </dt>
-              <dd className="font-display text-accent-on-paper text-2xl leading-none">
-                {tour.duration_days}
-              </dd>
-            </div>
-            <div className="border-ink/20 border-l-2 pl-3">
-              <dt className="font-display text-[0.64rem] tracking-[var(--tracking-cta)] uppercase opacity-60">
-                km
-              </dt>
-              <dd className="font-display text-accent-on-paper text-2xl leading-none">{km}</dd>
-            </div>
-            <div className="border-ink/20 border-l-2 pl-3">
-              <dt className="font-display text-[0.64rem] tracking-[var(--tracking-cta)] uppercase opacity-60">
-                {labels.gravel}
-              </dt>
-              <dd className="font-display text-accent-on-paper text-2xl leading-none">
-                {gravelValue}
-              </dd>
-            </div>
-          </dl>
-
-          <p className="font-display flex flex-wrap gap-x-3 gap-y-1 text-xs tracking-[var(--tracking-cta)] uppercase opacity-75">
-            <span>{diff}</span>
-            {tour.max_altitude_m ? (
-              <span>
-                {tour.max_altitude_m.toLocaleString(numberLocale)} {labels.altitude}
-              </span>
+          <div
+            className={`bg-paper-aged relative overflow-hidden ${
+              poster ? "border-ink/60 aspect-[16/10] border-b-2" : "aspect-[4/3]"
+            }`}
+          >
+            <div
+              className={`absolute inset-0 z-[1] mix-blend-multiply transition-opacity duration-200 ${
+                poster ? "opacity-35 group-hover:opacity-55" : "opacity-30"
+              }`}
+              style={{
+                backgroundImage: "url(/textures/halftone-overlay.svg)",
+                backgroundRepeat: "repeat",
+              }}
+            />
+            {tour.hero_image ? (
+              <HalftoneImage
+                src={tour.hero_image}
+                alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className={`object-cover ${poster ? "mix-blend-multiply" : ""}`}
+              />
             ) : null}
-          </p>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-3 p-6">
-          <DisplayHeading size="md" as="h3" distress={false} className="!text-brand-red">
-            {title}
-          </DisplayHeading>
-          <p className="font-sans text-sm leading-relaxed opacity-80">
-            {days} · {km} km · {diff}
-          </p>
-        </div>
+            {tour.hero_image_color ? (
+              <Image
+                src={tour.hero_image_color}
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                draggable={false}
+                className="ease-out-soft absolute inset-0 object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+            ) : null}
+            <div className="absolute top-4 left-4 z-[3]">
+              <Stamp
+                tilt={-2}
+                className="text-accent-on-paper bg-paper-light/80 backdrop-blur-[1px]"
+              >
+                {region}
+              </Stamp>
+            </div>
+            {poster ? (
+              <div className="absolute right-4 bottom-4 z-[3]">
+                <Stamp tilt={2} className="bg-brand-red text-paper border-paper/80">
+                  {routeLabel[locale]} {routeNumber}
+                </Stamp>
+              </div>
+            ) : null}
+          </div>
+
+          {poster ? (
+            <div className="relative flex flex-1 flex-col gap-5 p-5 md:p-6">
+              <div className="flex items-start justify-between gap-5">
+                <DisplayHeading
+                  size="md"
+                  as="h3"
+                  distress={false}
+                  className="!text-brand-red max-w-[12ch]"
+                >
+                  {title}
+                </DisplayHeading>
+                <span
+                  className="font-display text-accent-on-paper text-5xl leading-none opacity-75"
+                  aria-hidden="true"
+                >
+                  {routeNumber}
+                </span>
+              </div>
+
+              {tour.tagline[locale] ? (
+                <p className="font-sans text-sm leading-relaxed opacity-80">
+                  {tour.tagline[locale]}
+                </p>
+              ) : null}
+
+              <dl className="border-ink/25 mt-auto grid grid-cols-3 border-y-2 py-3">
+                <div>
+                  <dt className="font-display text-[0.64rem] tracking-[var(--tracking-cta)] uppercase opacity-60">
+                    {labels.days}
+                  </dt>
+                  <dd className="font-display text-accent-on-paper text-2xl leading-none">
+                    {tour.duration_days}
+                  </dd>
+                </div>
+                <div className="border-ink/20 border-l-2 pl-3">
+                  <dt className="font-display text-[0.64rem] tracking-[var(--tracking-cta)] uppercase opacity-60">
+                    km
+                  </dt>
+                  <dd className="font-display text-accent-on-paper text-2xl leading-none">{km}</dd>
+                </div>
+                <div className="border-ink/20 border-l-2 pl-3">
+                  <dt className="font-display text-[0.64rem] tracking-[var(--tracking-cta)] uppercase opacity-60">
+                    {labels.gravel}
+                  </dt>
+                  <dd className="font-display text-accent-on-paper text-2xl leading-none">
+                    {gravelValue}
+                  </dd>
+                </div>
+              </dl>
+
+              <p className="font-display flex flex-wrap gap-x-3 gap-y-1 text-xs tracking-[var(--tracking-cta)] uppercase opacity-75">
+                <span>{diff}</span>
+                {tour.max_altitude_m ? (
+                  <span>
+                    {tour.max_altitude_m.toLocaleString(numberLocale)} {labels.altitude}
+                  </span>
+                ) : null}
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3 p-6">
+              <DisplayHeading size="md" as="h3" distress={false} className="!text-brand-red">
+                {title}
+              </DisplayHeading>
+              <p className="font-sans text-sm leading-relaxed opacity-80">
+                {days} · {km} km · {diff}
+              </p>
+            </div>
+          )}
+        </>
       )}
     </Link>
   );

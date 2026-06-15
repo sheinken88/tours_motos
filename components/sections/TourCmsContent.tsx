@@ -350,12 +350,19 @@ function RoadbookStrip({
   dayLabel: string;
   labels: DayMetadataLabels;
 }) {
+  const gridClassName =
+    itinerary.length === 8
+      ? "grid-cols-2 md:grid-cols-4 xl:grid-cols-8"
+      : itinerary.length === 6
+        ? "grid-cols-2 md:grid-cols-3 xl:grid-cols-6"
+        : "grid-cols-2 md:grid-cols-4 xl:grid-cols-7";
+
   return (
     <nav
       aria-label={dayLabel}
       className="border-paper/30 bg-brand-red/95 z-20 -mx-5 border-y-2 px-5 py-3 backdrop-blur-sm sm:-mx-8 sm:px-8 md:sticky md:top-16 md:mx-0 md:border-2 xl:top-20"
     >
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-7">
+      <div className={`grid gap-2 ${gridClassName}`}>
         {itinerary.map((day) => (
           <a
             key={`${day.tour_slug}-strip-${day.day_number}`}
@@ -445,6 +452,7 @@ function DayRoadbookCard({
   metadataLabels,
   image,
   featured = false,
+  spanFull = false,
 }: {
   day: ItineraryDay;
   tour: Tour;
@@ -455,21 +463,23 @@ function DayRoadbookCard({
   metadataLabels: DayMetadataLabels;
   image?: GalleryImage;
   featured?: boolean;
+  spanFull?: boolean;
 }) {
   const metadata = buildDayMetadata({ day, locale, formatter, labels: metadataLabels });
   const highlights = day.highlights[locale];
+  const isWide = featured || spanFull;
 
   return (
     <li
       id={`day-${day.day_number}`}
       data-zone="paper"
       className={`group/day-card bg-paper-grain text-on-paper shadow-sticker-ink hover:shadow-sticker-red border-paper/30 overflow-hidden border-2 transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-1 ${
-        featured ? "scroll-mt-24 md:scroll-mt-40 lg:col-span-2" : "scroll-mt-24 md:scroll-mt-40"
+        isWide ? "scroll-mt-24 md:scroll-mt-40 lg:col-span-2" : "scroll-mt-24 md:scroll-mt-40"
       }`}
     >
       <article
         className={`grid h-full ${
-          featured
+          isWide
             ? "md:grid-cols-[minmax(16rem,0.45fr)_minmax(0,0.55fr)]"
             : "md:grid-cols-[minmax(12rem,0.38fr)_minmax(0,0.62fr)]"
         }`}
@@ -486,7 +496,7 @@ function DayRoadbookCard({
           </h3>
           <p
             className={`text-muted-on-paper font-sans leading-relaxed ${
-              featured ? "text-base md:text-lg" : "text-sm"
+              isWide ? "text-base md:text-lg" : "text-sm"
             }`}
           >
             {day.body[locale]}
@@ -524,6 +534,31 @@ function isFeaturedRoadbookDay(tour: Tour, day: ItineraryDay) {
   );
 }
 
+function buildRoadbookCardLayout(tour: Tour, itinerary: ItineraryDay[]) {
+  const layout = new Map<number, { featured: boolean; spanFull: boolean }>();
+  let openHalfRow = false;
+
+  itinerary.forEach((day, index) => {
+    const featured = isFeaturedRoadbookDay(tour, day);
+    const nextDay = itinerary[index + 1];
+    const nextIsFeatured = nextDay ? isFeaturedRoadbookDay(tour, nextDay) : false;
+    const wouldBeOrphaned = !openHalfRow && nextIsFeatured;
+    const isFinalOrphan = !openHalfRow && !nextDay;
+    const spanFull = featured || wouldBeOrphaned || isFinalOrphan;
+
+    layout.set(day.day_number, { featured, spanFull });
+
+    if (spanFull) {
+      openHalfRow = false;
+      return;
+    }
+
+    openHalfRow = !openHalfRow;
+  });
+
+  return layout;
+}
+
 /**
  * TourCmsContent — renders the client-editable Google Sheets tour body as a
  * set of poster zones: route dossier, day-by-day route, and practical details.
@@ -549,6 +584,7 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
     distancePending: t("distance_pending"),
     altitudePending: t("altitude_pending"),
   };
+  const roadbookLayout = buildRoadbookCardLayout(tour, itinerary);
 
   const sectionsByType = new Map<TourSection["type"], TourSection[]>();
   for (const section of sections) {
@@ -652,6 +688,7 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
                 const image = gallery.length
                   ? gallery[(day.day_number - 1) % gallery.length]
                   : undefined;
+                const layout = roadbookLayout.get(day.day_number);
                 return (
                   <DayRoadbookCard
                     key={`${day.tour_slug}-${day.day_number}`}
@@ -663,7 +700,8 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
                     highlightsLabel={t("highlights_label")}
                     metadataLabels={metadataLabels}
                     image={image}
-                    featured={isFeaturedRoadbookDay(tour, day)}
+                    featured={layout?.featured}
+                    spanFull={layout?.spanFull}
                   />
                 );
               })}

@@ -1,4 +1,5 @@
 import { Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import { parseCalendarDate } from "@/lib/date";
 import { Link as I18nLink } from "@/lib/i18n/navigation";
 
 export type JournalPost = {
@@ -60,9 +61,9 @@ export function JournalGrid({
   const visible = typeof limit === "number" ? posts.slice(0, limit) : posts;
 
   return (
-    <Container className="space-y-10">
+    <Container className="space-y-12 sm:space-y-14">
       {(eyebrow || heading) && (
-        <div className="space-y-3">
+        <div className="space-y-6 sm:space-y-7">
           {eyebrow ? <Eyebrow rule>{eyebrow}</Eyebrow> : null}
           {heading ? (
             <DisplayHeading size="xl" as="h2">
@@ -73,7 +74,7 @@ export function JournalGrid({
       )}
       {visible.length === 0 ? (
         emptyMessage ? (
-          <p className="font-sans text-sm opacity-70">{emptyMessage}</p>
+          <p className="max-w-3xl font-sans text-lg leading-relaxed opacity-80">{emptyMessage}</p>
         ) : null
       ) : (
         <ul className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
@@ -99,7 +100,7 @@ function JournalCard({
     post.locale === "en" ? "en-US" : post.locale === "pt" ? "pt-BR" : "es-AR",
     { day: "2-digit", month: "short", year: "numeric" },
   );
-  const dateLabel = dateFormatter.format(new Date(post.date)).toUpperCase();
+  const dateLabel = dateFormatter.format(parseCalendarDate(post.date)).toUpperCase();
 
   return (
     <I18nLink

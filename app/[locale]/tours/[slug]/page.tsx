@@ -13,6 +13,7 @@ import {
   getTourPracticalSectionsFromMdx,
 } from "@/lib/content/getTourMdx";
 import { getTourMdxComponent } from "@/lib/content/tourMdxRegistry";
+import { parseCalendarDate } from "@/lib/date";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { breadcrumbSchema, tourTripSchema } from "@/lib/seo/jsonld";
 import { tourMetadata } from "@/lib/seo/metadata";
@@ -166,8 +167,8 @@ export default async function TourDetail({ params }: Props) {
               <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {departures.map((d) => {
                   const notes = d.notes[locale];
-                  const startLabel = dateFormatter.format(new Date(d.start_date));
-                  const endLabel = dateFormatter.format(new Date(d.end_date));
+                  const startLabel = dateFormatter.format(parseCalendarDate(d.start_date));
+                  const endLabel = dateFormatter.format(parseCalendarDate(d.end_date));
                   const statusLabel =
                     d.status === "open"
                       ? t("status_open")

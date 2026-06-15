@@ -36,6 +36,11 @@ const nosotrosImages = {
   camp: "/images/nosotros/WhatsApp Image 2026-04-15 at 17.06.08.jpeg",
 } as const;
 
+const aboutHeroImage = {
+  src: "/images/tours/gigantes_del_oeste/IMG-20260421-WA0103.jpg",
+  alt: "Rider de Moto On/Off cruzando el oeste argentino durante Gigantes del Oeste",
+} as const;
+
 const nosotrosCarouselImages = [
   {
     src: nosotrosImages.group,
@@ -125,12 +130,16 @@ function PosterPhoto({
   alt,
   className = "",
   sizes,
+  treatment = "color",
 }: {
   src: string;
   alt: string;
   className?: string;
   sizes: string;
+  treatment?: "poster" | "color";
 }) {
+  const isColor = treatment === "color";
+
   return (
     <div
       className={`bg-paper-aged border-ink/25 group/photo relative isolate overflow-hidden border-2 ${className}`}
@@ -140,19 +149,31 @@ function PosterPhoto({
         alt={alt}
         fill
         sizes={sizes}
-        className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0"
+        className={
+          isColor
+            ? "object-cover opacity-95 contrast-110 saturate-110"
+            : "object-cover opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0"
+        }
       />
-      <Image
-        src={src}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes={sizes}
-        className="object-cover opacity-0 transition-opacity duration-300 ease-out group-hover/photo:opacity-100"
-      />
-      <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply" />
+      {!isColor ? (
+        <Image
+          src={src}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes={sizes}
+          className="object-cover opacity-0 transition-opacity duration-300 ease-out group-hover/photo:opacity-100"
+        />
+      ) : null}
       <div
-        className="pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"
+        className={`bg-brand-red pointer-events-none absolute inset-0 mix-blend-multiply ${
+          isColor ? "opacity-5" : "opacity-15"
+        }`}
+      />
+      <div
+        className={`pointer-events-none absolute inset-0 mix-blend-multiply ${
+          isColor ? "opacity-15" : "opacity-25"
+        }`}
         style={{
           backgroundImage: "url(/textures/halftone-overlay.svg)",
           backgroundRepeat: "repeat",
@@ -383,7 +404,7 @@ export default async function AboutPage({ params }: Props) {
         <RedZone density="heavy" tornBottom={1}>
           <Container className="space-y-6">
             <Eyebrow>{t("eyebrow")}</Eyebrow>
-            <DisplayHeading size="2xl" as="h1">
+            <DisplayHeading size="2xl" as="h1" className="leading-display">
               {t("headline")}
             </DisplayHeading>
             <p className="max-w-prose font-sans text-lg leading-relaxed">{t("subheadline")}</p>
@@ -436,23 +457,24 @@ export default async function AboutPage({ params }: Props) {
     <>
       <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
         <Container>
-          <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.78fr]">
+          <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.78fr] lg:items-center">
             <div className="space-y-6">
               <Eyebrow>{t("eyebrow")}</Eyebrow>
-              <DisplayHeading size="2xl" as="h1">
-                RUTAS QUE VAN MÁS ALLÁ DEL ASFALTO
+              <DisplayHeading size="2xl" as="h1" className="leading-display">
+                EL EQUIPO QUE ABRE LA HUELLA
               </DisplayHeading>
               <p className="max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
-                Diseñamos rutas que van más allá del asfalto. Creamos experiencias de aventura en
-                moto que te transforman en un mejor piloto.
+                Somos el equipo que diseña, prueba y guía cada ruta. Antes de invitarte a cruzarla,
+                la rodamos nosotros.
               </p>
             </div>
             <div className="relative min-h-80 lg:min-h-[34rem]">
               <PosterPhoto
-                src={nosotrosImages.group}
-                alt="Grupo de riders de Moto On/Off reunido durante una travesía"
+                src={aboutHeroImage.src}
+                alt={aboutHeroImage.alt}
                 sizes="(min-width: 1024px) 38vw, 100vw"
                 className="absolute inset-x-0 top-0 h-72 rotate-1 md:h-96 lg:h-[27rem]"
+                treatment="color"
               />
               <div className="bg-paper text-accent-on-paper shadow-sticker-ink font-display absolute right-4 bottom-2 z-10 max-w-56 -rotate-2 border-2 border-current px-5 py-4 text-2xl leading-none uppercase md:right-10">
                 ON the Adventure. OFF the Map.
@@ -464,8 +486,6 @@ export default async function AboutPage({ params }: Props) {
 
       <PaperZone density="default" tornBottom={2}>
         <Container className="space-y-12">
-          <NosotrosCarousel />
-
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -571,7 +591,9 @@ export default async function AboutPage({ params }: Props) {
               alt="Riders de Moto On/Off en una parada de ruta"
               sizes="(min-width: 1024px) 82vw, 100vw"
               className="mx-auto aspect-[3264/1504] max-w-6xl -rotate-1"
+              treatment="color"
             />
+            <NosotrosCarousel />
           </div>
         </Container>
       </PaperZone>

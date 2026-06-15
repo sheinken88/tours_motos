@@ -74,71 +74,13 @@ export default async function TallerDeRutasIndex({ params }: Props) {
 
   return (
     <>
-      <RedZone density="light" tornBottom={2} className="overflow-hidden !pt-0 !pb-0">
-        {/* Full-bleed cinematic banner — one halftone landscape, copy overlaid
-            bottom-left. Red veil at the top keeps the fixed navbar legible. */}
-        <div className="relative w-full">
-          {/* Background layers fill the banner; the in-flow Container below sets the
-              height, so a tall headline grows the banner instead of clipping. */}
-          {heroCase ? (
-            <Image
-              src={heroCase.hero.src}
-              alt={heroCase.hero.alt}
-              fill
-              priority
-              sizes="100vw"
-              draggable={false}
-              className="object-cover object-center opacity-90 contrast-125 grayscale"
-            />
-          ) : null}
-          {/* Halftone dot texture, multiplied into the photo */}
-          <div
-            className="pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply"
-            style={{
-              backgroundImage: "url(/textures/halftone-overlay.svg)",
-              backgroundRepeat: "repeat",
-            }}
-            aria-hidden="true"
-          />
-          {/* Brand-red veil descending from the top so the fixed navbar reads */}
-          <div
-            className="pointer-events-none absolute inset-0 z-[2]"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(168,52,42,0.85) 0%, rgba(168,52,42,0.55) 14%, rgba(168,52,42,0.18) 28%, rgba(168,52,42,0) 42%)",
-            }}
-            aria-hidden="true"
-          />
-          {/* Ink gradient rising from the bottom-left so the headline always reads */}
-          <div
-            className="pointer-events-none absolute inset-0 z-[2]"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(31,20,14,0.92) 0%, rgba(31,20,14,0.78) 28%, rgba(31,20,14,0.28) 55%, rgba(31,20,14,0) 80%)",
-            }}
-            aria-hidden="true"
-          />
-
-          {/* In-flow copy — bottom-left. min-height makes the banner cinematic, but
-              tall content grows it past that, with top padding clearing the fixed nav. */}
-          <Container className="relative z-[3] flex min-h-[80vh] flex-col justify-end pt-28 pb-14 md:min-h-[86vh] md:pt-32 md:pb-20">
-            <div className="w-full max-w-[74rem] space-y-5">
-              <Eyebrow className="text-paper mb-10 md:mb-12">{t("eyebrow")}</Eyebrow>
-              <DisplayHeading size="2xl" as="h1" className="max-w-[17ch] xl:max-w-[18ch]">
-                {t("headline")}
-              </DisplayHeading>
-              <p className="text-paper/85 max-w-prose font-sans text-lg leading-relaxed">
-                {t("intro")}
-              </p>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
-                <Button href={`/${locale}/tours`} variant="sticker-filled" edge={1} tilt="left">
-                  {t("cta_primary")}
-                </Button>
-              </div>
-            </div>
-          </Container>
-        </div>
-      </RedZone>
+      <RouteWorkshopHero
+        locale={locale}
+        eyebrow={t("eyebrow")}
+        headline={t("headline")}
+        intro={t("intro")}
+        ctaLabel={t("cta_primary")}
+      />
 
       <PaperZone density="default" tornBottom={3}>
         <Container>
@@ -184,6 +126,8 @@ export default async function TallerDeRutasIndex({ params }: Props) {
                   sizes="(min-width: 1024px) 44vw, 92vw"
                   aspectClassName="aspect-[16/9]"
                   className="lg:rotate-1"
+                  showLabel={false}
+                  showCaption={false}
                 />
               ) : null}
             </div>
@@ -288,6 +232,251 @@ export default async function TallerDeRutasIndex({ params }: Props) {
   );
 }
 
+function RouteWorkshopHero({
+  locale,
+  eyebrow,
+  headline,
+  intro,
+  ctaLabel,
+}: {
+  locale: Locale;
+  eyebrow: string;
+  headline: string;
+  intro: string;
+  ctaLabel: string;
+}) {
+  return (
+    <RedZone density="default" tornBottom={2} className="overflow-hidden">
+      <RouteWorkshopBackdrop />
+
+      <Container className="relative z-10 grid min-h-[64vh] gap-10 pt-10 md:pt-12 lg:min-h-[66vh] lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.74fr)] lg:items-center xl:min-h-[70vh]">
+        <div className="max-w-[62rem] space-y-6">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <DisplayHeading
+            size="2xl"
+            as="h1"
+            className="max-w-[18ch] text-[clamp(4.25rem,6.8vw,5.7rem)] leading-display xl:max-w-[19ch]"
+          >
+            {headline}
+          </DisplayHeading>
+          <p className="text-paper/85 max-w-2xl font-sans text-lg leading-relaxed md:text-xl">
+            {intro}
+          </p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
+            <Button href={`/${locale}/tours`} variant="sticker-filled" edge={1} tilt="left">
+              {ctaLabel}
+            </Button>
+            <Stamp tilt={2} className="text-paper/85">
+              {localize(locale, "Rutas probadas")}
+            </Stamp>
+          </div>
+        </div>
+
+        <RouteWorkshopArt locale={locale} />
+      </Container>
+    </RedZone>
+  );
+}
+
+function RouteWorkshopBackdrop() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="absolute top-24 -right-16 h-64 w-[42rem] -rotate-6 opacity-20"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(90deg, transparent 0 22px, color-mix(in srgb, var(--color-paper) 60%, transparent) 22px 28px, transparent 28px 42px)",
+        }}
+      />
+      <div className="bg-paper-grain absolute top-28 -right-24 h-72 w-72 rotate-6 border-2 border-paper/60 opacity-25 mix-blend-screen lg:hidden">
+        <svg className="h-full w-full p-7 text-ink" viewBox="0 0 260 260" fill="none">
+          <path
+            d="M18 176C58 122 96 200 130 132C164 66 204 88 242 42"
+            stroke="currentColor"
+            strokeWidth="12"
+            strokeLinecap="round"
+            className="opacity-25"
+          />
+          <path
+            d="M18 176C58 122 96 200 130 132C164 66 204 88 242 42"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeDasharray="2 12"
+            className="opacity-80"
+          />
+          <path d="M38 64h92M38 86h62M38 214h148" stroke="currentColor" strokeWidth="5" />
+          <circle cx="130" cy="132" r="15" stroke="currentColor" strokeWidth="5" />
+          <circle cx="242" cy="42" r="15" stroke="currentColor" strokeWidth="5" />
+        </svg>
+      </div>
+      <div
+        className="absolute -bottom-8 left-0 h-44 w-full opacity-25 mix-blend-multiply"
+        style={{
+          backgroundImage: "url(/textures/halftone-overlay.svg)",
+          backgroundRepeat: "repeat",
+        }}
+      />
+      <div className="border-paper/25 absolute right-[8%] bottom-10 h-72 w-72 rotate-12 border-2 opacity-30" />
+      <div className="border-paper/20 absolute right-[14%] bottom-24 h-48 w-48 -rotate-12 border-2 opacity-30" />
+    </div>
+  );
+}
+
+function RouteWorkshopArt({ locale }: { locale: Locale }) {
+  const notes = [
+    localize(locale, "Altura"),
+    localize(locale, "Ripio"),
+    localize(locale, "Combustible"),
+  ];
+
+  return (
+    <div className="relative -mx-3 min-h-[26rem] sm:mx-0 lg:min-h-[31rem]" aria-hidden="true">
+      <div className="absolute top-8 right-0 left-6 h-[24rem] rotate-3 border-2 border-paper/40 bg-ink/10" />
+
+      <figure
+        className="bg-paper-grain text-on-paper shadow-sticker-ink absolute inset-x-0 top-2 isolate min-h-[25rem] -rotate-2 overflow-hidden border-2 border-paper/80 p-5 sm:p-7 lg:min-h-[29rem]"
+        style={{
+          clipPath: "polygon(0 3%, 98% 0, 100% 92%, 84% 100%, 2% 96%)",
+        }}
+      >
+        <div
+          className="absolute inset-0 opacity-70"
+          style={{
+            backgroundImage:
+              "linear-gradient(color-mix(in srgb, var(--color-ink) 13%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 13%, transparent) 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-20 mix-blend-multiply"
+          style={{
+            backgroundImage: "url(/textures/halftone-overlay.svg)",
+            backgroundRepeat: "repeat",
+          }}
+        />
+
+        <div className="relative z-10 flex items-start justify-between gap-5">
+          <div>
+            <p className="font-display text-accent-on-paper text-3xl leading-none uppercase sm:text-4xl">
+              {localize(locale, "Mesa de trazado")}
+            </p>
+            <p className="tracking-eyebrow mt-2 font-sans text-[0.65rem] font-bold uppercase opacity-70">
+              {localize(locale, "trazar / probar / ajustar")}
+            </p>
+          </div>
+          <Stamp tilt={3} className="text-accent-on-paper">
+            Rev. 04
+          </Stamp>
+        </div>
+
+        <RouteBlueprint className="absolute inset-x-4 top-[5.5rem] h-[17.5rem] sm:inset-x-8 sm:h-[20rem] lg:top-24 lg:h-[20rem]" />
+
+        <div className="absolute right-6 bottom-7 left-6 z-20 grid grid-cols-3 gap-2 sm:gap-3">
+          {notes.map((note, index) => (
+            <div key={note} className="border-ink/60 bg-paper-light/80 border-2 px-3 py-2">
+              <p className="font-display text-accent-on-paper text-xl leading-none">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <p className="tracking-eyebrow mt-1 font-sans text-[0.58rem] font-bold uppercase opacity-75">
+                {note}
+              </p>
+            </div>
+          ))}
+        </div>
+      </figure>
+
+      <div className="bg-paper-grain text-on-paper absolute top-1 right-2 z-20 rotate-6 border-2 border-current px-4 py-3 shadow-sticker-ink sm:right-8">
+        <p className="font-display text-accent-on-paper text-2xl leading-none uppercase">4895</p>
+        <p className="tracking-eyebrow font-sans text-[0.58rem] font-bold uppercase opacity-75">
+          msnm test
+        </p>
+      </div>
+
+      <div className="bg-paper-grain text-on-paper absolute -bottom-2 left-10 z-30 -rotate-3 border-2 border-current px-4 py-3 shadow-sticker-ink sm:left-16">
+        <p className="font-display text-xl leading-none uppercase">
+          {localize(locale, "GPX probado")}
+        </p>
+        <p className="tracking-eyebrow mt-1 font-sans text-[0.58rem] font-bold uppercase opacity-75">
+          S24 47.210 / W66 12.884
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function RouteBlueprint({ className = "" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 640 360" fill="none" role="img">
+      <path
+        d="M20 268C94 216 130 308 198 236C258 172 300 232 352 148C405 62 488 98 618 42"
+        stroke="currentColor"
+        strokeWidth="22"
+        strokeLinecap="round"
+        className="text-ink/10"
+      />
+      <path
+        d="M28 264C98 214 134 300 202 230C262 168 302 226 358 144C410 68 492 100 612 48"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeDasharray="1 17"
+        className="text-ink/55"
+      />
+      <path
+        d="M28 264C98 214 134 300 202 230C262 168 302 226 358 144C410 68 492 100 612 48"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+        className="text-accent-on-paper"
+      />
+
+      <path
+        d="M60 88C112 54 170 54 218 92C266 130 334 126 390 86C442 50 514 54 576 96"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="text-ink/20"
+      />
+      <path
+        d="M42 132C126 96 176 120 238 150C318 190 392 122 464 144C520 162 556 198 612 170"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="text-ink/20"
+      />
+      <path
+        d="M42 316C126 276 190 304 252 284C330 258 374 300 446 252C506 212 552 232 612 206"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="text-ink/20"
+      />
+
+      {[
+        { x: 28, y: 264, label: "A" },
+        { x: 202, y: 230, label: "B" },
+        { x: 358, y: 144, label: "C" },
+        { x: 612, y: 48, label: "D" },
+      ].map((point) => (
+        <g key={point.label} transform={`translate(${point.x} ${point.y})`}>
+          <circle r="18" className="fill-paper-light stroke-ink" strokeWidth="3" />
+          <text
+            y="6"
+            textAnchor="middle"
+            className="fill-accent-on-paper font-display text-xl"
+          >
+            {point.label}
+          </text>
+        </g>
+      ))}
+
+      <g className="text-ink/50" stroke="currentColor" strokeWidth="2">
+        <circle cx="526" cy="286" r="38" />
+        <path d="M526 238v18M526 316v18M478 286h18M556 286h18" />
+        <path d="M512 302l28-48-10 54-28 12z" className="fill-accent-on-paper/70" stroke="none" />
+      </g>
+    </svg>
+  );
+}
+
 function WorkshopStoryWall({
   entries,
   cases,
@@ -319,7 +508,7 @@ function WorkshopStoryWall({
         <p className="max-w-prose font-sans text-sm leading-relaxed opacity-75 lg:text-base">
           {localize(
             locale,
-            "El taller tiene que mostrar proceso real: pruebas, errores, logística y decisiones tomadas en el terreno.",
+            "Abrimos cada ruta para mostrar qué se probó, qué se descartó y qué decisión terminó marcando el camino.",
           )}
         </p>
       </div>
@@ -409,6 +598,7 @@ function WorkshopPhoto({
   aspectClassName,
   className = "",
   compact = false,
+  showLabel = true,
   showCaption = true,
 }: {
   image: WorkshopCaseImage;
@@ -418,6 +608,7 @@ function WorkshopPhoto({
   aspectClassName: string;
   className?: string;
   compact?: boolean;
+  showLabel?: boolean;
   showCaption?: boolean;
 }) {
   return (
@@ -442,11 +633,13 @@ function WorkshopPhoto({
           }}
           aria-hidden="true"
         />
-        <div className="absolute top-4 left-4 z-[2]">
-          <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
-            {label}
-          </span>
-        </div>
+        {showLabel ? (
+          <div className="absolute top-4 left-4 z-[2]">
+            <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
+              {label}
+            </span>
+          </div>
+        ) : null}
       </div>
       {showCaption ? (
         <figcaption

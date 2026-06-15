@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
-import { HalftoneImage, RedZone, RoutePlaceholderPanel } from "@/components/surfaces";
+import { RedZone, RoutePrint } from "@/components/surfaces";
 import { type Locale } from "@/lib/i18n/config";
 import { type Tour } from "@/lib/sheets/schemas";
 
@@ -10,86 +9,6 @@ type TourHeroProps = {
   tour: Tour;
   locale: Locale;
 };
-
-type RoutePrintProps = {
-  tour: Tour;
-  locale: Locale;
-  priority?: boolean;
-  className?: string;
-  sizes?: string;
-};
-
-function RoutePrint({
-  tour,
-  locale,
-  priority = false,
-  className = "",
-  sizes = "(min-width: 1024px) 58vw, 100vw",
-}: RoutePrintProps) {
-  const imageAlt = tour.hero_image_alt[locale] || tour.title[locale];
-  const routeImage = tour.hero_image_color || tour.hero_image;
-
-  return (
-    <figure
-      className={`group/route-print border-paper/30 relative isolate overflow-hidden border-y-2 bg-transparent ${className}`}
-      style={{
-        clipPath: "polygon(0 10%, 100% 0, 100% 90%, 80% 100%, 0 88%)",
-      }}
-    >
-      {routeImage ? (
-        tour.hero_image_color ? (
-          <Image
-            src={routeImage}
-            alt={imageAlt}
-            width={1846}
-            height={852}
-            sizes={sizes}
-            priority={priority}
-            loading={priority ? "eager" : undefined}
-            className="h-full w-full object-cover object-bottom opacity-95 contrast-125 saturate-75"
-          />
-        ) : (
-          <HalftoneImage
-            src={routeImage}
-            alt={imageAlt}
-            width={1846}
-            height={852}
-            sizes={sizes}
-            priority={priority}
-            loading={priority ? "eager" : undefined}
-            className="h-full w-full object-cover object-bottom opacity-95 contrast-125"
-          />
-        )
-      ) : (
-        <RoutePlaceholderPanel
-          id={tour.slug}
-          className="absolute inset-0 opacity-80 mix-blend-multiply"
-        />
-      )}
-      <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply" />
-      {tour.hero_image_color && tour.hero_image ? (
-        <HalftoneImage
-          src={tour.hero_image}
-          alt={imageAlt}
-          width={1846}
-          height={852}
-          sizes={sizes}
-          priority={priority}
-          loading={priority ? "eager" : undefined}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-bottom opacity-35 mix-blend-multiply contrast-125"
-        />
-      ) : null}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
-        style={{
-          backgroundImage: "url(/textures/halftone-overlay.svg)",
-          backgroundRepeat: "repeat",
-        }}
-        aria-hidden="true"
-      />
-    </figure>
-  );
-}
 
 /**
  * TourHero — per-tour variant of the home Hero. Same red-zone composition
@@ -106,6 +25,7 @@ function RoutePrint({
 export async function TourHero({ tour, locale }: TourHeroProps) {
   const tCommon = await getTranslations("common");
   const region = tour.region[locale];
+  const imageAlt = tour.hero_image_alt[locale] || tour.title[locale];
 
   return (
     <RedZone density="heavy" tornBottom={2} className="overflow-hidden">
@@ -140,8 +60,10 @@ export async function TourHero({ tour, locale }: TourHeroProps) {
 
         <div className="relative -mx-5 sm:-mx-8 md:mx-0">
           <RoutePrint
-            tour={tour}
-            locale={locale}
+            alt={imageAlt}
+            colorSrc={tour.hero_image_color}
+            halftoneSrc={tour.hero_image}
+            fallbackId={tour.slug}
             priority
             sizes="(min-width: 1024px) 44vw, 100vw"
             className="h-72 sm:h-[22rem] md:-rotate-1 lg:h-[30rem] lg:rotate-1 xl:h-[34rem]"

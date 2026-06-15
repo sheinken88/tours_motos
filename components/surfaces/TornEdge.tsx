@@ -53,7 +53,7 @@ export function TornEdge({ variant = 1, direction = "down", to, className = "" }
 
   return (
     <svg
-      className={`pointer-events-none absolute h-10 w-full ${positionClass} ${transformClass} ${className}`}
+      className={`pointer-events-none absolute z-[6] h-10 w-full ${positionClass} ${transformClass} ${className}`}
       viewBox="0 0 1440 42"
       preserveAspectRatio="none"
       aria-hidden

@@ -8,5 +8,6 @@ export { LandscapeBanner } from "./LandscapeBanner";
 export { PaperPanel } from "./PaperPanel";
 export { PaperZone } from "./PaperZone";
 export { RedZone } from "./RedZone";
+export { RoutePrint } from "./RoutePrint";
 export { TornEdge, type TornEdgeVariant } from "./TornEdge";
 export { RoutePlaceholderPanel, TourImagePoster } from "./TourImagePoster";

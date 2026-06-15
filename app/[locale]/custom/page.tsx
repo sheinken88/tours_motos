@@ -2,15 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import {
-  Button,
-  Container,
-  DisplayHeading,
-  Eyebrow,
-  Stamp,
-  StickyNote,
-  XIcon,
-} from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow, Stamp, XIcon } from "@/components/primitives";
 import { CustomTourForm } from "@/components/forms";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
@@ -79,19 +71,11 @@ function PosterPhoto({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0"
+        className="object-cover opacity-100 contrast-105 saturate-110 transition-[filter,transform] duration-300 ease-out group-hover/photo:scale-[1.015] group-hover/photo:contrast-110 group-hover/photo:saturate-125"
       />
-      <Image
-        src={src}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes={sizes}
-        className="object-cover opacity-0 transition-opacity duration-300 ease-out group-hover/photo:opacity-100"
-      />
-      <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply" />
+      <div className="bg-paper pointer-events-none absolute inset-0 opacity-10 mix-blend-multiply" />
       <div
-        className="pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
         style={{
           backgroundImage: "url(/textures/halftone-overlay.svg)",
           backgroundRepeat: "repeat",
@@ -110,6 +94,75 @@ function HeroRouteSlip({ label, value, meta }: { label: string; value: string; m
         {value}
       </p>
       <p className="mt-3 font-sans text-sm leading-relaxed opacity-80">{meta}</p>
+    </div>
+  );
+}
+
+function HeroGroundPrint() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[34svh] min-h-64 overflow-hidden"
+    >
+      <svg
+        className="text-ink absolute inset-x-0 bottom-0 h-full w-full opacity-35 mix-blend-multiply"
+        viewBox="0 0 1440 360"
+        preserveAspectRatio="none"
+        focusable="false"
+      >
+        <path
+          d="M0 262 L80 232 L150 252 L230 204 L310 226 L390 180 L470 222 L560 168 L650 214 L740 156 L820 206 L900 178 L980 220 L1060 188 L1140 228 L1220 198 L1310 238 L1440 216 L1440 360 L0 360 Z"
+          fill="currentColor"
+        />
+        <path
+          d="M0 286 C160 238 282 270 420 242 C568 212 694 218 842 246 C982 272 1122 246 1440 188"
+          fill="none"
+          stroke="var(--color-paper)"
+          strokeWidth="5"
+          strokeDasharray="28 18 7 18"
+          strokeLinecap="square"
+          opacity="0.62"
+        />
+        <path
+          d="M64 308 C226 278 336 292 494 268 C654 244 796 270 928 286 C1086 304 1228 274 1390 244"
+          fill="none"
+          stroke="var(--color-paper)"
+          strokeWidth="2"
+          strokeDasharray="8 18"
+          strokeLinecap="square"
+          opacity="0.45"
+        />
+      </svg>
+
+      <div
+        className="absolute inset-0 opacity-20 mix-blend-multiply"
+        style={{
+          backgroundImage: "url(/textures/halftone-overlay.svg)",
+          backgroundRepeat: "repeat",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="absolute -bottom-14 left-[-6rem] hidden h-48 w-[44rem] -rotate-12 opacity-20 mix-blend-multiply md:block">
+        <div className="grid h-full grid-cols-[repeat(18,minmax(0,1fr))] gap-3">
+          {Array.from({ length: 18 }).map((_, index) => (
+            <span
+              key={index}
+              className="bg-ink block h-full"
+              style={{
+                clipPath:
+                  index % 2 === 0
+                    ? "polygon(18% 0, 100% 0, 82% 100%, 0 100%)"
+                    : "polygon(0 0, 82% 0, 100% 100%, 18% 100%)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="text-paper font-display absolute right-[8vw] bottom-14 hidden -rotate-2 text-8xl leading-none uppercase opacity-10 lg:block">
+        Ruta propia
+      </div>
     </div>
   );
 }
@@ -205,9 +258,10 @@ export default async function CustomPage({ params }: Props) {
   return (
     <>
       <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-[1fr_0.82fr] lg:items-end">
-            <div className="relative z-10 space-y-8">
+        <HeroGroundPrint />
+        <Container className="relative z-10 lg:flex lg:min-h-[calc(100svh-14rem)] lg:items-center">
+          <div className="grid w-full gap-12 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+            <div className="relative z-10 space-y-8 lg:-translate-y-8">
               <div className="space-y-6">
                 <Eyebrow>{t("eyebrow")}</Eyebrow>
                 <DisplayHeading size="2xl" as="h1">
@@ -250,9 +304,6 @@ export default async function CustomPage({ params }: Props) {
                 value={t("permit_value")}
                 meta={t("permit_meta")}
               />
-              <StickyNote className="absolute top-5 right-0 z-20 md:right-8" tilt={3}>
-                {t("sticky_note")}
-              </StickyNote>
             </div>
           </div>
         </Container>
@@ -264,7 +315,7 @@ export default async function CustomPage({ params }: Props) {
             <div className="space-y-8">
               <div className="space-y-4">
                 <Eyebrow rule>{t("brief_eyebrow")}</Eyebrow>
-                <DisplayHeading size="xl" as="h2">
+                <DisplayHeading size="xl" as="h2" className="leading-[1.08]">
                   {t("brief_heading")}
                 </DisplayHeading>
               </div>
@@ -277,7 +328,7 @@ export default async function CustomPage({ params }: Props) {
                 <Stamp tilt={2}>{t("brief_stamp_2")}</Stamp>
               </div>
             </div>
-            <div className="grid min-h-[31rem] grid-cols-5 grid-rows-5 gap-4">
+            <div className="grid min-h-[36rem] grid-cols-5 grid-rows-[repeat(3,minmax(0,1fr))_repeat(2,minmax(0,1.45fr))] gap-4">
               <PosterPhoto
                 src={customImages.puna}
                 alt={t("brief_image_alt_1")}
@@ -368,10 +419,10 @@ export default async function CustomPage({ params }: Props) {
         </Container>
       </RedZone>
 
-      <PaperZone density="default" id="custom-form">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.72fr_1fr] lg:items-start">
-            <aside className="space-y-8">
+      <PaperZone density="default" id="custom-form" className="overflow-hidden">
+        <Container className="max-w-[92rem]">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(36rem,1fr)] lg:items-start lg:gap-14 xl:gap-16">
+            <aside className="space-y-8 lg:max-w-[36rem]">
               <div className="space-y-4">
                 <Eyebrow rule>{t("form_eyebrow")}</Eyebrow>
                 <DisplayHeading size="xl" as="h2">
@@ -385,10 +436,19 @@ export default async function CustomPage({ params }: Props) {
                   <RouteIdeaCard key={item.title} {...item} index={index} />
                 ))}
               </div>
+            </aside>
 
-              <div data-zone="red" className="bg-red-grunge text-on-red border-ink border-2 p-6">
+            <div className="space-y-7 lg:mt-7 xl:mt-9">
+              <div className="bg-paper-light shadow-sticker-red border-ink border-2 p-5 md:p-8">
+                <CustomTourForm locale={locale} />
+              </div>
+
+              <div
+                data-zone="red"
+                className="bg-red-grunge text-on-red border-ink border-2 p-6 md:p-7"
+              >
                 <Eyebrow rule>{t("talk_eyebrow")}</Eyebrow>
-                <p className="font-display mt-5 text-4xl leading-none uppercase">
+                <p className="font-display mt-5 text-4xl leading-none uppercase md:text-5xl">
                   {t("talk_heading")}
                 </p>
                 <p className="mt-4 font-sans text-base leading-relaxed opacity-85">
@@ -406,10 +466,6 @@ export default async function CustomPage({ params }: Props) {
                   {t("talk_cta")}
                 </Button>
               </div>
-            </aside>
-
-            <div className="bg-paper-light shadow-sticker-red border-ink border-2 p-5 md:p-8">
-              <CustomTourForm locale={locale} />
             </div>
           </div>
         </Container>

@@ -3,6 +3,7 @@
  * Pre-built compositions; pages stack them inside <RedZone>/<PaperZone> wrappers.
  */
 export { CalendarStrip } from "./CalendarStrip";
+export { CustomRouteTeaser } from "./CustomRouteTeaser";
 export { FeatureStripGrid } from "./FeatureStripGrid";
 export { Hero } from "./Hero";
 export { JournalGrid, type JournalPost } from "./JournalGrid";

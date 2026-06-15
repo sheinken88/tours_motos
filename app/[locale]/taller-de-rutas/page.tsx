@@ -255,7 +255,7 @@ function RouteWorkshopHero({
           <DisplayHeading
             size="2xl"
             as="h1"
-            className="max-w-[18ch] text-[clamp(4.25rem,6.8vw,5.7rem)] leading-display xl:max-w-[19ch]"
+            className="leading-display max-w-[18ch] text-[clamp(4.25rem,6.8vw,5.7rem)] xl:max-w-[19ch]"
           >
             {headline}
           </DisplayHeading>
@@ -288,8 +288,8 @@ function RouteWorkshopBackdrop() {
             "repeating-linear-gradient(90deg, transparent 0 22px, color-mix(in srgb, var(--color-paper) 60%, transparent) 22px 28px, transparent 28px 42px)",
         }}
       />
-      <div className="bg-paper-grain absolute top-28 -right-24 h-72 w-72 rotate-6 border-2 border-paper/60 opacity-25 mix-blend-screen lg:hidden">
-        <svg className="h-full w-full p-7 text-ink" viewBox="0 0 260 260" fill="none">
+      <div className="bg-paper-grain border-paper/60 absolute top-28 -right-24 h-72 w-72 rotate-6 border-2 opacity-25 mix-blend-screen lg:hidden">
+        <svg className="text-ink h-full w-full p-7" viewBox="0 0 260 260" fill="none">
           <path
             d="M18 176C58 122 96 200 130 132C164 66 204 88 242 42"
             stroke="currentColor"
@@ -332,10 +332,10 @@ function RouteWorkshopArt({ locale }: { locale: Locale }) {
 
   return (
     <div className="relative -mx-3 min-h-[26rem] sm:mx-0 lg:min-h-[31rem]" aria-hidden="true">
-      <div className="absolute top-8 right-0 left-6 h-[24rem] rotate-3 border-2 border-paper/40 bg-ink/10" />
+      <div className="border-paper/40 bg-ink/10 absolute top-8 right-0 left-6 h-[24rem] rotate-3 border-2" />
 
       <figure
-        className="bg-paper-grain text-on-paper shadow-sticker-ink absolute inset-x-0 top-2 isolate min-h-[25rem] -rotate-2 overflow-hidden border-2 border-paper/80 p-5 sm:p-7 lg:min-h-[29rem]"
+        className="bg-paper-grain text-on-paper shadow-sticker-ink border-paper/80 absolute inset-x-0 top-2 isolate min-h-[25rem] -rotate-2 overflow-hidden border-2 p-5 sm:p-7 lg:min-h-[29rem]"
         style={{
           clipPath: "polygon(0 3%, 98% 0, 100% 92%, 84% 100%, 2% 96%)",
         }}
@@ -386,14 +386,14 @@ function RouteWorkshopArt({ locale }: { locale: Locale }) {
         </div>
       </figure>
 
-      <div className="bg-paper-grain text-on-paper absolute top-1 right-2 z-20 rotate-6 border-2 border-current px-4 py-3 shadow-sticker-ink sm:right-8">
+      <div className="bg-paper-grain text-on-paper shadow-sticker-ink absolute top-1 right-2 z-20 rotate-6 border-2 border-current px-4 py-3 sm:right-8">
         <p className="font-display text-accent-on-paper text-2xl leading-none uppercase">4895</p>
         <p className="tracking-eyebrow font-sans text-[0.58rem] font-bold uppercase opacity-75">
           msnm test
         </p>
       </div>
 
-      <div className="bg-paper-grain text-on-paper absolute -bottom-2 left-10 z-30 -rotate-3 border-2 border-current px-4 py-3 shadow-sticker-ink sm:left-16">
+      <div className="bg-paper-grain text-on-paper shadow-sticker-ink absolute -bottom-2 left-10 z-30 -rotate-3 border-2 border-current px-4 py-3 sm:left-16">
         <p className="font-display text-xl leading-none uppercase">
           {localize(locale, "GPX probado")}
         </p>
@@ -458,11 +458,7 @@ function RouteBlueprint({ className = "" }: { className?: string }) {
       ].map((point) => (
         <g key={point.label} transform={`translate(${point.x} ${point.y})`}>
           <circle r="18" className="fill-paper-light stroke-ink" strokeWidth="3" />
-          <text
-            y="6"
-            textAnchor="middle"
-            className="fill-accent-on-paper font-display text-xl"
-          >
+          <text y="6" textAnchor="middle" className="fill-accent-on-paper font-display text-xl">
             {point.label}
           </text>
         </g>

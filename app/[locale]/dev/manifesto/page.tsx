@@ -103,15 +103,13 @@ const SHOWCASE: Array<{
   {
     number: 8,
     title: "Rugged ink stamp · edge 2",
-    description:
-      "Same hybrid, sticker-edge variant 2 — slightly different chip pattern.",
+    description: "Same hybrid, sticker-edge variant 2 — slightly different chip pattern.",
     Component: (props) => <Variant7RuggedInkStamp {...props} edge={2} />,
   },
   {
     number: 9,
     title: "Rugged ink stamp · edge 3",
-    description:
-      "Same hybrid, sticker-edge variant 3 — third silhouette for comparison.",
+    description: "Same hybrid, sticker-edge variant 3 — third silhouette for comparison.",
     Component: (props) => <Variant7RuggedInkStamp {...props} edge={3} />,
   },
 ];

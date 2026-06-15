@@ -22,7 +22,7 @@ export function HeroVideo() {
       {/* Subtle red wash — just enough to anchor light text, footage still reads naturally. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-brand-red mix-blend-multiply opacity-40"
+        className="bg-brand-red absolute inset-0 opacity-40 mix-blend-multiply"
       />
     </div>
   );

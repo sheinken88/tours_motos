@@ -52,8 +52,7 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
       src: "/images/tours/sobre_las_nubes/20260311_100314.jpg",
       alt: "Dos motos detenidas en una ruta de altura de Salta y Jujuy.",
       label: "Buscando alternativas",
-      caption:
-        "Queríamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto.",
+      caption: "Queríamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto.",
     },
     images: [
       {
@@ -85,7 +84,8 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     decisionSection: {
       eyebrow: "Tramos descartados",
       title: "TRAMOS DESCARTADOS",
-      intro: "Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.",
+      intro:
+        "Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.",
     },
     decisions: [
       {
@@ -202,7 +202,8 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
         src: "/images/tours/volcanes_del_norte/11.jpeg",
         alt: "Riders junto a una moto en la montaña nevada de Catamarca.",
         label: "Ajustes",
-        caption: "Recorrimos variantes, invertimos etapas y ajustamos el recorrido hasta encontrar el equilibrio correcto.",
+        caption:
+          "Recorrimos variantes, invertimos etapas y ajustamos el recorrido hasta encontrar el equilibrio correcto.",
       },
     ],
     stats: [

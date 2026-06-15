@@ -190,7 +190,7 @@ function NosotrosCarousel() {
       className="border-ink/30 bg-paper-light shadow-sticker-ink border-2 p-4 md:p-5"
       aria-label="Fotos de Moto On/Off"
     >
-      <div className="grid auto-cols-[minmax(16rem,76vw)] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-3 [scroll-snap-type:x_mandatory] md:auto-cols-[minmax(22rem,38vw)] lg:auto-cols-[minmax(24rem,30vw)]">
+      <div className="grid [scroll-snap-type:x_mandatory] auto-cols-[minmax(16rem,76vw)] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-3 md:auto-cols-[minmax(22rem,38vw)] lg:auto-cols-[minmax(24rem,30vw)]">
         {nosotrosCarouselImages.map((image, index) => (
           <div
             key={image.src}

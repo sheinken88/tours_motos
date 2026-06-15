@@ -20,11 +20,7 @@ export function Variant5RuleAndDots({ variants }: Props) {
   if (!active || !longest) return null;
 
   return (
-    <div
-      className="max-w-prose space-y-3"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
+    <div className="max-w-prose space-y-3" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div className="border-paper relative border-l-2 pl-4">
         <p
           aria-hidden

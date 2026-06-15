@@ -51,4 +51,3 @@ export function Variant1InkBanner({ variants }: Props) {
     </div>
   );
 }
-

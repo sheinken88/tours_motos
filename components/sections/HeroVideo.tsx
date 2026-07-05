@@ -37,7 +37,12 @@ export function HeroVideo() {
         disablePictureInPicture
         className="h-full w-full object-cover"
       >
-        {loadVideo ? <source src="/video/hero-bg.mp4" type="video/mp4" /> : null}
+        {loadVideo ? (
+          <>
+            <source src="/video/hero-bg.mp4" type="video/mp4" media="(min-width: 768px)" />
+            <source src="/video/hero-bg-mobile.mp4" type="video/mp4" />
+          </>
+        ) : null}
       </video>
       <div
         aria-hidden="true"

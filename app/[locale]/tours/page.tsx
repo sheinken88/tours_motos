@@ -61,7 +61,7 @@ export default async function ToursIndex({ params }: Props) {
     <>
       <RedZone density="heavy" tornBottom={3} className="min-h-[100svh] overflow-hidden !py-0">
         <Image
-          src="/images/nosotros/428-DSC09893.jpg"
+          src="/images/optimized/heroes/tours-index.jpg"
           alt={t("hero_image_alt")}
           fill
           priority

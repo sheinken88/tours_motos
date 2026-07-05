@@ -3,9 +3,8 @@ import { type NextRequest } from "next/server";
 import { defaultLocale, isLocale } from "@/lib/i18n/config";
 import { getTourBySlug } from "@/lib/sheets/queries";
 
-// Node runtime — getTourBySlug pulls through googleapis (Node-only).
-// next/og works under nodejs runtime, slightly slower cold start than edge
-// but the SSR + Sheets pipeline can't run on edge anyway.
+// Node runtime keeps this aligned with the rest of the app router surfaces.
+// Route data itself is static; Sheets is no longer part of OG generation.
 export const runtime = "nodejs";
 
 const BRAND_RED = "#A8342A";
@@ -21,8 +20,6 @@ const INK = "#1F140E";
  *   - Eyebrow (region) + display headline (tour title) in paper color
  *   - Metadata strip (days · km · difficulty)
  *   - Brand wordmark bottom-right
- *
- * Edge runtime — needed by next/og to deliver fast image responses.
  *
  * Usage from tour metadata:
  *   /api/og/{tour.slug}?locale=es

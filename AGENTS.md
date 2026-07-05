@@ -13,7 +13,7 @@
 - **Volcanes del Norte** — Catamarca · 7 días · 50% ripio · hasta 4550 msnm
 - **Cruces del Sur** — Carretera Austral y Patagonia · 7 días · 2321 km · 45% ripio
 
-Full day-by-day itineraries live in `/docs/tours-source.md` — that file is the source of truth, the Sheets `Tours` tab and `lib/sheets/mock.ts` derive from it. The site exists to convert visitors into inquiries (primarily via WhatsApp and contact email) and to rank for tour-specific search terms.
+Full day-by-day itineraries live in `/docs/tours-source.md` — that file is the source of truth for the static tour catalog and `lib/sheets/mock.ts` derives from it. The site exists to convert visitors into inquiries (primarily via WhatsApp and contact email) and to rank for tour-specific search terms.
 
 ### Brand positioning
 
@@ -56,7 +56,7 @@ Spanish first (Rioplatense), then English, then Portuguese. Voice translates; id
 | ---------------- | ----------------------------------------- | ---------------------------------------------------------------------------- |
 | Framework        | **Next.js 14+ (App Router)**              | RSC by default; Client Components only where state/interactivity is required |
 | Styling          | **Tailwind CSS**                          | Theme tokens defined in `tailwind.config.ts` — see design system §8          |
-| CMS              | **Google Sheets**                         | Tours, dates, availability, pricing pulled from Sheets — see §6              |
+| CMS              | **Static routes + Google Sheets dates**   | Route catalog/images live in repo; departures/calendar dates come from Sheets |
 | Content (static) | **MDX**                                   | About, Custom Tours, legal pages — content that doesn't change often         |
 | Forms            | **React Hook Form + Zod**                 | Inquiry forms, custom tour forms                                             |
 | Animation        | **Framer Motion**                         | Used sparingly per design philosophy                                         |
@@ -68,8 +68,8 @@ Spanish first (Rioplatense), then English, then Portuguese. Voice translates; id
 ### Do not introduce
 
 - A backend framework (no Express, NestJS, etc.) — Next.js API routes / Server Actions are sufficient.
-- A database (Sheets is the source of truth for tours; everything else is static).
-- A traditional headless CMS (Sanity, Payload, Contentful) — explicitly rejected to keep client management on Sheets.
+- A database (the route catalog is static; Sheets is only for departures/calendar dates).
+- A traditional headless CMS (Sanity, Payload, Contentful) — explicitly rejected for this launch scope.
 - shadcn/ui or pre-built component libraries — components are custom; the aesthetic is incompatible with most defaults (rounded corners, soft shadows, neutral palettes).
 - CSS-in-JS (styled-components, emotion). Tailwind only.
 
@@ -92,7 +92,7 @@ Spanish first (Rioplatense), then English, then Portuguese. Voice translates; id
       /contact/page.tsx
     layout.tsx
   /api
-    /tours                     # Sheets read endpoint (cached)
+    /tours                     # Static tours + cached departures smoke endpoint
     /inquiries                 # Form submission handler
     /revalidate                # On-demand ISR refresh
 /components
@@ -105,7 +105,7 @@ Spanish first (Rioplatense), then English, then Portuguese. Voice translates; id
   /journal                     # MDX journal posts
   /pages                       # About, Custom Tours, etc.
 /lib
-  /sheets                      # Google Sheets client + parsers
+  /sheets                      # Departure Sheets client + static route query facade
   /i18n                        # Locale config + dictionaries
   /seo                         # Metadata helpers, JSON-LD generators
 /public
@@ -136,8 +136,8 @@ tailwind.config.ts
 
 ### Key patterns
 
-- **Tour content is hybrid**: structured data (dates, price, availability, capacity) lives in Sheets. Long-form descriptive content (overview, itinerary, FAQ) lives in MDX under `/content/tours/[slug]/[locale].mdx`. The tour page reads both and merges them.
-- **Slug is the join key** between Sheets row and MDX file.
+- **Tour content is static**: route metadata, itinerary, sections, gallery references, and optimized images live in the repo. Departures/availability dates still come from Sheets.
+- **Slug is the join key** between static route metadata, MDX files, journal/workshop cases, and departure rows.
 - **Routing is locale-prefixed**. No automatic locale detection at the route level — user picks via switcher; preference stored in cookie.
 - **Halftone images are pre-processed assets**, not runtime conversions. See `/docs/halftone-pipeline.md`.
 - **Pages are stacks of zones.** Every page is composed of `<RedZone>` and `<PaperZone>` components separated by `<TornEdge>` transitions. Never hand-build section backgrounds.
@@ -206,11 +206,11 @@ The token surface (regardless of declaration site) is:
 
 ---
 
-## 6. Google Sheets as CMS
+## 6. Static Routes + Google Sheets Dates
 
 ### Why this choice
 
-Client must be able to add tours, edit dates, and update availability without engineering involvement. Sheets is the lowest-friction option that meets this requirement and avoids the cost/complexity of a real CMS for a small content set.
+The route catalog is curated launch content and should ship as static site data with local optimized imagery. The client still needs to edit departure dates and availability without engineering involvement, so Sheets remains the lowest-friction option for the calendar surface only.
 
 ### Architecture
 
@@ -218,12 +218,9 @@ Client must be able to add tours, edit dates, and update availability without en
 - Credentials in `GOOGLE_SHEETS_CREDENTIALS` env var (JSON, base64-encoded).
 - Sheet ID in `GOOGLE_SHEETS_TOURS_ID`.
 - Read layer in `/lib/sheets/` exposes typed functions: `getTours()`, `getTourBySlug(slug)`, `getUpcomingDepartures()`.
+- `getTours()` and route-detail helpers return static repo data; `getUpcomingDepartures()` and `getDeparturesByTour()` may read Sheets.
 
-### Sheet structure (proposed)
-
-**Sheet: `Tours`**
-
-| slug | title_es | title_en | title_pt | region | difficulty | duration_days | distance_km | base_price_usd | currency | hero_image | published |
+### Sheet structure
 
 **Sheet: `Departures`**
 
@@ -231,21 +228,20 @@ Client must be able to add tours, edit dates, and update availability without en
 
 ### Caching
 
-- **ISR with `revalidate: 600`** (10 minutes) on tour pages — client edits are visible within 10 min without manual deploys.
-- **On-demand revalidation** via `/api/revalidate` endpoint with a secret token, so the client can hit a "Refresh site" link in their bookmarks for instant updates after big changes.
-- `unstable_cache` wrapping the Sheets client with the same TTL.
+- **ISR with `revalidate: 600`** (10 minutes) on pages that show departures — client edits are visible within 10 min without manual deploys.
+- **On-demand revalidation** via `/api/revalidate` endpoint with a secret token, so the client can hit a "Refresh site" link in their bookmarks for instant departure updates.
+- `unstable_cache` wraps the departure reader with the same TTL.
 
 ### Validation
 
-- Every Sheets read goes through a **Zod schema** (`/lib/sheets/schemas.ts`). If a row fails validation, log it and skip — never crash the page.
-- A row with `published = FALSE` (or empty) is excluded from production.
+- Every departure Sheets read goes through a **Zod schema** (`/lib/sheets/schemas.ts`). If a row fails validation, log it and skip — never crash the page.
 
 ### Failure modes
 
 If Sheets is unreachable:
 
-- Tour index falls back to the last cached snapshot.
-- Individual tour page (the SEO-critical surface) keeps serving the cached version.
+- Tour index and individual tour pages keep serving static route content.
+- Calendar and departure strips fall back to the last cached departure snapshot, or mock departures locally.
 - Never show a broken page to a visitor because Sheets had a hiccup.
 
 ---
@@ -297,7 +293,7 @@ Three locales required: **Spanish (default), English, Portuguese**.
 ### Conventions
 
 - Routing: `/es/...`, `/en/...`, `/pt/...`. No locale-less root route except a redirect to `/es/`.
-- Tour slugs are **localized** per language (e.g., `/es/tours/sobre-las-nubes`, `/en/tours/over-the-clouds`). The Sheets row holds a slug per language. Phase-9 launch slugs are identical across locales (`sobre-las-nubes`, `gigantes-del-oeste`, `volcanes-del-norte`, `cruces-del-sur`); EN/PT slugs may diverge once the translator passes.
+- Tour slugs are **localized** per language (e.g., `/es/tours/sobre-las-nubes`, `/en/tours/over-the-clouds`). Static route metadata holds one slug per language. Phase-9 launch slugs are identical across locales (`sobre-las-nubes`, `gigantes-del-oeste`, `volcanes-del-norte`, `cruces-del-sur`); EN/PT slugs may diverge once the translator passes.
 - Dictionaries in `/lib/i18n/dictionaries/{es,en,pt}.json` for static UI strings.
 - MDX content has one file per locale per tour: `/content/tours/{slug}/{locale}.mdx`.
 - **Do not use auto-translation services** — all copy is human-written. The brand voice does not survive machine translation.
@@ -395,7 +391,7 @@ WhatsApp is the primary contact channel. Treat it as a first-class element of th
 - Reuse primitives and surfaces from `/components/primitives/` and `/components/surfaces/` instead of restyling per-section.
 - **Compose pages as stacks of `<RedZone>` and `<PaperZone>`** with `<TornEdge>` between them.
 - Add new tokens to `tailwind.config.ts` rather than using arbitrary values.
-- Validate Sheets data with Zod on every read.
+- Validate departure Sheets data with Zod on every read.
 - Keep components Server-rendered unless interactivity demands otherwise.
 - Pre-process halftone images offline; reference them via `<HalftoneImage>`.
 - Use `<Button variant="sticker-outline">` as the default CTA, `sticker-filled` only for top-priority conversion CTAs (max 1 per zone).
@@ -423,10 +419,10 @@ WhatsApp is the primary contact channel. Treat it as a first-class element of th
 - **Don't write triple-real claims** — no "real connections, real stories, real hospitality." Pick one specific moment and describe it.
 - **Don't use abstract scene-setters** like "Mountains. Desert. Epic." — replace with concrete specifics (distances, elevations, place names, day counts).
 - Don't auto-translate copy — always ask for human translations.
-- Don't bypass the Sheets validation layer.
+- Don't bypass the Sheets validation layer for departures/calendar dates.
 - Don't add a new CMS, database, or backend framework without explicit approval.
 - Don't ship hardcoded WhatsApp numbers — read from `NEXT_PUBLIC_WHATSAPP_NUMBER`.
-- Don't ship hardcoded tour data — Sheets is the source of truth.
+- Don't source route content or route images from Sheets. Keep the curated tour catalog, image references, and optimized hero assets in the repo.
 - Don't use stock photography. Don't use clean photo edges. Don't skip the halftone pipeline.
 - Don't introduce shadcn/ui or any pre-built component library.
 - Don't use `rotate-0` on stickers "to keep things tidy" — the tilt is the brand.
@@ -438,7 +434,7 @@ WhatsApp is the primary contact channel. Treat it as a first-class element of th
 ## 14. Environment Variables
 
 ```
-# Google Sheets
+# Google Sheets — departures/calendar only
 GOOGLE_SHEETS_CREDENTIALS=        # base64-encoded service account JSON
 GOOGLE_SHEETS_TOURS_ID=           # Spreadsheet ID
 
@@ -470,10 +466,10 @@ When picking up the project from scratch, build in this order:
 3. **Primitives**: `Button` (sticker-outline + sticker-filled variants), `Eyebrow`, `DisplayHeading` (with distress filter + zone-aware color), `Stamp`, `StickyNote`, `XIcon`, `HandUnderline`, `SkullBadge`, `Container`.
 4. **Surfaces**: `RedZone`, `PaperZone`, `TornEdge`, `HalftoneImage`, `CutoutFigure`, `LandscapeBanner`, `PaperPanel`.
 5. **Layout shell**: `Nav`, `Footer`, `WhatsAppFAB`, locale routing.
-6. **Sheets integration** (`/lib/sheets/`) with Zod validation and caching.
+6. **Static route data + Sheets departures** (`/lib/sheets/`) with Zod validation and caching for departure rows.
 7. **Hero zone** for the home page — full poster composition with all six layers + torn edge transition. **Validation gate.**
-8. **Tour index page** (`/tours`) reading from Sheets.
-9. **Tour detail page** (`/tours/[slug]`) — Sheets data + MDX content + JSON-LD + halftone hero.
+8. **Tour index page** (`/tours`) reading static route data.
+9. **Tour detail page** (`/tours/[slug]`) — static route data + MDX content + JSON-LD + halftone hero.
 10. **FeatureStripGrid** (4-cell bordered icon grid).
 11. **TourGrid** + tour card design.
 12. **XListSection** ("this is for you if..." pattern).

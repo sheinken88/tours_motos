@@ -2,15 +2,15 @@ import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 /**
- * On-demand cache revalidation for the Sheets CMS.
+ * On-demand cache revalidation for content and calendar dates.
  *
  * Auth: REVALIDATE_SECRET passed via the `x-revalidate-secret` header OR
  * the `?secret=` query param so the client can bookmark a "Refresh site"
- * URL. Returns 401 on missing or wrong secret.
+ * URL after changing departure dates. Returns 401 on missing or wrong secret.
  *
  * Tags (CLAUDE.md §6):
- *   - tours       — fired by default
- *   - departures  — fired by default
+ *   - tours       — static route content cache
+ *   - departures  — Sheets-backed calendar dates
  *   - all         — only fired when `?tag=all` is passed; not used yet
  *
  * Usage:

@@ -1,7 +1,6 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
 import { type Locale } from "@/lib/i18n/config";
-import { hasRealCredentials, readSheet } from "./client";
 import {
   MOCK_DEPARTURES,
   MOCK_GALLERY,
@@ -18,34 +17,25 @@ import {
   type TourPageContent,
   type TourSection,
   parseDepartures,
-  parseGalleryImages,
-  parseItinerary,
-  parseTourSections,
-  parseTours,
 } from "./schemas";
 
 /**
- * Query layer over the Sheets CMS. Every reader is cached for 10 minutes and
- * tagged so /api/revalidate can flush surgically. Callers consume stable typed
- * data whether the source is Google Sheets or the local mock.
+ * Query layer for route content and calendar departures.
+ *
+ * Tours, itinerary, route sections, gallery, and route images are static site
+ * content. Google Sheets is used only for the departures/calendar surface.
+ * Every reader is cached for 10 minutes and tagged so /api/revalidate can
+ * flush departures after client edits.
  */
 
 const REVALIDATE_SECONDS = 600;
 
-const TOURS_RANGE = "Tours!A1:AZ1000";
-const ITINERARY_RANGE = "Itinerary!A1:AZ3000";
-const SECTIONS_RANGE = "Includes!A1:AZ3000";
-const GALLERY_RANGE = "Gallery!A1:AZ3000";
 const DEPARTURES_RANGE = "Departures!A1:AZ1000";
 
 type LocalizedText = Record<Locale, string>;
 type LocalizedList = Record<Locale, string[]>;
 
 // ─── Images ────────────────────────────────────────────────────────────────
-
-function isRemoteImage(publicPath: string): boolean {
-  return /^https?:\/\//i.test(publicPath);
-}
 
 function isLocalPublicImage(publicPath: string): boolean {
   return publicPath.startsWith("/") && !publicPath.startsWith("//");
@@ -54,11 +44,11 @@ function isLocalPublicImage(publicPath: string): boolean {
 /**
  * Keep local public image paths out of filesystem probing. Runtime `existsSync`
  * on variable public paths makes Vercel's file tracer bundle the whole
- * `public/` tree into server functions. Remote/Drive URLs are still validated
- * by Next image remotePatterns at render time.
+ * `public/` tree into server functions. Route images should resolve to local
+ * public assets now that Sheets no longer owns route imagery.
  */
 function resolveHeroImages(tours: Tour[]): Tour[] {
-  const resolves = (src: string) => src && (isRemoteImage(src) || isLocalPublicImage(src));
+  const resolves = (src: string) => src && isLocalPublicImage(src);
   return tours.map((tour) => ({
     ...tour,
     hero_image: resolves(tour.hero_image) ? tour.hero_image : "",
@@ -131,81 +121,37 @@ function normalizeDepartures(departures: Departure[]): Departure[] {
   }));
 }
 
-function supplementMissingTourRows<T extends { tour_slug: string }>(rows: T[], fallback: T[]): T[] {
-  const populatedTours = new Set(rows.map((row) => row.tour_slug));
-  return [...rows, ...fallback.filter((row) => !populatedTours.has(row.tour_slug))];
-}
-
 // ─── Sheet fetch helpers ───────────────────────────────────────────────────
 
 async function fetchSheetRows(range: string) {
+  const { readSheet } = await import("./client");
   const { headers, rows } = await readSheet(range);
   return { headers, rows };
 }
 
-async function fetchTours(): Promise<Tour[]> {
-  if (!hasRealCredentials()) {
-    if (process.env.NODE_ENV !== "production") {
-      console.info("[sheets] credentials missing — serving mock tours");
-    }
-    return sortTours(
-      resolveHeroImages(normalizeTours(MOCK_TOURS.filter((tour) => tour.published))),
-    );
-  }
+async function hasSheetsCredentials(): Promise<boolean> {
+  const { hasRealCredentials } = await import("./client");
+  return hasRealCredentials();
+}
 
-  try {
-    const { headers, rows } = await fetchSheetRows(TOURS_RANGE);
-    return sortTours(resolveHeroImages(normalizeTours(parseTours(headers, rows))));
-  } catch (error) {
-    console.error("[sheets] fetchTours failed", error);
-    return [];
-  }
+async function fetchTours(): Promise<Tour[]> {
+  return sortTours(resolveHeroImages(normalizeTours(MOCK_TOURS.filter((tour) => tour.published))));
 }
 
 async function fetchItinerary(): Promise<ItineraryDay[]> {
-  if (!hasRealCredentials()) return normalizeItinerary(MOCK_ITINERARY);
-
-  try {
-    const { headers, rows } = await fetchSheetRows(ITINERARY_RANGE);
-    return normalizeItinerary(
-      supplementMissingTourRows(parseItinerary(headers, rows), MOCK_ITINERARY),
-    );
-  } catch (error) {
-    console.error("[sheets] fetchItinerary failed", error);
-    return [];
-  }
+  return normalizeItinerary(MOCK_ITINERARY);
 }
 
 async function fetchTourSections(): Promise<TourSection[]> {
-  if (!hasRealCredentials()) return normalizeTourSections(MOCK_TOUR_SECTIONS);
-
-  try {
-    const { headers, rows } = await fetchSheetRows(SECTIONS_RANGE);
-    return normalizeTourSections(
-      supplementMissingTourRows(parseTourSections(headers, rows), MOCK_TOUR_SECTIONS),
-    );
-  } catch (error) {
-    console.error("[sheets] fetchTourSections failed", error);
-    return [];
-  }
+  return normalizeTourSections(MOCK_TOUR_SECTIONS);
 }
 
 async function fetchGallery(): Promise<GalleryImage[]> {
-  if (!hasRealCredentials()) return normalizeGallery(MOCK_GALLERY);
-
-  try {
-    const { headers, rows } = await fetchSheetRows(GALLERY_RANGE);
-    return normalizeGallery(
-      supplementMissingTourRows(parseGalleryImages(headers, rows), MOCK_GALLERY),
-    );
-  } catch (error) {
-    console.error("[sheets] fetchGallery failed", error);
-    return [];
-  }
+  return normalizeGallery(MOCK_GALLERY);
 }
 
 async function fetchDepartures(): Promise<Departure[]> {
-  if (!hasRealCredentials()) return normalizeDepartures(MOCK_DEPARTURES);
+  if (!(await hasSheetsCredentials())) return normalizeDepartures(MOCK_DEPARTURES);
 
   try {
     const { headers, rows } = await fetchSheetRows(DEPARTURES_RANGE);
@@ -218,22 +164,22 @@ async function fetchDepartures(): Promise<Departure[]> {
 
 // ─── Cached gates ───────────────────────────────────────────────────────────
 
-const cachedTours = unstable_cache(fetchTours, ["sheets:tours"], {
+const cachedTours = unstable_cache(fetchTours, ["content:tours"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["tours"],
 });
 
-const cachedItinerary = unstable_cache(fetchItinerary, ["sheets:itinerary"], {
+const cachedItinerary = unstable_cache(fetchItinerary, ["content:itinerary"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["tours"],
 });
 
-const cachedTourSections = unstable_cache(fetchTourSections, ["sheets:tour-sections"], {
+const cachedTourSections = unstable_cache(fetchTourSections, ["content:tour-sections"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["tours"],
 });
 
-const cachedGallery = unstable_cache(fetchGallery, ["sheets:gallery"], {
+const cachedGallery = unstable_cache(fetchGallery, ["content:gallery"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["tours"],
 });

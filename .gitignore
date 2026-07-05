@@ -48,4 +48,5 @@ yarn-error.log*
 *.tsbuildinfo
 public/video/*
 !public/video/hero-bg.mp4
+!public/video/hero-bg-mobile.mp4
 !public/video/hero-bg-poster.jpg

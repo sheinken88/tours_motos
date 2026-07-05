@@ -31,10 +31,10 @@ type RouteIdea = TextCard & {
 };
 
 const customImages = {
-  hero: "/images/tours/sobre_las_nubes/Fondo.jpg",
-  puna: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg",
-  cuyo: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_color.jpg",
-  patagonia: "/images/tours/cruces_del_sur/cruces_del_sur_1_color.jpeg",
+  hero: "/images/optimized/heroes/custom.jpg",
+  puna: "/images/optimized/tours/sobre-las-nubes.jpg",
+  cuyo: "/images/optimized/tours/gigantes-del-oeste.jpg",
+  patagonia: "/images/optimized/tours/cruces-del-sur.jpg",
 } as const;
 
 function ProofStat({ value, label }: StatItem) {

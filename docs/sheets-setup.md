@@ -1,26 +1,24 @@
-# Google Sheets CMS Setup
+# Google Sheets Departures Setup
 
-> One-time setup plus the client-editable content contract. After this is wired,
-> the client can add tours, edit tour-page copy, manage departures, and reference
-> images from a single Google Sheet. The site reads with a read-only service
-> account, validates every row, caches for 10 minutes, and can be refreshed via
-> `/api/revalidate`.
+> Current implementation note: Google Sheets is used only for departures and
+> calendar availability. Tour metadata, itinerary content, gallery references,
+> and route images are static repo content. Older `Tours`, `Itinerary`,
+> `Includes`, and `Gallery` tab notes below are retained as legacy reference,
+> not as the active production contract.
 
 ---
 
 ## Architecture
 
-- **Source of truth:** one Google Sheet with five tabs:
-  `Tours`, `Itinerary`, `Departures`, `Includes`, `Gallery`.
+- **Source of truth:** one Google Sheet tab for `Departures`.
 - **Auth:** Google Sheets API with a read-only service account.
-- **Runtime:** Next.js server components read Sheets through `lib/sheets/`.
-- **Validation:** every tab is parsed through Zod. Malformed rows are skipped
+- **Runtime:** Next.js server components read departure rows through `lib/sheets/`.
+- **Validation:** departure rows are parsed through Zod. Malformed rows are skipped
   and logged; the rest of the site continues rendering.
 - **Caching:** data is cached for 10 minutes with Next cache tags. The manual
-  revalidate endpoint flushes tour/departure data immediately when needed.
-- **Images:** first pass accepts public/local image URLs or Google Drive file
-  IDs. Drive is convenient for the client, but a real CDN is still preferred
-  for the final production image pipeline.
+  revalidate endpoint flushes departure data immediately when needed.
+- **Images:** route images are local optimized assets in `public/images/optimized/`,
+  not Google Drive URLs.
 
 ---
 
@@ -44,15 +42,21 @@ Treat the JSON key like a password. Never commit it.
 
 ## One-time Sheet setup
 
-1. Create a Google Sheet named `Moto On/Off — CMS`.
+1. Create a Google Sheet named `Moto On/Off — Departures`.
 2. Share it with the service account email as **Viewer**.
 3. Copy the spreadsheet ID from the URL:
    `https://docs.google.com/spreadsheets/d/<THIS_IS_THE_ID>/edit`.
-4. Create exactly these tabs:
-   `Tours`, `Itinerary`, `Departures`, `Includes`, `Gallery`.
+4. Create the `Departures` tab.
 5. Freeze row 1 in every tab.
 6. Protect row 1 so the client cannot accidentally rename/delete headers.
 7. Add dropdown validations for enum fields listed below.
+
+---
+
+## Legacy Route Tabs
+
+The route tabs below document the older CMS shape. They are not used by the
+current production route pages.
 
 ---
 

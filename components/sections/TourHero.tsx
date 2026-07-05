@@ -18,19 +18,19 @@ type TourHeroBackground = {
 
 const tourHeroBackgrounds: Record<string, TourHeroBackground> = {
   "sobre-las-nubes": {
-    src: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg",
+    src: "/images/optimized/heroes/tour-sobre-las-nubes.jpg",
     objectPosition: "50% center",
   },
   "gigantes-del-oeste": {
-    src: "/images/tours/gigantes_del_oeste/Imagen Fondo Gigantes del Oeste.jpg",
+    src: "/images/optimized/heroes/tour-gigantes-del-oeste.jpg",
     objectPosition: "58% center",
   },
   "volcanes-del-norte": {
-    src: "/images/tours/volcanes_del_norte/Imagen Fondo Volcanes del Norte.jpg",
+    src: "/images/optimized/heroes/tour-volcanes-del-norte.jpg",
     objectPosition: "58% center",
   },
   "cruces-del-sur": {
-    src: "/images/tours/cruces_del_sur/Imagen fondo cruces del sur.jpg",
+    src: "/images/optimized/heroes/tour-cruces-del-sur.jpg",
     objectPosition: "58% bottom",
   },
 };

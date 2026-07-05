@@ -38,7 +38,7 @@ const nosotrosImages = {
 } as const;
 
 const aboutHeroBackground = {
-  src: "/images/nosotros/Fondo de pantalla Nosotros.jpg",
+  src: "/images/optimized/heroes/about.jpg",
   objectPosition: "54% center",
 } as const;
 

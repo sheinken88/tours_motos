@@ -3,14 +3,9 @@ import { defaultLocale } from "@/lib/i18n/config";
 import { getTours, getUpcomingDepartures } from "@/lib/sheets/queries";
 
 /**
- * Sheets CMS smoke endpoint — returns the cached tour + departure payload
- * as JSON. Useful for manually verifying:
- *   - the cache layer works (response time after first hit)
- *   - mock fallback fires when GOOGLE_SHEETS_CREDENTIALS is unset
- *   - real Sheets data flows through Zod validation cleanly once creds land
- *
- * Phase 7 page consumers replace this as the primary surface but the
- * endpoint stays useful for debugging.
+ * Content smoke endpoint — returns static tour content plus cached departures
+ * as JSON. Useful for manually verifying the route catalog and the
+ * Sheets-backed calendar payload.
  */
 export async function GET() {
   const [tours, departures] = await Promise.all([getTours(defaultLocale), getUpcomingDepartures()]);
@@ -19,6 +14,6 @@ export async function GET() {
     tours,
     departures,
     counts: { tours: tours.length, departures: departures.length },
-    source: process.env.GOOGLE_SHEETS_CREDENTIALS ? "configured" : "mock",
+    departuresSource: process.env.GOOGLE_SHEETS_CREDENTIALS ? "sheets" : "mock",
   });
 }

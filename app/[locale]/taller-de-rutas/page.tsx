@@ -34,7 +34,7 @@ type ProcessItem = {
 };
 
 const TALLER_HERO_PHOTO: WorkshopCaseImage = {
-  src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/Hay horas de exploracion.jpg",
+  src: "/images/optimized/heroes/taller-de-rutas.jpg",
   alt: "Dos pilotos detenidos junto a un cartel de desvío durante una exploración de ruta.",
   label: "Horas de exploración",
   caption: "Cada desvío se prueba antes de entrar a un itinerario.",

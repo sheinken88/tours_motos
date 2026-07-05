@@ -160,6 +160,7 @@ export default async function CalendarPage({ params }: Props) {
               height={737}
               className="h-80 rotate-1 sm:h-[28rem] lg:h-[38rem] xl:h-[42rem]"
               imageClassName="object-center"
+              showHalftoneOverlay={false}
             />
             <div className="bg-paper-grain text-on-paper shadow-sticker-ink border-ink absolute -bottom-7 left-5 z-20 w-64 -rotate-2 border-2 p-5 sm:left-10 md:w-72 lg:-bottom-8 lg:left-0">
               <p className="text-eyebrow tracking-eyebrow font-semibold uppercase opacity-75">

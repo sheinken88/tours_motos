@@ -13,6 +13,7 @@ type RoutePrintProps = {
   sizes?: string;
   width?: number;
   height?: number;
+  showHalftoneOverlay?: boolean;
 };
 
 /**
@@ -34,6 +35,7 @@ export function RoutePrint({
   sizes = "(min-width: 1024px) 58vw, 100vw",
   width = 1846,
   height = 852,
+  showHalftoneOverlay = true,
 }: RoutePrintProps) {
   return (
     <figure
@@ -86,14 +88,16 @@ export function RoutePrint({
         />
       ) : null}
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
-        style={{
-          backgroundImage: "url(/textures/halftone-overlay.svg)",
-          backgroundRepeat: "repeat",
-        }}
-        aria-hidden="true"
-      />
+      {showHalftoneOverlay ? (
+        <div
+          className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
+          style={{
+            backgroundImage: "url(/textures/halftone-overlay.svg)",
+            backgroundRepeat: "repeat",
+          }}
+          aria-hidden="true"
+        />
+      ) : null}
     </figure>
   );
 }

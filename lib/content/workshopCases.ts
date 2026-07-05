@@ -695,7 +695,7 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     fieldNote:
       "Buscamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto y mostrar los pueblos más pequeños, adentrados en la montaña.",
     hero: {
-      src: "/images/taller_de_rutas/sobre-las-nubes/7.jpg",
+      src: "/images/optimized/workshop/armar-sobre-las-nubes.jpg",
       alt: "Piloto y moto en sombra frente a un paredón rural durante el armado de Sobre las Nubes.",
       label: "La primera idea",
       caption:
@@ -770,7 +770,7 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     fieldNote:
       "Mendoza, San Juan y La Rioja tienen rutas increíbles. Nosotros queríamos unir caminos que casi nadie combina.",
     hero: {
-      src: "/images/taller_de_rutas/gigantes-del-oeste/1.jpg",
+      src: "/images/optimized/workshop/armar-gigantes-del-oeste.jpg",
       alt: "Camino de ripio abriéndose entre cerros durante el armado de Gigantes del Oeste.",
       label: "El Cuyo que no se conoce",
       caption: "Queríamos un viaje que no fuera la típica vuelta por una sola provincia.",
@@ -846,7 +846,7 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     fieldNote:
       "Pruebas en campo reales, notas sobre la ruta y meses de planificación, dieron lugar a la versión final.",
     hero: {
-      src: "/images/taller_de_rutas/volcanes-norte/La Primera Idea.jpg",
+      src: "/images/optimized/workshop/armar-volcanes-del-norte.jpg",
       alt: "Campo de altura en Catamarca con una persona caminando hacia la montaña.",
       label: "La Primera Idea",
       caption: "Todo empezó con un punto en el mapa: Antofagasta de la Sierra.",
@@ -935,7 +935,7 @@ export const WORKSHOP_CASES: Record<string, WorkshopCase> = {
     fieldNote:
       "Patagonia obligó a elegir: frontera, ferry, ripio, distancia y luz. El recorrido final mantiene el viaje vivo sin romper el grupo.",
     hero: {
-      src: "/images/taller_de_rutas/cruces-del-sur/cruces-del-sur-hero-mirrored.jpeg",
+      src: "/images/optimized/workshop/armar-cruces-del-sur.jpg",
       alt: "Piloto cruzando agua sobre una moto durante el armado de Cruces del Sur.",
       label: "Cruce probado",
       caption: "El paso a Chile tenía que aguantar agua, ripio y ritmo de grupo.",

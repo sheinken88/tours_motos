@@ -1,6 +1,4 @@
 import "server-only";
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 import { unstable_cache } from "next/cache";
 import { type Locale } from "@/lib/i18n/config";
 import { hasRealCredentials, readSheet } from "./client";
@@ -50,12 +48,14 @@ function isRemoteImage(publicPath: string): boolean {
 }
 
 function isLocalPublicImage(publicPath: string): boolean {
-  return publicPath.startsWith("/") && existsSync(join(process.cwd(), "public", publicPath));
+  return publicPath.startsWith("/") && !publicPath.startsWith("//");
 }
 
 /**
- * Clear local image paths whose assets have not shipped yet. Remote/Drive URLs
- * are left intact and validated by Next image remotePatterns at render time.
+ * Keep local public image paths out of filesystem probing. Runtime `existsSync`
+ * on variable public paths makes Vercel's file tracer bundle the whole
+ * `public/` tree into server functions. Remote/Drive URLs are still validated
+ * by Next image remotePatterns at render time.
  */
 function resolveHeroImages(tours: Tour[]): Tour[] {
   const resolves = (src: string) => src && (isRemoteImage(src) || isLocalPublicImage(src));

@@ -1,0 +1,320 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Moto On/Off" [ref=e4] [cursor=pointer]:
+        - /url: /es
+        - img [ref=e5]
+        - generic [ref=e7]: Moto On/Off
+      - navigation "Primary" [ref=e8]:
+        - link "Viajes" [ref=e9] [cursor=pointer]:
+          - /url: /es/tours
+          - text: Viajes
+          - img
+        - link "Calendario" [ref=e10] [cursor=pointer]:
+          - /url: /es/calendar
+          - text: Calendario
+          - img
+        - link "A medida" [ref=e11] [cursor=pointer]:
+          - /url: /es/custom
+          - text: A medida
+          - img
+        - generic [ref=e12]: /
+        - link "Nosotros" [ref=e13] [cursor=pointer]:
+          - /url: /es/about
+          - text: Nosotros
+          - img
+        - link "Taller de Rutas" [ref=e14] [cursor=pointer]:
+          - /url: /es/taller-de-rutas
+          - text: Taller de Rutas
+          - img
+      - generic [ref=e15]:
+        - 'button "Idioma: Español" [ref=e17]':
+          - text: ES
+          - img [ref=e18]
+        - link "Instagram" [ref=e20] [cursor=pointer]:
+          - /url: https://www.instagram.com/mototoursonoff/
+          - img [ref=e21]
+        - link "Contacto" [ref=e26] [cursor=pointer]:
+          - /url: /es/contact#contact-form
+          - img [ref=e27]
+          - generic [ref=e29]: Contacto
+        - link "Hablemos" [ref=e31] [cursor=pointer]:
+          - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+          - img [ref=e32]
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - text: Hablemos
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic:
+        - img
+        - generic: Ruta propia
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - paragraph [ref=e44]: Viajes a medida - Tours personalizados
+            - heading "ORGANIZAMOS TU VIAJE A MEDIDA" [level=1] [ref=e45]
+            - paragraph [ref=e46]: Diseñamos la ruta en moto a tu medida.
+          - generic [ref=e47]:
+            - link "Organizar mi viaje" [ref=e48] [cursor=pointer]:
+              - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+              - generic [ref=e49]: Organizar mi viaje
+              - generic [ref=e50]: →
+            - link "Contar mi idea" [ref=e51] [cursor=pointer]:
+              - /url: "#custom-form"
+              - img [ref=e52]
+              - generic [ref=e54]: Contar mi idea
+              - generic [ref=e55]: →
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - paragraph [ref=e58]: 3-12
+              - paragraph [ref=e59]: días de ruta
+            - generic [ref=e60]:
+              - paragraph [ref=e61]: GPX
+              - paragraph [ref=e62]: track listo
+            - generic [ref=e63]:
+              - paragraph [ref=e64]: ON/OFF
+              - paragraph [ref=e65]: ripio y asfalto
+        - generic [ref=e66]:
+          - img "Rider de aventura junto a su moto preparado para salir a la ruta" [ref=e69]
+          - generic [ref=e70]:
+            - paragraph [ref=e71]: Viaje en moto
+            - paragraph [ref=e72]: 100% a medida
+            - paragraph [ref=e73]: Nivel de manejo, terreno, duración ideal y experiencia.
+      - img
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - paragraph [ref=e79]: Viajes a medida
+              - heading "DISEÑAMOS LA RUTA SEGÚN TU MANERA DE MANEJAR" [level=2] [ref=e80]
+            - generic [ref=e81]:
+              - paragraph [ref=e82]: Además de nuestros tours en moto, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.
+              - paragraph [ref=e83]: Nos contás qué te imaginás, lo convertimos en un viaje en moto posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.
+            - generic [ref=e84]:
+              - generic [ref=e85]: Viaje posible
+              - generic [ref=e86]: Ruta a medida
+          - generic [ref=e87]:
+            - img "Camino de altura en el norte argentino usado como referencia para viajes a medida" [ref=e89]
+            - img "Ruta de montaña en Cuyo para diseñar una travesía en moto" [ref=e91]
+            - img "Camino patagónico de ripio para una expedición a medida" [ref=e93]
+        - generic [ref=e94]:
+          - article [ref=e95]:
+            - paragraph [ref=e96]: NIVEL DE MANEJO
+            - paragraph [ref=e97]: Pensamos la ruta según tu experiencia, ritmo de manejo y confianza en distintos terrenos.
+          - article [ref=e98]:
+            - paragraph [ref=e99]: TIPO DE TERRENO
+            - paragraph [ref=e100]: Ruta, ripio, montaña, arena, altura o caminos mixtos según lo que querés vivir.
+          - article [ref=e101]:
+            - paragraph [ref=e102]: DURACIÓN IDEAL
+            - paragraph [ref=e103]: Ajustamos kilómetros, tiempos y jornadas al viaje que imaginás y los días disponibles.
+          - article [ref=e104]:
+            - paragraph [ref=e105]: ALTERNATIVAS
+            - paragraph [ref=e106]: Sumamos opciones de camino, navegación, hoteles y experiencias recomendadas por zona.
+      - img
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - generic [ref=e110]:
+            - paragraph [ref=e111]: Cómo lo armamos
+            - heading "DE TU IDEA A UN VIAJE EN MOTO POSIBLE" [level=2] [ref=e112]
+          - paragraph [ref=e113]: "Nos contás qué te imaginás y lo llevamos a un plan concreto: tiempos, kilómetros, navegación, hoteles y alternativas de camino."
+        - generic [ref=e114]:
+          - article [ref=e115]:
+            - generic [ref=e116]: "1"
+            - generic [ref=e117]:
+              - generic [ref=e118]: Paso 1
+              - paragraph [ref=e119]: Nos contás la idea
+              - paragraph [ref=e120]: Nivel de manejo, tipo de terreno, duración ideal y experiencia que querés vivir.
+          - article [ref=e121]:
+            - generic [ref=e122]: "2"
+            - generic [ref=e123]:
+              - generic [ref=e124]: Paso 2
+              - paragraph [ref=e125]: Convertimos la ruta
+              - paragraph [ref=e126]: La pasamos a un viaje posible con tiempos, kilómetros y jornadas reales.
+          - article [ref=e127]:
+            - generic [ref=e128]: "3"
+            - generic [ref=e129]:
+              - generic [ref=e130]: Paso 3
+              - paragraph [ref=e131]: Marcamos alternativas
+              - paragraph [ref=e132]: Definimos tipos de camino, opciones de navegación y variantes según zona.
+          - article [ref=e133]:
+            - generic [ref=e134]: "4"
+            - generic [ref=e135]:
+              - generic [ref=e136]: Paso 4
+              - paragraph [ref=e137]: Sumamos apoyo
+              - paragraph [ref=e138]: Si lo necesitás, agregamos traslado, guía en moto, 4x4 y transporte de equipaje.
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - paragraph [ref=e142]: Lo que armamos
+              - heading "¿QUÉ INCLUYE?" [level=3] [ref=e143]
+            - list [ref=e144]:
+              - listitem [ref=e145]:
+                - img [ref=e146]
+                - generic [ref=e148]: Itinerario detallado con tiempos y kilómetros.
+              - listitem [ref=e149]:
+                - img [ref=e150]
+                - generic [ref=e152]: Hoteles sugeridos según la categoría deseada.
+              - listitem [ref=e153]:
+                - img [ref=e154]
+                - generic [ref=e156]: Archivos GPX o Google Maps para navegación.
+              - listitem [ref=e157]:
+                - img [ref=e158]
+                - generic [ref=e160]: Experiencias recomendadas según la zona de interés.
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - paragraph [ref=e163]: Opcional
+              - heading "APOYO EN RUTA" [level=3] [ref=e164]
+            - list [ref=e165]:
+              - listitem [ref=e166]:
+                - img [ref=e167]
+                - generic [ref=e169]: Traslado de la moto ida y vuelta a destino.
+              - listitem [ref=e170]:
+                - img [ref=e171]
+                - generic [ref=e173]: Guía en moto.
+              - listitem [ref=e174]:
+                - img [ref=e175]
+                - generic [ref=e177]: Vehículo de apoyo 4×4 y transporte de equipaje.
+      - img
+    - generic [ref=e180]:
+      - complementary [ref=e181]:
+        - generic [ref=e182]:
+          - paragraph [ref=e183]: Contanos tu idea
+          - heading "CONTANOS QUÉ TE IMAGINÁS" [level=2] [ref=e184]
+          - paragraph [ref=e185]: No hace falta tener todo cerrado. Con tu nivel de manejo, terreno preferido y duración ideal ya podemos empezar.
+        - generic [ref=e186]:
+          - article [ref=e187]:
+            - paragraph [ref=e188]: Nivel
+            - paragraph [ref=e189]: Cómo manejás
+            - paragraph [ref=e190]: Contanos tu experiencia sobre ripio, ruta, altura, arena o caminos de montaña.
+          - article [ref=e191]:
+            - paragraph [ref=e192]: Terreno
+            - paragraph [ref=e193]: Qué te gusta
+            - paragraph [ref=e194]: Elegimos caminos según el tipo de terreno que querés rodar durante el viaje.
+          - article [ref=e195]:
+            - paragraph [ref=e196]: Duración
+            - paragraph [ref=e197]: Cuántos días
+            - paragraph [ref=e198]: Ajustamos el itinerario a los días disponibles y al ritmo ideal del grupo.
+      - generic [ref=e199]:
+        - generic [ref=e201]:
+          - text: Leave this field empty
+          - textbox [ref=e202]
+          - generic [ref=e203]:
+            - generic [ref=e204]:
+              - generic [ref=e205]:
+                - text: Tu nombre
+                - generic [ref=e206]: "*"
+              - textbox "Tu nombre" [ref=e207]:
+                - /placeholder: Cómo te llamás
+            - generic [ref=e208]:
+              - generic [ref=e209]:
+                - text: Tu correo
+                - generic [ref=e210]: "*"
+              - textbox "Tu correo" [ref=e211]:
+                - /placeholder: vos@correo.com
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - generic [ref=e214]: Cuántos son
+              - textbox "Cuántos son" [ref=e215]:
+                - /placeholder: 1, 2, 4…
+            - generic [ref=e216]:
+              - generic [ref=e217]: Ventana de fechas
+              - textbox "Ventana de fechas" [ref=e218]:
+                - /placeholder: Octubre 2027, una semana, etc.
+          - generic [ref=e219]:
+            - generic [ref=e220]: Experiencia en moto
+            - textbox "Experiencia en moto" [ref=e221]:
+              - /placeholder: Cuántos años, qué moto, en qué andás
+          - generic [ref=e222]:
+            - generic [ref=e223]: Región o ruta soñada
+            - textbox "Región o ruta soñada" [ref=e224]:
+              - /placeholder: Patagonia, Norte, Cordillera…
+          - generic [ref=e225]:
+            - generic [ref=e226]: Tu idea
+            - textbox "Tu idea" [ref=e227]:
+              - /placeholder: La ruta que tenés en la cabeza, los días que tenés, lo que no querés perderte.
+          - button "Enviar" [ref=e229]:
+            - generic [ref=e230]: Enviar
+            - generic [ref=e231]: →
+        - generic [ref=e232]:
+          - paragraph [ref=e233]: O por WhatsApp
+          - paragraph [ref=e234]: PREFERÍS HABLAR DIRECTO
+          - paragraph [ref=e235]: Escribinos por WhatsApp y arrancamos por ahí. Con unos datos básicos podemos convertir tu idea en una propuesta posible.
+          - list [ref=e236]:
+            - listitem [ref=e237]:
+              - img [ref=e238]
+              - generic [ref=e240]: Tu nivel de manejo.
+            - listitem [ref=e241]:
+              - img [ref=e242]
+              - generic [ref=e244]: El tipo de terreno que te gusta.
+            - listitem [ref=e245]:
+              - img [ref=e246]
+              - generic [ref=e248]: La duración ideal del viaje.
+          - link "Abrir WhatsApp" [ref=e249] [cursor=pointer]:
+            - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+            - img [ref=e250]
+            - generic [ref=e252]: Abrir WhatsApp
+            - generic [ref=e253]: →
+  - contentinfo [ref=e254]:
+    - generic [ref=e255]:
+      - generic [ref=e256]:
+        - generic [ref=e257]:
+          - paragraph [ref=e258]: Viajes
+          - list [ref=e259]:
+            - listitem [ref=e260]:
+              - link "Viajes" [ref=e261] [cursor=pointer]:
+                - /url: /es/tours
+            - listitem [ref=e262]:
+              - link "Calendario" [ref=e263] [cursor=pointer]:
+                - /url: /es/calendar
+            - listitem [ref=e264]:
+              - link "A medida" [ref=e265] [cursor=pointer]:
+                - /url: /es/custom
+        - generic [ref=e266]:
+          - paragraph [ref=e267]: Taller de Rutas
+          - list [ref=e268]:
+            - listitem [ref=e269]:
+              - link "Nosotros" [ref=e270] [cursor=pointer]:
+                - /url: /es/about
+            - listitem [ref=e271]:
+              - link "Taller de Rutas" [ref=e272] [cursor=pointer]:
+                - /url: /es/taller-de-rutas
+        - generic [ref=e273]:
+          - paragraph [ref=e274]: Contacto
+          - list [ref=e275]:
+            - listitem [ref=e276]:
+              - link "WhatsApp" [ref=e277] [cursor=pointer]:
+                - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+            - listitem [ref=e278]:
+              - link "Instagram" [ref=e279] [cursor=pointer]:
+                - /url: https://www.instagram.com/mototoursonoff/
+            - listitem [ref=e280]:
+              - link "hello@motoonoff.com" [ref=e281] [cursor=pointer]:
+                - /url: mailto:hello@motoonoff.com
+      - generic [ref=e283]:
+        - generic [ref=e284]:
+          - img [ref=e285]
+          - paragraph [ref=e287]: Moto On/Off · 2019 — Todos los derechos reservados.
+        - generic [ref=e288]:
+          - paragraph [ref=e289]: Próximo paso
+          - generic [ref=e290]:
+            - paragraph [ref=e291]: ¿QUÉ RUTA TE VA A PROBAR?
+            - paragraph [ref=e292]: Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.
+          - generic [ref=e293]:
+            - link "Hablemos" [ref=e294] [cursor=pointer]:
+              - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+              - generic [ref=e295]: Hablemos
+              - generic [ref=e296]: →
+            - link "Ver las rutas" [ref=e297] [cursor=pointer]:
+              - /url: /es/tours
+              - img [ref=e298]
+              - generic [ref=e300]: Ver las rutas
+              - generic [ref=e301]: →
+  - generic [ref=e302]:
+    - link "Hablar por WhatsApp" [ref=e303] [cursor=pointer]:
+      - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+      - img [ref=e304]
+    - link "Reservá tu lugar" [ref=e306] [cursor=pointer]:
+      - /url: /es/reservas

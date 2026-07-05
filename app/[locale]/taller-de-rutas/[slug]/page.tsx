@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
-import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { getJournalFrontmatter, listJournalEntries } from "@/lib/content/getJournalMdx";
 import {
@@ -102,127 +101,52 @@ export default async function TallerDeRutasPost({ params }: Props) {
   });
   const dateLabel = dateFormatter.format(parseCalendarDate(fm.date)).toUpperCase();
   const others = entries.filter((entry) => entry.slug !== slug).slice(0, 2);
-  const dossier = getWorkshopCase(slug);
-  const fallbackImage = buildFallbackImage(fm);
+  const dossier = getWorkshopCase(slug, locale);
+  const fallbackImage = buildFallbackImage(fm, t("route_workshop"));
   const heroImage = dossier?.hero ?? fallbackImage;
-  const heroPrintHalftone = fm.image;
   const heroTitle = dossier?.routeName ?? fm.title;
   const heroIntro = dossier?.fieldNote ?? fm.excerpt;
   const galleryImages = dossier ? [dossier.hero, ...dossier.images] : [fallbackImage];
   const decisionSection: WorkshopDecisionSection = dossier?.decisionSection ?? {
-    eyebrow: "Decisiones de diseño",
-    title: "LO QUE ENTRÓ Y LO QUE QUEDÓ AFUERA",
-    intro:
-      "Una ruta se diseña cuando alguien decide qué no entra. Acá está la parte que no suele verse en una ficha comercial.",
+    eyebrow: t("fallback_decision_eyebrow"),
+    title: t("fallback_decision_title"),
+    intro: t("fallback_decision_intro"),
   };
 
   return (
     <>
-      <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden>
-          <div
-            className="absolute top-28 -right-24 h-72 w-[44rem] -rotate-6 opacity-20 mix-blend-screen"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(90deg, transparent 0 22px, color-mix(in srgb, var(--color-paper) 64%, transparent) 22px 28px, transparent 28px 42px)",
-            }}
-          />
-          <div
-            className="absolute -bottom-8 left-0 h-44 w-full opacity-20 mix-blend-multiply"
-            style={{
-              backgroundImage: "url(/textures/halftone-overlay.svg)",
-              backgroundRepeat: "repeat",
-            }}
-          />
-          <PlaceholderMountains
-            className="absolute inset-x-0 bottom-0 h-[48%] w-full opacity-70"
-            tint="ink"
-          />
-        </div>
+      <RouteReportHero
+        locale={locale}
+        backLabel={t("back")}
+        dateLabel={dateLabel}
+        dossier={dossier}
+        title={heroTitle}
+        intro={heroIntro}
+        image={heroImage}
+        fallbackEyebrow={t("route_workshop")}
+        finalTourLabel={t("final_tour_cta")}
+      />
 
-        <Container className="relative z-10 grid min-h-[72vh] gap-10 pt-14 lg:min-h-[76vh] lg:grid-cols-[minmax(0,0.95fr)_minmax(24rem,0.85fr)] lg:items-center xl:min-h-[78vh]">
-          <div className="max-w-[50rem] space-y-6 lg:pl-8 xl:pl-14 2xl:pl-20">
-            <I18nLink
-              href="/taller-de-rutas"
-              className="text-eyebrow tracking-eyebrow text-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
-            >
-              ← {t("back")}
-            </I18nLink>
-            <div className="space-y-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <Stamp className="text-paper self-start" tilt={-2}>
-                  {dateLabel}
-                </Stamp>
-                {dossier ? (
-                  <Stamp className="text-paper self-start" tilt={2}>
-                    {dossier.region}
-                  </Stamp>
-                ) : null}
-              </div>
-              <div className="space-y-3">
-                <Eyebrow>{dossier ? "Taller de ruta" : "Taller de rutas"}</Eyebrow>
-                <DisplayHeading size="2xl" as="h1" className="leading-display max-w-[11ch]">
-                  {heroTitle}
-                </DisplayHeading>
-              </div>
-              {heroIntro ? (
-                <p className="text-paper/90 max-w-2xl font-sans text-lg leading-relaxed md:text-xl">
-                  {heroIntro}
-                </p>
-              ) : null}
-              {dossier ? (
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
-                  <Button
-                    href={`/${locale}/tours/${dossier.tourSlug}`}
-                    variant="sticker-filled"
-                    edge={2}
-                    tilt="left"
-                  >
-                    Ver tour final
-                  </Button>
-                </div>
-              ) : null}
-            </div>
-          </div>
-
-          <WorkshopHeroDossier
+      <PaperZone density="light" tornBottom={2}>
+        {dossier ? (
+          <RouteReportTimeline
             dossier={dossier}
-            halftoneSrc={heroPrintHalftone}
-            image={heroImage}
+            eyebrow={t("timeline_eyebrow")}
+            heading={t("timeline_heading")}
+            body={t("timeline_body")}
           />
-        </Container>
-      </RedZone>
+        ) : null}
 
-      <PaperZone density="default" tornBottom={2}>
-        <Container>
-          <div className="grid gap-8 lg:grid-cols-[20rem_minmax(0,1fr)] lg:items-start">
-            <aside className="bg-paper-light border-ink/30 shadow-sticker-ink border-2 p-6 md:p-8 lg:sticky lg:top-28 lg:p-10">
-              <Eyebrow>{dossier ? "Dossier de ruta" : "Taller de ruta"}</Eyebrow>
+        <Container className={dossier ? "mt-12 md:mt-16" : ""}>
+          <div className="grid gap-8 lg:grid-cols-[minmax(16rem,0.36fr)_minmax(0,1fr)] lg:items-start">
+            <aside className="bg-paper-light border-ink/30 shadow-sticker-ink border-2 p-6 md:p-8 lg:sticky lg:top-28 lg:p-9">
+              <Eyebrow>{dossier ? t("workshop_table") : t("route_workshop")}</Eyebrow>
               <DisplayHeading size="md" as="h2" distress={false} className="mt-4">
-                {dossier ? dossier.routeName : "Ruta probada"}
+                {dossier ? dossier.quote : t("tested_route")}
               </DisplayHeading>
-              {dossier ? (
-                <>
-                  <p className="mt-4 font-sans text-sm leading-relaxed opacity-80">
-                    {dossier.fieldNote}
-                  </p>
-                  <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
-                    {dossier.stats.map((stat) => (
-                      <div
-                        key={`${stat.value}-${stat.label}`}
-                        className="border-ink/25 min-h-20 border-t pt-3"
-                      >
-                        <dt className="text-eyebrow tracking-eyebrow text-accent-on-paper font-bold uppercase">
-                          {stat.label}
-                        </dt>
-                        <dd className="font-display text-display-md mt-1 leading-none uppercase">
-                          {stat.value}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </>
-              ) : null}
+              <p className="mt-4 font-sans text-sm leading-relaxed opacity-80">
+                {dossier ? dossier.fieldNote : t("fallback_aside_body")}
+              </p>
             </aside>
 
             <article
@@ -258,7 +182,6 @@ export default async function TallerDeRutasPost({ params }: Props) {
                 sizes="(min-width: 1024px) 52vw, 92vw"
                 aspectClassName="aspect-[16/9]"
                 className="lg:-rotate-1"
-                treatment="color"
               />
               <ul className="grid gap-4" data-whatsapp-fab="hide">
                 {dossier.decisions.map((decision, index) => (
@@ -292,9 +215,9 @@ export default async function TallerDeRutasPost({ params }: Props) {
       >
         <Container className="space-y-10">
           <div className="space-y-3">
-            <Eyebrow rule>Fotos de scouting</Eyebrow>
+            <Eyebrow rule>{t("scouting_eyebrow")}</Eyebrow>
             <DisplayHeading size="xl" as="h2" className="max-w-[18ch] lg:max-w-[22ch]">
-              EL TERRENO ANTES DEL TOUR
+              {t("scouting_heading")}
             </DisplayHeading>
           </div>
           <div
@@ -326,8 +249,8 @@ export default async function TallerDeRutasPost({ params }: Props) {
             </div>
             <ul className="grid gap-6 sm:grid-cols-2" data-whatsapp-fab="hide">
               {others.map((entry, index) => {
-                const related = getWorkshopCase(entry.slug);
-                const image = related?.hero ?? buildFallbackImage(entry);
+                const related = getWorkshopCase(entry.slug, locale);
+                const image = related?.hero ?? buildFallbackImage(entry, t("route_workshop"));
                 return (
                   <li key={entry.slug}>
                     <I18nLink
@@ -341,15 +264,7 @@ export default async function TallerDeRutasPost({ params }: Props) {
                           fill
                           sizes="(min-width: 1024px) 42vw, 92vw"
                           draggable={false}
-                          className="object-cover opacity-85 mix-blend-multiply contrast-125 grayscale transition-[filter,opacity,transform] duration-300 group-hover:scale-[1.02] group-hover:opacity-100 group-hover:grayscale-0"
-                        />
-                        <div
-                          className="pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply"
-                          style={{
-                            backgroundImage: "url(/textures/halftone-overlay.svg)",
-                            backgroundRepeat: "repeat",
-                          }}
-                          aria-hidden="true"
+                          className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         />
                         <div className="absolute top-4 left-4 z-[2]">
                           <Stamp tilt={index % 2 === 0 ? -2 : 2}>
@@ -384,138 +299,237 @@ export default async function TallerDeRutasPost({ params }: Props) {
   );
 }
 
-function WorkshopHeroDossier({
+function RouteReportHero({
+  locale,
+  backLabel,
+  dateLabel,
   dossier,
-  halftoneSrc,
+  title,
+  intro,
   image,
+  fallbackEyebrow,
+  finalTourLabel,
 }: {
+  locale: Locale;
+  backLabel: string;
+  dateLabel: string;
   dossier?: WorkshopCase | null;
-  halftoneSrc?: string;
+  title: string;
+  intro?: string;
   image: WorkshopCaseImage;
+  fallbackEyebrow: string;
+  finalTourLabel: string;
 }) {
-  const workshopStats = (dossier?.stats ?? []).slice(0, 3);
-  const workshopDecisions = (dossier?.decisions ?? []).slice(0, 2);
-  const imageSrc = halftoneSrc ?? image.src;
-
   return (
-    <div className="relative -mx-5 py-4 sm:-mx-8 md:mx-0 lg:py-6">
-      <div className="border-paper/25 absolute top-8 right-5 bottom-3 left-8 rotate-2 border-2 opacity-45" />
+    <RedZone density="heavy" tornBottom={1} className="min-h-[100svh] overflow-hidden !py-0">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 z-0 h-full w-full object-cover object-[58%_center]"
+      />
+      <div className="from-brand-red/[0.76] via-brand-red/[0.28] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+      <div className="from-ink/[0.34] via-ink/[0.10] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+      <div className="from-ink/[0.24] via-ink/[0.07] pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-2/5 bg-gradient-to-t to-transparent [mask-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14)_46%,transparent_78%)]" />
       <div
-        className="bg-paper-grain text-on-paper shadow-sticker-ink border-paper/80 relative isolate overflow-hidden border-2 p-5 sm:p-6 lg:p-7"
-        style={{
-          clipPath: "polygon(0 2.5%, 98% 0, 100% 94%, 88% 100%, 2% 97%)",
-          transform: "rotate(1.1deg)",
-        }}
-      >
-        <div
-          className="absolute inset-0 opacity-45"
-          style={{
-            backgroundImage:
-              "linear-gradient(color-mix(in srgb, var(--color-ink) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 10%, transparent) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 opacity-20 mix-blend-multiply"
-          style={{
-            backgroundImage: "url(/textures/halftone-overlay.svg)",
-            backgroundRepeat: "repeat",
-          }}
-          aria-hidden="true"
-        />
+        className="pointer-events-none absolute inset-0 z-[5] [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px] opacity-[0.10] mix-blend-multiply"
+        aria-hidden="true"
+      />
 
-        <div className="relative z-10 flex items-start justify-between gap-5">
-          <div>
-            <p className="font-display text-accent-on-paper text-3xl leading-none uppercase sm:text-4xl lg:text-[2.7rem]">
-              Mesa de taller
-            </p>
-            <p className="tracking-eyebrow mt-2 font-sans text-[0.65rem] font-bold uppercase opacity-70">
-              trazar / probar / ajustar
-            </p>
-          </div>
-          <Stamp tilt={3} className="text-accent-on-paper">
-            Rev.{" "}
-            {String(Math.max(workshopStats.length + workshopDecisions.length, 1)).padStart(2, "0")}
-          </Stamp>
-        </div>
+      <Container className="relative z-10 flex min-h-[100svh] items-center pt-32 pb-24 md:pt-40 md:pb-28">
+        <div className="max-w-[52rem] space-y-6">
+          <I18nLink
+            href="/taller-de-rutas"
+            className="text-eyebrow tracking-eyebrow text-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
+          >
+            ← {backLabel}
+          </I18nLink>
 
-        <div className="relative z-10 mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_11rem]">
-          <div className="border-ink/70 bg-paper-light relative aspect-[16/10] overflow-hidden border-2">
-            <Image
-              src={imageSrc}
-              alt={image.alt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 30vw, 92vw"
-              draggable={false}
-              className="object-cover opacity-90 mix-blend-multiply contrast-125 grayscale"
-            />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
-              style={{
-                backgroundImage: "url(/textures/halftone-overlay.svg)",
-                backgroundRepeat: "repeat",
-              }}
-              aria-hidden="true"
-            />
-            <div className="absolute top-3 left-3">
-              <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
-                Foto de prueba
-              </span>
-            </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Stamp className="text-paper self-start" tilt={-2}>
+              {dateLabel}
+            </Stamp>
+            {dossier ? (
+              <Stamp className="text-paper self-start" tilt={2}>
+                {dossier.region}
+              </Stamp>
+            ) : null}
           </div>
 
-          <dl className="border-ink/50 bg-paper-light/65 grid content-start border-2">
-            {workshopStats.map((stat, index) => (
-              <div
-                key={`${stat.value}-${stat.label}`}
-                className={`border-ink/30 px-3 py-3 ${index < workshopStats.length - 1 ? "border-b" : ""}`}
+          <div className="space-y-3">
+            <Eyebrow>{dossier ? image.label : fallbackEyebrow}</Eyebrow>
+            <DisplayHeading size="xl" as="h1" className="max-w-[18ch] leading-[0.9]">
+              {title}
+            </DisplayHeading>
+          </div>
+
+          {intro ? (
+            <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed md:text-2xl">
+              {intro}
+            </p>
+          ) : null}
+
+          {dossier ? (
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Button
+                href={`/${locale}/tours/${dossier.tourSlug}`}
+                variant="sticker-filled"
+                edge={2}
+                tilt="left"
               >
-                <dt className="tracking-eyebrow font-sans text-[0.55rem] leading-tight font-bold uppercase opacity-70">
-                  {stat.label}
-                </dt>
-                <dd className="font-display text-accent-on-paper mt-1 text-3xl leading-none uppercase">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <div className="relative z-10 mt-5 grid gap-4 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-stretch">
-          <div className="border-ink/50 bg-paper-light/80 border-2 p-4">
-            <p className="font-display text-accent-on-paper text-base leading-none uppercase sm:text-lg">
-              {image.label}
-            </p>
-            <p className="mt-2 font-sans text-sm leading-relaxed opacity-80">{image.caption}</p>
-          </div>
-
-          {workshopDecisions.length > 0 ? (
-            <div className="bg-brand-red text-on-red border-paper/75 border-2 p-4">
-              <p className="tracking-eyebrow font-sans text-[0.6rem] font-bold uppercase opacity-75">
-                Quedó afuera
-              </p>
-              <div className="mt-3 grid gap-3">
-                {workshopDecisions.map((decision) => (
-                  <div
-                    key={decision.label}
-                    className="border-paper/35 border-t pt-3 first:border-t-0 first:pt-0"
-                  >
-                    <p className="font-display text-base leading-none uppercase">
-                      {decision.label}
-                    </p>
-                    <p className="mt-1 line-clamp-2 font-sans text-xs leading-relaxed opacity-80">
-                      {decision.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
+                {finalTourLabel}
+              </Button>
             </div>
           ) : null}
         </div>
+      </Container>
+    </RedZone>
+  );
+}
+
+function RouteReportTimeline({
+  dossier,
+  eyebrow,
+  heading,
+  body,
+}: {
+  dossier: WorkshopCase;
+  eyebrow: string;
+  heading: string;
+  body: string;
+}) {
+  const stages = [dossier.hero, ...dossier.images].slice(0, 5);
+  const stageGridColumns =
+    stages.length === 5 ? "md:grid-cols-2 xl:grid-cols-6" : "md:grid-cols-2 xl:grid-cols-4";
+  const getStageCardClass = (index: number) => {
+    if (stages.length !== 5) return "";
+    return index < 3 ? "xl:col-span-2" : "xl:col-span-3";
+  };
+  const getStageImageSizes = (index: number) => {
+    if (stages.length !== 5) return "(min-width: 1280px) 23vw, (min-width: 768px) 46vw, 92vw";
+    return index < 3
+      ? "(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+      : "(min-width: 1280px) 44vw, (min-width: 768px) 46vw, 92vw";
+  };
+
+  return (
+    <Container className="space-y-10">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(320px,0.58fr)] lg:items-end">
+        <div className="space-y-3">
+          <Eyebrow rule>{eyebrow}</Eyebrow>
+          <DisplayHeading size="xl" as="h2" className="max-w-[15ch]">
+            {heading}
+          </DisplayHeading>
+        </div>
+        <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">{body}</p>
       </div>
-    </div>
+
+      <dl className="border-ink/25 grid border-2 sm:grid-cols-2 lg:grid-cols-5">
+        {dossier.stats.map((stat, index) => (
+          <div
+            key={`${stat.value}-${stat.label}`}
+            className="border-ink/25 flex min-h-28 items-center gap-4 border-b px-5 py-5 last:border-b-0 sm:border-r lg:border-b-0 lg:px-6 lg:last:border-r-0 sm:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r"
+          >
+            <ReportStatIcon index={index} className="text-accent-on-paper h-9 w-9 shrink-0" />
+            <div>
+              <dt className="font-display text-accent-on-paper text-4xl leading-none uppercase">
+                {stat.value}
+              </dt>
+              <dd className="tracking-eyebrow mt-2 font-sans text-[0.65rem] leading-tight font-black uppercase opacity-75">
+                {stat.label}
+              </dd>
+            </div>
+          </div>
+        ))}
+      </dl>
+
+      <ol className={`grid gap-5 ${stageGridColumns}`} data-whatsapp-fab="hide">
+        {stages.map((stage, index) => (
+          <li
+            key={`${stage.src}-${index}`}
+            className={`border-ink/25 bg-paper-light/25 min-h-full border-2 p-5 ${getStageCardClass(index)}`}
+          >
+            <p className="font-display text-accent-on-paper text-3xl leading-none uppercase">
+              {index + 1}. {stage.label}
+            </p>
+            <CasePhoto
+              image={stage}
+              sizes={getStageImageSizes(index)}
+              aspectClassName="aspect-[16/9]"
+              className="mt-5"
+              compact
+              showLabel={false}
+              showCaption={false}
+            />
+            <p className="mt-5 font-sans text-sm leading-relaxed opacity-85">
+              {stage.caption}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  );
+}
+
+function ReportStatIcon({ index, className = "" }: { index: number; className?: string }) {
+  const kind = index % 5;
+
+  if (kind === 1) {
+    return (
+      <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M8 34C16 18 28 38 40 14" stroke="currentColor" strokeWidth="4" />
+        <circle cx="8" cy="34" r="4" stroke="currentColor" strokeWidth="3" />
+        <circle cx="24" cy="28" r="4" stroke="currentColor" strokeWidth="3" />
+        <circle cx="40" cy="14" r="4" stroke="currentColor" strokeWidth="3" />
+      </svg>
+    );
+  }
+
+  if (kind === 2) {
+    return (
+      <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M12 10v28" stroke="currentColor" strokeWidth="4" />
+        <path
+          d="M12 12h22l-5 7 5 7H12V12Z"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  if (kind === 3) {
+    return (
+      <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path
+          d="m34 8 6 6-20 20-8 2 2-8L34 8Z"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+        <path d="m29 13 6 6" stroke="currentColor" strokeWidth="4" />
+      </svg>
+    );
+  }
+
+  if (kind === 4) {
+    return (
+      <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="16" stroke="currentColor" strokeWidth="4" />
+        <path d="m16 16 16 16M32 16 16 32" stroke="currentColor" strokeWidth="4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <circle cx="24" cy="24" r="16" stroke="currentColor" strokeWidth="4" />
+      <path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="currentColor" strokeWidth="4" />
+      <path d="m18 31 7-15 5 7-12 8Z" fill="currentColor" />
+    </svg>
   );
 }
 
@@ -527,7 +541,8 @@ function CasePhoto({
   aspectClassName,
   className = "",
   compact = false,
-  treatment = "halftone",
+  showLabel = true,
+  showCaption = true,
 }: {
   image: WorkshopCaseImage;
   priority?: boolean;
@@ -536,16 +551,9 @@ function CasePhoto({
   aspectClassName: string;
   className?: string;
   compact?: boolean;
-  treatment?: "halftone" | "color";
+  showLabel?: boolean;
+  showCaption?: boolean;
 }) {
-  const isColor = treatment === "color";
-  const imageClassName = isColor
-    ? "object-cover opacity-100 transition-[filter,opacity,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:brightness-105"
-    : "object-cover opacity-90 mix-blend-multiply contrast-125 grayscale transition-[filter,opacity,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:opacity-100 group-hover/photo:grayscale-0";
-  const overlayClassName = isColor
-    ? "pointer-events-none absolute inset-0 z-[1] opacity-10 mix-blend-multiply"
-    : "pointer-events-none absolute inset-0 z-[1] opacity-25 mix-blend-multiply";
-
   return (
     <figure className={`group/photo self-start ${className}`}>
       <div
@@ -559,29 +567,25 @@ function CasePhoto({
           priority={priority}
           loading={priority ? undefined : loading}
           draggable={false}
-          className={imageClassName}
+          className="object-cover transition-[filter,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:brightness-105"
         />
-        <div
-          className={overlayClassName}
-          style={{
-            backgroundImage: "url(/textures/halftone-overlay.svg)",
-            backgroundRepeat: "repeat",
-          }}
-          aria-hidden="true"
-        />
-        <div className="absolute top-4 left-4 z-[2]">
-          <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
-            {image.label}
-          </span>
-        </div>
+        {showLabel ? (
+          <div className="absolute top-4 left-4 z-[2]">
+            <span className="bg-paper-light font-display text-accent-on-paper inline-block border-2 border-current px-3 py-1.5 text-xs tracking-[var(--tracking-cta)] uppercase">
+              {image.label}
+            </span>
+          </div>
+        ) : null}
       </div>
-      <figcaption
-        className={`mt-3 max-w-prose font-sans leading-relaxed opacity-85 ${
-          compact ? "text-sm" : "text-sm md:text-base"
-        }`}
-      >
-        {image.caption}
-      </figcaption>
+      {showCaption ? (
+        <figcaption
+          className={`mt-3 max-w-prose font-sans leading-relaxed opacity-85 ${
+            compact ? "text-sm" : "text-sm md:text-base"
+          }`}
+        >
+          {image.caption}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }
@@ -591,11 +595,11 @@ function buildFallbackImage(fm: {
   excerpt?: string;
   image?: string;
   imageAlt?: string;
-}): WorkshopCaseImage {
+}, label: string): WorkshopCaseImage {
   return {
     src: fm.image ?? "/images/halftone/hero-rider-cutout.png",
     alt: fm.imageAlt ?? fm.title,
-    label: "Taller de ruta",
+    label,
     caption: fm.excerpt ?? "",
   };
 }

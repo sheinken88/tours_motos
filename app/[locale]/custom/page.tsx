@@ -31,7 +31,7 @@ type RouteIdea = TextCard & {
 };
 
 const customImages = {
-  hero: "/images/halftone/hero-rider-cutout.png",
+  hero: "/images/tours/sobre_las_nubes/Fondo.jpg",
   puna: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg",
   cuyo: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_color.jpg",
   patagonia: "/images/tours/cruces_del_sur/cruces_del_sur_1_color.jpeg",
@@ -54,13 +54,19 @@ function PosterPhoto({
   className = "",
   sizes,
   priority = false,
+  mirrored = false,
 }: {
   src: string;
   alt: string;
   className?: string;
   sizes: string;
   priority?: boolean;
+  mirrored?: boolean;
 }) {
+  const imageTransformClass = mirrored
+    ? "scale-x-[-1] group-hover/photo:scale-x-[-1.015] group-hover/photo:scale-y-[1.015]"
+    : "group-hover/photo:scale-[1.015]";
+
   return (
     <div
       className={`bg-paper-aged border-ink/25 group/photo relative isolate overflow-hidden border-2 ${className}`}
@@ -71,16 +77,7 @@ function PosterPhoto({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover opacity-100 contrast-105 saturate-110 transition-[filter,transform] duration-300 ease-out group-hover/photo:scale-[1.015] group-hover/photo:contrast-110 group-hover/photo:saturate-125"
-      />
-      <div className="bg-paper pointer-events-none absolute inset-0 opacity-10 mix-blend-multiply" />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply"
-        style={{
-          backgroundImage: "url(/textures/halftone-overlay.svg)",
-          backgroundRepeat: "repeat",
-        }}
-        aria-hidden="true"
+        className={`object-cover transition-transform duration-300 ease-out ${imageTransformClass}`}
       />
     </div>
   );
@@ -98,7 +95,7 @@ function HeroRouteSlip({ label, value, meta }: { label: string; value: string; m
   );
 }
 
-function HeroGroundPrint() {
+function HeroGroundPrint({ label }: { label: string }) {
   return (
     <div
       aria-hidden="true"
@@ -161,7 +158,7 @@ function HeroGroundPrint() {
       </div>
 
       <div className="text-paper font-display absolute right-[8vw] bottom-14 hidden -rotate-2 text-8xl leading-none uppercase opacity-10 lg:block">
-        Ruta propia
+        {label}
       </div>
     </div>
   );
@@ -178,7 +175,12 @@ function BriefCard({ title, body, index }: TextCard & { index: number }) {
   );
 }
 
-function ProcessStep({ title, body, index }: TextCard & { index: number }) {
+function ProcessStep({
+  title,
+  body,
+  index,
+  stepLabel,
+}: TextCard & { index: number; stepLabel: string }) {
   return (
     <article
       className="border-paper/55 relative min-h-72 border-2 p-6"
@@ -191,7 +193,9 @@ function ProcessStep({ title, body, index }: TextCard & { index: number }) {
         {index + 1}
       </span>
       <div className="relative space-y-4">
-        <Stamp tilt={index % 2 === 0 ? -2 : 2}>Paso {index + 1}</Stamp>
+        <Stamp tilt={index % 2 === 0 ? -2 : 2}>
+          {stepLabel} {index + 1}
+        </Stamp>
         <p className="font-display text-3xl leading-none uppercase md:text-4xl">{title}</p>
         <p className="font-sans text-base leading-relaxed opacity-85">{body}</p>
       </div>
@@ -278,7 +282,7 @@ export default async function CustomPage({ params }: Props) {
   return (
     <>
       <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
-        <HeroGroundPrint />
+        <HeroGroundPrint label={t("ground_print")} />
         <Container className="relative z-10 lg:flex lg:min-h-[calc(100svh-14rem)] lg:items-center">
           <div className="grid w-full gap-12 lg:grid-cols-[1fr_0.82fr] lg:items-center">
             <div className="relative z-10 space-y-8 lg:-translate-y-8">
@@ -309,14 +313,14 @@ export default async function CustomPage({ params }: Props) {
             </div>
 
             <div className="relative min-h-[32rem] md:min-h-[37rem] lg:min-h-[43rem]">
-              <div className="absolute right-[-1.25rem] bottom-[-0.75rem] left-[-1rem] h-[34rem] md:right-[1rem] md:left-[2rem] md:h-[39rem] lg:right-[-3.5rem] lg:left-[-2rem] lg:h-[47rem]">
-                <Image
+              <div className="absolute right-[-1.25rem] bottom-8 left-[-1rem] h-[30rem] -rotate-1 md:right-[1rem] md:left-[2rem] md:h-[34rem] lg:right-[-3.5rem] lg:left-[-2rem] lg:h-[38rem]">
+                <PosterPhoto
                   src={customImages.hero}
                   alt={t("hero_image_alt")}
-                  fill
                   sizes="(min-width: 1280px) 48vw, (min-width: 1024px) 44vw, 88vw"
                   priority
-                  className="object-contain object-bottom"
+                  mirrored
+                  className="border-paper/80 shadow-sticker-ink h-full"
                 />
               </div>
               <HeroRouteSlip
@@ -394,7 +398,7 @@ export default async function CustomPage({ params }: Props) {
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {processSteps.map((item, index) => (
-              <ProcessStep key={item.title} {...item} index={index} />
+              <ProcessStep key={item.title} {...item} index={index} stepLabel={t("step_label")} />
             ))}
           </div>
 

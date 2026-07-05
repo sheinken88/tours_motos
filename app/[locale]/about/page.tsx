@@ -14,7 +14,6 @@ import {
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { getPageFrontmatter } from "@/lib/content/getPageMdx";
-import { getPageMdxComponent } from "@/lib/content/pageMdxRegistry";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
@@ -40,76 +39,33 @@ const nosotrosImages = {
 
 const aboutHeroBackground = {
   src: "/images/nosotros/Fondo de pantalla Nosotros.jpg",
-  alt: "Equipo de Moto On/Off rodando una ruta de ripio en Argentina",
   objectPosition: "54% center",
 } as const;
 
 const nosotrosCarouselImages = [
   {
     src: "/images/nosotros/nosotros-caco/Imagen 1.jpg",
-    alt: "Riders de Moto On/Off reunidos durante una salida en moto",
   },
   {
     src: "/images/nosotros/nosotros-caco/Imagen 2.jpg",
-    alt: "Rider de Moto On/Off cruzando terreno de montaña",
   },
   {
     src: "/images/nosotros/nosotros-caco/Imagen 3.jpg",
-    alt: "Grupo de motos de aventura en una ruta de ripio",
   },
   {
     src: "/images/nosotros/nosotros-caco/Imagen 4.jpg",
-    alt: "Riders avanzando por una ruta abierta entre montañas",
   },
   {
     src: "/images/nosotros/nosotros-caco/Imagen 5.jpg",
-    alt: "Moto de aventura detenida sobre un camino de ripio",
   },
 ] as const;
 
-const routePrinciples = [
-  "Cada kilómetro de nuestras rutas en moto fueron diseñadas previamente, testeadas y ajustadas para que vivas el viaje con libertad.",
-  "Planificamos cada viaje en moto al detalle, desde los hoteles, las paradas y las horas de manejo.",
-  "Brindamos apoyo y organización para que la experiencia sea intensa y auténtica.",
-  "Hacemos especial foco en el grupo humano.",
-];
-
-const terrainList = [
-  "Zonas volcánicas.",
-  "Desiertos.",
-  "Bosques con lagos.",
-  "Montañas nevadas.",
-  "Yungas cerradas.",
-];
-
-const commitmentTestimonials = [
-  {
-    quote:
-      "La Mina La Mejicana fue el desafío más grande que hice en moto. El grupo siempre con buena onda. Muy bueno todo.",
-    rider: "Diego Bianco",
-    meta: "Mina La Mejicana",
-    tilt: -1.5,
-  },
-  {
-    quote:
-      "El grupo que se formó en esos 7 días fue espectacular, ya hicimos 2 asados desde que volvimos.",
-    rider: "Juan Carrera",
-    meta: "Volcanes del Norte · 7 días de ruta",
-    tilt: 1.25,
-  },
-  {
-    quote:
-      "El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.",
-    rider: "Martin Pujol",
-    meta: "7 días de ruta",
-    tilt: -1,
-  },
-] satisfies Array<{
+type CommitmentTestimonial = {
   quote: string;
   rider: string;
   meta: string;
   tilt: number;
-}>;
+};
 
 type AboutContactCtaProps = {
   eyebrow: string;
@@ -124,12 +80,22 @@ type AboutContactCtaProps = {
   contactHref: string;
 };
 
-function AboutHero({ eyebrow, heading, body }: { eyebrow: string; heading: string; body: string }) {
+function AboutHero({
+  eyebrow,
+  heading,
+  body,
+  imageAlt,
+}: {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  imageAlt: string;
+}) {
   return (
     <RedZone density="heavy" tornBottom={1} className="min-h-[100svh] overflow-hidden !py-0">
       <Image
         src={aboutHeroBackground.src}
-        alt={aboutHeroBackground.alt}
+        alt={imageAlt}
         fill
         priority
         sizes="100vw"
@@ -213,20 +179,28 @@ function PosterPhoto({
   );
 }
 
-function NosotrosCarousel() {
+function NosotrosCarousel({
+  alts,
+  label,
+  eyebrow,
+}: {
+  alts: string[];
+  label: string;
+  eyebrow: string;
+}) {
   return (
-    <section className="space-y-6" aria-label="Fotos de Moto On/Off">
-      <Eyebrow rule>Fotos de ruta</Eyebrow>
+    <section className="space-y-6" aria-label={label}>
+      <Eyebrow rule>{eyebrow}</Eyebrow>
       <div className="border-ink/25 -mx-5 overflow-x-auto border-y-2 py-5 sm:-mx-8 lg:mx-0">
         <div className="flex snap-x snap-mandatory gap-4 px-5 sm:px-8 lg:px-0">
-          {nosotrosCarouselImages.map((image) => (
+          {nosotrosCarouselImages.map((image, index) => (
             <figure
               key={image.src}
               className="text-on-paper group/gallery-frame border-ink/60 bg-paper-aged shadow-sticker-ink hover:shadow-sticker-red relative aspect-[16/10] w-[86vw] shrink-0 snap-start overflow-hidden border-2 transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-1 sm:w-[42rem] lg:w-[48rem]"
             >
               <Image
                 src={image.src}
-                alt={image.alt}
+                alt={alts[index] ?? ""}
                 fill
                 sizes="(min-width: 1024px) 760px, (min-width: 640px) 78vw, 92vw"
                 draggable={false}
@@ -328,7 +302,8 @@ function CommitmentTestimonialCard({
   rider,
   meta,
   tilt,
-}: (typeof commitmentTestimonials)[number]) {
+  stampLabel,
+}: CommitmentTestimonial & { stampLabel: string }) {
   return (
     <article
       data-zone="paper"
@@ -349,7 +324,7 @@ function CommitmentTestimonialCard({
             “
           </span>
           <Stamp tilt={tilt > 0 ? -2 : 2} className="text-accent-on-paper shrink-0">
-            Volcanes
+            {stampLabel}
           </Stamp>
         </div>
         <blockquote className="font-sans text-lg leading-relaxed md:text-xl">{quote}</blockquote>
@@ -362,7 +337,19 @@ function CommitmentTestimonialCard({
   );
 }
 
-function AboutRouteCards({ tours, locale }: { tours: Tour[]; locale: Locale }) {
+function AboutRouteCards({
+  tours,
+  locale,
+  eyebrow,
+  heading,
+  body,
+}: {
+  tours: Tour[];
+  locale: Locale;
+  eyebrow: string;
+  heading: string;
+  body: string;
+}) {
   const visible = tours.slice(0, 4);
   if (visible.length === 0) return null;
 
@@ -370,14 +357,13 @@ function AboutRouteCards({ tours, locale }: { tours: Tour[]; locale: Locale }) {
     <div className="border-paper/25 space-y-8 border-t-2 border-dashed pt-12">
       <div className="grid gap-5 lg:grid-cols-[0.7fr_1fr] lg:items-end">
         <div className="space-y-3">
-          <Eyebrow rule>Rutas probadas</Eyebrow>
+          <Eyebrow rule>{eyebrow}</Eyebrow>
           <DisplayHeading size="xl" as="h2">
-            ELEGÍ LO QUE VAS A CRUZAR
+            {heading}
           </DisplayHeading>
         </div>
         <p className="text-muted-on-red max-w-3xl font-sans text-lg leading-relaxed">
-          Salta y Jujuy, Mendoza a La Rioja, Catamarca o Patagonia. Cuatro rutas rodadas antes de
-          ponerles nombre.
+          {body}
         </p>
       </div>
       <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
@@ -428,11 +414,10 @@ export default async function AboutPage({ params }: Props) {
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, tWhatsApp, tCommon, MdxBody, tours] = await Promise.all([
+  const [t, tWhatsApp, tCommon, tours] = await Promise.all([
     getTranslations({ locale, namespace: "about" }),
     getTranslations({ locale, namespace: "whatsapp" }),
     getTranslations({ locale, namespace: "common" }),
-    getPageMdxComponent("about", locale),
     getTours(locale),
   ]);
 
@@ -440,60 +425,25 @@ export default async function AboutPage({ params }: Props) {
   const contactHref = `/${locale}/contact`;
   const ctaPrompts = t.raw("cta_prompts") as string[];
 
-  if (locale !== "es") {
-    return (
-      <>
-        <AboutHero eyebrow={t("eyebrow")} heading={t("headline")} body={t("subheadline")} />
-
-        <PaperZone density="default" tornBottom={2}>
-          <Container width="narrow">
-            <div className="mb-12 space-y-3">
-              <Eyebrow rule>{t("founder_eyebrow")}</Eyebrow>
-              <DisplayHeading size="lg" as="h2">
-                {t("founder_name")}
-              </DisplayHeading>
-              <p className="font-sans text-sm opacity-80">{t("founder_caption")}</p>
-            </div>
-            {MdxBody ? (
-              <article className="prose-tour">
-                <MdxBody />
-              </article>
-            ) : null}
-          </Container>
-        </PaperZone>
-
-        <RedZone density="default" tornBottom={3}>
-          <Container className="space-y-5">
-            <Eyebrow rule>{t("eyebrow")}</Eyebrow>
-            <DisplayHeading size="xl" as="h2">
-              ON THE ADVENTURE. OFF THE MAP.
-            </DisplayHeading>
-          </Container>
-        </RedZone>
-
-        <AboutContactCta
-          eyebrow={tCommon("talk_to_us")}
-          heading={t("cta_heading")}
-          body={t("cta_body")}
-          prompts={ctaPrompts}
-          primaryLabel={t("cta")}
-          secondaryLabel={t("cta_secondary")}
-          promptHeading={t("cta_prompt_heading")}
-          promptMeta={t("cta_prompt_meta")}
-          whatsAppHref={whatsAppHref}
-          contactHref={contactHref}
-        />
-      </>
-    );
-  }
+  const introParagraphs = t.raw("intro_paragraphs") as string[];
+  const proofLabels = t.raw("proof_labels") as string[];
+  const routePrinciples = t.raw("route_principles") as string[];
+  const terrainList = t.raw("terrain_list") as string[];
+  const carouselAlts = t.raw("image_alt_carousel") as string[];
+  const commitmentTestimonials = (t.raw("commitment_testimonials") as Array<
+    Omit<CommitmentTestimonial, "tilt">
+  >).map((item, index) => ({
+    ...item,
+    tilt: [-1.5, 1.25, -1][index] ?? -1,
+  }));
 
   return (
     <>
       <AboutHero
         eyebrow={t("eyebrow")}
-        heading="EL EQUIPO QUE ABRE LA HUELLA"
-        body={`Somos el equipo que diseña, prueba y guía cada ruta.
-No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
+        heading={t("hero_heading")}
+        body={t("hero_body")}
+        imageAlt={t("image_alt_hero")}
       />
 
       <PaperZone density="default" tornBottom={2}>
@@ -501,47 +451,38 @@ No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
             <div className="space-y-8">
               <div className="space-y-4">
-                <Eyebrow rule>Nosotros</Eyebrow>
+                <Eyebrow rule>{t("intro_eyebrow")}</Eyebrow>
                 <DisplayHeading size="xl" as="h2">
-                  TOURS EN MOTO CON ENFOQUE OFFROAD
+                  {t("intro_heading")}
                 </DisplayHeading>
               </div>
               <div className="space-y-5 font-sans text-lg leading-relaxed">
-                <p>
-                  Ofrecemos tours en moto para todo público con un enfoque Offroad, desde
-                  expediciones por Catamarca hasta viajes en moto por la Carretera Austral.
-                </p>
-                <p>
-                  Todos nuestros tours en moto son distintos entre sí. Diseñamos experiencias de
-                  moto ON/OFF que combinan ruta, ripio y aventura.
-                </p>
-                <p>
-                  Viajando en moto por zonas volcánicas, desiertos, bosques con lagos, montañas
-                  nevadas o yungas cerradas.
-                </p>
+                {introParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
               <div className="border-ink text-ink grid max-w-2xl grid-cols-3 border-2">
-                <ProofStamp value="+6" label="años rodando" />
-                <ProofStamp value="ON/OFF" label="ruta y ripio" />
-                <ProofStamp value="100%" label="rutas probadas" />
+                <ProofStamp value="+6" label={proofLabels[0] ?? ""} />
+                <ProofStamp value="ON/OFF" label={proofLabels[1] ?? ""} />
+                <ProofStamp value="100%" label={proofLabels[2] ?? ""} />
               </div>
             </div>
             <div className="grid min-h-[34rem] grid-cols-5 grid-rows-5 gap-4">
               <PosterPhoto
                 src={nosotrosImages.galleryOne}
-                alt="Riders de Moto On/Off avanzando en una ruta de ripio"
+                alt={t("image_alt_gallery_one")}
                 sizes="(min-width: 1024px) 38vw, 100vw"
                 className="col-span-5 row-span-3 -rotate-1"
               />
               <PosterPhoto
                 src={nosotrosImages.galleryTwo}
-                alt="Grupo de riders de Moto On/Off durante una travesía"
+                alt={t("image_alt_gallery_two")}
                 sizes="(min-width: 1024px) 22vw, 55vw"
                 className="col-span-3 row-span-2 rotate-1"
               />
               <PosterPhoto
                 src={nosotrosImages.road}
-                alt="Moto de aventura cargada en un camino de montaña"
+                alt={t("image_alt_road")}
                 sizes="(min-width: 1024px) 16vw, 45vw"
                 className="col-span-2 row-span-2 -rotate-1"
               />
@@ -554,9 +495,9 @@ No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
         <Container>
           <div className="grid gap-10 md:grid-cols-[0.72fr_1fr] md:items-center">
             <div className="space-y-3">
-              <Eyebrow rule>Cómo lo hacemos</Eyebrow>
+              <Eyebrow rule>{t("route_principles_eyebrow")}</Eyebrow>
               <DisplayHeading size="xl" as="h2">
-                DISEÑADAS, TESTEADAS Y AJUSTADAS
+                {t("route_principles_heading")}
               </DisplayHeading>
             </div>
             <ul className="grid gap-4 font-sans text-lg leading-relaxed md:grid-cols-2">
@@ -576,17 +517,14 @@ No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
           <div className="space-y-8">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1fr] lg:items-end">
               <div className="space-y-5">
-                <Eyebrow rule>Terreno humano</Eyebrow>
+                <Eyebrow rule>{t("terrain_eyebrow")}</Eyebrow>
                 <DisplayHeading size="xl" as="h2">
-                  NO HACEMOS TOURS MASIVOS
+                  {t("terrain_heading")}
                 </DisplayHeading>
               </div>
               <div className="space-y-6">
                 <p className="max-w-3xl font-sans text-lg leading-relaxed">
-                  No hacemos tours masivos. En un viaje en moto la ruta importa, pero también
-                  quiénes la comparten. Armamos grupos chicos para ayudarnos, acompañarnos y
-                  disfrutar el camino como equipo. Porque una gran experiencia no la hace solamente
-                  el paisaje.
+                  {t("terrain_body")}
                 </p>
                 <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed md:grid-cols-3">
                   {terrainList.map((item) => (
@@ -600,12 +538,16 @@ No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
             </div>
             <PosterPhoto
               src={nosotrosImages.workshop}
-              alt="Riders de Moto On/Off en una parada de ruta"
+              alt={t("image_alt_workshop")}
               sizes="(min-width: 1024px) 82vw, 100vw"
               className="mx-auto aspect-[3264/1504] max-w-6xl -rotate-1"
               treatment="color"
             />
-            <NosotrosCarousel />
+            <NosotrosCarousel
+              alts={carouselAlts}
+              label={t("photos_label")}
+              eyebrow={t("photos_eyebrow")}
+            />
           </div>
         </Container>
       </PaperZone>
@@ -614,23 +556,35 @@ No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
         <Container className="space-y-12">
           <div className="grid gap-8 lg:grid-cols-[0.88fr_0.72fr] lg:items-end">
             <div className="space-y-5">
-              <Eyebrow rule>Compromiso</Eyebrow>
+              <Eyebrow rule>{t("commitment_eyebrow")}</Eyebrow>
               <DisplayHeading size="2xl" as="h2">
-                MÁS ALLÁ DEL CAMINO
+                {t("commitment_heading")}
               </DisplayHeading>
             </div>
             <p className="max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
-              Invitamos a vivir una experiencia que va más allá del camino. Ganar confianza, sumar
-              herramientas y volver del viaje siendo un mejor piloto.
+              {t("commitment_body")}
             </p>
           </div>
 
-          <div className="grid gap-7 md:grid-cols-3 md:items-stretch" aria-label="Testimonios">
+          <div
+            className="grid gap-7 md:grid-cols-3 md:items-stretch"
+            aria-label={t("testimonials_label")}
+          >
             {commitmentTestimonials.map((testimonial) => (
-              <CommitmentTestimonialCard key={testimonial.quote} {...testimonial} />
+              <CommitmentTestimonialCard
+                key={testimonial.quote}
+                {...testimonial}
+                stampLabel={t("stamp_volcanes")}
+              />
             ))}
           </div>
-          <AboutRouteCards tours={tours} locale={locale} />
+          <AboutRouteCards
+            tours={tours}
+            locale={locale}
+            eyebrow={t("route_cards_eyebrow")}
+            heading={t("route_cards_heading")}
+            body={t("route_cards_body")}
+          />
         </Container>
       </RedZone>
 

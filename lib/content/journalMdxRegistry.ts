@@ -22,16 +22,24 @@ type MdxModule = { default: ComponentType };
 
 const JOURNAL_REGISTRY: Record<string, Partial<Record<Locale, () => Promise<MdxModule>>>> = {
   "armar-sobre-las-nubes": {
-    es: () => import("@/content/journal/armar-sobre-las-nubes/es.mdx") as Promise<MdxModule>,
+    es: () => import("@/content/journal/armar-sobre-las-nubes/es.body.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/journal/armar-sobre-las-nubes/en.body.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/journal/armar-sobre-las-nubes/pt.body.mdx") as Promise<MdxModule>,
   },
   "armar-gigantes-del-oeste": {
-    es: () => import("@/content/journal/armar-gigantes-del-oeste/es.mdx") as Promise<MdxModule>,
+    es: () => import("@/content/journal/armar-gigantes-del-oeste/es.body.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/journal/armar-gigantes-del-oeste/en.body.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/journal/armar-gigantes-del-oeste/pt.body.mdx") as Promise<MdxModule>,
   },
   "armar-volcanes-del-norte": {
-    es: () => import("@/content/journal/armar-volcanes-del-norte/es.mdx") as Promise<MdxModule>,
+    es: () => import("@/content/journal/armar-volcanes-del-norte/es.body.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/journal/armar-volcanes-del-norte/en.body.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/journal/armar-volcanes-del-norte/pt.body.mdx") as Promise<MdxModule>,
   },
   "armar-cruces-del-sur": {
-    es: () => import("@/content/journal/armar-cruces-del-sur/es.mdx") as Promise<MdxModule>,
+    es: () => import("@/content/journal/armar-cruces-del-sur/es.body.mdx") as Promise<MdxModule>,
+    en: () => import("@/content/journal/armar-cruces-del-sur/en.body.mdx") as Promise<MdxModule>,
+    pt: () => import("@/content/journal/armar-cruces-del-sur/pt.body.mdx") as Promise<MdxModule>,
   },
 };
 

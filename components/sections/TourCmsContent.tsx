@@ -43,6 +43,8 @@ type TourTestimonial = {
   attribution: string;
 };
 
+type TranslatedLocale = Exclude<Locale, "es">;
+
 type RoutePoint = [number, number];
 
 type RouteStop = {
@@ -61,17 +63,17 @@ type RouteMapText = {
 type TourRouteMap = {
   googleMapsUrl: string;
   workshopSlug: string;
-  srcDoc: string;
+  srcDoc: Record<Locale, string>;
   text: Record<Locale, RouteMapText>;
 };
 
 const sectionOrder: TourSection["type"][] = ["included", "not_included", "need_to_know"];
 
-function localizeStatic<T>(value: T): Record<Locale, T> {
+function localizeStatic<T>(es: T, en: T, pt: T): Record<Locale, T> {
   return {
-    es: value,
-    en: value,
-    pt: value,
+    es,
+    en,
+    pt,
   };
 }
 
@@ -84,18 +86,20 @@ function getRoutePoint(route: RoutePoint[], index: number): RoutePoint {
 }
 
 function buildRouteMapSrcDoc({
+  lang = "es",
   label,
   route,
   stops,
   osrmCoordinates,
 }: {
+  lang?: Locale;
   label: string;
   route: RoutePoint[];
   stops: RouteStop[];
   osrmCoordinates: string;
 }) {
   return `<!doctype html>
-<html lang="es">
+<html lang="${lang}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -230,6 +234,24 @@ function buildRouteMapSrcDoc({
 </html>`;
 }
 
+function buildLocalizedRouteMapSrcDoc({
+  labels,
+  route,
+  stops,
+  osrmCoordinates,
+}: {
+  labels: Record<Locale, string>;
+  route: RoutePoint[];
+  stops: RouteStop[];
+  osrmCoordinates: string;
+}) {
+  return {
+    es: buildRouteMapSrcDoc({ lang: "es", label: labels.es, route, stops, osrmCoordinates }),
+    en: buildRouteMapSrcDoc({ lang: "en", label: labels.en, route, stops, osrmCoordinates }),
+    pt: buildRouteMapSrcDoc({ lang: "pt", label: labels.pt, route, stops, osrmCoordinates }),
+  };
+}
+
 const crucesRoute: RoutePoint[] = [
   [-41.1334722, -71.3102778],
   [-43.0888123, -71.4625883],
@@ -306,8 +328,12 @@ const routeMapsByTour: Record<string, TourRouteMap> = {
   "sobre-las-nubes": {
     googleMapsUrl: "https://maps.app.goo.gl/nhtYfD9vhBcC8krb7",
     workshopSlug: "armar-sobre-las-nubes",
-    srcDoc: buildRouteMapSrcDoc({
-      label: "Mapa del recorrido Sobre las Nubes",
+    srcDoc: buildLocalizedRouteMapSrcDoc({
+      labels: {
+        es: "Mapa del recorrido Sobre las Nubes",
+        en: "Route map for Over the Clouds",
+        pt: "Mapa do percurso Sobre as Nuvens",
+      },
       route: sobreLasNubesRoute,
       stops: [
         { name: "Salta", coords: getRoutePoint(sobreLasNubesRoute, 0) },
@@ -325,20 +351,42 @@ const routeMapsByTour: Record<string, TourRouteMap> = {
       osrmCoordinates:
         "-65.4231976,-24.7821269;-65.342841,-25.283414;-65.844315,-25.169111;-66.165016,-25.120428;-65.976052,-26.073081;-65.490839,-25.074095;-66.200123,-24.722746;-66.239163,-24.386158;-66.318771,-24.218449;-66.412715,-24.203519;-65.471286,-23.711463;-65.39564,-23.578171;-65.052756,-23.199063;-65.09485,-23.339497;-64.888505,-23.908734;-64.849693,-23.745661;-64.788564,-23.806071;-65.205747,-24.377009;-65.4231976,-24.7821269",
     }),
-    text: localizeStatic({
-      heading: "Sobre las Nubes en el mapa",
-      body: "Salta, Cachi, Cafayate, Abra del Acay, Tilcara, Hornocal, Caspala, Calilegua, Libertador San Martín y regreso por Las Maderas. Mové el mapa, acercate a la altura y mirá dónde se gana cada kilómetro.",
-      frameTitle: "Mapa interactivo del recorrido Sobre las Nubes",
-      workshopBody:
-        "El recorrido quedó después de probar altura, quebrada y yunga hasta encontrar una línea que cruza Salta y Jujuy sin perder ritmo.",
-      workshopCta: "Descubrí cómo armamos Sobre las Nubes",
-    }),
+    text: localizeStatic(
+      {
+        heading: "Sobre las Nubes en el mapa",
+        body: "Salta, Cachi, Cafayate, Abra del Acay, Tilcara, Hornocal, Caspala, Calilegua, Libertador San Martín y regreso por Las Maderas. Mové el mapa, acercate a la altura y mirá dónde se gana cada kilómetro.",
+        frameTitle: "Mapa interactivo del recorrido Sobre las Nubes",
+        workshopBody:
+          "El recorrido quedó después de probar altura, quebrada y yunga hasta encontrar una línea que cruza Salta y Jujuy sin perder ritmo.",
+        workshopCta: "Descubrí cómo armamos Sobre las Nubes",
+      },
+      {
+        heading: "Over the Clouds on the map",
+        body: "Salta, Cachi, Cafayate, Abra del Acay, Tilcara, Hornocal, Caspala, Calilegua, Libertador San Martín, and the return through Las Maderas. Move the map, get close to the altitude, and see where every kilometer is earned.",
+        frameTitle: "Interactive map of the Over the Clouds route",
+        workshopBody:
+          "The route held after we tested altitude, quebrada, and yunga until we found a line that crosses Salta and Jujuy without losing rhythm.",
+        workshopCta: "See how we built Over the Clouds",
+      },
+      {
+        heading: "Sobre as Nuvens no mapa",
+        body: "Salta, Cachi, Cafayate, Abra del Acay, Tilcara, Hornocal, Caspala, Calilegua, Libertador San Martín e retorno por Las Maderas. Mova o mapa, chegue perto da altitude e veja onde cada quilômetro é conquistado.",
+        frameTitle: "Mapa interativo do percurso Sobre as Nuvens",
+        workshopBody:
+          "O percurso ficou depois de testar altitude, quebrada e yunga até encontrar uma linha que cruza Salta e Jujuy sem perder ritmo.",
+        workshopCta: "Veja como montamos Sobre as Nuvens",
+      },
+    ),
   },
   "cruces-del-sur": {
     googleMapsUrl: "https://maps.app.goo.gl/3JruHQgzeRTNLJpy7",
     workshopSlug: "armar-cruces-del-sur",
-    srcDoc: buildRouteMapSrcDoc({
-      label: "Mapa del recorrido Cruces del Sur",
+    srcDoc: buildLocalizedRouteMapSrcDoc({
+      labels: {
+        es: "Mapa del recorrido Cruces del Sur",
+        en: "Route map for Southern Crossings",
+        pt: "Mapa do percurso Cruces do Sul",
+      },
       route: crucesRoute,
       stops: [
         { name: "Bariloche", coords: getRoutePoint(crucesRoute, 0) },
@@ -352,20 +400,42 @@ const routeMapsByTour: Record<string, TourRouteMap> = {
       osrmCoordinates:
         "-71.3102778,-41.1334722;-71.4625883,-43.0888123;-71.7229183,-46.5401253;-72.5752373,-47.2520865;-71.8338256,-47.1603752;-70.925584,-46.5916181;-71.4113039,-43.68483;-71.3102778,-41.1334722",
     }),
-    text: localizeStatic({
-      heading: "Cruces del Sur en el mapa",
-      body: "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno y regreso por Patagonia. Mové el mapa, acercate al ripio y mirá el giro completo antes de escribirnos.",
-      frameTitle: "Mapa interactivo del recorrido Cruces del Sur",
-      workshopBody:
-        "La línea final no salió de una mesa. La probamos con viento, frontera, ferry y ripio hasta que el recorrido quedó listo para rodarse.",
-      workshopCta: "Mirá cómo armamos Cruces del Sur",
-    }),
+    text: localizeStatic(
+      {
+        heading: "Cruces del Sur en el mapa",
+        body: "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno y regreso por Patagonia. Mové el mapa, acercate al ripio y mirá el giro completo antes de escribirnos.",
+        frameTitle: "Mapa interactivo del recorrido Cruces del Sur",
+        workshopBody:
+          "La línea final no salió de una mesa. La probamos con frontera, ferry, ripio y distancia hasta que el recorrido quedó listo para rodarse.",
+        workshopCta: "Mirá cómo armamos Cruces del Sur",
+      },
+      {
+        heading: "Southern Crossings on the map",
+        body: "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno, and the return through Patagonia. Move the map, get close to the gravel, and see the full loop before writing to us.",
+        frameTitle: "Interactive map of the Southern Crossings route",
+        workshopBody:
+          "The final line did not come from a desk. We tested it with border crossings, ferry timing, gravel, and distance until the route was ready to ride.",
+        workshopCta: "See how we built Southern Crossings",
+      },
+      {
+        heading: "Cruces do Sul no mapa",
+        body: "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno e retorno pela Patagônia. Mova o mapa, chegue perto do ripio e veja a volta completa antes de escrever.",
+        frameTitle: "Mapa interativo do percurso Cruces do Sul",
+        workshopBody:
+          "A linha final não saiu de uma mesa. Testamos com fronteira, balsa, ripio e distância até o percurso ficar pronto para rodar.",
+        workshopCta: "Veja como montamos Cruces do Sul",
+      },
+    ),
   },
   "gigantes-del-oeste": {
     googleMapsUrl: "https://maps.app.goo.gl/BWWYQYYWhBNAmj6U9",
     workshopSlug: "armar-gigantes-del-oeste",
-    srcDoc: buildRouteMapSrcDoc({
-      label: "Mapa del recorrido Gigantes del Oeste",
+    srcDoc: buildLocalizedRouteMapSrcDoc({
+      labels: {
+        es: "Mapa del recorrido Gigantes del Oeste",
+        en: "Route map for Giants of the West",
+        pt: "Mapa do percurso Gigantes do Oeste",
+      },
       route: gigantesRoute,
       stops: [
         { name: "Mendoza", coords: getRoutePoint(gigantesRoute, 0) },
@@ -384,20 +454,42 @@ const routeMapsByTour: Record<string, TourRouteMap> = {
       osrmCoordinates:
         "-68.8458386,-32.8894587;-69.201432,-32.951352;-69.014142,-32.531955;-69.347289,-32.593133;-69.912308,-32.82542;-70.598271,-32.833799;-69.347289,-32.593133;-69.321341,-31.798144;-69.466667,-31.633333;-69.141327,-30.215611;-68.746166,-30.240711;-68.492236,-30.154472;-68.226972,-29.315889;-68.207739,-28.760391;-68.843853,-28.311883;-68.226972,-29.315889;-67.836155,-29.786114;-67.842102,-30.159067;-67.496824,-29.164868;-67.675668,-29.158303;-67.496824,-29.164868;-67.071513,-29.678716;-66.856458,-29.413454",
     }),
-    text: localizeStatic({
-      heading: "Gigantes del Oeste en el mapa",
-      body: "Mendoza, Villavicencio, Uspallata, Paso Los Libertadores, Laguna Brava, Talampaya, Chilecito, Mina La Mejicana y La Rioja. Mové el mapa, acercate a la cordillera y mirá dónde se gana cada día.",
-      frameTitle: "Mapa interactivo del recorrido Gigantes del Oeste",
-      workshopBody:
-        "Unimos Mendoza, San Juan y La Rioja después de probar variantes, pasos y alturas hasta dejar una ruta que sube de ritmo día tras día.",
-      workshopCta: "Descubrí cómo armamos Gigantes del Oeste",
-    }),
+    text: localizeStatic(
+      {
+        heading: "Gigantes del Oeste en el mapa",
+        body: "Mendoza, Villavicencio, Uspallata, Paso Los Libertadores, Laguna Brava, Talampaya, Chilecito, Mina La Mejicana y La Rioja. Mové el mapa, acercate a la cordillera y mirá dónde se gana cada día.",
+        frameTitle: "Mapa interactivo del recorrido Gigantes del Oeste",
+        workshopBody:
+          "Unimos Mendoza, San Juan y La Rioja después de probar variantes, pasos y alturas hasta dejar una ruta que sube de ritmo día tras día.",
+        workshopCta: "Descubrí cómo armamos Gigantes del Oeste",
+      },
+      {
+        heading: "Giants of the West on the map",
+        body: "Mendoza, Villavicencio, Uspallata, Paso Los Libertadores, Laguna Brava, Talampaya, Chilecito, Mina La Mejicana, and La Rioja. Move the map, get close to the cordillera, and see where each day is earned.",
+        frameTitle: "Interactive map of the Giants of the West route",
+        workshopBody:
+          "We linked Mendoza, San Juan, and La Rioja after testing variants, passes, and altitude until the route grew in rhythm day after day.",
+        workshopCta: "See how we built Giants of the West",
+      },
+      {
+        heading: "Gigantes do Oeste no mapa",
+        body: "Mendoza, Villavicencio, Uspallata, Paso Los Libertadores, Laguna Brava, Talampaya, Chilecito, Mina La Mejicana e La Rioja. Mova o mapa, chegue perto da cordilheira e veja onde cada dia é conquistado.",
+        frameTitle: "Mapa interativo do percurso Gigantes do Oeste",
+        workshopBody:
+          "Unimos Mendoza, San Juan e La Rioja depois de testar variantes, passos e altitude até deixar uma rota que sobe de ritmo dia após dia.",
+        workshopCta: "Veja como montamos Gigantes do Oeste",
+      },
+    ),
   },
   "volcanes-del-norte": {
     googleMapsUrl: "https://maps.app.goo.gl/NLtJ8B4giCKQFE8o8",
     workshopSlug: "armar-volcanes-del-norte",
-    srcDoc: buildRouteMapSrcDoc({
-      label: "Mapa del recorrido Volcanes del Norte",
+    srcDoc: buildLocalizedRouteMapSrcDoc({
+      labels: {
+        es: "Mapa del recorrido Volcanes del Norte",
+        en: "Route map for Volcanoes of the North",
+        pt: "Mapa do percurso Vulcões do Norte",
+      },
       route: volcanesRoute,
       stops: [
         { name: "San Fernando", coords: getRoutePoint(volcanesRoute, 0) },
@@ -413,14 +505,32 @@ const routeMapsByTour: Record<string, TourRouteMap> = {
       osrmCoordinates:
         "-65.7795441,-28.469581;-67.6193274,-27.68933;-68.1469281,-27.5609208;-67.5817336,-27.354017;-67.4064692,-26.0595658;-67.2657213,-26.4798033;-66.3768598,-27.3445746;-66.3148915,-27.5827186;-66.0125499,-27.470099;-65.7795441,-28.469581",
     }),
-    text: localizeStatic({
-      heading: "Volcanes del Norte en el mapa",
-      body: "San Fernando, Fiambalá, Ruta de los Seismiles, Dunas de Tatón, Antofagasta de la Sierra, El Peñón, Minas Capillitas, Andalgalá, Aconquija y regreso a Catamarca. Mové el mapa, acercate a la puna y mirá dónde se gana cada tramo.",
-      frameTitle: "Mapa interactivo del recorrido Volcanes del Norte",
-      workshopBody:
-        "La ruta cruza Catamarca por altura, salares, piedra pómez y cuestas probadas hasta dejar un recorrido exigente sin perder margen para el grupo.",
-      workshopCta: "Descubrí cómo armamos Volcanes del Norte",
-    }),
+    text: localizeStatic(
+      {
+        heading: "Volcanes del Norte en el mapa",
+        body: "San Fernando, Fiambalá, Ruta de los Seismiles, Dunas de Tatón, Antofagasta de la Sierra, El Peñón, Minas Capillitas, Andalgalá, Aconquija y regreso a Catamarca. Mové el mapa, acercate a la puna y mirá dónde se gana cada tramo.",
+        frameTitle: "Mapa interactivo del recorrido Volcanes del Norte",
+        workshopBody:
+          "La ruta cruza Catamarca por altura, salares, piedra pómez y cuestas probadas hasta dejar un recorrido exigente sin perder margen para el grupo.",
+        workshopCta: "Descubrí cómo armamos Volcanes del Norte",
+      },
+      {
+        heading: "Volcanoes of the North on the map",
+        body: "San Fernando, Fiambalá, Ruta de los Seismiles, Dunas de Tatón, Antofagasta de la Sierra, El Peñón, Minas Capillitas, Andalgalá, Aconquija, and the return to Catamarca. Move the map, get close to the puna, and see where each section is earned.",
+        frameTitle: "Interactive map of the Volcanoes of the North route",
+        workshopBody:
+          "The route crosses Catamarca through altitude, salt flats, pumice, and tested cuestas until it becomes demanding without losing margin for the group.",
+        workshopCta: "See how we built Volcanoes of the North",
+      },
+      {
+        heading: "Vulcões do Norte no mapa",
+        body: "San Fernando, Fiambalá, Ruta de los Seismiles, Dunas de Tatón, Antofagasta de la Sierra, El Peñón, Minas Capillitas, Andalgalá, Aconquija e retorno a Catamarca. Mova o mapa, chegue perto da puna e veja onde cada trecho é conquistado.",
+        frameTitle: "Mapa interativo do percurso Vulcões do Norte",
+        workshopBody:
+          "A rota cruza Catamarca por altitude, salares, pedra-pomes e cuestas testadas até ficar exigente sem perder margem para o grupo.",
+        workshopCta: "Veja como montamos Vulcões do Norte",
+      },
+    ),
   },
 };
 
@@ -502,6 +612,67 @@ const testimonialsByTour: Record<string, Partial<Record<Locale, TourTestimonial[
   },
 };
 
+const testimonialTranslations: Record<string, Record<TranslatedLocale, string>> = {
+  "El Abra del Acay fue espectacular, no me esperaba algo así, muy buen camino, de principio a fin.": {
+    en: "Abra del Acay was spectacular. I was not expecting anything like that, an excellent road from beginning to end.",
+    pt: "O Abra del Acay foi espetacular. Eu não esperava algo assim, um caminho muito bom do início ao fim.",
+  },
+  "Muy buena organización por parte de la empresa, grupo muy divertido, los guías unos fenómenos.": {
+    en: "Very good organization from the company, a very fun group, and the guides were outstanding.",
+    pt: "Organização muito boa por parte da empresa, grupo muito divertido e guias excelentes.",
+  },
+  "Un viaje muy variado, pasamos de selvas a montañas y la nada misma, muy bueno. El grupo que se armó fue excelente.": {
+    en: "A very varied trip. We went from jungle to mountains and then to pure emptiness. Very good. The group that formed was excellent.",
+    pt: "Uma viagem muito variada. Passamos de selvas a montanhas e ao vazio total. Muito boa. O grupo que se formou foi excelente.",
+  },
+  "El Paso Roballos fue el viaje más impactante de mi vida. No solo en moto, sino en general.": {
+    en: "Paso Roballos was the most powerful trip of my life. Not only by motorcycle, in general.",
+    pt: "O Paso Roballos foi a viagem mais impactante da minha vida. Não só de moto, em geral.",
+  },
+  "El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.": {
+    en: "The group that formed over those 7 days is incredible. We are still in touch and already planning the next tour.",
+    pt: "O grupo que se formou nesses 7 dias é incrível. Seguimos em contato e já estamos planejando o próximo tour.",
+  },
+  "Excelente organización y aún mejor los lugares que recorrimos en el viaje en moto. El grupo que se formó fue espectacular, lo recomiendo a todos.": {
+    en: "Excellent organization and even better places along the motorcycle trip. The group that formed was spectacular. I recommend it to everyone.",
+    pt: "Excelente organização e ainda melhores os lugares que percorremos na viagem de moto. O grupo que se formou foi espetacular, recomendo a todos.",
+  },
+  "El Paso Los Libertadores fue increíble. Cruzar los Andes desde la moto fue un momento único.": {
+    en: "Paso Los Libertadores was incredible. Crossing the Andes from the motorcycle was a unique moment.",
+    pt: "O Paso Los Libertadores foi incrível. Cruzar os Andes de moto foi um momento único.",
+  },
+  "El día de Laguna Brava fue surrealista.": {
+    en: "The Laguna Brava day was surreal.",
+    pt: "O dia de Laguna Brava foi surreal.",
+  },
+  "La Mina La Mejicana fue el desafío más grande que hice en moto. El grupo siempre con buena onda. Muy bueno todo.": {
+    en: "Mina La Mejicana was the biggest challenge I have done by motorcycle. The group always had great energy. Everything was very good.",
+    pt: "A Mina La Mejicana foi o maior desafio que fiz de moto. O grupo sempre com boa energia. Tudo muito bom.",
+  },
+  "La ruta en moto hasta El Balcón de Pissis fue lo más impactante que vi en mi vida. La vista del volcán a 4.500 metros es impresionante.": {
+    en: "The motorcycle route to El Balcón de Pissis was the most powerful thing I have seen in my life. The view of the volcano at 4500 meters is impressive.",
+    pt: "A rota de moto até El Balcón de Pissis foi o mais impactante que vi na vida. A vista do vulcão a 4500 metros é impressionante.",
+  },
+  "El grupo que se formó en esos 7 fue espectacular, ya hicimos 2 asados desde que volvimos.": {
+    en: "The group that formed over those 7 days was spectacular. We have already had 2 barbecues since we got back.",
+    pt: "O grupo que se formou nesses 7 dias foi espetacular. Já fizemos 2 churrascos desde que voltamos.",
+  },
+  "El Campo de Piedra Pómez fue como estar en otro planeta. Cada día fue una sorpresa. Nunca pensé que existían lugares así.": {
+    en: "Campo de Piedra Pómez felt like being on another planet. Every day was a surprise. I never thought places like that existed.",
+    pt: "O Campo de Piedra Pómez foi como estar em outro planeta. Cada dia foi uma surpresa. Nunca pensei que existissem lugares assim.",
+  },
+};
+
+function getTourTestimonials(slug: string, locale: Locale): TourTestimonial[] {
+  const testimonials = testimonialsByTour[slug]?.es ?? [];
+  if (locale === "es") return testimonials;
+
+  return testimonials.map((testimonial) => ({
+    ...testimonial,
+    quote: testimonialTranslations[testimonial.quote]?.[locale] ?? testimonial.quote,
+  }));
+}
+
 type IconProps = {
   className?: string;
 };
@@ -563,6 +734,7 @@ function buildStatRows({
     distance: string;
     ripio: string;
     altitude: string;
+    altitudeUnit: string;
   };
 }): StatRow[] {
   return [
@@ -570,7 +742,10 @@ function buildStatRows({
     { label: labels.distance, value: `${formatter.format(tour.distance_km)} km` },
     tour.ripio_percent !== null ? { label: labels.ripio, value: `${tour.ripio_percent}%` } : null,
     tour.max_altitude_m !== null
-      ? { label: labels.altitude, value: `${formatter.format(tour.max_altitude_m)} msnm` }
+      ? {
+          label: labels.altitude,
+          value: `${formatter.format(tour.max_altitude_m)} ${labels.altitudeUnit}`,
+        }
       : null,
   ].filter(Boolean) as StatRow[];
 }
@@ -775,7 +950,7 @@ function RouteMapSection({
         <div className="shadow-sticker-ink border-ink/40 bg-paper-aged relative min-h-[28rem] overflow-hidden border-2 md:min-h-[34rem]">
           <iframe
             title={text.frameTitle}
-            srcDoc={map.srcDoc}
+            srcDoc={map.srcDoc[locale]}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             sandbox="allow-scripts"
@@ -886,6 +1061,7 @@ function TourTestimonials({
 type DayMetadataLabels = {
   surfacePending: string;
   distancePending: string;
+  altitudeUnit: string;
 };
 
 function buildDayMetadata({
@@ -905,7 +1081,7 @@ function buildDayMetadata({
   ];
 
   if (day.max_altitude_m !== null) {
-    metadata.push(`${formatter.format(day.max_altitude_m)} msnm`);
+    metadata.push(`${formatter.format(day.max_altitude_m)} ${labels.altitudeUnit}`);
   }
 
   return metadata;
@@ -1125,7 +1301,7 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
   const { tour, itinerary, sections, gallery } = content;
   const numberLocale = locale === "en" ? "en-US" : locale === "pt" ? "pt-BR" : "es-AR";
   const formatter = new Intl.NumberFormat(numberLocale);
-  const testimonials = testimonialsByTour[tour.slug]?.[locale] ?? [];
+  const testimonials = getTourTestimonials(tour.slug, locale);
   const statRows = buildStatRows({
     tour,
     formatter,
@@ -1135,11 +1311,13 @@ export async function TourCmsContent({ content, locale }: TourCmsContentProps) {
       distance: t("distance_label"),
       ripio: t("ripio_label"),
       altitude: t("max_altitude_label"),
+      altitudeUnit: locale === "en" ? "masl" : "msnm",
     },
   });
   const metadataLabels: DayMetadataLabels = {
     surfacePending: t("surface_pending"),
     distancePending: t("distance_pending"),
+    altitudeUnit: locale === "en" ? "masl" : "msnm",
   };
   const roadbookLayout = buildRoadbookCardLayout(tour, itinerary);
   const routeMap = routeMapsByTour[tour.slug];
@@ -1319,7 +1497,7 @@ export async function TourMdxContent({ tour, locale, gallery, MdxBody }: TourMdx
   const t = await getTranslations({ locale, namespace: "tour_detail" });
   const numberLocale = locale === "en" ? "en-US" : locale === "pt" ? "pt-BR" : "es-AR";
   const formatter = new Intl.NumberFormat(numberLocale);
-  const testimonials = testimonialsByTour[tour.slug]?.[locale] ?? [];
+  const testimonials = getTourTestimonials(tour.slug, locale);
   const statRows = buildStatRows({
     tour,
     formatter,
@@ -1329,6 +1507,7 @@ export async function TourMdxContent({ tour, locale, gallery, MdxBody }: TourMdx
       distance: t("distance_label"),
       ripio: t("ripio_label"),
       altitude: t("max_altitude_label"),
+      altitudeUnit: locale === "en" ? "masl" : "msnm",
     },
   });
 

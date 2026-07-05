@@ -11,7 +11,7 @@ import { type Locale } from "@/lib/i18n/config";
  * contact number so dev/preview links never point at a placeholder.
  */
 
-const FALLBACK_NUMBER = "5491135939730";
+const FALLBACK_NUMBER = "5491139035984";
 
 type BuildOptions = {
   /** Pre-filled message text — emoji-safe, no URL-encoding needed by caller. */

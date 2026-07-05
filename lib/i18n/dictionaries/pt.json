@@ -1,569 +1,670 @@
 {
   "nav": {
-    "trips": "Viajes",
+    "trips": "Viagens",
     "destinations": "Destinos",
-    "about": "Nosotros",
-    "journal": "Taller de Rutas",
-    "gear": "Equipo",
-    "contact": "Contacto",
+    "about": "Sobre",
+    "journal": "Oficina de Rotas",
+    "gear": "Equipamento",
+    "contact": "Contato",
     "calendar": "Calendario",
-    "custom": "A medida",
-    "cta": "Hablemos",
-    "open_menu": "Abrir menú",
-    "close_menu": "Cerrar menú"
+    "custom": "Sob medida",
+    "cta": "Fale conosco",
+    "open_menu": "Abrir menu",
+    "close_menu": "Fechar menu"
   },
   "footer": {
-    "section_trips": "Viajes",
-    "section_journal": "Taller de Rutas",
-    "section_contact": "Contacto",
-    "cta_eyebrow": "Próximo paso",
-    "cta_title": "¿QUÉ RUTA TE VA A PROBAR?",
-    "cta_body": "Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.",
-    "rights": "Todos los derechos reservados.",
+    "section_trips": "Viagens",
+    "section_journal": "Oficina de Rotas",
+    "section_contact": "Contato",
+    "cta_eyebrow": "Proximo passo",
+    "cta_title": "QUAL ROTA VAI TE TESTAR?",
+    "cta_body": "Conta quantos dias voce tem, que moto pilota e o que quer cruzar. Respondemos com uma rota possivel e os proximos passos.",
+    "rights": "Todos os direitos reservados.",
     "instagram": "Instagram",
-    "email": "Correo"
+    "email": "E-mail"
   },
   "lang_switcher": {
     "label": "Idioma",
     "es": "Espanhol",
-    "en": "Inglês",
-    "pt": "Português"
+    "en": "Ingles",
+    "pt": "Portugues"
   },
   "whatsapp": {
-    "label": "Hablar por WhatsApp",
-    "default_message": "Hola, me interesa una expedición.",
-    "tour_message": "Hola, me interesa la ruta {tour}."
+    "label": "Falar pelo WhatsApp",
+    "default_message": "Ola, quero planejar uma expedicao Moto On/Off. Quais rotas tem proximas e quantas vagas restam?",
+    "tour_message": "Ola, tenho interesse na rota {tour}."
   },
   "common": {
-    "plan_trip": "Tours disponíveis",
-    "see_routes": "Ver las rutas",
+    "plan_trip": "Tours disponiveis",
+    "see_routes": "Ver as rotas",
     "read_journal": "Oficina de Rotas",
-    "talk_to_us": "Hablemos",
-    "hold_a_spot": "Reservá un lugar",
-    "reserve_spot": "Reservá tu lugar"
+    "talk_to_us": "Fale conosco",
+    "hold_a_spot": "Reservar uma vaga",
+    "reserve_spot": "Reserve sua vaga"
   },
   "home": {
     "eyebrow": "MOTO ON/OFF · TOURS DE MOTO PELA ARGENTINA",
-    "headline": "RUTAS QUE NO ESTÁN EN EL MAPA",
-    "rider_alt": "Motociclista sobre una moto de aventura cargada, visto desde atrás",
+    "headline": "ROTAS QUE NAO ESTAO NO MAPA",
+    "rider_alt": "Motociclista em uma moto de aventura carregada, visto de tras",
     "route_teasers": {
-      "sobre-las-nubes": "Salta y Jujuy en 7 días. Cruzás el Abra del Acay a 4.895 m, el paso más alto de la Ruta 40.",
-      "gigantes-del-oeste": "Mendoza a La Rioja en 8 días. Subís a Laguna Brava, 4.300 m, donde descansa un avión y caminan los flamencos.",
-      "volcanes-del-norte": "Catamarca en 7 días. Antofagasta de la Sierra, el Campo de Piedra Pómez y las dunas de Tatón.",
-      "cruces-del-sur": "Carretera Austral en 7 días. Paso Roballos, el Lago General Carrera y ripio de punta a punta."
-    }
+      "sobre-las-nubes": "Salta e Jujuy em 7 dias. Voce cruza o Abra del Acay a 4.895 m, o passo mais alto da Ruta 40.",
+      "gigantes-del-oeste": "Mendoza a La Rioja em 8 dias. Voce sobe ate Laguna Brava, 4.300 m, onde repousa um aviao e caminham flamingos.",
+      "volcanes-del-norte": "Catamarca em 7 dias. Antofagasta de la Sierra, Campo de Pedra Pomez e as dunas de Taton.",
+      "cruces-del-sur": "Carretera Austral em 7 dias. Paso Roballos, Lago General Carrera e terra de ponta a ponta."
+    },
+    "metadata_title": "Moto On/Off — Expedições de moto pela Argentina",
+    "metadata_description": "Travessias de moto pela Argentina: Ruta 40, Carretera Austral, Patagônia e norte argentino. Terra, altitude e distância para riders que querem cruzar mais.",
+    "video_name": "Viagens de moto pela Argentina | Moto On/Off",
+    "video_description": "Viagens de moto pela Argentina: tours de moto pela Ruta 40, Carretera Austral, Patagônia e norte argentino."
   },
   "home_calendar": {
-    "eyebrow": "Próximas fechas",
-    "heading": "PRÓXIMAS SALIDAS",
-    "see_all": "Ver el calendario completo",
-    "intro": "Tres ventanas confirmadas para ganar ruta este año: norte de altura, volcanes de Catamarca y ripio patagónico.",
+    "eyebrow": "Proximas datas",
+    "heading": "PROXIMAS SAIDAS",
+    "see_all": "Ver o calendario completo",
+    "intro": "Tres janelas confirmadas para ganhar estrada este ano: norte de altitude, vulcoes de Catamarca e terra patagonica.",
     "confirmed_label": "Calendario confirmado",
-    "available_label": "salidas disponibles",
-    "departure_label": "Salida",
-    "card_cta": "Ver salida",
-    "card_fallback": "Salida de {month} con cupos a confirmar.",
-    "footer_note": "Las fechas se abren con grupos chicos. Si una ruta te llama, escribinos antes de que la ventana se cierre.",
-    "empty": "Estamos confirmando las próximas fechas.",
-    "until": "hasta"
+    "available_label": "saidas disponiveis",
+    "departure_label": "Saida",
+    "card_cta": "Ver saida",
+    "card_fallback": "Saida de {month} com vagas a confirmar.",
+    "footer_note": "As datas abrem com grupos pequenos. Se uma rota chama voce, escreva antes que a janela feche.",
+    "empty": "Estamos confirmando as proximas datas. Inscreva-se para saber primeiro.",
+    "until": "ate"
   },
   "home_custom": {
-    "eyebrow": "A medida",
-    "heading": "RUTAS EN MOTO A MEDIDA PARA PONERTE A PRUEBA",
-    "body": "Diseñamos viajes en moto a medida por el Norte Argentino, Patagonia o Carretera Austral. Cruces a Chile. Armamos el recorrido según tus días, tu moto, tu nivel de manejo y el tipo de terreno que querés cruzar: ripio, arena, altura, frontera y caminos remotos.",
-    "cta": "Armá tu travesía",
-    "board_eyebrow": "Brief de ruta",
-    "board_title": "Vos marcás el norte",
-    "board_body": "Nosotros devolvemos recorrido, ritmo, noches y alternativas de camino. Creamos rutas personalizadas para tu viaje en moto por Argentina y Chile.",
+    "eyebrow": "Sob medida",
+    "heading": "ROTAS DE MOTO SOB MEDIDA PARA TE COLOCAR A PROVA",
+    "body": "Desenhamos viagens de moto sob medida pelo Norte Argentino, Patagonia ou Carretera Austral, com travessias ao Chile. Montamos o percurso segundo seus dias, sua moto, seu nivel de pilotagem e o terreno que voce quer cruzar: terra, areia, altitude, fronteira e caminhos remotos.",
+    "cta": "Monte sua travessia",
+    "board_eyebrow": "Brief de rota",
+    "board_title": "Voce marca o norte",
+    "board_body": "Nos devolvemos percurso, ritmo, noites e alternativas de caminho. Criamos rotas personalizadas para sua viagem de moto pela Argentina e Chile.",
     "stats": [
       {
         "value": "4-21",
-        "label": "días posibles"
+        "label": "dias possiveis"
       },
       {
         "value": "ON/OFF",
-        "label": "terreno mixto"
+        "label": "terreno misto"
       },
       {
         "value": "GPX",
-        "label": "track listo"
+        "label": "track pronto"
       }
     ],
-    "route_stops": ["Idea", "Ruta", "Salida"],
+    "route_stops": [
+      "Ideia",
+      "Rota",
+      "Saida"
+    ],
     "items": [
-      "Moto y nivel de manejo.",
-      "Días disponibles y ritmo deseado.",
-      "Ripio, altura, arena o frontera.",
-      "Kilómetros que querés ganarte."
+      "Moto e nivel de pilotagem.",
+      "Dias disponiveis e ritmo desejado.",
+      "Terra, altitude, areia ou fronteira.",
+      "Quilometros que voce quer ganhar."
     ]
   },
   "home_about": {
-    "eyebrow": "Quiénes somos",
-    "heading": "EL EQUIPO DETRÁS DE CADA RUTA",
-    "body": "Armamos cada tour de moto en base al terreno: rodamos, medimos, descartamos tramos y volvemos hasta que la ruta queda lista para vos.",
-    "cta": "Conocé al equipo",
+    "eyebrow": "Quem somos",
+    "heading": "A EQUIPE POR TRAS DE CADA ROTA",
+    "body": "Montamos cada tour de moto a partir do terreno: rodamos, medimos, cortamos trechos e voltamos ate a rota ficar pronta para voce.",
+    "cta": "Conheca a equipe",
     "proofs": [
       {
         "value": "+6",
-        "label": "años rodando"
+        "label": "anos rodando"
       },
       {
         "value": "ON/OFF",
-        "label": "ruta y ripio"
+        "label": "asfalto e terra"
       },
       {
         "value": "100%",
-        "label": "rutas probadas"
+        "label": "rotas testadas"
       },
       {
         "value": "+60.000km",
-        "label": "en testeos"
+        "label": "em testes"
       }
     ],
     "field_notes": [
-      "Medimos horas reales de manejo, no líneas en un mapa.",
-      "Marcamos combustible, descanso y puntos de salida.",
-      "Probamos ripio, altura y clima antes de abrir cupos.",
-      "Volvemos a ajustar cuando la ruta cambia."
+      "Medimos horas reais de pilotagem, nao linhas no mapa.",
+      "Marcamos combustivel, descanso e pontos de saida.",
+      "Testamos terra, altitude e clima antes de abrir vagas.",
+      "Voltamos a ajustar quando a rota muda."
     ],
-    "dossier_eyebrow": "Bitácora",
-    "dossier_title": "RUTA EN PRUEBA",
+    "dossier_eyebrow": "Diario de bordo",
+    "dossier_title": "ROTA EM TESTE",
     "dossier_meta": "Rodada",
     "dossier_items": [
       {
-        "title": "Tramo",
-        "body": "Entra si suma manejo, paisaje y margen para el grupo."
+        "title": "Trecho",
+        "body": "Entra se soma pilotagem, paisagem e margem para o grupo."
       },
       {
         "title": "Ritmo",
-        "body": "Cada jornada se arma para llegar entero y con algo conquistado."
+        "body": "Cada jornada e montada para chegar inteiro e com algo conquistado."
       },
       {
-        "title": "Plan B",
-        "body": "Combustible, descanso y escape quedan marcados antes de salir."
+        "title": "Plano B",
+        "body": "Combustivel, descanso e escape ficam marcados antes de sair."
       }
     ],
-    "photo_alt": "Riders de Moto On/Off revisando una parada de ruta durante una travesía"
+    "photo_alt": "Riders da Moto On/Off revisando uma parada de rota durante uma travessia"
   },
   "home_journal": {
-    "eyebrow": "Taller de Rutas",
-    "heading": "CÓMO PROBAMOS Y ARMAMOS LAS RUTAS",
-    "intro": "Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
-    "see_all": "Entrar al taller"
+    "eyebrow": "Oficina de Rotas",
+    "heading": "COMO TESTAMOS E MONTAMOS AS ROTAS",
+    "intro": "Toda rota que vendemos foi rodada varias vezes antes de ganhar nome. Testamos trechos, descartamos outros e voltamos em outra estacao. E assim que cada uma foi montada.",
+    "see_all": "Entrar na oficina"
   },
   "tours_index": {
-    "eyebrow": "Viajes",
-    "headline": "RUTAS QUE TE CAMBIAN",
-    "intro": "Cada ruta es una que ya rodamos.",
-    "hero_image_alt": "Tres motos cruzando una planicie de altura entre salares, arena negra y montañas.",
-    "all_routes_eyebrow": "Todas las rutas",
-    "all_tours_cta": "Todos los Tours",
-    "all_routes_heading": "Elegí tu travesía",
-    "empty": "Estamos preparando la próxima temporada."
+    "eyebrow": "Viagens",
+    "headline": "ROTAS QUE TE MUDAM",
+    "intro": "Nao publicamos rotas que nao rodamos. Os dias, quilometros e altitude estao medidos.",
+    "hero_image_alt": "Tres motos cruzando uma planicie de altitude entre salares, areia preta e montanhas.",
+    "all_routes_eyebrow": "Todas as rotas",
+    "all_tours_cta": "Todos os Tours",
+    "all_routes_heading": "Escolha sua travessia",
+    "empty": "Estamos preparando a proxima temporada. Volte em breve."
   },
   "tour_detail": {
-    "overview_eyebrow": "Ruta",
-    "duration_label": "Duración",
+    "overview_eyebrow": "Rota",
+    "duration_label": "Duracao",
     "distance_label": "Distancia",
-    "ripio_label": "Ripio",
-    "max_altitude_label": "Altura máxima",
+    "ripio_label": "Terra",
+    "max_altitude_label": "Altitude maxima",
     "surface_pending": "superficie a confirmar",
     "distance_pending": "km s/d",
-    "altitude_pending": "sin cota",
-    "days_unit": "días",
-    "gallery_eyebrow": "Fotos de ruta",
-    "itinerary_eyebrow": "Recorrido",
-    "itinerary_heading": "Día por día",
-    "itinerary_hook": "Cada día suma kilómetros, ripio y altura. Vos llevás la cuenta en el cuerpo.",
-    "day_label": "Día",
-    "highlights_label": "Destacados del tour en moto",
-    "route_map_eyebrow": "Mapa del recorrido",
-    "route_map_heading": "Cruces del Sur en el mapa",
-    "route_map_body": "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno y regreso por Patagonia. Mové el mapa, acercate al ripio y mirá el giro completo antes de escribirnos.",
-    "route_map_frame_title": "Mapa interactivo del recorrido Cruces del Sur",
-    "route_map_open_google": "Abrir en Google Maps",
-    "route_map_workshop_title": "Taller de ruta",
-    "route_map_workshop_body": "La línea final no salió de una mesa. La probamos con viento, frontera, ferry y ripio hasta que el recorrido quedó listo para rodarse.",
-    "route_map_workshop_cta": "Mirá cómo armamos Cruces del Sur",
-    "practical_eyebrow": "Detalles del viaje",
-    "practical_heading": "Información práctica",
-    "included_heading": "Qué incluye",
-    "not_included_heading": "Qué no incluye",
-    "need_to_know_heading": "Lo que conviene saber",
-    "good_to_know_heading": "Buenas a saber",
-    "departures_eyebrow": "Salidas",
-    "departures_heading": "Próximas fechas",
-    "no_departures": "Sin fechas confirmadas por ahora. Decinos cuándo querés salir y armamos una ventana.",
-    "no_departures_cta": "Escribinos por WhatsApp",
-    "status_open": "Disponible",
-    "status_low": "Últimos pilotos",
-    "status_sold_out": "Agotado",
-    "related_eyebrow": "Otras rutas",
-    "related_heading": "Otras rutas",
-    "missing_content": "Contenido en preparación."
+    "altitude_pending": "sem cota",
+    "days_unit": "dias",
+    "gallery_eyebrow": "Fotos da rota",
+    "testimonials_eyebrow": "Depoimentos",
+    "testimonials_heading": "O que ficou da rota",
+    "itinerary_eyebrow": "Percurso",
+    "itinerary_heading": "Dia a dia",
+    "itinerary_hook": "Cada dia soma quilometros, terra e altitude. Voce leva a conta no corpo.",
+    "day_label": "Dia",
+    "highlights_label": "Destaques do tour de moto",
+    "route_map_eyebrow": "Mapa do percurso",
+    "route_map_heading": "Cruces del Sur no mapa",
+    "route_map_body": "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno e volta pela Patagonia. Mexa no mapa, aproxime da terra e veja o giro completo antes de escrever.",
+    "route_map_frame_title": "Mapa interativo do percurso Cruces del Sur",
+    "route_map_open_google": "Abrir no Google Maps",
+    "route_map_workshop_title": "Oficina de rota",
+    "route_map_workshop_body": "A linha final nao saiu de uma mesa. Testamos com fronteira, balsa, terra e distancia ate o percurso ficar pronto para rodar.",
+    "route_map_workshop_cta": "Veja como montamos Cruces del Sur",
+    "practical_eyebrow": "Detalhes da viagem",
+    "practical_heading": "Informacao pratica",
+    "included_heading": "O que inclui",
+    "not_included_heading": "O que nao inclui",
+    "need_to_know_heading": "O que convem saber",
+    "good_to_know_heading": "Bom saber",
+    "departures_eyebrow": "Saidas",
+    "departures_heading": "Proximas datas",
+    "no_departures": "Sem datas confirmadas por enquanto. Diga quando quer sair e montamos uma janela.",
+    "no_departures_cta": "Escreva pelo WhatsApp",
+    "status_open": "Disponivel",
+    "status_low": "Ultimos pilotos",
+    "status_sold_out": "Esgotado",
+    "related_eyebrow": "Outras rotas",
+    "related_heading": "Outras rotas",
+    "missing_content": "Conteudo em preparacao."
   },
   "features": {
-    "eyebrow": "Cómo se rueda",
-    "heading": "ASÍ ANDAMOS",
+    "eyebrow": "Como se roda",
+    "heading": "ASSIM RODAMOS",
     "items": {
       "remote_routes": {
-        "title": "RUTAS REMOTAS",
-        "body": "Tramos que casi nadie corre."
+        "title": "ROTAS REMOTAS",
+        "body": "Trechos que quase ninguem faz. Terra, montanha e caminhos que nao aparecem no mapa."
       },
       "local_people": {
         "title": "GENTE LOCAL",
-        "body": "Comemos donde comen los puesteros."
+        "body": "Comemos onde comem os locais. Dormimos onde abrem a porta para nos."
       },
       "hard_riding": {
-        "title": "ANDAR DURO",
-        "body": "Días largos, altura, viento, polvo."
+        "title": "RODAR FORTE",
+        "body": "Dias longos, altitude, poeira e terra. Cada jornada e uma pequena conquista."
       },
       "sleep_where": {
-        "title": "DORMIR DONDE CAIGA",
-        "body": "Refugio de montaña, hostería de pueblo, carpa al borde del camino."
+        "title": "DORMIR ONDE DER",
+        "body": "Refugio de montanha, pousada de povoado, barraca na beira do caminho. O que a rota der."
       }
     }
   },
   "x_list": {
-    "eyebrow": "Esto no es para cualquiera",
-    "heading": "ESTO ES PARA VOS SI…",
+    "eyebrow": "Isto nao e para qualquer um",
+    "heading": "ISTO E PARA VOCE SE...",
     "items": [
-      "Manejaste en ripio profundo y querés más.",
-      "Una ruta de tierra te entusiasma más que un resort.",
-      "Andás para descubrir de qué estás hecho.",
-      "Las historias que valen la pena contar son las que te cuestan."
+      "Voce ja pilotou em terra profunda e quer mais.",
+      "Uma estrada de terra te anima mais que um resort.",
+      "Voce pilota para saber do que e feito.",
+      "As historias que valem carregar sao as que custam algo."
     ]
   },
   "journal_grid": {
-    "eyebrow": "Taller de Rutas",
-    "heading": "PRIMERO RODAMOS",
-    "read_more": "Cómo se armó"
+    "eyebrow": "Oficina de Rotas",
+    "heading": "PRIMEIRO RODAMOS",
+    "read_more": "Como foi montada"
   },
   "quote_section": {
-    "eyebrow": "Lo que se queda",
-    "hunter_thompson_quote": "No vas a encontrar hombres razonables en la cima de las montañas más altas.",
+    "eyebrow": "O que fica",
+    "hunter_thompson_quote": "Voce nao vai encontrar homens razoaveis no topo das montanhas mais altas.",
     "hunter_thompson_attribution": "Hunter S. Thompson"
   },
   "manifesto": {
-    "eyebrow": "Manifiesto",
-    "heading": "LA RUTA NO PIDE PERMISO",
-    "p1": "Cruzamos cordilleras porque del otro lado uno vuelve distinto.",
-    "p2": "Cada día tiene su precio: el viento de la Patagonia, el ripio del NOA, la altura de los Andes.",
-    "emphasis": "lo que no se mide"
+    "eyebrow": "Manifesto",
+    "heading": "A ROTA NAO PEDE PERMISSAO",
+    "p1": "Cruzamos cordilheiras porque do outro lado voce volta diferente. Nao vendemos passeios: montamos travessias ganhas com quilometros, poeira e noites que ficam na memoria.",
+    "p2": "Cada dia tem seu preco: a distancia patagonica, a terra do NOA, a altitude dos Andes. E cada dia devolve o que nao se mede em quilometros.",
+    "emphasis": "o que nao se mede"
   },
   "about": {
-    "title": "Nosotros",
-    "eyebrow": "Quiénes somos",
-    "headline": "ARMADO EN LA RUTA",
-    "metadata_description": "Moto On/Off arma travesías en moto por la Patagonia, los Andes y el norte argentino.",
-    "subheadline": "No somos guías de paseo. Andamos las rutas que vendemos.",
+    "title": "Sobre",
+    "eyebrow": "Quem somos",
+    "headline": "ROTAS ALEM DO ASFALTO",
+    "metadata_description": "Moto On/Off desenha tours de moto com foco offroad por Catamarca, Carretera Austral, Patagonia e norte argentino. Rotas testadas, grupos pequenos e pilotagem real.",
+    "subheadline": "Desenhamos experiencias de aventura em moto que te transformam em um piloto melhor.",
     "founder_eyebrow": "Fundador",
-    "founder_name": "Sebastián",
-    "founder_caption": "Patagonia, 2024. Día 9 de la travesía.",
-    "cta": "Conocenos por WhatsApp",
-    "cta_heading": "CONTANOS QUÉ QUERÉS CRUZAR",
-    "cta_body": "Contanos qué moto manejás, cuántos días tenés y qué ruta te llama. Te respondemos con una ventana posible, el nivel de exigencia y los próximos pasos.",
-    "cta_secondary": "Ir al contacto",
-    "cta_prompt_heading": "Mandanos 3 datos",
-    "cta_prompt_meta": "Por WhatsApp",
+    "founder_name": "Sebastian",
+    "founder_caption": "Patagonia, 2024. Dia 9 da travessia.",
+    "cta": "Fale conosco pelo WhatsApp",
+    "cta_heading": "CONTA O QUE VOCE QUER CRUZAR",
+    "cta_body": "Conta que moto voce pilota, quantos dias tem e qual rota te chama. Respondemos com uma janela possivel, o nivel de exigencia e os proximos passos.",
+    "cta_secondary": "Ir para contato",
+    "cta_prompt_heading": "Mande 3 dados",
+    "cta_prompt_meta": "Pelo WhatsApp",
     "cta_prompts": [
-      "Qué ruta te llama y cuándo podrías salir.",
-      "Qué moto manejás y cuánta experiencia tenés en ripio.",
-      "Si querés sumarte a una salida o armar algo a medida."
-    ]
+      "Qual rota te chama e quando poderia sair.",
+      "Que moto pilota e quanta experiencia tem em terra.",
+      "Se quer entrar em uma saida ou montar algo sob medida."
+    ],
+    "hero_heading": "A EQUIPE QUE ABRE O RASTRO",
+    "hero_body": "Somos a equipe que desenha, testa e guia cada rota.\nNao abrimos uma saida ate ter rodado, medido e ajustado o terreno.",
+    "intro_eyebrow": "Sobre",
+    "intro_heading": "TOURS DE MOTO COM FOCO OFFROAD",
+    "intro_paragraphs": [
+      "Oferecemos tours de moto para riders com foco offroad, de expedicoes por Catamarca a viagens de moto pela Carretera Austral.",
+      "Todos os nossos tours de moto sao diferentes entre si. Desenhamos experiencias ON/OFF que combinam asfalto, terra e desafio conquistado.",
+      "Rodamos por zonas vulcanicas, desertos, bosques com lagos, montanhas nevadas e yungas fechadas."
+    ],
+    "proof_labels": [
+      "anos rodando",
+      "asfalto e terra",
+      "rotas testadas"
+    ],
+    "route_principles_eyebrow": "Como fazemos",
+    "route_principles_heading": "DESENHADAS, TESTADAS E AJUSTADAS",
+    "route_principles": [
+      "Cada quilometro das nossas rotas de moto foi desenhado, testado e ajustado antes de voce rodar com liberdade.",
+      "Planejamos cada viagem de moto em detalhe, dos hoteis as paradas e horas de pilotagem.",
+      "Oferecemos apoio e organizacao para que a experiencia seja intensa e autentica.",
+      "Damos foco especial ao grupo humano."
+    ],
+    "terrain_eyebrow": "Terreno humano",
+    "terrain_heading": "NAO FAZEMOS TOURS MASSIVOS",
+    "terrain_body": "Nao fazemos tours massivos. Em uma viagem de moto a rota importa, mas tambem importa quem a compartilha. Montamos grupos pequenos para ajudar, acompanhar e curtir o caminho como equipe. Porque uma grande experiencia nao e feita somente pela paisagem.",
+    "terrain_list": [
+      "Zonas vulcanicas.",
+      "Desertos.",
+      "Bosques com lagos.",
+      "Montanhas nevadas.",
+      "Yungas fechadas."
+    ],
+    "commitment_eyebrow": "Compromisso",
+    "commitment_heading": "ALEM DO CAMINHO",
+    "commitment_body": "Convidamos voce a viver uma experiencia que vai alem do caminho: ganhar confianca, somar ferramentas e voltar da viagem sendo um piloto melhor.",
+    "testimonials_label": "Depoimentos",
+    "route_cards_eyebrow": "Rotas testadas",
+    "route_cards_heading": "ESCOLHA O QUE VAI CRUZAR",
+    "route_cards_body": "Salta e Jujuy, Mendoza a La Rioja, Catamarca ou Patagonia. Quatro rotas rodadas antes de ganhar nome.",
+    "photos_label": "Fotos da Moto On/Off",
+    "photos_eyebrow": "Fotos de rota",
+    "image_alt_hero": "Equipe da Moto On/Off rodando uma rota de terra na Argentina",
+    "image_alt_carousel": [
+      "Riders da Moto On/Off reunidos durante uma saida de moto",
+      "Rider da Moto On/Off cruzando terreno de montanha",
+      "Grupo de motos de aventura em uma estrada de terra",
+      "Riders avancando por uma rota aberta entre montanhas",
+      "Moto de aventura parada em um caminho de terra"
+    ],
+    "image_alt_gallery_one": "Riders da Moto On/Off avancando em uma rota de terra",
+    "image_alt_gallery_two": "Grupo de riders da Moto On/Off durante uma travessia",
+    "image_alt_road": "Moto de aventura carregada em um caminho de montanha",
+    "image_alt_workshop": "Riders da Moto On/Off em uma parada de rota",
+    "commitment_testimonials": [
+      {
+        "quote": "A Mina La Mejicana foi o maior desafio que fiz de moto. O grupo sempre com energia boa. Muito bom tudo.",
+        "rider": "Diego Bianco",
+        "meta": "Mina La Mejicana"
+      },
+      {
+        "quote": "O grupo que se formou nesses 7 dias foi espetacular. Ja fizemos dois churrascos desde que voltamos.",
+        "rider": "Juan Carrera",
+        "meta": "Volcanes del Norte · 7 dias de rota"
+      },
+      {
+        "quote": "O grupo que se formou nesses 7 dias e incrivel. Seguimos em contato e ja estamos planejando o proximo tour.",
+        "rider": "Martin Pujol",
+        "meta": "7 dias de rota"
+      }
+    ],
+    "stamp_volcanes": "Vulcoes"
   },
   "custom": {
-    "title": "Viajes a medida",
-    "eyebrow": "Viajes a medida - Tours personalizados",
-    "headline": "ORGANIZAMOS TU VIAJE A MEDIDA",
-    "metadata_description": "Diseñamos rutas en moto a medida por Argentina y la Cordillera según tu nivel de manejo, terreno, duración ideal y experiencia buscada.",
-    "subheadline": "Diseñamos la ruta en moto a tu medida.",
-    "hero_primary_cta": "Organizar mi viaje",
-    "hero_secondary_cta": "Contar mi idea",
-    "hero_image_alt": "Rider de aventura junto a su moto preparado para salir a la ruta",
+    "title": "Viagens sob medida",
+    "eyebrow": "Viagens sob medida - Tours personalizados",
+    "headline": "ORGANIZAMOS SUA VIAGEM SOB MEDIDA",
+    "metadata_description": "Desenhamos rotas de moto sob medida pela Argentina e Cordilheira segundo seu nivel de pilotagem, terreno, duracao ideal e experiencia buscada.",
+    "subheadline": "Desenhamos a rota de moto sob medida para voce.",
+    "hero_primary_cta": "Organizar minha viagem",
+    "hero_secondary_cta": "Contar minha ideia",
+    "hero_image_alt": "Rider de aventura junto da moto pronto para sair para a rota",
     "hero_stats": [
       {
         "value": "3-12",
-        "label": "días de ruta"
+        "label": "dias de rota"
       },
       {
         "value": "GPX",
-        "label": "track listo"
+        "label": "track pronto"
       },
       {
         "value": "ON/OFF",
-        "label": "ripio y asfalto"
+        "label": "terra e asfalto"
       }
     ],
-    "permit_label": "Viaje en moto",
-    "permit_value": "100% a medida",
-    "permit_meta": "Nivel de manejo, terreno, duración ideal y experiencia.",
-    "sticky_note": "Tu ruta. Tu ritmo.",
-    "brief_eyebrow": "Viajes a medida",
-    "brief_heading": "DISEÑAMOS LA RUTA SEGÚN TU MANERA DE MANEJAR",
-    "p1": "Además de nuestros tours en moto, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
-    "p2": "Nos contás qué te imaginás, lo convertimos en un viaje en moto posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
-    "brief_stamp_1": "Viaje posible",
-    "brief_stamp_2": "Ruta a medida",
-    "brief_image_alt_1": "Camino de altura en el norte argentino usado como referencia para viajes a medida",
-    "brief_image_alt_2": "Ruta de montaña en Cuyo para diseñar una travesía en moto",
-    "brief_image_alt_3": "Camino patagónico de ripio para una expedición a medida",
+    "permit_label": "Viagem de moto",
+    "permit_value": "100% sob medida",
+    "permit_meta": "Nivel de pilotagem, terreno, duracao ideal e experiencia.",
+    "sticky_note": "Sua rota. Seu ritmo.",
+    "brief_eyebrow": "Viagens sob medida",
+    "brief_heading": "DESENHAMOS A ROTA SEGUNDO SUA MANEIRA DE PILOTAR",
+    "p1": "Alem dos nossos tours de moto, oferecemos a possibilidade de criar uma viagem totalmente personalizada. Pensada segundo seu nivel de pilotagem, o tipo de terreno que voce gosta, a duracao ideal e a experiencia que quer viver.",
+    "p2": "Voce conta o que imagina; nos transformamos em uma viagem de moto possivel, 100% sob medida. Baseamos no seu estilo de pilotagem, duracao da viagem, tipos de caminho e alternativas.",
+    "brief_stamp_1": "Viagem possivel",
+    "brief_stamp_2": "Rota sob medida",
+    "brief_image_alt_1": "Caminho de altitude no norte argentino usado como referencia para viagens sob medida",
+    "brief_image_alt_2": "Rota de montanha em Cuyo para desenhar uma travessia de moto",
+    "brief_image_alt_3": "Caminho patagonico de terra para uma expedicao sob medida",
     "brief_cards": [
       {
-        "title": "NIVEL DE MANEJO",
-        "body": "Pensamos la ruta según tu experiencia, ritmo de manejo y confianza en distintos terrenos."
+        "title": "NIVEL DE PILOTAGEM",
+        "body": "Pensamos a rota segundo sua experiencia, ritmo de pilotagem e confianca em diferentes terrenos."
       },
       {
         "title": "TIPO DE TERRENO",
-        "body": "Ruta, ripio, montaña, arena, altura o caminos mixtos según lo que querés vivir."
+        "body": "Asfalto, terra, montanha, areia, altitude ou caminhos mistos segundo o que voce quer viver."
       },
       {
-        "title": "DURACIÓN IDEAL",
-        "body": "Ajustamos kilómetros, tiempos y jornadas al viaje que imaginás y los días disponibles."
+        "title": "DURACAO IDEAL",
+        "body": "Ajustamos quilometros, tempos e jornadas a viagem que voce imagina e aos dias disponiveis."
       },
       {
         "title": "ALTERNATIVAS",
-        "body": "Sumamos opciones de camino, navegación, hoteles y experiencias recomendadas por zona."
+        "body": "Somamos opcoes de caminho, navegacao, hoteis e experiencias recomendadas por zona."
       }
     ],
-    "process_eyebrow": "Cómo lo armamos",
-    "process_heading": "DE TU IDEA A UN VIAJE EN MOTO POSIBLE",
-    "process_body": "Nos contás qué te imaginás y lo llevamos a un plan concreto: tiempos, kilómetros, navegación, hoteles y alternativas de camino.",
+    "process_eyebrow": "Como montamos",
+    "process_heading": "DA SUA IDEIA A UMA VIAGEM DE MOTO POSSIVEL",
+    "process_body": "Voce conta o que imagina e nos levamos a um plano concreto: tempos, quilometros, navegacao, hoteis e alternativas de caminho.",
     "process_steps": [
       {
-        "title": "Nos contás la idea",
-        "body": "Nivel de manejo, tipo de terreno, duración ideal y experiencia que querés vivir."
+        "title": "Voce conta a ideia",
+        "body": "Nivel de pilotagem, tipo de terreno, duracao ideal e experiencia que quer viver."
       },
       {
-        "title": "Convertimos la ruta",
-        "body": "La pasamos a un viaje posible con tiempos, kilómetros y jornadas reales."
+        "title": "Convertimos a rota",
+        "body": "Transformamos em uma viagem possivel com tempos, quilometros e jornadas reais."
       },
       {
         "title": "Marcamos alternativas",
-        "body": "Definimos tipos de camino, opciones de navegación y variantes según zona."
+        "body": "Definimos tipos de caminho, opcoes de navegacao e variantes por zona."
       },
       {
-        "title": "Sumamos apoyo",
-        "body": "Si lo necesitás, agregamos traslado, guía en moto, 4x4 y transporte de equipaje."
+        "title": "Somamos apoio",
+        "body": "Se precisar, agregamos traslado da moto, guia em moto, 4x4 e transporte de bagagem."
       }
     ],
-    "includes_eyebrow": "Lo que armamos",
-    "includes_heading": "¿QUÉ INCLUYE?",
+    "includes_eyebrow": "O que montamos",
+    "includes_heading": "O QUE INCLUI?",
     "includes_items": [
-      "Itinerario detallado con tiempos y kilómetros.",
-      "Hoteles sugeridos según la categoría deseada.",
-      "Archivos GPX o Google Maps para navegación.",
-      "Experiencias recomendadas según la zona de interés."
+      "Itinerario detalhado com tempos e quilometros.",
+      "Hoteis sugeridos segundo a categoria desejada.",
+      "Arquivos GPX ou Google Maps para navegacao.",
+      "Experiencias recomendadas segundo a zona de interesse."
     ],
     "extras_eyebrow": "Opcional",
-    "extras_heading": "APOYO EN RUTA",
+    "extras_heading": "APOIO EM ROTA",
     "extras_items": [
-      "Traslado de la moto ida y vuelta a destino.",
-      "Guía en moto.",
-      "Vehículo de apoyo 4×4 y transporte de equipaje."
+      "Traslado da moto ida e volta ao destino.",
+      "Guia em moto.",
+      "Veiculo de apoio 4x4 e transporte de bagagem."
     ],
-    "form_eyebrow": "Contanos tu idea",
-    "form_heading": "CONTANOS QUÉ TE IMAGINÁS",
-    "form_intro": "No hace falta tener todo cerrado. Con tu nivel de manejo, terreno preferido y duración ideal ya podemos empezar.",
+    "form_eyebrow": "Conte sua ideia",
+    "form_heading": "CONTA O QUE VOCE IMAGINA",
+    "form_intro": "Nao precisa ter tudo fechado. Com seu nivel de pilotagem, terreno preferido e duracao ideal ja podemos comecar.",
     "route_ideas": [
       {
         "title": "Nivel",
-        "meta": "Cómo manejás",
-        "body": "Contanos tu experiencia sobre ripio, ruta, altura, arena o caminos de montaña."
+        "meta": "Como voce pilota",
+        "body": "Conta sua experiencia em terra, asfalto, altitude, areia ou caminhos de montanha."
       },
       {
         "title": "Terreno",
-        "meta": "Qué te gusta",
-        "body": "Elegimos caminos según el tipo de terreno que querés rodar durante el viaje."
+        "meta": "Do que voce gosta",
+        "body": "Escolhemos caminhos segundo o tipo de terreno que voce quer rodar durante a viagem."
       },
       {
-        "title": "Duración",
-        "meta": "Cuántos días",
-        "body": "Ajustamos el itinerario a los días disponibles y al ritmo ideal del grupo."
+        "title": "Duracao",
+        "meta": "Quantos dias",
+        "body": "Ajustamos o itinerario aos dias disponiveis e ao ritmo ideal do grupo."
       }
     ],
-    "talk_eyebrow": "O por WhatsApp",
-    "talk_heading": "PREFERÍS HABLAR DIRECTO",
-    "talk_body": "Escribinos por WhatsApp y arrancamos por ahí. Con unos datos básicos podemos convertir tu idea en una propuesta posible.",
+    "talk_eyebrow": "Ou pelo WhatsApp",
+    "talk_heading": "PREFERE FALAR DIRETO",
+    "talk_body": "Escreva pelo WhatsApp e comecamos por ali. Com alguns dados basicos podemos transformar sua ideia em uma proposta possivel.",
     "talk_cta": "Abrir WhatsApp",
     "prompt_items": [
-      "Tu nivel de manejo.",
-      "El tipo de terreno que te gusta.",
-      "La duración ideal del viaje."
-    ]
+      "Seu nivel de pilotagem.",
+      "O tipo de terreno que voce gosta.",
+      "A duracao ideal da viagem."
+    ],
+    "step_label": "Passo",
+    "ground_print": "Rota propria"
   },
   "calendar": {
     "title": "Calendario",
-    "eyebrow": "Salidas confirmadas",
-    "headline": "PRÓXIMAS FECHAS",
-    "metadata_description": "Calendario de salidas confirmadas por ruta.",
-    "intro": "Los tours con cupo limitado. Hacemos enfoque en grupo humano.",
-    "hero_stamp": "Cupos limitados",
-    "hero_image_alt": "Motos de aventura cargadas en trailers antes de una salida de ruta",
-    "season_eyebrow": "Temporada en marcha",
-    "season_heading": "EL MAPA YA TIENE FECHAS",
-    "season_callout": "Las fechas no son elegidas al azar:",
-    "season_body": "Son el resultado de más de 10 años rodando, probando rutas, clima y conociendo cada destino.",
-    "confirmed_label": "salidas confirmadas",
-    "open_label": "con cupos",
-    "spots_label": "pilotos disponibles",
-    "next_label": "Próxima salida",
-    "board_eyebrow": "Orden de salida",
-    "board_heading": "EL TRACK DE LA TEMPORADA",
-    "board_intro_detail": "Cada tarjeta marca una ventana de ruta: fecha, cupos, tramo y estado.",
-    "board_intro_prompt": "Elegí el mes; después hablamos de la moto.",
-    "legend_label": "Estado de cupos",
-    "departures_unit": "salida(s)",
-    "departure_label": "Salida",
+    "eyebrow": "Saidas confirmadas",
+    "headline": "PROXIMAS DATAS",
+    "metadata_description": "Calendario de saidas confirmadas por rota. Reserve sua vaga antes que esgote.",
+    "intro": "Tours com vagas limitadas. Damos foco ao grupo humano.",
+    "hero_stamp": "Vagas limitadas",
+    "hero_image_alt": "Motos de aventura carregadas em reboques antes de uma saida de rota",
+    "season_eyebrow": "Temporada em marcha",
+    "season_heading": "O MAPA JA TEM DATAS",
+    "season_callout": "As datas nao sao escolhidas ao acaso:",
+    "season_body": "Sao resultado de mais de 10 anos rodando, testando rotas, clima e conhecendo cada destino.",
+    "confirmed_label": "saidas confirmadas",
+    "open_label": "com vagas",
+    "spots_label": "pilotos disponiveis",
+    "next_label": "Proxima saida",
+    "board_eyebrow": "Ordem de saida",
+    "board_heading": "O TRACK DA TEMPORADA",
+    "board_intro_detail": "Cada cartao marca uma janela de rota: data, vagas, trecho e estado.",
+    "board_intro_prompt": "Escolha o mes; depois falamos da moto.",
+    "legend_label": "Estado das vagas",
+    "departures_unit": "saida(s)",
+    "departure_label": "Saida",
     "spots_remaining_label": "pilotos",
-    "cta_eyebrow": "Tu lugar",
-    "cta_heading": "SI LA FECHA CIERRA, LA RUTA EMPIEZA ACÁ",
-    "cta_body_lead": "Escribinos con la salida que querés rodar.",
-    "cta_body_follow": "Te pasamos disponibilidad, próximos pasos y lo que necesitás preparar.",
-    "cta_primary": "Hablar por la fecha",
-    "cta_secondary": "Ver las rutas",
-    "no_departures": "No hay salidas confirmadas todavía.",
+    "cta_eyebrow": "Sua vaga",
+    "cta_heading": "SE A DATA FECHA, A ROTA COMECA AQUI",
+    "cta_body_lead": "Escreva com a saida que quer rodar.",
+    "cta_body_follow": "Passamos disponibilidade, proximos passos e o que voce precisa preparar.",
+    "cta_primary": "Falar sobre a data",
+    "cta_secondary": "Ver as rotas",
+    "no_departures": "Ainda nao ha saidas confirmadas. Inscreva-se para saber primeiro.",
     "month_format": "long",
-    "see_tour": "Ver la ruta",
-    "until": "hasta"
+    "see_tour": "Ver a rota",
+    "until": "ate"
   },
   "contact": {
-    "title": "Contacto",
-    "eyebrow": "Hablemos",
-    "headline": "ESCRIBINOS",
-    "metadata_description": "Contactá a Moto On/Off por WhatsApp, correo o el formulario.",
-    "intro": "Lo más rápido es WhatsApp.",
-    "channels_eyebrow": "Por dónde",
+    "title": "Contato",
+    "eyebrow": "Fale conosco",
+    "headline": "ESCREVA PARA NOS",
+    "metadata_description": "Fale com a Moto On/Off por WhatsApp, e-mail ou formulario. Respondemos rapido.",
+    "intro": "O mais rapido e WhatsApp. Se preferir e-mail ou formulario, tambem lemos.",
+    "channels_eyebrow": "Por onde",
     "whatsapp_label": "WhatsApp",
-    "whatsapp_body": "Lo levantamos en el día.",
-    "email_label": "Correo",
+    "whatsapp_body": "Respondemos durante o dia.",
+    "email_label": "E-mail",
     "email_body": "hello@motoonoff.com",
-    "form_eyebrow": "O dejanos un mensaje",
-    "form_heading": "FORMULARIO DE CONTACTO",
-    "next_eyebrow": "Próximo paso",
-    "next_heading": "ELEGÍ QUÉ RUTA TE VA A PROBAR",
-    "next_body": "Si todavía estás midiendo fechas o terreno, mirá las salidas abiertas y las rutas de temporada antes de escribir.",
-    "next_primary": "Ver fechas",
-    "next_secondary": "Ver rutas"
+    "form_eyebrow": "Ou deixe uma mensagem",
+    "form_heading": "FORMULARIO DE CONTATO",
+    "next_eyebrow": "Proximo passo",
+    "next_heading": "ESCOLHA QUAL ROTA VAI TE TESTAR",
+    "next_body": "Se ainda esta medindo datas ou terreno, veja as saidas abertas e as rotas da temporada antes de escrever.",
+    "next_primary": "Ver datas",
+    "next_secondary": "Ver rotas"
   },
   "reservations": {
     "title": "Reservas",
-    "eyebrow": "Reservá tu lugar",
-    "headline": "TU RUTA EMPIEZA ACÁ",
-    "metadata_description": "Reservá tu lugar en una salida de Moto On/Off. Elegí ruta, fecha y contanos tu moto para confirmar próximos pasos.",
-    "intro": "Decinos qué ruta querés rodar y cuándo podés salir. Te respondemos con disponibilidad, señal y próximos pasos.",
-    "whatsapp_cta": "Hablar por WhatsApp",
-    "calendar_cta": "Ver fechas",
-    "steps_eyebrow": "Cómo sigue",
-    "steps_heading": "CUPOS CHICOS, PASOS CLAROS",
+    "eyebrow": "Reserve sua vaga",
+    "headline": "SUA ROTA COMECA AQUI",
+    "metadata_description": "Reserve sua vaga em uma saida da Moto On/Off. Escolha rota, data e conte sua moto para confirmar os proximos passos.",
+    "intro": "Diga qual rota quer rodar e quando pode sair. Respondemos com disponibilidade, sinal e proximos passos.",
+    "whatsapp_cta": "Falar pelo WhatsApp",
+    "calendar_cta": "Ver datas",
+    "steps_eyebrow": "Como segue",
+    "steps_heading": "GRUPOS PEQUENOS, PASSOS CLAROS",
     "items": [
-      "Elegís ruta o ventana de fechas.",
-      "Nos contás moto, experiencia y acompañantes.",
-      "Confirmamos cupo, señal y lo que necesitás preparar.",
-      "La ruta queda bloqueada cuando recibimos la reserva."
+      "Voce escolhe rota ou janela de datas.",
+      "Conta moto, experiencia e acompanhantes.",
+      "Confirmamos vaga, sinal e o que precisa preparar.",
+      "A rota fica bloqueada quando recebemos a reserva."
     ],
     "form_eyebrow": "Reserva",
-    "form_heading": "DEJANOS TUS DATOS",
-    "form_body": "Usá el formulario si preferís escribir todo junto. Si hay cupo, seguimos la conversación por WhatsApp."
+    "form_heading": "DEIXE SEUS DADOS",
+    "form_body": "Use o formulario se preferir escrever tudo junto. Se houver vaga, seguimos a conversa pelo WhatsApp."
   },
   "journal_index": {
-    "title": "Taller de Rutas",
-    "eyebrow": "Taller de Rutas",
-    "headline": "PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
-    "metadata_description": "Cada tour en moto nace de exploración, equivocación y reintentos. Rutas testeadas, expediciones en moto y decisiones tomadas en el terreno.",
-    "intro": "Cada tour empieza mucho antes de abrir sus cupos. Nace explorando caminos, equivocándonos, volviendo atrás y buscando mejores rutas. Para lanzar un recorrido, viajamos en distintas estaciones, probamos alternativas, medimos los tiempos, caminos y niveles de dificultad reales.",
-    "proof_eyebrow": "Detrás de cada paisaje",
-    "proof_heading": "HAY HORAS DE TESTEO",
-    "proof_body": "No improvisamos rutas: las vivimos primero. Nuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con pilotos de todos los niveles para que vos viajes con total libertad.",
-    "proof_photo_label": "Hay horas de exploración",
-    "proof_photo_caption": "Antes de abrir cupos, volvemos al camino y probamos la ruta en serio.",
+    "title": "Oficina de Rotas",
+    "eyebrow": "Oficina de Rotas",
+    "headline": "PRIMEIRO RODAMOS. DEPOIS ABRIMOS O TRACK",
+    "metadata_description": "Cada tour de moto nasce de exploracao, erro e novas tentativas. Rotas testadas, expedicoes de moto e decisoes tomadas no terreno.",
+    "intro": "Cada tour comeca muito antes de abrir vagas. Nasce explorando caminhos, errando, voltando atras e buscando rotas melhores.\nPara lancar um percurso, viajamos em diferentes estacoes, testamos alternativas, medimos tempos, caminhos e niveis reais de dificuldade.",
+    "proof_eyebrow": "Por tras de cada paisagem",
+    "proof_heading": "HA HORAS DE TESTE",
+    "proof_body": "Nao improvisamos rotas: vivemos elas primeiro. Nossa equipe pega barro, testa terrenos, ajusta tempos e roda com pilotos de todos os niveis para que voce viaje com liberdade total.",
+    "proof_photo_label": "Horas de exploracao",
+    "proof_photo_caption": "Antes de abrir vagas, voltamos ao caminho e testamos a rota de verdade.",
     "proof_items": [
-      "Mostramos cómo preparamos las rutas y cómo probamos los caminos antes que los clientes.",
-      "Probamos alternativas, tiempos, caminos y niveles de dificultad reales.",
-      "Realizamos recorridos con pilotos de distintos niveles de experiencia.",
-      "Tenemos una red de contactos locales que nos informa las condiciones de los caminos."
+      "Mostramos como preparamos as rotas e como testamos os caminhos antes dos clientes.",
+      "Testamos alternativas, tempos, caminhos e niveis reais de dificuldade.",
+      "Fazemos percursos com pilotos de diferentes niveis de experiencia.",
+      "Temos uma rede de contatos locais que informa as condicoes dos caminhos."
     ],
     "stats": [
       {
-        "value": "Exploración",
-        "label": "y experiencia real"
+        "value": "Exploracao",
+        "label": "e experiencia real"
       },
       {
-        "value": "Rutas",
-        "label": "testeadas"
+        "value": "Rotas",
+        "label": "testadas"
       },
       {
         "value": "Aventura",
-        "label": "diseñada"
+        "label": "desenhada"
       },
       {
-        "value": "Red local",
-        "label": "condiciones reales"
+        "value": "Rede local",
+        "label": "condicoes reais"
       }
     ],
-    "process_eyebrow": "Cómo probamos",
-    "process_heading": "EXPLORAR, AJUSTAR, VOLVER",
+    "process_eyebrow": "Como testamos",
+    "process_heading": "EXPLORAR, AJUSTAR, VOLTAR",
     "process_items": [
       {
-        "title": "Exploración",
-        "body": "Cada tour nace de explorar, equivocarse y volver a intentarlo. Diseñamos rutas y variantes que primero tuvimos que descubrir."
+        "title": "Exploracao",
+        "body": "Cada tour nasce de explorar, errar e tentar de novo. Desenhamos rotas e variantes que primeiro tivemos que encontrar."
       },
       {
         "title": "Ajustes",
-        "body": "Las rutas tienen un sentido. No es lo mismo hacer una ruta de norte a sur que de sur a norte: cambia la dificultad tecnica, la inmersion dentro del paisaje y la experiencia."
+        "body": "As rotas tem um sentido. Nao e igual fazer uma rota de norte a sul ou de sul a norte: muda a dificuldade tecnica, a imersao na paisagem e a experiencia."
       },
       {
-        "title": "Problemas reales",
-        "body": "Cuando el clima nos hizo volver, cuando el mapa estaba equivocado o cuando una ruta quedó descartada, volvimos meses después."
+        "title": "Problemas reais",
+        "body": "Quando o clima nos fez voltar, quando o mapa estava errado ou quando uma rota foi descartada, voltamos meses depois."
       },
       {
-        "title": "Red Local",
-        "body": "Contamos con contactos locales que nos mantienen informados sobre el estado de los caminos y las condiciones reales de cada destino."
+        "title": "Rede local",
+        "body": "Contamos com contatos locais que nos mantem informados sobre o estado dos caminhos e as condicoes reais de cada destino."
       }
     ],
-    "stories_eyebrow": "Taller de Rutas",
-    "stories_heading": "DECISIONES DE DISEÑO DEL TOUR",
-    "cta_eyebrow": "La ruta final",
-    "cta_heading": "VIAJÁS SOBRE UNA RUTA QUE YA NOS PROBÓ",
-    "cta_body": "El tour limpio está en la página comercial. Acá queda el barro: lo que probamos, lo que salió mal y lo que terminó entrando.",
-    "cta_primary": "Ver las rutas",
-    "cta_secondary": "Hablemos",
-    "empty": "Pronto. Estamos escribiendo las primeras notas."
+    "stories_eyebrow": "Oficina de Rotas",
+    "stories_heading": "DECISOES DE DESENHO DO TOUR",
+    "cta_eyebrow": "Como entrou no tour",
+    "cta_heading": "EXPLORAMOS ANTES PARA VOCE VIAJAR COM LIBERDADE",
+    "cta_body": "Nao improvisamos rotas: vivemos elas primeiro.\nNossa equipe pega barro, testa terrenos, ajusta tempos e roda com pilotos de todos os niveis para que voce viaje com liberdade total.",
+    "cta_primary": "Ver as rotas",
+    "cta_secondary": "Fale conosco",
+    "empty": "Em breve. Estamos escrevendo as primeiras notas.",
+    "how_we_test_copy": "Nao improvisamos rotas: vivemos elas primeiro.\nNossa equipe pega barro, testa terrenos, ajusta tempos e roda com pilotos de todos os niveis para que voce viaje com liberdade total.",
+    "proof_band_title": "Explorar e testar. Testar e aprender.",
+    "proof_band_body": "Toda rota que lancamos foi vivida, medida e aperfeicoada no terreno. Mostramos o que realmente vale a pena rodar.",
+    "story_wall_body": "Abrimos cada rota para mostrar o que foi testado, o que foi descartado e qual decisao acabou marcando o caminho.",
+    "generic_workshop_label": "Oficina"
   },
   "journal_post": {
-    "back": "Volver al taller",
-    "share_eyebrow": "Más del taller"
+    "back": "Voltar a oficina",
+    "share_eyebrow": "Mais da oficina",
+    "workshop_table": "Mesa de oficina",
+    "route_workshop": "Oficina de rota",
+    "tested_route": "Rota testada",
+    "fallback_aside_body": "Uma rota se entende quando alguem conta o que testou, o que ajustou e o que decidiu deixar de fora.",
+    "fallback_decision_eyebrow": "Decisoes de desenho",
+    "fallback_decision_title": "O QUE ENTROU E O QUE FICOU FORA",
+    "fallback_decision_intro": "Uma rota se desenha quando alguem decide o que nao entra. Esta e a parte que quase nunca aparece em uma ficha comercial.",
+    "scouting_eyebrow": "Fotos de exploração",
+    "scouting_heading": "O TERRENO ANTES DO TOUR",
+    "final_tour_cta": "Ver rota final",
+    "timeline_eyebrow": "Oficina de rota",
+    "timeline_heading": "Do mapa ao track testado",
+    "timeline_body": "Cada painel mostra uma decisao de campo: sair, voltar, medir e ajustar ate o percurso sustentar a rota completa."
   },
   "form": {
-    "name_label": "Tu nombre",
-    "name_placeholder": "Cómo te llamás",
-    "email_label": "Tu correo",
-    "email_placeholder": "vos@correo.com",
-    "group_size_label": "Cuántos son",
-    "group_size_placeholder": "1, 2, 4…",
-    "preferred_dates_label": "Cuándo te gustaría",
-    "preferred_dates_placeholder": "Marzo 2027 / fines / flexible",
-    "tour_label": "Ruta que te interesa",
-    "tour_placeholder": "Elegí una (o dejá en blanco)",
-    "tour_any": "Cualquiera / no sé todavía",
-    "experience_label": "Experiencia en moto",
-    "experience_placeholder": "Cuántos años, qué moto, en qué andás",
-    "region_label": "Región o ruta soñada",
-    "region_placeholder": "Patagonia, Norte, Cordillera…",
-    "window_label": "Ventana de fechas",
-    "window_placeholder": "Octubre 2027, una semana, etc.",
-    "message_label": "Tu mensaje",
-    "message_placeholder": "Contanos un poco de vos y de lo que buscás.",
-    "pitch_label": "Tu idea",
-    "pitch_placeholder": "La ruta que tenés en la cabeza.",
+    "name_label": "Seu nome",
+    "name_placeholder": "Como voce se chama",
+    "email_label": "Seu e-mail",
+    "email_placeholder": "voce@email.com",
+    "group_size_label": "Quantos sao",
+    "group_size_placeholder": "1, 2, 4...",
+    "preferred_dates_label": "Quando gostaria",
+    "preferred_dates_placeholder": "Marco 2027 / fins de semana / flexivel",
+    "tour_label": "Rota que interessa",
+    "tour_placeholder": "Escolha uma (ou deixe em branco)",
+    "tour_any": "Qualquer uma / ainda nao sei",
+    "experience_label": "Experiencia em moto",
+    "experience_placeholder": "Quantos anos, que moto, em que terreno pilota",
+    "region_label": "Regiao ou rota sonhada",
+    "region_placeholder": "Patagonia, Norte, Cordilheira...",
+    "window_label": "Janela de datas",
+    "window_placeholder": "Outubro 2027, uma semana, etc.",
+    "message_label": "Sua mensagem",
+    "message_placeholder": "Conte um pouco sobre voce e o que busca.",
+    "pitch_label": "Sua ideia",
+    "pitch_placeholder": "A rota que voce tem na cabeca, os dias que tem, o que nao quer perder.",
     "submit": "Enviar",
-    "sending": "Enviando…",
-    "success_heading": "Recibimos tu mensaje.",
-    "success_body": "Te escribimos en menos de 48 hs. Mientras tanto, leé las notas del taller.",
-    "error_heading": "Algo no salió.",
-    "error_body": "Probá de nuevo en un rato.",
-    "required": "Completá este campo.",
-    "invalid_email": "Ese correo no parece válido.",
-    "invalid_number": "Tiene que ser un número."
+    "sending": "Enviando...",
+    "success_heading": "Recebemos sua mensagem.",
+    "success_body": "Escrevemos em menos de 48 h. Enquanto isso, leia as notas da oficina.",
+    "error_heading": "Algo deu errado.",
+    "error_body": "Tente de novo em um instante ou escreva direto pelo WhatsApp.",
+    "required": "Preencha este campo.",
+    "invalid_email": "Esse e-mail nao parece valido.",
+    "invalid_number": "Precisa ser um numero."
   }
 }

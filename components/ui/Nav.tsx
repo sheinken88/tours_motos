@@ -98,116 +98,37 @@ export function Nav() {
     };
   }, [open]);
 
-  return (
-    <header
+  const mobileOverlay = open ? (
+    <div
       data-zone="red"
-      className={`fixed inset-x-0 top-0 z-40 transition-[background-color,backdrop-filter] duration-300 ${
-        scrolled ? "bg-red-grunge backdrop-blur-sm" : "bg-transparent"
-      }`}
+      className="bg-red-grunge text-on-red fixed inset-0 z-50 flex flex-col overflow-y-auto p-5 sm:p-6 md:hidden"
+      role="dialog"
+      aria-modal="true"
     >
-      <div className="text-on-red mx-auto flex w-full max-w-[var(--container-content)] items-center justify-between px-[var(--container-padding)] py-4">
+      <div className="flex items-center justify-between">
         <Link
           href="/"
-          onClick={handleLogoClick}
+          onClick={() => {
+            setOpen(false);
+            handleLogoClick();
+          }}
           className="flex min-h-11 min-w-11 items-center gap-3"
           aria-label="Moto On/Off"
         >
           <SkullBadge size="md" className="text-paper" />
-          <span className="font-display text-paper hidden text-base tracking-[var(--tracking-cta)] uppercase sm:block">
+          <span className="font-display text-paper text-base tracking-[var(--tracking-cta)] uppercase">
             Moto On/Off
           </span>
         </Link>
-
-        {/* Desktop links — hover reveals the brand hand-underline SVG. */}
-        <nav className="hidden items-center gap-4 md:flex xl:gap-6 2xl:gap-7" aria-label="Primary">
-          {PRIMARY_NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="group/navlink tracking-eyebrow text-paper relative text-sm font-bold uppercase lg:text-base 2xl:text-eyebrow"
-            >
-              {t(item.labelKey)}
-              <svg
-                aria-hidden
-                className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
-                viewBox="0 0 200 12"
-                preserveAspectRatio="none"
-              >
-                <use href="#hand-underline" />
-              </svg>
-            </Link>
-          ))}
-          <span aria-hidden className="font-display text-paper/35 hidden -rotate-6 text-sm xl:inline">
-            /
-          </span>
-          {SECONDARY_NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="group/navlink tracking-eyebrow text-paper/65 hover:text-paper relative hidden text-xs font-semibold uppercase transition-colors xl:inline-flex"
-            >
-              {t(item.labelKey)}
-              <svg
-                aria-hidden
-                className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
-                viewBox="0 0 200 12"
-                preserveAspectRatio="none"
-              >
-                <use href="#hand-underline" />
-              </svg>
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-2 md:flex 2xl:gap-3">
-          <LangSwitcher />
-          <a
-            href={instagramHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="text-paper hover:bg-paper hover:text-brand-red focus-visible:outline-paper hidden h-11 w-11 -rotate-2 items-center justify-center transition-[transform,color,background-color] duration-200 hover:-translate-y-0.5 hover:rotate-0 xl:inline-flex"
-          >
-            <InstagramGlyph />
-          </a>
-          <div className="hidden xl:block">
-            <Button
-              href={`/${locale}/contact#contact-form`}
-              edge={1}
-              tilt="left"
-              arrow={false}
-              className="px-6"
-            >
-              {t("contact")}
-            </Button>
-          </div>
-          <div className="hidden lg:block">
-            <Button
-              href={whatsAppHref}
-              external
-              edge={2}
-              tilt="right"
-              arrow={false}
-              className="px-5 2xl:px-6"
-            >
-              <span className="inline-flex items-center gap-2">
-                <WhatsAppGlyph />
-                {t("cta")}
-              </span>
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile hamburger */}
         <button
           type="button"
-          onClick={() => setOpen(true)}
-          aria-label={t("open_menu")}
-          className="text-paper inline-flex h-11 w-11 items-center justify-center md:hidden"
+          onClick={() => setOpen(false)}
+          aria-label={t("close_menu")}
+          className="text-paper inline-flex h-11 w-11 items-center justify-center"
         >
           <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden>
             <path
-              d="M3,6 L21,6 M3,12 L21,12 M3,18 L21,18"
+              d="M5,5 L19,19 M19,5 L5,19"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
@@ -216,88 +137,175 @@ export function Nav() {
         </button>
       </div>
 
-      {/* Mobile overlay */}
-      {open ? (
-        <div
-          data-zone="red"
-          className="bg-red-grunge text-on-red fixed inset-0 z-50 flex flex-col overflow-y-auto p-5 sm:p-6 md:hidden"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="flex items-center justify-between">
-            <Link
-              href="/"
-              onClick={() => {
-                setOpen(false);
-                handleLogoClick();
-              }}
-              className="flex min-h-11 min-w-11 items-center gap-3"
-              aria-label="Moto On/Off"
-            >
-              <SkullBadge size="md" className="text-paper" />
-              <span className="font-display text-paper text-base tracking-[var(--tracking-cta)] uppercase">
-                Moto On/Off
-              </span>
-            </Link>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label={t("close_menu")}
-              className="text-paper inline-flex h-11 w-11 items-center justify-center"
-            >
-              <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden>
-                <path
-                  d="M5,5 L19,19 M19,5 L5,19"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
+      <nav className="mt-10 flex flex-col gap-4 sm:mt-12 sm:gap-6" aria-label="Primary mobile">
+        {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS, CONTACT_NAV_ITEM].map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={() => setOpen(false)}
+            className="font-display text-paper text-display-md inline-flex min-h-11 items-center tracking-[var(--tracking-cta)] uppercase"
+          >
+            {t(item.labelKey)}
+          </Link>
+        ))}
+      </nav>
 
-          <nav className="mt-10 flex flex-col gap-4 sm:mt-12 sm:gap-6" aria-label="Primary mobile">
-            {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS, CONTACT_NAV_ITEM].map((item) => (
+      <div className="mt-auto flex flex-col items-start gap-4 pt-8 pb-4">
+        <div className="flex flex-wrap items-center gap-3">
+          <LangSwitcher mode="inline" />
+          <a
+            href={instagramHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-paper hover:bg-paper hover:text-brand-red inline-flex h-12 w-12 -rotate-2 items-center justify-center transition-[transform,color,background-color] duration-200 hover:-translate-y-0.5 hover:rotate-0"
+          >
+            <InstagramGlyph />
+          </a>
+        </div>
+        <Button
+          href={whatsAppHref}
+          external
+          edge={1}
+          tilt="left"
+          variant="sticker-filled"
+          arrow={false}
+        >
+          <span className="inline-flex items-center gap-2">
+            <WhatsAppGlyph />
+            {t("cta")}
+          </span>
+        </Button>
+      </div>
+    </div>
+  ) : null;
+
+  return (
+    <>
+      <header
+        data-zone="red"
+        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,backdrop-filter] duration-300 ${
+          scrolled ? "bg-red-grunge backdrop-blur-sm" : "bg-transparent"
+        }`}
+      >
+        <div className="text-on-red mx-auto flex w-full max-w-[var(--container-content)] items-center justify-between px-[var(--container-padding)] py-4">
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className="flex min-h-11 min-w-11 items-center gap-3"
+            aria-label="Moto On/Off"
+          >
+            <SkullBadge size="md" className="text-paper" />
+            <span className="font-display text-paper hidden text-base tracking-[var(--tracking-cta)] uppercase sm:block">
+              Moto On/Off
+            </span>
+          </Link>
+
+          {/* Desktop links — hover reveals the brand hand-underline SVG. */}
+          <nav
+            className="hidden items-center gap-4 md:flex xl:gap-6 2xl:gap-7"
+            aria-label="Primary"
+          >
+            {PRIMARY_NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setOpen(false)}
-                className="font-display text-paper text-display-md inline-flex min-h-11 items-center tracking-[var(--tracking-cta)] uppercase"
+                className="group/navlink tracking-eyebrow text-paper 2xl:text-eyebrow relative text-sm font-bold uppercase lg:text-base"
               >
                 {t(item.labelKey)}
+                <svg
+                  aria-hidden
+                  className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
+                  viewBox="0 0 200 12"
+                  preserveAspectRatio="none"
+                >
+                  <use href="#hand-underline" />
+                </svg>
+              </Link>
+            ))}
+            <span
+              aria-hidden
+              className="font-display text-paper/35 hidden -rotate-6 text-sm xl:inline"
+            >
+              /
+            </span>
+            {SECONDARY_NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group/navlink tracking-eyebrow text-paper/65 hover:text-paper relative hidden text-xs font-semibold uppercase transition-colors xl:inline-flex"
+              >
+                {t(item.labelKey)}
+                <svg
+                  aria-hidden
+                  className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
+                  viewBox="0 0 200 12"
+                  preserveAspectRatio="none"
+                >
+                  <use href="#hand-underline" />
+                </svg>
               </Link>
             ))}
           </nav>
 
-          <div className="mt-auto flex flex-col items-start gap-4 pt-8 pb-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <LangSwitcher mode="inline" />
-              <a
-                href={instagramHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-paper hover:bg-paper hover:text-brand-red inline-flex h-12 w-12 -rotate-2 items-center justify-center transition-[transform,color,background-color] duration-200 hover:-translate-y-0.5 hover:rotate-0"
-              >
-                <InstagramGlyph />
-              </a>
-            </div>
-            <Button
-              href={whatsAppHref}
-              external
-              edge={1}
-              tilt="left"
-              variant="sticker-filled"
-              arrow={false}
+          <div className="hidden items-center gap-2 md:flex 2xl:gap-3">
+            <LangSwitcher />
+            <a
+              href={instagramHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-paper hover:bg-paper hover:text-brand-red focus-visible:outline-paper hidden h-11 w-11 -rotate-2 items-center justify-center transition-[transform,color,background-color] duration-200 hover:-translate-y-0.5 hover:rotate-0 xl:inline-flex"
             >
-              <span className="inline-flex items-center gap-2">
-                <WhatsAppGlyph />
-                {t("cta")}
-              </span>
-            </Button>
+              <InstagramGlyph />
+            </a>
+            <div className="hidden xl:block">
+              <Button
+                href={`/${locale}/contact#contact-form`}
+                edge={1}
+                tilt="left"
+                arrow={false}
+                className="px-6"
+              >
+                {t("contact")}
+              </Button>
+            </div>
+            <div className="hidden lg:block">
+              <Button
+                href={whatsAppHref}
+                external
+                edge={2}
+                tilt="right"
+                arrow={false}
+                className="px-5 2xl:px-6"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <WhatsAppGlyph />
+                  {t("cta")}
+                </span>
+              </Button>
+            </div>
           </div>
+
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label={t("open_menu")}
+            className="text-paper inline-flex h-11 w-11 items-center justify-center md:hidden"
+          >
+            <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden>
+              <path
+                d="M3,6 L21,6 M3,12 L21,12 M3,18 L21,18"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
         </div>
-      ) : null}
-    </header>
+      </header>
+      {mobileOverlay}
+    </>
   );
 }

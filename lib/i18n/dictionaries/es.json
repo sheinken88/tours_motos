@@ -31,7 +31,7 @@
   },
   "whatsapp": {
     "label": "Hablar por WhatsApp",
-    "default_message": "Hola, me interesa una expedición.",
+    "default_message": "Hola, quiero planear una expedición Moto On/Off. ¿Qué rutas tienen próximas y qué cupos quedan?",
     "tour_message": "Hola, me interesa la ruta {tour}."
   },
   "common": {
@@ -51,7 +51,11 @@
       "gigantes-del-oeste": "Mendoza a La Rioja en 8 días. Subís a Laguna Brava, 4.300 m, donde descansa un avión y caminan los flamencos.",
       "volcanes-del-norte": "Catamarca en 7 días. Antofagasta de la Sierra, el Campo de Piedra Pómez y las dunas de Tatón.",
       "cruces-del-sur": "Carretera Austral en 7 días. Paso Roballos, el Lago General Carrera y ripio de punta a punta."
-    }
+    },
+    "metadata_title": "Moto On/Off — Expediciones en moto por Argentina",
+    "metadata_description": "Travesías en moto por Argentina: Ruta 40, Carretera Austral, Patagonia y norte argentino. Ripio, altura y distancia para riders que quieren cruzar más.",
+    "video_name": "Viajes en moto por Argentina | Moto On/Off",
+    "video_description": "Viajes en moto por Argentina: tours en moto por Ruta 40, Carretera Austral, Patagonia y el norte argentino."
   },
   "home_calendar": {
     "eyebrow": "Próximas fechas",
@@ -89,7 +93,11 @@
         "label": "track listo"
       }
     ],
-    "route_stops": ["Idea", "Ruta", "Salida"],
+    "route_stops": [
+      "Idea",
+      "Ruta",
+      "Salida"
+    ],
     "items": [
       "Moto y nivel de manejo.",
       "Días disponibles y ritmo deseado.",
@@ -185,7 +193,7 @@
     "route_map_frame_title": "Mapa interactivo del recorrido Cruces del Sur",
     "route_map_open_google": "Abrir en Google Maps",
     "route_map_workshop_title": "Taller de ruta",
-    "route_map_workshop_body": "La línea final no salió de una mesa. La probamos con viento, frontera, ferry y ripio hasta que el recorrido quedó listo para rodarse.",
+    "route_map_workshop_body": "La línea final no salió de una mesa. La probamos con frontera, ferry, ripio y distancia hasta que el recorrido quedó listo para rodarse.",
     "route_map_workshop_cta": "Mirá cómo armamos Cruces del Sur",
     "practical_eyebrow": "Detalles del viaje",
     "practical_heading": "Información práctica",
@@ -218,7 +226,7 @@
       },
       "hard_riding": {
         "title": "ANDAR DURO",
-        "body": "Días largos, altura, viento, polvo. Cada jornada es una conquista chica."
+        "body": "Días largos, altura, polvo y ripio. Cada jornada es una conquista chica."
       },
       "sleep_where": {
         "title": "DORMIR DONDE CAIGA",
@@ -250,7 +258,7 @@
     "eyebrow": "Manifiesto",
     "heading": "LA RUTA NO PIDE PERMISO",
     "p1": "Cruzamos cordilleras porque del otro lado uno vuelve distinto. No vendemos paseos: armamos travesías que se ganan con kilómetros, polvo y noches que se acuerdan.",
-    "p2": "Cada día tiene su precio: el viento de la Patagonia, el ripio del NOA, la altura de los Andes. Y cada día devuelve lo que no se mide en kilómetros.",
+    "p2": "Cada día tiene su precio: la distancia patagónica, el ripio del NOA, la altura de los Andes. Y cada día devuelve lo que no se mide en kilómetros.",
     "emphasis": "lo que no se mide"
   },
   "about": {
@@ -272,7 +280,78 @@
       "Qué ruta te llama y cuándo podrías salir.",
       "Qué moto manejás y cuánta experiencia tenés en ripio.",
       "Si querés sumarte a una salida o armar algo a medida."
-    ]
+    ],
+    "hero_heading": "EL EQUIPO QUE ABRE LA HUELLA",
+    "hero_body": "Somos el equipo que diseña, prueba y guía cada ruta.\nNo abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.",
+    "intro_eyebrow": "Nosotros",
+    "intro_heading": "TOURS EN MOTO CON ENFOQUE OFFROAD",
+    "intro_paragraphs": [
+      "Ofrecemos tours en moto para todo público con un enfoque Offroad, desde expediciones por Catamarca hasta viajes en moto por la Carretera Austral.",
+      "Todos nuestros tours en moto son distintos entre sí. Diseñamos experiencias de moto ON/OFF que combinan ruta, ripio y aventura.",
+      "Viajando en moto por zonas volcánicas, desiertos, bosques con lagos, montañas nevadas o yungas cerradas."
+    ],
+    "proof_labels": [
+      "años rodando",
+      "ruta y ripio",
+      "rutas probadas"
+    ],
+    "route_principles_eyebrow": "Cómo lo hacemos",
+    "route_principles_heading": "DISEÑADAS, TESTEADAS Y AJUSTADAS",
+    "route_principles": [
+      "Cada kilómetro de nuestras rutas en moto fueron diseñadas previamente, testeadas y ajustadas para que vivas el viaje con libertad.",
+      "Planificamos cada viaje en moto al detalle, desde los hoteles, las paradas y las horas de manejo.",
+      "Brindamos apoyo y organización para que la experiencia sea intensa y auténtica.",
+      "Hacemos especial foco en el grupo humano."
+    ],
+    "terrain_eyebrow": "Terreno humano",
+    "terrain_heading": "NO HACEMOS TOURS MASIVOS",
+    "terrain_body": "No hacemos tours masivos. En un viaje en moto la ruta importa, pero también quiénes la comparten. Armamos grupos chicos para ayudarnos, acompañarnos y disfrutar el camino como equipo. Porque una gran experiencia no la hace solamente el paisaje.",
+    "terrain_list": [
+      "Zonas volcánicas.",
+      "Desiertos.",
+      "Bosques con lagos.",
+      "Montañas nevadas.",
+      "Yungas cerradas."
+    ],
+    "commitment_eyebrow": "Compromiso",
+    "commitment_heading": "MÁS ALLÁ DEL CAMINO",
+    "commitment_body": "Invitamos a vivir una experiencia que va más allá del camino. Ganar confianza, sumar herramientas y volver del viaje siendo un mejor piloto.",
+    "testimonials_label": "Testimonios",
+    "route_cards_eyebrow": "Rutas probadas",
+    "route_cards_heading": "ELEGÍ LO QUE VAS A CRUZAR",
+    "route_cards_body": "Salta y Jujuy, Mendoza a La Rioja, Catamarca o Patagonia. Cuatro rutas rodadas antes de ponerles nombre.",
+    "photos_label": "Fotos de Moto On/Off",
+    "photos_eyebrow": "Fotos de ruta",
+    "image_alt_hero": "Equipo de Moto On/Off rodando una ruta de ripio en Argentina",
+    "image_alt_carousel": [
+      "Riders de Moto On/Off reunidos durante una salida en moto",
+      "Rider de Moto On/Off cruzando terreno de montaña",
+      "Grupo de motos de aventura en una ruta de ripio",
+      "Riders avanzando por una ruta abierta entre montañas",
+      "Moto de aventura detenida sobre un camino de ripio"
+    ],
+    "image_alt_gallery_one": "Riders de Moto On/Off avanzando en una ruta de ripio",
+    "image_alt_gallery_two": "Grupo de riders de Moto On/Off durante una travesía",
+    "image_alt_road": "Moto de aventura cargada en un camino de montaña",
+    "image_alt_workshop": "Riders de Moto On/Off en una parada de ruta",
+    "commitment_testimonials": [
+      {
+        "quote": "La Mina La Mejicana fue el desafío más grande que hice en moto. El grupo siempre con buena onda. Muy bueno todo.",
+        "rider": "Diego Bianco",
+        "meta": "Mina La Mejicana"
+      },
+      {
+        "quote": "El grupo que se formó en esos 7 días fue espectacular, ya hicimos 2 asados desde que volvimos.",
+        "rider": "Juan Carrera",
+        "meta": "Volcanes del Norte · 7 días de ruta"
+      },
+      {
+        "quote": "El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.",
+        "rider": "Martin Pujol",
+        "meta": "7 días de ruta"
+      }
+    ],
+    "stamp_volcanes": "Volcanes"
   },
   "custom": {
     "title": "Viajes a medida",
@@ -392,7 +471,9 @@
       "Tu nivel de manejo.",
       "El tipo de terreno que te gusta.",
       "La duración ideal del viaje."
-    ]
+    ],
+    "step_label": "Paso",
+    "ground_print": "Ruta propia"
   },
   "calendar": {
     "title": "Calendario",
@@ -473,7 +554,7 @@
     "eyebrow": "Taller de Rutas",
     "headline": "PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
     "metadata_description": "Cada tour en moto nace de exploración, equivocación y reintentos. Rutas testeadas, expediciones en moto y decisiones tomadas en el terreno.",
-    "intro": "Cada tour empieza mucho antes de abrir sus cupos. Nace explorando caminos, equivocándonos, volviendo atrás y buscando mejores rutas. Para lanzar un recorrido, viajamos en distintas estaciones, probamos alternativas, medimos los tiempos, caminos y niveles de dificultad reales.",
+    "intro": "Cada tour empieza mucho antes de abrir sus cupos. Nace explorando caminos, equivocándonos, volviendo atrás y buscando mejores rutas.\nPara lanzar un recorrido, viajamos en distintas estaciones, probamos alternativas, medimos los tiempos, caminos y niveles de dificultad reales.",
     "proof_eyebrow": "Detrás de cada paisaje",
     "proof_heading": "HAY HORAS DE TESTEO",
     "proof_body": "No improvisamos rutas: las vivimos primero. Nuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con pilotos de todos los niveles para que vos viajes con total libertad.",
@@ -530,11 +611,29 @@
     "cta_body": "No improvisamos rutas: las vivimos primero.\nNuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con pilotos de todos los niveles para que vos viajes con total libertad.",
     "cta_primary": "Ver las rutas",
     "cta_secondary": "Hablemos",
-    "empty": "Pronto. Estamos escribiendo las primeras notas."
+    "empty": "Pronto. Estamos escribiendo las primeras notas.",
+    "how_we_test_copy": "No improvisamos rutas: las vivimos primero.\nNuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con pilotos de todos los niveles para que vos viajes con total libertad.",
+    "proof_band_title": "Explorar es probar. Probar es aprender.",
+    "proof_band_body": "Cada ruta que lanzamos fue vivida, medida y perfeccionada en el terreno. Mostramos lo que realmente vale la pena recorrer.",
+    "story_wall_body": "Abrimos cada ruta para mostrar qué se probó, qué se descartó y qué decisión terminó marcando el camino.",
+    "generic_workshop_label": "Taller"
   },
   "journal_post": {
     "back": "Volver al taller",
-    "share_eyebrow": "Más del taller"
+    "share_eyebrow": "Más del taller",
+    "workshop_table": "Mesa de taller",
+    "route_workshop": "Taller de ruta",
+    "tested_route": "Ruta probada",
+    "fallback_aside_body": "Una ruta se entiende cuando alguien cuenta qué probó, qué ajustó y qué decidió dejar afuera.",
+    "fallback_decision_eyebrow": "Decisiones de diseño",
+    "fallback_decision_title": "LO QUE ENTRÓ Y LO QUE QUEDÓ AFUERA",
+    "fallback_decision_intro": "Una ruta se diseña cuando alguien decide qué no entra. Acá está la parte que no suele verse en una ficha comercial.",
+    "scouting_eyebrow": "Fotos de scouting",
+    "scouting_heading": "EL TERRENO ANTES DEL TOUR",
+    "final_tour_cta": "Ver tour final",
+    "timeline_eyebrow": "Taller de ruta",
+    "timeline_heading": "Del mapa al track probado",
+    "timeline_body": "Cada panel muestra una decisión de campo: salir, volver, medir y ajustar hasta que el recorrido aguanta la ruta completa."
   },
   "form": {
     "name_label": "Tu nombre",

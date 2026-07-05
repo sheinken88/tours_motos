@@ -161,9 +161,9 @@ Dejamos el valle mendocino para entrar en planicies abiertas y caminos solitario
 ### Día 4 — Barreal → Rodeo → Jáchal → Huaco → Villa Unión
 100% asfalto · 437 km
 
-La travesía más escénica del tour, conecta valles, diques, quebradas y zonas áridas riojanas. El trayecto nos da un cambio de paisajes constante y muy marcado. Parada a almorzar en Rodeo y la Cuesta del Viento, el paisaje cambia notablemente con colores y curvas. La Cuesta del Viento, La Ciénaga y la Cuesta de Huaco son lugares icónicos de San Juan: el camino se transforma en curvas cerradas que desembocan en un mirador de los valles sanjuaninos.
+La travesía más escénica del tour, conecta valles, diques, quebradas y zonas áridas riojanas. El trayecto nos da un cambio de paisajes constante y muy marcado. Parada a almorzar en Rodeo; el paisaje cambia notablemente con colores y curvas. La Ciénaga y la Cuesta de Huaco son lugares icónicos de San Juan: el camino se transforma en curvas cerradas que desembocan en un mirador de los valles sanjuaninos.
 
-**Destacados:** Cuesta del Viento · Quebrada de Jáchal · Cuesta de Huaco.
+**Destacados:** Rodeo · Quebrada de Jáchal · Cuesta de Huaco.
 
 **Tramos:**
 1. Barreal → Rodeo · 246 km

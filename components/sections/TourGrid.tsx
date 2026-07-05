@@ -88,6 +88,7 @@ export function TourGrid({
   const posterWall = variant === "posterWall";
   const homeShowcase = variant === "homeShowcase";
   const totalKm = visible.reduce((total, tour) => total + tour.distance_km, 0);
+  const numberLocale = locale === "en" ? "en-US" : locale === "pt" ? "pt-BR" : "es-AR";
   const altitudes = visible
     .map((tour) => tour.max_altitude_m ?? 0)
     .filter((altitude) => altitude > 0);
@@ -130,7 +131,7 @@ export function TourGrid({
               </div>
               <div className="bg-paper-light border-ink/60 shadow-sticker-ink rotate-1 border-2 p-4">
                 <p className="font-display text-accent-on-paper text-5xl leading-none">
-                  {totalKm.toLocaleString("es-AR")}
+                  {totalKm.toLocaleString(numberLocale)}
                 </p>
                 <p className="font-display mt-1 text-xs tracking-[var(--tracking-cta)] uppercase">
                   {labels.totalKm}
@@ -139,7 +140,7 @@ export function TourGrid({
               {highestAltitude ? (
                 <div className="bg-paper-aged border-ink/60 shadow-sticker-ink -rotate-1 border-2 p-4">
                   <p className="font-display text-accent-on-paper text-5xl leading-none">
-                    {highestAltitude.toLocaleString("es-AR")}
+                    {highestAltitude.toLocaleString(numberLocale)}
                   </p>
                   <p className="font-display mt-1 text-xs tracking-[var(--tracking-cta)] uppercase">
                     {labels.highPoint}
@@ -162,6 +163,7 @@ export function TourGrid({
                   <TourCard
                     tour={tour}
                     locale={locale}
+                    numberLocale={numberLocale}
                     variant="photo"
                     index={index}
                     className="h-full"
@@ -218,13 +220,13 @@ export function TourGrid({
                 <dl className="border-ink/20 mt-5 grid gap-3 border-t-2 pt-4 font-sans text-sm">
                   <div className="flex justify-between gap-4">
                     <dt className="opacity-65">{labels.totalKm}</dt>
-                    <dd className="font-semibold">{totalKm.toLocaleString("es-AR")} km</dd>
+                    <dd className="font-semibold">{totalKm.toLocaleString(numberLocale)} km</dd>
                   </div>
                   {highestAltitude ? (
                     <div className="flex justify-between gap-4">
                       <dt className="opacity-65">{labels.highPoint}</dt>
                       <dd className="font-semibold">
-                        {highestAltitude.toLocaleString("es-AR")} {labels.altitudeUnit}
+                        {highestAltitude.toLocaleString(numberLocale)} {labels.altitudeUnit}
                       </dd>
                     </div>
                   ) : null}
@@ -250,7 +252,13 @@ export function TourGrid({
                 key={tour.slug}
                 className={posterWallCellClass[index % posterWallCellClass.length]}
               >
-                <TourCard tour={tour} locale={locale} variant="poster" index={index} />
+                <TourCard
+                  tour={tour}
+                  locale={locale}
+                  numberLocale={numberLocale}
+                  variant="poster"
+                  index={index}
+                />
               </li>
             ))}
           </ul>
@@ -279,7 +287,7 @@ export function TourGrid({
         <ul className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {visible.map((tour, index) => (
             <li key={tour.slug}>
-              <TourCard tour={tour} locale={locale} index={index} />
+              <TourCard tour={tour} locale={locale} numberLocale={numberLocale} index={index} />
             </li>
           ))}
         </ul>

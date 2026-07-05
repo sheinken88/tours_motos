@@ -43,41 +43,38 @@ type HomeAboutSectionProps = {
   photoAlt: string;
 };
 
-const homeTitle = "Moto On/Off — Expediciones en moto por Argentina";
-const homeDescription =
-  "Travesías en moto por Argentina: Ruta 40, Carretera Austral, Patagonia y norte argentino. Ripio, altura y distancia para riders que quieren cruzar más.";
-const homeHeroVideoDescription =
-  "Viajes en moto por Argentina: tours en moto por Ruta 40, Carretera Austral, Patagonia y el norte argentino.";
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
 
+  const t = await getTranslations({ locale, namespace: "home" });
   const site = getSiteUrl();
   const url = `${site}/${locale}`;
+  const title = t("metadata_title");
+  const description = t("metadata_description");
   const pathByLocale = Object.fromEntries(locales.map((loc) => [loc, ""])) as Record<
     Locale,
     string
   >;
 
   return {
-    title: homeTitle,
-    description: homeDescription,
+    title,
+    description,
     alternates: {
       canonical: url,
       ...localeAlternates({ pathByLocale }),
     },
     openGraph: {
       type: "website",
-      title: homeTitle,
-      description: homeDescription,
+      title,
+      description,
       url,
       siteName: SITE_NAME,
     },
     twitter: {
       card: "summary_large_image",
-      title: homeTitle,
-      description: homeDescription,
+      title,
+      description,
     },
   };
 }
@@ -125,8 +122,8 @@ export default async function Home({ params }: Props) {
   const homeHeroVideoJsonLd = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Viajes en moto por Argentina | Moto On/Off",
-    description: homeHeroVideoDescription,
+    name: tHome("video_name"),
+    description: tHome("video_description"),
     thumbnailUrl: `${site}/video/hero-bg-poster.jpg`,
     uploadDate: "2026-06-25",
     duration: "PT50S",

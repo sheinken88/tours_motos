@@ -27,7 +27,7 @@ const difficultyLabel: Record<Tour["difficulty"], { es: string; en: string; pt: 
     pt: "Intermediate++",
   },
   hard: { es: "duro", en: "hard", pt: "difícil" },
-  expert: { es: "experto", en: "expert", pt: "expert" },
+  expert: { es: "experto", en: "expert", pt: "especialista" },
 };
 
 const routeLabel: Record<Locale, string> = {

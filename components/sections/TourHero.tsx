@@ -1,47 +1,95 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
-import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
-import { RedZone, RoutePrint } from "@/components/surfaces";
+import { RedZone } from "@/components/surfaces";
 import { type Locale } from "@/lib/i18n/config";
 import { type Tour } from "@/lib/sheets/schemas";
 
 type TourHeroProps = {
   tour: Tour;
   locale: Locale;
+  heroSummary?: string;
+};
+
+type TourHeroBackground = {
+  src: string;
+  objectPosition: string;
+};
+
+const tourHeroBackgrounds: Record<string, TourHeroBackground> = {
+  "sobre-las-nubes": {
+    src: "/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg",
+    objectPosition: "50% center",
+  },
+  "gigantes-del-oeste": {
+    src: "/images/tours/gigantes_del_oeste/Imagen Fondo Gigantes del Oeste.jpg",
+    objectPosition: "58% center",
+  },
+  "volcanes-del-norte": {
+    src: "/images/tours/volcanes_del_norte/Imagen Fondo Volcanes del Norte.jpg",
+    objectPosition: "58% center",
+  },
+  "cruces-del-sur": {
+    src: "/images/tours/cruces_del_sur/Imagen fondo cruces del sur.jpg",
+    objectPosition: "58% bottom",
+  },
 };
 
 /**
- * TourHero — per-tour variant of the home Hero. Same red-zone composition
- * (mountain ridge, torn bottom edge) with tour-specific copy:
+ * TourHero — per-tour full-bleed poster hero. Same soft red-wash treatment as
+ * the tour index hero, with tour-specific copy:
  *   - Eyebrow: route region
  *   - Headline: tour title from Sheets
  *   - CTAs: Hold a spot (sticker-filled) + Talk to us (sticker-outline)
- *   - Image: route proof printed into the red field and tucked behind the
- *     mountain layer, rather than a freestanding photo card.
+ *   - Image: route proof printed into the red field as a full-bleed background.
  *
  * The detailed stats stay in the paper overview immediately below, so the hero
  * does not repeat the same duration, distance, ripio, and altitude data.
  */
-export async function TourHero({ tour, locale }: TourHeroProps) {
+export async function TourHero({ tour, locale, heroSummary }: TourHeroProps) {
   const tCommon = await getTranslations("common");
   const region = tour.region[locale];
+  const summary = heroSummary || tour.summary[locale];
   const imageAlt = tour.hero_image_alt[locale] || tour.title[locale];
+  const background = tourHeroBackgrounds[tour.slug] ?? {
+    src: tour.hero_image_color || tour.hero_image,
+    objectPosition: "54% center",
+  };
 
   return (
-    <RedZone density="heavy" tornBottom={2} className="overflow-hidden">
-      {/* Mountain ridge anchored bottom, bleeds into next zone */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[52%] opacity-90">
-        <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
-      </div>
+    <RedZone density="heavy" tornBottom={2} className="min-h-[100svh] overflow-hidden !py-0">
+      {background.src ? (
+        <Image
+          src={background.src}
+          alt={imageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 z-0 h-full w-full object-cover"
+          style={{ objectPosition: background.objectPosition }}
+        />
+      ) : null}
+      <div className="from-brand-red/[0.70] via-brand-red/[0.24] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+      <div className="from-ink/[0.30] via-ink/[0.08] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+      <div className="from-ink/[0.24] via-ink/[0.07] pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-2/5 bg-gradient-to-t to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
+      <div className="from-ink/[0.16] pointer-events-none absolute inset-x-0 top-0 z-[4] h-48 bg-gradient-to-b to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
+      <div
+        className="pointer-events-none absolute inset-0 z-[5] opacity-10 mix-blend-multiply [background-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14/.28)_45%,transparent_78%),url('/textures/halftone-overlay.svg')] [background-size:100%_100%,18px_18px]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[5] opacity-[0.08] mix-blend-multiply [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px]"
+        aria-hidden="true"
+      />
 
-      <Container className="relative z-10 grid min-h-[64vh] gap-10 lg:min-h-[68vh] lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.8fr)] lg:items-center xl:min-h-[72vh]">
-        <div className="max-w-[50rem] space-y-6">
+      <Container className="relative z-10 flex min-h-[100svh] items-center pt-32 pb-24 md:pt-40 md:pb-28">
+        <div className="max-w-[52rem] space-y-6">
           <Eyebrow>{region}</Eyebrow>
-          <DisplayHeading size="2xl" as="h1">
+          <DisplayHeading size="2xl" as="h1" className="max-w-[10ch] leading-[0.88]">
             {tour.title[locale]}
           </DisplayHeading>
-          <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed md:text-2xl">
-            {tour.summary[locale]}
+          <p className="text-on-red max-w-2xl whitespace-pre-line font-sans text-xl leading-relaxed md:text-2xl">
+            {summary}
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
             <Button
@@ -56,18 +104,6 @@ export async function TourHero({ tour, locale }: TourHeroProps) {
               {tCommon("talk_to_us")}
             </Button>
           </div>
-        </div>
-
-        <div className="relative -mx-5 sm:-mx-8 md:mx-0">
-          <RoutePrint
-            alt={imageAlt}
-            colorSrc={tour.hero_image_color}
-            halftoneSrc={tour.hero_image}
-            fallbackId={tour.slug}
-            priority
-            sizes="(min-width: 1024px) 44vw, 100vw"
-            className="h-72 sm:h-[22rem] md:-rotate-1 lg:h-[30rem] lg:rotate-1 xl:h-[34rem]"
-          />
         </div>
       </Container>
     </RedZone>

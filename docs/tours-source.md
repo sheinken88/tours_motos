@@ -10,10 +10,10 @@
 
 | # | Slug | Title | Region | Days | Km | Ripio % | Difficulty | Max altitude (m) |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `sobre-las-nubes` | Sobre las Nubes | Salta y Jujuy | 7 | 1712 | 50% | Intermedio | 4895 |
-| 2 | `gigantes-del-oeste` | Gigantes del Oeste | Mendoza a La Rioja | 8 | 2400 | 30% | Intermedio | 4600 |
-| 3 | `volcanes-del-norte` | Volcanes del Norte | Catamarca | 7 | n/a (TBD) | 50% | Intermedio + | 4550 |
-| 4 | `cruces-del-sur` | Cruces del Sur | Carretera Austral y Patagonia | 7 | 2321 | 45% | Intermedio | 1300 |
+| 1 | `volcanes-del-norte` | Volcanes del Norte | Catamarca | 7 | n/a (TBD) | 50% | Intermediate++ | 4550 |
+| 2 | `sobre-las-nubes` | Sobre las Nubes | Salta y Jujuy | 7 | 1712 | 50% | Intermedio | 4895 |
+| 3 | `cruces-del-sur` | Cruces del Sur | Carretera Austral y Patagonia | 7 | 2321 | 45% | Intermedio | 1300 |
+| 4 | `gigantes-del-oeste` | Gigantes del Oeste | Mendoza a La Rioja | 8 | 2400 | 30% | Intermedio | 4600 |
 
 > **Open questions for client:**
 > - Pricing (`base_price_usd`) — pending. All four currently set to `0` and `published=false` until provided.
@@ -85,7 +85,7 @@ Salimos de San Antonio de los Cobres rumbo al Viaducto La Polvorilla, pasando po
 2. La Juguetería → Salinas Grandes · 86 km
 3. Salinas Grandes → Tilcara · 121 km
 
-### Día 5 — Tilcara → Santa Ana
+### Día 5 — Tilcara → Hornocal → Caspala
 20% asfalto · 140 km · 4550 m s.n.m.
 
 Día pensado para disfrutar la conducción y el entorno más que la velocidad. Entre curvas cerradas y rectas con acantilados. Más que conducir la moto se va flotando sobre las nubes. La sensación es la de estar cruzando por el auténtico norte, poco transitado y profundamente ligado a la montaña, una sucesión constante de paisajes que invitan a parar, mirar y seguir.
@@ -95,26 +95,26 @@ Día pensado para disfrutar la conducción y el entorno más que la velocidad. E
 **Tramos:**
 1. Tilcara → Hornocal · 68 km
 2. Hornocal → Abra Azul · 35 km
-3. Abra Azul → Santa Ana · 38 km
+3. Abra Azul → Caspala · 38 km
 
-### Día 6 — Santa Ana → Parque Nacional Calilegua → Perico
+### Día 6 — Caspala → Parque Nacional Calilegua → Libertador San Martín
 50% asfalto · 205 km
 
-Un día que cambia completamente de escenario: desde los caminos de altura y pueblos aislados, empezás a descender hacia la selva de las Yungas, atravesando el Parque Nacional Calilegua. La ruta se vuelve totalmente verde, más húmeda y cerrada, con curvas entre vegetación densa y un clima totalmente distinto. Una transición única: de la montaña árida a la selva viva, terminando en Perico con sensación de haber cruzado dos mundos en un solo día.
+Un día que cambia completamente de escenario: desde los caminos de altura y pueblos aislados, empezás a descender hacia la selva de las Yungas, atravesando el Parque Nacional Calilegua. La ruta se vuelve totalmente verde, más húmeda y cerrada, con curvas entre vegetación densa y un clima totalmente distinto. Una transición única: de la montaña árida a la selva viva, terminando en Libertador San Martín con sensación de haber cruzado dos mundos en un solo día.
 
 **Destacados:** Parque Nacional Calilegua.
 
 **Tramos:**
-1. Santa Ana → San Francisco · 70 km
+1. Caspala → San Francisco · 70 km
 2. San Francisco → Calilegua · 48 km
-3. Calilegua → Perico · 38 km
+3. Calilegua → Libertador San Martín · 38 km
 
-### Día 7 — Perico → Termas de Reyes → Salta Capital
+### Día 7 — Libertador San Martín → Embalse Las Maderas → Salta
 80% asfalto · 143 km
 
-Un día tranquilo. Una primera parte de ripio hasta Termas de Reyes. Parada a almorzar en el Dique La Ciénaga con vistas al Embalse Las Maderas, ideal para recuperar energías. Luego unas 2 horas de manejo y unas 100 curvas por asfalto hasta llegar al hotel en Salta.
+Una jornada tranquila para cerrar el tour. Almuerzo junto al Dique La Ciénaga y unas dos horas finales de asfalto y curvas hasta volver a Salta Capital.
 
-**Recorrido en mapa:** `https://maps.mMEDc2st48kkfm7` *(client-provided link — verify before launch).*
+**Recorrido en mapa:** `https://maps.app.goo.gl/nhtYfD9vhBcC8krb7`.
 
 ---
 
@@ -125,7 +125,7 @@ Un día tranquilo. Una primera parte de ripio hasta Termas de Reyes. Parada a al
 ### Día 1 — Mendoza Capital → Potrerillos → Villavicencio → Uspallata
 80% asfalto · 218 km
 
-Partimos desde Mendoza Capital rumbo a Potrerillos donde el camino se entremezcla con túneles, curvas y embalses. Luego seguimos rumbo a la Reserva Natural de Villavicencio: un recorrido de ripio con 365 curvas, para llegar al histórico Hotel Villavicencio. Por la tarde regresamos a Uspallata, donde pasamos la primera noche y nos preparamos para el gran desafío del día siguiente: el Cruce de los Andes.
+Partimos el tour en moto desde Mendoza Capital rumbo a Potrerillos entre túneles, curvas y embalses. Después entramos a la Reserva Natural Villavicencio: ripio, 365 curvas y llegada al histórico hotel antes de dormir en Uspallata.
 
 **Destacados:** Embalse Potrerillos · Reserva Natural Villavicencio.
 
@@ -149,7 +149,7 @@ El Paso Internacional Los Libertadores es, sin duda, uno de los más espectacula
 ### Día 3 — Pampa del Leoncito → Laguna Blanca → Calingasta
 80% asfalto · 290 km
 
-Dejamos atrás el valle mendocino para internarnos en paisajes de planicies infinitas y caminos solitarios, atravesando el imponente Pampa del Leoncito, un escenario abierto donde el horizonte parece no tener fin, rodeado de cadenas montañosas. Un día que combina internarse en las montañas, visitar bodegas, para finalizar con el camino a la Laguna Blanca y atardeceres increíbles.
+Dejamos el valle mendocino para entrar en planicies abiertas y caminos solitarios. El tour en moto sigue por Pampa del Leoncito, Barreal y Laguna Blanca: un día de horizontes largos y atardeceres ganados.
 
 **Destacados:** Pampa Leoncito · Laguna Blanca.
 
@@ -173,7 +173,7 @@ La travesía más escénica del tour, conecta valles, diques, quebradas y zonas 
 ### Día 5 — Villa Unión → Laguna Brava → Volcancito de Troya → Villa Unión
 40% asfalto · 370 km · 4300 m s.n.m.
 
-El ascenso a Laguna Brava es uno de los secretos mejor guardados de La Rioja. Una laguna de alta montaña, ubicada a 4300 msnm, donde descansa el fuselaje de un avión, custodiado por flamencos y el silencio del altiplano. La jornada combina rectas infinitas asfaltadas con paisajes imponentes y, en contraste, el ripio y curvas de la Quebrada de la Troya y La Herradura, atravesando montañas de colores irreales. A lo largo del recorrido emergen antiguos refugios de piedra construidos en 1862 por Domingo Faustino Sarmiento para las primeras travesías andinas.
+Subimos a Laguna Brava en moto, una laguna de alta montaña custodiada por silencio, flamencos y refugios de piedra. El ripio de Quebrada de la Troya y La Herradura pone color y exigencia al día.
 
 **Destacados:** Laguna Brava · Volcancito de Troya · Quebrada de la Troya · La Herradura.
 
@@ -196,7 +196,7 @@ El Talampaya nos da un paisaje de paredones rojizos y cañones que reflejan mill
 ### Día 7 — Chilecito → Cañón del Ocre → Mina La Mejicana → Chilecito
 20% asfalto · 240 km · 4600 m s.n.m.
 
-El recorrido desde Chilecito hasta la Mina La Mejicana es un ascenso de montaña corto en kilómetros pero intenso en paisaje e historia. Uno de los caminos más desafiantes de toda La Rioja, ícono de cualquier motero. El Cañón del Ocre y los Pesebres son paradas obligadas del día. Ascendiendo, la vegetación desaparece por completo y aparecen ríos anaranjados a lo largo del trayecto. El silencio es absoluto. En este último tramo aparecen estructuras abandonadas, rieles, vagonetas y ruinas que anuncian la llegada al complejo minero. El lugar transmite una mezcla de hazaña humana y aislamiento extremo.
+El ascenso a Mina La Mejicana en moto es corto en kilómetros e intenso en historia, altura y paisaje. Cañón del Ocre, ríos anaranjados, estructuras abandonadas y silencio absoluto cierran el tramo más alto del tour.
 
 **Destacados:** Cañón del Ocre · Mina la Mejicana · Los Pesebres.
 
@@ -313,6 +313,37 @@ Partiendo desde Andalgalá, a medida que se gana altura el paisaje se transforma
 3. Los Varela → La Quebrada · 98 km
 
 **Recorrido en mapa:** `https://maps.app.goo.gl/NLtJ8B4giCKQFE8o8`.
+
+### Hero
+
+Tour en moto por Catamarca
+
+Cuestas Minas Capillitas, Balcón de Pissis, Campo de Piedra Pómez, salares, puna y volcanes. Una ruta de altura que alterna ripio, asfalto y jornadas para riders que ya saben lo que buscan.
+
+### Qué incluye
+
+- Traslado de la moto ida y vuelta a destino.
+- Seguro de carga de la moto.
+- Refrigerios.
+- Moto de repuesto.
+- Starlink.
+- Siete noches de alojamiento en hospedajes seleccionados.
+- Vehículo de apoyo durante toda la ruta.
+- Combustible de emergencia para todo el trayecto.
+- Desayunos, almuerzos y cenas.
+- Guía con experiencia probada en el oeste argentino.
+
+### Buenas a saber
+
+- Cupo limitado por tour.
+- Esta travesía atraviesa altura sostenida (2500–4550 msnm).
+- Se requiere experiencia previa en ripio.
+
+### Testimonios
+
+- "La ruta en moto hasta El Balcón de Pissis fue lo más impactante que vi en mi vida. La vista del volcán a 4,500 metros es impresionante." - Martín Gonzalez.
+- "El grupo que se formó en esos 7 fue espectacular, ya hicimos 2 asados desde que volvimos." - Juan Carrera.
+- "El Campo de Piedra Pómez fue como estar en otro planeta. Cada día fue una sorpresa. Nunca pensé que existían lugares así." - Lucas Taccone.
 
 ---
 

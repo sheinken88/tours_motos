@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Container, DisplayHeading, Eyebrow } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { InquiryForm, type InquiryTourOption } from "@/components/forms";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
@@ -66,17 +66,35 @@ export default async function ContactPage({ params, searchParams }: Props) {
 
   return (
     <>
-      <RedZone density="heavy" tornBottom={1}>
-        <Container className="space-y-6">
-          <Eyebrow>{t("eyebrow")}</Eyebrow>
-          <DisplayHeading size="2xl" as="h1">
-            {t("headline")}
-          </DisplayHeading>
-          <p className="max-w-prose font-sans text-lg leading-relaxed">{t("intro")}</p>
+      <RedZone density="light" tornBottom={1} id="contact-form" className="scroll-mt-24 pt-24">
+        <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-14">
+          <div className="space-y-5 lg:sticky lg:top-28">
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
+            <DisplayHeading size="xl" as="h1">
+              {t("headline")}
+            </DisplayHeading>
+            <p className="max-w-prose font-sans text-lg leading-relaxed">{t("intro")}</p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <Eyebrow rule>{t("form_eyebrow")}</Eyebrow>
+              <DisplayHeading size="lg" as="h2">
+                {t("form_heading")}
+              </DisplayHeading>
+            </div>
+            <InquiryForm
+              locale={locale}
+              kind={presetTour ? "tour" : "contact"}
+              tours={tourOptions}
+              defaultTourSlug={presetTour}
+              tourSlug={presetTour}
+            />
+          </div>
         </Container>
       </RedZone>
 
-      <PaperZone density="default" tornBottom={2}>
+      <PaperZone density="light" tornBottom={2}>
         <Container>
           <div className="grid gap-10 md:grid-cols-2">
             <article className="space-y-3">
@@ -110,21 +128,23 @@ export default async function ContactPage({ params, searchParams }: Props) {
         </Container>
       </PaperZone>
 
-      <RedZone density="default">
-        <Container width="narrow" className="space-y-8">
-          <div className="space-y-3">
-            <Eyebrow rule>{t("form_eyebrow")}</Eyebrow>
-            <DisplayHeading size="xl" as="h2">
-              {t("form_heading")}
+      <RedZone density="light">
+        <Container className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
+          <div className="space-y-2">
+            <Eyebrow rule>{t("next_eyebrow")}</Eyebrow>
+            <DisplayHeading size="md" as="h2">
+              {t("next_heading")}
             </DisplayHeading>
+            <p className="max-w-2xl font-sans text-base leading-relaxed">{t("next_body")}</p>
           </div>
-          <InquiryForm
-            locale={locale}
-            kind={presetTour ? "tour" : "contact"}
-            tours={tourOptions}
-            defaultTourSlug={presetTour}
-            tourSlug={presetTour}
-          />
+          <div className="flex flex-wrap gap-4">
+            <Button href={`/${locale}/calendar`} edge={2} tilt="right" variant="sticker-filled">
+              {t("next_primary")}
+            </Button>
+            <Button href={`/${locale}/tours`} edge={3} tilt="left">
+              {t("next_secondary")}
+            </Button>
+          </div>
         </Container>
       </RedZone>
     </>

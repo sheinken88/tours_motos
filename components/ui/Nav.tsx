@@ -1,10 +1,10 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Button, SkullBadge } from "@/components/primitives";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
-import { Link } from "@/lib/i18n/navigation";
+import { Link, usePathname } from "@/lib/i18n/navigation";
 import { LangSwitcher } from "./LangSwitcher";
 
 /**
@@ -31,6 +31,8 @@ const SECONDARY_NAV_ITEMS = [
   { href: "/taller-de-rutas", labelKey: "journal" },
 ] as const;
 
+const CONTACT_NAV_ITEM = { href: "/contact#contact-form", labelKey: "contact" } as const;
+
 function WhatsAppGlyph() {
   return (
     <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden fill="currentColor">
@@ -39,12 +41,39 @@ function WhatsAppGlyph() {
   );
 }
 
+function InstagramGlyph() {
+  return (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden fill="none">
+      <path
+        d="M7.4 2.8h9.2c2.6 0 4.6 2 4.6 4.6v9.2c0 2.6-2 4.6-4.6 4.6H7.4c-2.6 0-4.6-2-4.6-4.6V7.4c0-2.6 2-4.6 4.6-4.6Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.7 11.4a3.8 3.8 0 1 1-7.4 1.2 3.8 3.8 0 0 1 7.4-1.2Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path d="M17.5 6.8h.1" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function Nav() {
   const t = useTranslations("nav");
   const tWhatsApp = useTranslations("whatsapp");
+  const locale = useLocale();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
+  const instagramHref = "https://www.instagram.com/mototoursonoff/";
+
+  function handleLogoClick() {
+    if (pathname !== "/") return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   useEffect(() => {
     function onScroll() {
@@ -79,6 +108,7 @@ export function Nav() {
       <div className="text-on-red mx-auto flex w-full max-w-[var(--container-content)] items-center justify-between px-[var(--container-padding)] py-4">
         <Link
           href="/"
+          onClick={handleLogoClick}
           className="flex min-h-11 min-w-11 items-center gap-3"
           aria-label="Moto On/Off"
         >
@@ -89,12 +119,12 @@ export function Nav() {
         </Link>
 
         {/* Desktop links — hover reveals the brand hand-underline SVG. */}
-        <nav className="hidden items-center gap-5 xl:flex xl:gap-8 2xl:gap-10" aria-label="Primary">
+        <nav className="hidden items-center gap-4 md:flex xl:gap-6 2xl:gap-7" aria-label="Primary">
           {PRIMARY_NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group/navlink text-eyebrow tracking-eyebrow text-paper relative font-bold uppercase"
+              className="group/navlink tracking-eyebrow text-paper relative text-sm font-bold uppercase lg:text-base 2xl:text-eyebrow"
             >
               {t(item.labelKey)}
               <svg
@@ -107,14 +137,14 @@ export function Nav() {
               </svg>
             </Link>
           ))}
-          <span aria-hidden className="font-display text-paper/35 -rotate-6 text-sm">
+          <span aria-hidden className="font-display text-paper/35 hidden -rotate-6 text-sm xl:inline">
             /
           </span>
           {SECONDARY_NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group/navlink tracking-eyebrow text-paper/65 hover:text-paper relative text-xs font-semibold uppercase transition-colors"
+              className="group/navlink tracking-eyebrow text-paper/65 hover:text-paper relative hidden text-xs font-semibold uppercase transition-colors xl:inline-flex"
             >
               {t(item.labelKey)}
               <svg
@@ -129,14 +159,43 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 xl:flex xl:gap-5">
+        <div className="hidden items-center gap-2 md:flex 2xl:gap-3">
           <LangSwitcher />
-          <Button href={whatsAppHref} external edge={2} tilt="right" arrow={false}>
-            <span className="inline-flex items-center gap-2">
-              <WhatsAppGlyph />
-              {t("cta")}
-            </span>
-          </Button>
+          <a
+            href={instagramHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-paper hover:bg-paper hover:text-brand-red focus-visible:outline-paper hidden h-11 w-11 -rotate-2 items-center justify-center transition-[transform,color,background-color] duration-200 hover:-translate-y-0.5 hover:rotate-0 xl:inline-flex"
+          >
+            <InstagramGlyph />
+          </a>
+          <div className="hidden xl:block">
+            <Button
+              href={`/${locale}/contact#contact-form`}
+              edge={1}
+              tilt="left"
+              arrow={false}
+              className="px-6"
+            >
+              {t("contact")}
+            </Button>
+          </div>
+          <div className="hidden lg:block">
+            <Button
+              href={whatsAppHref}
+              external
+              edge={2}
+              tilt="right"
+              arrow={false}
+              className="px-5 2xl:px-6"
+            >
+              <span className="inline-flex items-center gap-2">
+                <WhatsAppGlyph />
+                {t("cta")}
+              </span>
+            </Button>
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -144,7 +203,7 @@ export function Nav() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t("open_menu")}
-          className="text-paper inline-flex h-11 w-11 items-center justify-center xl:hidden"
+          className="text-paper inline-flex h-11 w-11 items-center justify-center md:hidden"
         >
           <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden>
             <path
@@ -161,14 +220,17 @@ export function Nav() {
       {open ? (
         <div
           data-zone="red"
-          className="bg-red-grunge text-on-red fixed inset-0 z-50 flex flex-col overflow-y-auto p-5 sm:p-6 xl:hidden"
+          className="bg-red-grunge text-on-red fixed inset-0 z-50 flex flex-col overflow-y-auto p-5 sm:p-6 md:hidden"
           role="dialog"
           aria-modal="true"
         >
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                handleLogoClick();
+              }}
               className="flex min-h-11 min-w-11 items-center gap-3"
               aria-label="Moto On/Off"
             >
@@ -195,7 +257,7 @@ export function Nav() {
           </div>
 
           <nav className="mt-10 flex flex-col gap-4 sm:mt-12 sm:gap-6" aria-label="Primary mobile">
-            {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS].map((item) => (
+            {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS, CONTACT_NAV_ITEM].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -208,7 +270,18 @@ export function Nav() {
           </nav>
 
           <div className="mt-auto flex flex-col items-start gap-4 pt-8 pb-4">
-            <LangSwitcher />
+            <div className="flex flex-wrap items-center gap-3">
+              <LangSwitcher mode="inline" />
+              <a
+                href={instagramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-paper hover:bg-paper hover:text-brand-red inline-flex h-12 w-12 -rotate-2 items-center justify-center transition-[transform,color,background-color] duration-200 hover:-translate-y-0.5 hover:rotate-0"
+              >
+                <InstagramGlyph />
+              </a>
+            </div>
             <Button
               href={whatsAppHref}
               external

@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Button, Container, DisplayHeading, Eyebrow, XIcon } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { InquiryForm, type InquiryTourOption } from "@/components/forms";
 import {
   CalendarStrip,
@@ -13,8 +13,7 @@ import {
 } from "@/components/sections";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { listJournalEntries } from "@/lib/content/getJournalMdx";
-import { isLocale, locales, type Locale } from "@/lib/i18n/config";
-import { Link as I18nLink } from "@/lib/i18n/navigation";
+import { isLocale, localeCodes, locales, type Locale } from "@/lib/i18n/config";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
 import { getTours } from "@/lib/sheets/queries";
@@ -28,19 +27,27 @@ type HomeCustomStat = {
   label: string;
 };
 
+type HomeAboutProof = {
+  value: string;
+  label: string;
+};
+
 type HomeAboutSectionProps = {
   eyebrow: string;
   heading: string;
   body: string;
   href: string;
   ctaLabel: string;
+  proofs: HomeAboutProof[];
   fieldNotes: string[];
   photoAlt: string;
 };
 
 const homeTitle = "Moto On/Off — Expediciones en moto por Argentina";
 const homeDescription =
-  "Travesías en moto por Argentina: Salta, Jujuy, Mendoza, Catamarca y Patagonia. Ripio, altura y distancia para riders que quieren cruzar más.";
+  "Travesías en moto por Argentina: Ruta 40, Carretera Austral, Patagonia y norte argentino. Ripio, altura y distancia para riders que quieren cruzar más.";
+const homeHeroVideoDescription =
+  "Viajes en moto por Argentina: tours en moto por Ruta 40, Carretera Austral, Patagonia y el norte argentino.";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -100,7 +107,7 @@ export default async function Home({ params }: Props) {
   }));
 
   // Map journal MDX entries to the JournalGrid props shape.
-  const journalPosts: JournalPost[] = journalEntries.slice(0, 3).map((entry) => ({
+  const journalPosts: JournalPost[] = journalEntries.slice(0, 4).map((entry) => ({
     slug: entry.slug,
     title: entry.title,
     excerpt: entry.excerpt,
@@ -112,10 +119,29 @@ export default async function Home({ params }: Props) {
   const customStats = tCustom.raw("stats") as HomeCustomStat[];
   const customItems = tCustom.raw("items") as string[];
   const customRouteStops = tCustom.raw("route_stops") as string[];
+  const aboutProofs = tAbout.raw("proofs") as HomeAboutProof[];
   const aboutFieldNotes = tAbout.raw("field_notes") as string[];
+  const site = getSiteUrl();
+  const homeHeroVideoJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Viajes en moto por Argentina | Moto On/Off",
+    description: homeHeroVideoDescription,
+    thumbnailUrl: `${site}/video/hero-bg-poster.jpg`,
+    uploadDate: "2026-06-25",
+    duration: "PT50S",
+    contentUrl: `${site}/video/hero-bg.mp4`,
+    encodingFormat: "video/mp4",
+    inLanguage: localeCodes[locale],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeHeroVideoJsonLd) }}
+      />
+
       {/* 1 · Hero (red) ─────────────────────────────────────────────────── */}
       <Hero locale={locale} />
 
@@ -129,7 +155,7 @@ export default async function Home({ params }: Props) {
           heading={tToursIdx("headline")}
           variant="homeShowcase"
           ctaHref={`/${locale}/tours`}
-          ctaLabel={tToursIdx("all_routes_eyebrow")}
+          ctaLabel={tToursIdx("all_tours_cta")}
         />
       </PaperZone>
 
@@ -163,6 +189,7 @@ export default async function Home({ params }: Props) {
           body={tAbout("body")}
           href={`/${locale}/about`}
           ctaLabel={tAbout("cta")}
+          proofs={aboutProofs}
           fieldNotes={aboutFieldNotes}
           photoAlt={tAbout("photo_alt")}
         />
@@ -173,7 +200,7 @@ export default async function Home({ params }: Props) {
         <div className="flex flex-col gap-8">
           <JournalGrid
             posts={journalPosts}
-            limit={3}
+            limit={4}
             eyebrow={tGrid("eyebrow")}
             heading={tJournal("heading")}
             readMoreLabel={tGrid("read_more")}
@@ -181,12 +208,15 @@ export default async function Home({ params }: Props) {
           />
           {journalPosts.length > 0 ? (
             <Container>
-              <I18nLink
-                href="/taller-de-rutas"
-                className="text-eyebrow tracking-eyebrow text-accent-on-paper inline-flex min-h-11 items-center py-1 font-semibold uppercase underline-offset-4 hover:underline"
+              <Button
+                href={`/${locale}/taller-de-rutas`}
+                edge={2}
+                tilt="right"
+                variant="sticker-outline"
+                className="px-9 py-4 text-base"
               >
-                {tJournal("see_all")} →
-              </I18nLink>
+                {tJournal("see_all")}
+              </Button>
             </Container>
           ) : null}
         </div>
@@ -209,7 +239,7 @@ export default async function Home({ params }: Props) {
               </div>
               <InquiryForm locale={locale} kind="contact" tours={tourOptions} />
             </div>
-            <div className="relative hidden h-full w-full translate-x-4 overflow-visible md:block lg:translate-x-8 xl:translate-x-12">
+            <div className="relative hidden h-full w-full -translate-x-4 overflow-visible md:block lg:-translate-x-8 xl:-translate-x-12">
               <Image
                 src="/images/halftone/hero-rider-cutout.png"
                 alt={tHome("rider_alt")}
@@ -231,6 +261,7 @@ function HomeAboutSection({
   body,
   href,
   ctaLabel,
+  proofs,
   fieldNotes,
   photoAlt,
 }: HomeAboutSectionProps) {
@@ -257,11 +288,29 @@ function HomeAboutSection({
             <p className="max-w-2xl font-sans text-lg leading-relaxed sm:text-xl">{body}</p>
           </div>
 
+          {proofs.length > 0 ? (
+            <div className="bg-paper-grain text-ink shadow-sticker-ink grid max-w-4xl border-2 border-current sm:grid-cols-2 xl:grid-cols-4">
+              {proofs.map((proof) => (
+                <div
+                  key={`${proof.value}-${proof.label}`}
+                  className="min-w-0 border-current px-5 py-6 sm:border-r-2"
+                >
+                  <p className="text-ink font-display text-[2.25rem] leading-none">
+                    <ProofValue value={proof.value} />
+                  </p>
+                  <p className="text-eyebrow tracking-eyebrow mt-2 font-semibold uppercase opacity-75">
+                    {proof.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
           {fieldNotes.length > 0 ? (
             <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed sm:grid-cols-2">
               {fieldNotes.map((note) => (
                 <li key={note} className="flex items-start gap-3">
-                  <XIcon className="mt-1 h-5 w-5 shrink-0" />
+                  <CheckMarkIcon className="mt-1 h-5 w-5 shrink-0" />
                   <span>{note}</span>
                 </li>
               ))}
@@ -301,4 +350,31 @@ function HomeAboutSection({
       </div>
     </Container>
   );
+}
+
+function CheckMarkIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" className={className} fill="none">
+      <path
+        d="M4 12.8 9.2 18 20 5.5"
+        stroke="currentColor"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        strokeWidth="3.5"
+      />
+    </svg>
+  );
+}
+
+function ProofValue({ value }: { value: string }) {
+  if (value.endsWith("km")) {
+    return (
+      <span className="block whitespace-nowrap text-[2rem] xl:text-[1.9rem]">
+        {value.slice(0, -2)}
+        <span className="ml-0.5 text-[0.58em]">km</span>
+      </span>
+    );
+  }
+
+  return <>{value}</>;
 }

@@ -10,6 +10,8 @@ export type TourFrontmatter = {
   description: string;
   /** Short tagline shown on the tour hero. */
   tagline: string;
+  /** Optional editorial override for the tour hero subtitle. */
+  hero: string;
 };
 
 const CONTENT_ROOT = path.join(process.cwd(), "content", "tours");
@@ -32,6 +34,7 @@ const practicalHeadingMap: Record<string, TourSection["type"]> = {
   "o que nao esta incluido": "not_included",
   "que no esta incluido": "not_included",
   "lo que conviene saber": "need_to_know",
+  "buenas a saber": "need_to_know",
   "good to know": "need_to_know",
   "o que convem saber": "need_to_know",
 };
@@ -121,7 +124,7 @@ function extractPracticalSectionsFromBody(
         string
       >;
       localized[sourceLocale] = text;
-      localized[locale] = sourceLocale === locale ? text : `[NEEDS_TRANSLATION] ${text}`;
+      localized[locale] = sourceLocale === locale ? text : `${text}`;
 
       return {
         tour_slug: slug,
@@ -157,6 +160,7 @@ export async function getTourFrontmatter(
     return {
       description: typeof parsed.data.description === "string" ? parsed.data.description : "",
       tagline: typeof parsed.data.tagline === "string" ? parsed.data.tagline : "",
+      hero: typeof parsed.data.hero === "string" ? parsed.data.hero : "",
     };
   } catch {
     return null;

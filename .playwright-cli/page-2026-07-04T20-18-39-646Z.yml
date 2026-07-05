@@ -1,0 +1,510 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - generic [ref=f6e3]:
+      - link "Moto On/Off" [ref=f6e4] [cursor=pointer]:
+        - /url: /es
+        - img [ref=f6e5]
+      - button "Abrir menú" [ref=f6e7]:
+        - img [ref=f6e8]
+  - main [ref=f6e10]:
+    - generic [ref=f6e11]:
+      - img "Riders avanzando por un camino de ripio en Patagonia" [ref=f6e12]
+      - generic [ref=f6e14]:
+        - paragraph [ref=f6e15]: Carretera Austral y Patagonia
+        - heading "Cruces del Sur" [level=1] [ref=f6e16]
+        - paragraph [ref=f6e17]: Carretera Austral en moto. Pasos fronterizos y ripio patagónico. 2321 km para cruzar bosques, lagos y rutas que se recuerdan por lo que exigieron.
+        - generic [ref=f6e18]:
+          - link "Reservá un lugar" [ref=f6e19] [cursor=pointer]:
+            - /url: /es/contact?tour=cruces-del-sur
+            - generic [ref=f6e20]: Reservá un lugar
+            - generic [ref=f6e21]: →
+          - link "Hablemos" [ref=f6e22] [cursor=pointer]:
+            - /url: /es/contact
+            - img [ref=f6e23]
+            - generic [ref=f6e25]: Hablemos
+            - generic [ref=f6e26]: →
+      - img
+    - generic [ref=f6e27]:
+      - generic [ref=f6e29]:
+        - generic [ref=f6e30]:
+          - term [ref=f6e31]: Duración
+          - definition [ref=f6e32]: 7 días
+        - generic [ref=f6e33]:
+          - term [ref=f6e34]: Distancia
+          - definition [ref=f6e35]: 2.321 km
+        - generic [ref=f6e36]:
+          - term [ref=f6e37]: Ripio
+          - definition [ref=f6e38]: 45%
+      - img
+    - generic [ref=f6e39]:
+      - generic [ref=f6e40]:
+        - generic [ref=f6e41]:
+          - generic [ref=f6e42]:
+            - paragraph [ref=f6e43]: Recorrido
+            - heading "Día por día" [level=2] [ref=f6e44]
+          - paragraph [ref=f6e45]: Cada día suma kilómetros, ripio y altura. Vos llevás la cuenta en el cuerpo.
+        - navigation "Día" [ref=f6e46]:
+          - generic [ref=f6e47]:
+            - link "Día 1 306 km" [ref=f6e48] [cursor=pointer]:
+              - /url: "#day-1"
+              - generic [ref=f6e49]: Día 1
+              - generic [ref=f6e50]: 306 km
+            - link "Día 2 325 km" [ref=f6e51] [cursor=pointer]:
+              - /url: "#day-2"
+              - generic [ref=f6e52]: Día 2
+              - generic [ref=f6e53]: 325 km
+            - link "Día 3 322 km" [ref=f6e54] [cursor=pointer]:
+              - /url: "#day-3"
+              - generic [ref=f6e55]: Día 3
+              - generic [ref=f6e56]: 322 km
+            - link "Día 4 178 km" [ref=f6e57] [cursor=pointer]:
+              - /url: "#day-4"
+              - generic [ref=f6e58]: Día 4
+              - generic [ref=f6e59]: 178 km
+            - link "Día 5 250 km" [ref=f6e60] [cursor=pointer]:
+              - /url: "#day-5"
+              - generic [ref=f6e61]: Día 5
+              - generic [ref=f6e62]: 250 km
+            - link "Día 6 473 km" [ref=f6e63] [cursor=pointer]:
+              - /url: "#day-6"
+              - generic [ref=f6e64]: Día 6
+              - generic [ref=f6e65]: 473 km
+            - link "Día 7 467 km" [ref=f6e66] [cursor=pointer]:
+              - /url: "#day-7"
+              - generic [ref=f6e67]: Día 7
+              - generic [ref=f6e68]: 467 km
+        - list [ref=f6e69]:
+          - listitem [ref=f6e70]:
+            - article [ref=f6e71]:
+              - generic [ref=f6e72]:
+                - img "Campo de Tulipanes, Trevelin." [ref=f6e73]
+                - generic [ref=f6e75]: Día 1
+              - generic [ref=f6e76]:
+                - paragraph [ref=f6e77]: 30% ripio · 306 km
+                - heading "Bariloche → Trevelin" [level=3] [ref=f6e78]
+                - paragraph [ref=f6e79]: Salimos desde Bariloche por Ruta 40 y entramos en ritmo entre asfalto y ripio. El desvío por Cholila abre el Parque Nacional Los Alerces antes de llegar a Trevelin.
+                - generic [ref=f6e80]:
+                  - paragraph [ref=f6e81]: Destacados del tour en moto
+                  - list [ref=f6e82]:
+                    - listitem [ref=f6e83]:
+                      - img [ref=f6e84]
+                      - generic [ref=f6e87]: El Bolsón
+                    - listitem [ref=f6e88]:
+                      - img [ref=f6e89]
+                      - generic [ref=f6e92]: Lago Puelo
+                    - listitem [ref=f6e93]:
+                      - img [ref=f6e94]
+                      - generic [ref=f6e97]: Parque Nacional Los Alerces
+          - listitem [ref=f6e98]:
+            - article [ref=f6e99]:
+              - generic [ref=f6e100]:
+                - img "Camino ripio, Carretera Austral" [ref=f6e101]
+                - generic [ref=f6e103]: Día 2
+              - generic [ref=f6e104]:
+                - paragraph [ref=f6e105]: 20% ripio · 325 km
+                - heading "Trevelin → Paso Futaleufú → Puerto Cisnes" [level=3] [ref=f6e106]
+                - paragraph [ref=f6e107]: Campo de tulipanes, Paso Futaleufú y entrada plena a la Carretera Austral. Bosque cerrado, ríos, curvas y montaña hasta cerrar el día en Puerto Cisnes.
+                - generic [ref=f6e108]:
+                  - paragraph [ref=f6e109]: Destacados del tour en moto
+                  - list [ref=f6e110]:
+                    - listitem [ref=f6e111]:
+                      - img [ref=f6e112]
+                      - generic [ref=f6e115]: Campo de Tulipanes
+                    - listitem [ref=f6e116]:
+                      - img [ref=f6e117]
+                      - generic [ref=f6e120]: Paso Futaleufú
+                    - listitem [ref=f6e121]:
+                      - img [ref=f6e122]
+                      - generic [ref=f6e125]: Termas Ventisquero
+                    - listitem [ref=f6e126]:
+                      - img [ref=f6e127]
+                      - generic [ref=f6e130]: Puerto Cisnes
+          - listitem [ref=f6e131]:
+            - article [ref=f6e132]:
+              - generic [ref=f6e133]:
+                - img "Descanso entre la ruta 40 y la Carretera Austral" [ref=f6e134]
+                - generic [ref=f6e136]: Día 3
+              - generic [ref=f6e137]:
+                - paragraph [ref=f6e138]: 20% ripio · 322 km
+                - heading "Puerto Cisnes → Puerto Ingeniero Ibáñez → Chile Chico" [level=3] [ref=f6e139]
+                - paragraph [ref=f6e140]: Montaña, fiordos, asfalto y ripio hacia Puerto Ingeniero Ibáñez. La barcaza cruza el Lago General Carrera y deja la ruta lista para entrar a Chile Chico.
+                - generic [ref=f6e141]:
+                  - paragraph [ref=f6e142]: Destacados del tour en moto
+                  - list [ref=f6e143]:
+                    - listitem [ref=f6e144]:
+                      - img [ref=f6e145]
+                      - generic [ref=f6e148]: Reserva Nacional Mañihuales
+                    - listitem [ref=f6e149]:
+                      - img [ref=f6e150]
+                      - generic [ref=f6e153]: Cerro Castillo
+                    - listitem [ref=f6e154]:
+                      - img [ref=f6e155]
+                      - generic [ref=f6e158]: Ferry Lago General Carrera
+          - listitem [ref=f6e159]:
+            - article [ref=f6e160]:
+              - generic [ref=f6e161]:
+                - img "Camino a Puerto Cisnes, Chile" [ref=f6e162]
+                - generic [ref=f6e164]: Día 4
+              - generic [ref=f6e165]:
+                - paragraph [ref=f6e166]: 70% ripio · 178 km
+                - heading "Chile Chico → Cochrane" [level=3] [ref=f6e167]
+                - paragraph [ref=f6e168]: Día de ripio real bordeando el Lago General Carrera. Agua, montaña y camino abierto acompañan una de las etapas más auténticas de la Carretera Austral.
+                - generic [ref=f6e169]:
+                  - paragraph [ref=f6e170]: Destacados del tour en moto
+                  - list [ref=f6e171]:
+                    - listitem [ref=f6e172]:
+                      - img [ref=f6e173]
+                      - generic [ref=f6e176]: Lago General Carrera
+                    - listitem [ref=f6e177]:
+                      - img [ref=f6e178]
+                      - generic [ref=f6e181]: Reserva Nacional Lago General Carrera
+                    - listitem [ref=f6e182]:
+                      - img [ref=f6e183]
+                      - generic [ref=f6e186]: Lago Bertrand
+          - listitem [ref=f6e187]:
+            - article [ref=f6e188]:
+              - generic [ref=f6e189]:
+                - img "Paisaje de Patagonia ganado sobre ripio" [ref=f6e190]
+                - generic [ref=f6e192]: Día 5
+              - generic [ref=f6e193]:
+                - paragraph [ref=f6e194]: 80% ripio · 250 km
+                - heading "Cochrane → Paso Roballos → Perito Moreno" [level=3] [ref=f6e195]
+                - paragraph [ref=f6e196]: Paso Roballos entrega estepa abierta, cordillera a los costados y aislamiento total. Del lado argentino, el camino bordea los Andes antes de llegar a Los Antiguos y Perito Moreno.
+                - generic [ref=f6e197]:
+                  - paragraph [ref=f6e198]: Destacados del tour en moto
+                  - list [ref=f6e199]:
+                    - listitem [ref=f6e200]:
+                      - img [ref=f6e201]
+                      - generic [ref=f6e204]: Valle Chacabuco
+                    - listitem [ref=f6e205]:
+                      - img [ref=f6e206]
+                      - generic [ref=f6e209]: Paso Roballos
+                    - listitem [ref=f6e210]:
+                      - img [ref=f6e211]
+                      - generic [ref=f6e214]: Lago Cochrane
+                    - listitem [ref=f6e215]:
+                      - img [ref=f6e216]
+                      - generic [ref=f6e219]: Los Antiguos
+          - listitem [ref=f6e220]:
+            - article [ref=f6e221]:
+              - generic [ref=f6e222]:
+                - img "Camino abierto entre bosques y lagos patagónicos" [ref=f6e223]
+                - generic [ref=f6e225]: Día 6
+              - generic [ref=f6e226]:
+                - paragraph [ref=f6e227]: 15% ripio · 473 km
+                - heading "Perito Moreno → Lago Vintter" [level=3] [ref=f6e228]
+                - paragraph [ref=f6e229]: Jornada larga de regreso por Ruta 40, con rectas aisladas hasta Gobernador Costa. Después tomamos camino secundario hacia Río Pico y Lago Vintter, una Patagonia menos vista.
+                - generic [ref=f6e230]:
+                  - paragraph [ref=f6e231]: Destacados del tour en moto
+                  - list [ref=f6e232]:
+                    - listitem [ref=f6e233]:
+                      - img [ref=f6e234]
+                      - generic [ref=f6e237]: Ruta 40
+                    - listitem [ref=f6e238]:
+                      - img [ref=f6e239]
+                      - generic [ref=f6e242]: Río Pico
+                    - listitem [ref=f6e243]:
+                      - img [ref=f6e244]
+                      - generic [ref=f6e247]: Lago Vintter
+          - listitem [ref=f6e248]:
+            - article [ref=f6e249]:
+              - generic [ref=f6e250]:
+                - img "Ruta 40, ripio hacia Chile" [ref=f6e251]
+                - generic [ref=f6e253]: Día 7
+              - generic [ref=f6e254]:
+                - paragraph [ref=f6e255]: 35% ripio · 467 km
+                - heading "Lago Vintter → Bariloche" [level=3] [ref=f6e256]
+                - paragraph [ref=f6e257]: Bosques bajos, montañas nevadas y ripio sin tránsito hasta Trevelin. Después volvemos a enlazar Ruta 40, El Bolsón y Bariloche para cerrar el cruce patagónico.
+                - generic [ref=f6e258]:
+                  - paragraph [ref=f6e259]: Destacados del tour en moto
+                  - list [ref=f6e260]:
+                    - listitem [ref=f6e261]:
+                      - img [ref=f6e262]
+                      - generic [ref=f6e265]: Lago Vintter
+                    - listitem [ref=f6e266]:
+                      - img [ref=f6e267]
+                      - generic [ref=f6e270]: Lago Palena
+                    - listitem [ref=f6e271]:
+                      - img [ref=f6e272]
+                      - generic [ref=f6e275]: Ruta 40
+                    - listitem [ref=f6e276]:
+                      - img [ref=f6e277]
+                      - generic [ref=f6e280]: Bariloche
+      - img
+    - generic [ref=f6e281]:
+      - generic [ref=f6e282]:
+        - generic [ref=f6e283]:
+          - generic [ref=f6e284]:
+            - generic [ref=f6e285]:
+              - paragraph [ref=f6e286]: Mapa del recorrido
+              - heading "Cruces del Sur en el mapa" [level=2] [ref=f6e287]
+              - paragraph [ref=f6e288]: Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno y regreso por Patagonia. Mové el mapa, acercate al ripio y mirá el giro completo antes de escribirnos.
+            - iframe [ref=f6e290]:
+              - generic "Mapa del recorrido Cruces del Sur" [ref=f7e2]:
+                - generic:
+                  - generic:
+                    - img
+                  - generic:
+                    - button [ref=f7e4] [cursor=pointer]
+                    - button [ref=f7e6] [cursor=pointer]
+                    - button [ref=f7e8] [cursor=pointer]
+                    - button [ref=f7e10] [cursor=pointer]
+                    - button [ref=f7e12] [cursor=pointer]
+                    - button [ref=f7e14] [cursor=pointer]
+                    - button [ref=f7e16] [cursor=pointer]
+                - generic:
+                  - generic [ref=f7e18]:
+                    - button "Zoom in" [ref=f7e19] [cursor=pointer]: +
+                    - button "Zoom out" [ref=f7e20] [cursor=pointer]: −
+                  - generic [ref=f7e21]:
+                    - link "Leaflet" [ref=f7e22] [cursor=pointer]:
+                      - /url: https://leafletjs.com
+                      - img [ref=f7e23]
+                      - text: Leaflet
+                    - text: "| © OpenStreetMap"
+          - complementary [ref=f6e291]:
+            - generic [ref=f6e292]:
+              - paragraph [ref=f6e293]: Taller de ruta
+              - paragraph [ref=f6e294]: La línea final no salió de una mesa. La probamos con viento, frontera, ferry y ripio hasta que el recorrido quedó listo para rodarse.
+            - generic [ref=f6e295]:
+              - link "Mirá cómo armamos Cruces del Sur" [ref=f6e296] [cursor=pointer]:
+                - /url: /es/taller-de-rutas/armar-cruces-del-sur
+                - img [ref=f6e297]
+                - generic [ref=f6e299]: Mirá cómo armamos Cruces del Sur
+                - generic [ref=f6e300]: →
+              - link "Abrir en Google Maps" [ref=f6e301] [cursor=pointer]:
+                - /url: https://maps.app.goo.gl/3JruHQgzeRTNLJpy7
+                - generic [ref=f6e302]: Abrir en Google Maps
+        - generic [ref=f6e303]:
+          - paragraph [ref=f6e304]: Fotos de ruta
+          - generic [ref=f6e306]:
+            - figure "Campo de Tulipanes, Trevelin." [ref=f6e307]:
+              - img "Campo de Tulipanes, Trevelin." [ref=f6e308]
+              - generic [ref=f6e309]: Campo de Tulipanes, Trevelin.
+            - figure "Camino ripio, Carretera Austral" [ref=f6e310]:
+              - img "Camino ripio, Carretera Austral" [ref=f6e311]
+              - generic [ref=f6e312]: Camino ripio, Carretera Austral
+            - figure "Descanso entre la ruta 40 y la Carretera Austral" [ref=f6e313]:
+              - img "Descanso entre la ruta 40 y la Carretera Austral" [ref=f6e314]
+              - generic [ref=f6e315]: Descanso entre la ruta 40 y la Carretera Austral
+            - figure "Camino a Puerto Cisnes, Chile" [ref=f6e316]:
+              - img "Camino a Puerto Cisnes, Chile" [ref=f6e317]
+              - generic [ref=f6e318]: Camino a Puerto Cisnes, Chile
+            - figure "Paisaje de Patagonia ganado sobre ripio" [ref=f6e319]:
+              - img "Paisaje de Patagonia ganado sobre ripio" [ref=f6e320]
+              - generic [ref=f6e321]: Paisaje de Patagonia ganado sobre ripio
+            - figure "Camino abierto entre bosques y lagos patagónicos" [ref=f6e322]:
+              - img "Camino abierto entre bosques y lagos patagónicos" [ref=f6e323]
+              - generic [ref=f6e324]: Camino abierto entre bosques y lagos patagónicos
+            - figure "Ruta 40, ripio hacia Chile" [ref=f6e325]:
+              - img "Ruta 40, ripio hacia Chile" [ref=f6e326]
+              - generic [ref=f6e327]: Ruta 40, ripio hacia Chile
+            - figure "Vista a volcán en la Carretera Austral" [ref=f6e328]:
+              - img "Vista a volcán en la Carretera Austral" [ref=f6e329]
+              - generic [ref=f6e330]: Vista a volcán en la Carretera Austral
+            - figure "Cruce de frontera hacia Chile" [ref=f6e331]:
+              - img "Cruce de frontera hacia Chile" [ref=f6e332]
+              - generic [ref=f6e333]: Cruce de frontera hacia Chile
+            - figure "Paso Roballos en moto, Argentina" [ref=f6e334]:
+              - img "Paso Roballos en moto, Argentina" [ref=f6e335]
+              - generic [ref=f6e336]: Paso Roballos en moto, Argentina
+            - figure "Paso Roballos en moto, Argentina" [ref=f6e337]:
+              - img "Paso Roballos en moto, Argentina" [ref=f6e338]
+              - generic [ref=f6e339]: Paso Roballos en moto, Argentina
+        - generic [ref=f6e340]:
+          - generic [ref=f6e341]:
+            - paragraph [ref=f6e342]: Testimonios
+            - heading "Lo que quedó de la ruta" [level=2] [ref=f6e343]
+          - generic [ref=f6e344]:
+            - figure "— Carlos Rossatti" [ref=f6e345]:
+              - generic: “
+              - blockquote [ref=f6e346]: El Paso Roballos fue el viaje más impactante de mi vida. No solo en moto, sino en general.
+              - generic [ref=f6e347]: — Carlos Rossatti
+            - figure "— Martin Pujol" [ref=f6e348]:
+              - generic: “
+              - blockquote [ref=f6e349]: El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.
+              - generic [ref=f6e350]: — Martin Pujol
+            - figure "— Roberto Paoloni" [ref=f6e351]:
+              - generic: “
+              - blockquote [ref=f6e352]: Excelente organización y aún mejor los lugares que recorrimos en el viaje en moto. El grupo que se formó fue espectacular, lo recomiendo a todos.
+              - generic [ref=f6e353]: — Roberto Paoloni
+        - generic [ref=f6e354]:
+          - generic [ref=f6e355]:
+            - paragraph [ref=f6e356]: Detalles del viaje
+            - heading "Información práctica" [level=2] [ref=f6e357]
+          - generic [ref=f6e358]:
+            - article [ref=f6e359]:
+              - heading "Qué incluye" [level=3] [ref=f6e360]
+              - list [ref=f6e361]:
+                - listitem [ref=f6e362]:
+                  - img [ref=f6e363]
+                  - generic [ref=f6e365]: Traslado de la moto ida y vuelta a destino
+                - listitem [ref=f6e366]:
+                  - img [ref=f6e367]
+                  - generic [ref=f6e369]: Seguro de carga de la moto
+                - listitem [ref=f6e370]:
+                  - img [ref=f6e371]
+                  - generic [ref=f6e373]: Refrigerios
+                - listitem [ref=f6e374]:
+                  - img [ref=f6e375]
+                  - generic [ref=f6e377]: Moto de repuesto
+                - listitem [ref=f6e378]:
+                  - img [ref=f6e379]
+                  - generic [ref=f6e381]: Starlink
+                - listitem [ref=f6e382]:
+                  - img [ref=f6e383]
+                  - generic [ref=f6e385]: Siete noches de alojamiento en hospedajes seleccionados
+                - listitem [ref=f6e386]:
+                  - img [ref=f6e387]
+                  - generic [ref=f6e389]: Vehículo de apoyo durante toda la ruta
+                - listitem [ref=f6e390]:
+                  - img [ref=f6e391]
+                  - generic [ref=f6e393]: Combustible de emergencia para todo el trayecto
+                - listitem [ref=f6e394]:
+                  - img [ref=f6e395]
+                  - generic [ref=f6e397]: Desayunos, almuerzos y cenas
+                - listitem [ref=f6e398]:
+                  - img [ref=f6e399]
+                  - generic [ref=f6e401]: Guía con experiencia probada en el oeste argentino
+            - article [ref=f6e402]:
+              - heading "Qué no incluye" [level=3] [ref=f6e403]
+              - list [ref=f6e404]:
+                - listitem [ref=f6e405]:
+                  - img [ref=f6e406]
+                  - generic [ref=f6e408]: Pasajes aéreos hasta y desde Bariloche
+                - listitem [ref=f6e409]:
+                  - img [ref=f6e410]
+                  - generic [ref=f6e412]: Bebidas alcohólicas y comidas fuera del itinerario
+                - listitem [ref=f6e413]:
+                  - img [ref=f6e414]
+                  - generic [ref=f6e416]: Seguro de viajero (recomendamos uno con cobertura de moto)
+                - listitem [ref=f6e417]:
+                  - img [ref=f6e418]
+                  - generic [ref=f6e420]: Alquiler de moto si no traés la tuya
+                - listitem [ref=f6e421]:
+                  - img [ref=f6e422]
+                  - generic [ref=f6e424]: Ferry del Lago General Carrera (lo coordinamos en el momento)
+            - article [ref=f6e425]:
+              - heading "Buenas a saber" [level=3] [ref=f6e426]
+              - list [ref=f6e427]:
+                - listitem [ref=f6e428]:
+                  - img [ref=f6e429]
+                  - generic [ref=f6e432]: Esta travesía cruza dos veces la frontera Argentina–Chile. Necesitás documentación al día (DNI o pasaporte vigente, permiso para circular si la moto no está a tu nombre). Te asesoramos antes del viaje. Cupo limitado por travesía.
+      - img
+    - generic [ref=f6e433]:
+      - generic [ref=f6e434]:
+        - generic [ref=f6e435]:
+          - paragraph [ref=f6e436]: Salidas
+          - heading "Próximas fechas" [level=2] [ref=f6e437]
+        - list [ref=f6e438]:
+          - listitem [ref=f6e439]:
+            - generic [ref=f6e440]: Disponible
+            - paragraph [ref=f6e441]:
+              - text: 7 de noviembre de 2026
+              - generic [ref=f6e442]: → 13 de noviembre de 2026
+            - paragraph [ref=f6e443]: Patagonia y Carretera Austral con viento, bosque, frontera y ripio.
+        - generic [ref=f6e444]:
+          - link "Reservá un lugar" [ref=f6e445] [cursor=pointer]:
+            - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20la%20ruta%20Cruces%20del%20Sur.
+            - generic [ref=f6e446]: Reservá un lugar
+            - generic [ref=f6e447]: →
+          - link "Hablemos" [ref=f6e448] [cursor=pointer]:
+            - /url: /es/contact?tour=cruces-del-sur
+            - img [ref=f6e449]
+            - generic [ref=f6e451]: Hablemos
+            - generic [ref=f6e452]: →
+      - img
+    - generic [ref=f6e454]:
+      - generic [ref=f6e455]:
+        - paragraph [ref=f6e456]: Otras rutas
+        - heading "Otras rutas" [level=2] [ref=f6e457]
+      - list [ref=f6e458]:
+        - listitem [ref=f6e459]:
+          - link "Paisaje volcánico de Catamarca Catamarca Volcanes del Norte 7 días · 1.917 km · Intermediate++" [ref=f6e460] [cursor=pointer]:
+            - /url: /es/tours/volcanes-del-norte
+            - generic [ref=f6e461]:
+              - img "Paisaje volcánico de Catamarca" [ref=f6e462]
+              - generic [ref=f6e464]: Catamarca
+            - generic [ref=f6e465]:
+              - heading "Volcanes del Norte" [level=3] [ref=f6e466]
+              - paragraph [ref=f6e467]: 7 días · 1.917 km · Intermediate++
+        - listitem [ref=f6e468]:
+          - link "Ruta de montaña en Salta y Jujuy Salta y Jujuy Sobre las Nubes 7 días · 1.712 km · intermedio" [ref=f6e469] [cursor=pointer]:
+            - /url: /es/tours/sobre-las-nubes
+            - generic [ref=f6e470]:
+              - img "Ruta de montaña en Salta y Jujuy" [ref=f6e471]
+              - generic [ref=f6e473]: Salta y Jujuy
+            - generic [ref=f6e474]:
+              - heading "Sobre las Nubes" [level=3] [ref=f6e475]
+              - paragraph [ref=f6e476]: 7 días · 1.712 km · intermedio
+        - listitem [ref=f6e477]:
+          - link "Moto de aventura cruzando el oeste argentino Mendoza a La Rioja Gigantes del Oeste 8 días · 2.400 km · intermedio" [ref=f6e478] [cursor=pointer]:
+            - /url: /es/tours/gigantes-del-oeste
+            - generic [ref=f6e479]:
+              - img "Moto de aventura cruzando el oeste argentino" [ref=f6e480]
+              - generic [ref=f6e482]: Mendoza a La Rioja
+            - generic [ref=f6e483]:
+              - heading "Gigantes del Oeste" [level=3] [ref=f6e484]
+              - paragraph [ref=f6e485]: 8 días · 2.400 km · intermedio
+  - contentinfo [ref=f6e486]:
+    - generic [ref=f6e487]:
+      - generic [ref=f6e488]:
+        - generic [ref=f6e489]:
+          - paragraph [ref=f6e490]: Viajes
+          - list [ref=f6e491]:
+            - listitem [ref=f6e492]:
+              - link "Viajes" [ref=f6e493] [cursor=pointer]:
+                - /url: /es/tours
+            - listitem [ref=f6e494]:
+              - link "Calendario" [ref=f6e495] [cursor=pointer]:
+                - /url: /es/calendar
+            - listitem [ref=f6e496]:
+              - link "A medida" [ref=f6e497] [cursor=pointer]:
+                - /url: /es/custom
+        - generic [ref=f6e498]:
+          - paragraph [ref=f6e499]: Taller de Rutas
+          - list [ref=f6e500]:
+            - listitem [ref=f6e501]:
+              - link "Nosotros" [ref=f6e502] [cursor=pointer]:
+                - /url: /es/about
+            - listitem [ref=f6e503]:
+              - link "Taller de Rutas" [ref=f6e504] [cursor=pointer]:
+                - /url: /es/taller-de-rutas
+        - generic [ref=f6e505]:
+          - paragraph [ref=f6e506]: Contacto
+          - list [ref=f6e507]:
+            - listitem [ref=f6e508]:
+              - link "WhatsApp" [ref=f6e509] [cursor=pointer]:
+                - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+            - listitem [ref=f6e510]:
+              - link "Instagram" [ref=f6e511] [cursor=pointer]:
+                - /url: https://www.instagram.com/mototoursonoff/
+            - listitem [ref=f6e512]:
+              - link "hello@motoonoff.com" [ref=f6e513] [cursor=pointer]:
+                - /url: mailto:hello@motoonoff.com
+      - generic [ref=f6e515]:
+        - generic [ref=f6e516]:
+          - img [ref=f6e517]
+          - paragraph [ref=f6e519]: Moto On/Off · 2019 — Todos los derechos reservados.
+        - generic [ref=f6e520]:
+          - paragraph [ref=f6e521]: Próximo paso
+          - generic [ref=f6e522]:
+            - paragraph [ref=f6e523]: ¿QUÉ RUTA TE VA A PROBAR?
+            - paragraph [ref=f6e524]: Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.
+          - generic [ref=f6e525]:
+            - link "Hablemos" [ref=f6e526] [cursor=pointer]:
+              - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+              - generic [ref=f6e527]: Hablemos
+              - generic [ref=f6e528]: →
+            - link "Ver las rutas" [ref=f6e529] [cursor=pointer]:
+              - /url: /es/tours
+              - img [ref=f6e530]
+              - generic [ref=f6e532]: Ver las rutas
+              - generic [ref=f6e533]: →
+  - generic [ref=f6e534]:
+    - link "Hablar por WhatsApp" [ref=f6e535] [cursor=pointer]:
+      - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+      - img [ref=f6e536]
+    - link "Reservá tu lugar" [ref=f6e538] [cursor=pointer]:
+      - /url: /es/reservas
+  - alert [ref=f6e539]

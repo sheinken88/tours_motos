@@ -258,7 +258,7 @@ Body and UI text **never** get distress treatment — illegibility kills convers
 --font-body-lg: 1.125rem; /* Manifesto copy, intro paragraphs */
 --font-body: 1rem;
 --font-body-sm: 0.875rem;
---font-eyebrow: 0.8125rem; /* Larger than typical — needs to read on textured surfaces */
+--font-eyebrow: 1.125rem; /* Larger than typical — needs to read on textured surfaces */
 --font-caption: 0.75rem;
 ```
 

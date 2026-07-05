@@ -19,6 +19,8 @@ type TourGridProps = {
   /** Optional CTA rendered by editorial variants. */
   ctaHref?: string;
   ctaLabel?: string;
+  /** Hide the decorative halftone accent when a page needs clean color cards. */
+  showHalftoneAccent?: boolean;
 };
 
 const posterWallCellClass = [
@@ -26,13 +28,6 @@ const posterWallCellClass = [
   "lg:col-span-3 lg:mt-10",
   "lg:col-span-3 lg:-mt-6",
   "lg:col-span-3 lg:mt-4",
-];
-
-const homeShowcaseCellClass = [
-  "lg:col-span-7 lg:row-span-4",
-  "lg:col-span-5 lg:row-span-3",
-  "lg:col-span-5 lg:row-span-4",
-  "lg:col-span-7 lg:row-span-3",
 ];
 
 const wallLabels: Record<
@@ -87,6 +82,7 @@ export function TourGrid({
   variant = "standard",
   ctaHref,
   ctaLabel,
+  showHalftoneAccent = true,
 }: TourGridProps) {
   const visible = typeof limit === "number" ? tours.slice(0, limit) : tours;
   const posterWall = variant === "posterWall";
@@ -105,10 +101,12 @@ export function TourGrid({
           className="border-brand-red/20 pointer-events-none absolute top-24 right-6 left-6 hidden h-[72%] -rotate-1 border-2 border-dashed lg:block"
           aria-hidden="true"
         />
-        <div
-          className="bg-brand-red/10 border-brand-red/20 bg-halftone pointer-events-none absolute -top-10 right-0 hidden h-40 w-40 rotate-3 border-2 mix-blend-multiply lg:block"
-          aria-hidden="true"
-        />
+        {showHalftoneAccent ? (
+          <div
+            className="bg-brand-red/10 border-brand-red/20 bg-halftone pointer-events-none absolute -top-10 right-0 hidden h-40 w-40 rotate-3 border-2 mix-blend-multiply lg:block"
+            aria-hidden="true"
+          />
+        ) : null}
 
         <div className="relative z-10 grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end">
           <div className="space-y-5">
@@ -158,12 +156,9 @@ export function TourGrid({
           ) : null
         ) : (
           <div className="relative z-10 mt-12 space-y-10">
-            <ul className="grid gap-7 md:grid-cols-2 lg:auto-rows-[7rem] lg:grid-cols-12 lg:gap-x-8 lg:gap-y-14">
+            <ul className="grid gap-7 md:grid-cols-2 lg:gap-x-8 lg:gap-y-14">
               {visible.map((tour, index) => (
-                <li
-                  key={tour.slug}
-                  className={homeShowcaseCellClass[index % homeShowcaseCellClass.length]}
-                >
+                <li key={tour.slug}>
                   <TourCard
                     tour={tour}
                     locale={locale}
@@ -177,7 +172,13 @@ export function TourGrid({
 
             {ctaHref && ctaLabel ? (
               <div>
-                <Button href={ctaHref} edge={2} tilt="right" variant="sticker-outline">
+                <Button
+                  href={ctaHref}
+                  edge={2}
+                  tilt="right"
+                  variant="sticker-outline"
+                  className="px-9 py-4 text-base"
+                >
                   {ctaLabel}
                 </Button>
               </div>

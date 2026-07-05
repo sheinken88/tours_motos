@@ -1,503 +1,569 @@
 {
   "nav": {
-    "trips": "[NEEDS_TRANSLATION] Viajes",
-    "destinations": "[NEEDS_TRANSLATION] Destinos",
-    "about": "[NEEDS_TRANSLATION] Nosotros",
-    "journal": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "gear": "[NEEDS_TRANSLATION] Equipo",
-    "contact": "[NEEDS_TRANSLATION] Contacto",
-    "calendar": "[NEEDS_TRANSLATION] Calendario",
-    "custom": "[NEEDS_TRANSLATION] A medida",
-    "cta": "[NEEDS_TRANSLATION] Hablemos",
-    "open_menu": "[NEEDS_TRANSLATION] Abrir menú",
-    "close_menu": "[NEEDS_TRANSLATION] Cerrar menú"
+    "trips": "Viajes",
+    "destinations": "Destinos",
+    "about": "Nosotros",
+    "journal": "Taller de Rutas",
+    "gear": "Equipo",
+    "contact": "Contacto",
+    "calendar": "Calendario",
+    "custom": "A medida",
+    "cta": "Hablemos",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú"
   },
   "footer": {
-    "section_trips": "[NEEDS_TRANSLATION] Viajes",
-    "section_journal": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "section_contact": "[NEEDS_TRANSLATION] Contacto",
-    "cta_eyebrow": "[NEEDS_TRANSLATION] Próximo paso",
-    "cta_title": "[NEEDS_TRANSLATION] ¿QUÉ RUTA TE VA A PROBAR?",
-    "cta_body": "[NEEDS_TRANSLATION] Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.",
-    "rights": "[NEEDS_TRANSLATION] Todos los derechos reservados.",
+    "section_trips": "Viajes",
+    "section_journal": "Taller de Rutas",
+    "section_contact": "Contacto",
+    "cta_eyebrow": "Próximo paso",
+    "cta_title": "¿QUÉ RUTA TE VA A PROBAR?",
+    "cta_body": "Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.",
+    "rights": "Todos los derechos reservados.",
     "instagram": "Instagram",
-    "email": "[NEEDS_TRANSLATION] Correo"
+    "email": "Correo"
   },
   "lang_switcher": {
-    "label": "[NEEDS_TRANSLATION] Idioma",
+    "label": "Idioma",
     "es": "Espanhol",
     "en": "Inglês",
     "pt": "Português"
   },
   "whatsapp": {
-    "label": "[NEEDS_TRANSLATION] Hablar por WhatsApp",
-    "default_message": "[NEEDS_TRANSLATION] Hola, me interesa una expedición.",
-    "tour_message": "[NEEDS_TRANSLATION] Hola, me interesa la ruta {tour}."
+    "label": "Hablar por WhatsApp",
+    "default_message": "Hola, me interesa una expedición.",
+    "tour_message": "Hola, me interesa la ruta {tour}."
   },
   "common": {
-    "plan_trip": "[NEEDS_TRANSLATION] Planeá tu viaje",
-    "see_routes": "[NEEDS_TRANSLATION] Ver las rutas",
-    "read_journal": "[NEEDS_TRANSLATION] Leer las notas",
-    "talk_to_us": "[NEEDS_TRANSLATION] Hablemos",
-    "hold_a_spot": "[NEEDS_TRANSLATION] Reservá un lugar"
+    "plan_trip": "Tours disponíveis",
+    "see_routes": "Ver las rutas",
+    "read_journal": "Oficina de Rotas",
+    "talk_to_us": "Hablemos",
+    "hold_a_spot": "Reservá un lugar",
+    "reserve_spot": "Reservá tu lugar"
   },
   "home": {
-    "eyebrow": "[NEEDS_TRANSLATION] Moto On/Off · expediciones",
-    "headline": "[NEEDS_TRANSLATION] RUTAS QUE NO ESTÁN EN EL MAPA",
-    "rider_alt": "[NEEDS_TRANSLATION] Motociclista sobre una moto de aventura cargada, visto desde atrás",
+    "eyebrow": "MOTO ON/OFF · TOURS DE MOTO PELA ARGENTINA",
+    "headline": "RUTAS QUE NO ESTÁN EN EL MAPA",
+    "rider_alt": "Motociclista sobre una moto de aventura cargada, visto desde atrás",
     "route_teasers": {
-      "sobre-las-nubes": "[NEEDS_TRANSLATION] Salta y Jujuy en 7 días. Cruzás el Abra del Acay a 4.895 m, el paso más alto de la Ruta 40.",
-      "gigantes-del-oeste": "[NEEDS_TRANSLATION] Mendoza a La Rioja en 8 días. Subís a Laguna Brava, 4.300 m, donde descansa un avión y caminan los flamencos.",
-      "volcanes-del-norte": "[NEEDS_TRANSLATION] Catamarca en 7 días. Antofagasta de la Sierra, el Campo de Piedra Pómez y las dunas de Tatón.",
-      "cruces-del-sur": "[NEEDS_TRANSLATION] Carretera Austral en 7 días. Paso Roballos, el Lago General Carrera y ripio de punta a punta."
+      "sobre-las-nubes": "Salta y Jujuy en 7 días. Cruzás el Abra del Acay a 4.895 m, el paso más alto de la Ruta 40.",
+      "gigantes-del-oeste": "Mendoza a La Rioja en 8 días. Subís a Laguna Brava, 4.300 m, donde descansa un avión y caminan los flamencos.",
+      "volcanes-del-norte": "Catamarca en 7 días. Antofagasta de la Sierra, el Campo de Piedra Pómez y las dunas de Tatón.",
+      "cruces-del-sur": "Carretera Austral en 7 días. Paso Roballos, el Lago General Carrera y ripio de punta a punta."
     }
   },
   "home_calendar": {
-    "eyebrow": "[NEEDS_TRANSLATION] Próximas fechas",
-    "heading": "[NEEDS_TRANSLATION] PRÓXIMAS SALIDAS",
-    "see_all": "[NEEDS_TRANSLATION] Ver el calendario completo",
-    "intro": "[NEEDS_TRANSLATION] Tres ventanas confirmadas para ganar ruta este año: norte de altura, volcanes de Catamarca y ripio patagónico.",
-    "confirmed_label": "[NEEDS_TRANSLATION] Calendario confirmado",
-    "available_label": "[NEEDS_TRANSLATION] salidas disponibles",
-    "departure_label": "[NEEDS_TRANSLATION] Salida",
-    "card_cta": "[NEEDS_TRANSLATION] Ver salida",
-    "card_fallback": "[NEEDS_TRANSLATION] Salida de {month} con cupos a confirmar.",
-    "footer_note": "[NEEDS_TRANSLATION] Las fechas se abren con grupos chicos. Si una ruta te llama, escribinos antes de que la ventana se cierre.",
-    "empty": "[NEEDS_TRANSLATION] Estamos confirmando las próximas fechas.",
-    "until": "[NEEDS_TRANSLATION] hasta"
+    "eyebrow": "Próximas fechas",
+    "heading": "PRÓXIMAS SALIDAS",
+    "see_all": "Ver el calendario completo",
+    "intro": "Tres ventanas confirmadas para ganar ruta este año: norte de altura, volcanes de Catamarca y ripio patagónico.",
+    "confirmed_label": "Calendario confirmado",
+    "available_label": "salidas disponibles",
+    "departure_label": "Salida",
+    "card_cta": "Ver salida",
+    "card_fallback": "Salida de {month} con cupos a confirmar.",
+    "footer_note": "Las fechas se abren con grupos chicos. Si una ruta te llama, escribinos antes de que la ventana se cierre.",
+    "empty": "Estamos confirmando las próximas fechas.",
+    "until": "hasta"
   },
   "home_custom": {
-    "eyebrow": "[NEEDS_TRANSLATION] A medida",
-    "heading": "[NEEDS_TRANSLATION] RUTAS A MEDIDA PARA PONERTE A PRUEBA",
-    "body": "[NEEDS_TRANSLATION] Contanos cuántos días tenés, qué moto manejás y qué querés cruzar: altura, ripio, arena, frontera. Lo convertimos en una travesía posible, con kilómetros medidos y margen para ganarla.",
-    "cta": "[NEEDS_TRANSLATION] Armá tu travesía",
-    "board_eyebrow": "[NEEDS_TRANSLATION] Brief de ruta",
-    "board_title": "[NEEDS_TRANSLATION] Vos marcás el norte",
-    "board_body": "[NEEDS_TRANSLATION] Nosotros devolvemos recorrido, ritmo, noches y alternativas de camino.",
+    "eyebrow": "A medida",
+    "heading": "RUTAS EN MOTO A MEDIDA PARA PONERTE A PRUEBA",
+    "body": "Diseñamos viajes en moto a medida por el Norte Argentino, Patagonia o Carretera Austral. Cruces a Chile. Armamos el recorrido según tus días, tu moto, tu nivel de manejo y el tipo de terreno que querés cruzar: ripio, arena, altura, frontera y caminos remotos.",
+    "cta": "Armá tu travesía",
+    "board_eyebrow": "Brief de ruta",
+    "board_title": "Vos marcás el norte",
+    "board_body": "Nosotros devolvemos recorrido, ritmo, noches y alternativas de camino. Creamos rutas personalizadas para tu viaje en moto por Argentina y Chile.",
     "stats": [
-      { "value": "4-12", "label": "[NEEDS_TRANSLATION] días posibles" },
-      { "value": "ON/OFF", "label": "[NEEDS_TRANSLATION] terreno mixto" },
-      { "value": "GPX", "label": "[NEEDS_TRANSLATION] track listo" }
+      {
+        "value": "4-21",
+        "label": "días posibles"
+      },
+      {
+        "value": "ON/OFF",
+        "label": "terreno mixto"
+      },
+      {
+        "value": "GPX",
+        "label": "track listo"
+      }
     ],
-    "route_stops": [
-      "[NEEDS_TRANSLATION] Idea",
-      "[NEEDS_TRANSLATION] Ruta",
-      "[NEEDS_TRANSLATION] Salida"
-    ],
+    "route_stops": ["Idea", "Ruta", "Salida"],
     "items": [
-      "[NEEDS_TRANSLATION] Moto y nivel de manejo.",
-      "[NEEDS_TRANSLATION] Días disponibles y ritmo deseado.",
-      "[NEEDS_TRANSLATION] Ripio, altura, arena o frontera.",
-      "[NEEDS_TRANSLATION] Kilómetros que querés ganarte."
+      "Moto y nivel de manejo.",
+      "Días disponibles y ritmo deseado.",
+      "Ripio, altura, arena o frontera.",
+      "Kilómetros que querés ganarte."
     ]
   },
   "home_about": {
-    "eyebrow": "[NEEDS_TRANSLATION] Quiénes somos",
-    "heading": "[NEEDS_TRANSLATION] EL EQUIPO DETRÁS DE CADA RUTA",
-    "body": "[NEEDS_TRANSLATION] Armamos cada salida sobre el terreno: rodamos, medimos, descartamos tramos y volvemos hasta que la ruta queda lista para vos.",
-    "cta": "[NEEDS_TRANSLATION] Conocé al equipo",
+    "eyebrow": "Quiénes somos",
+    "heading": "EL EQUIPO DETRÁS DE CADA RUTA",
+    "body": "Armamos cada tour de moto en base al terreno: rodamos, medimos, descartamos tramos y volvemos hasta que la ruta queda lista para vos.",
+    "cta": "Conocé al equipo",
     "proofs": [
-      { "value": "4", "label": "[NEEDS_TRANSLATION] rutas de temporada" },
-      { "value": "GPX", "label": "[NEEDS_TRANSLATION] ajustado en campo" },
-      { "value": "ON/OFF", "label": "[NEEDS_TRANSLATION] ripio y asfalto" }
-    ],
-    "field_notes": [
-      "[NEEDS_TRANSLATION] Medimos horas reales de manejo, no líneas en un mapa.",
-      "[NEEDS_TRANSLATION] Marcamos combustible, descanso y puntos de salida.",
-      "[NEEDS_TRANSLATION] Probamos ripio, altura y clima antes de abrir cupos.",
-      "[NEEDS_TRANSLATION] Volvemos a ajustar cuando la ruta cambia."
-    ],
-    "dossier_eyebrow": "[NEEDS_TRANSLATION] Bitácora",
-    "dossier_title": "[NEEDS_TRANSLATION] RUTA EN PRUEBA",
-    "dossier_meta": "[NEEDS_TRANSLATION] Rodada",
-    "dossier_items": [
       {
-        "title": "[NEEDS_TRANSLATION] Tramo",
-        "body": "[NEEDS_TRANSLATION] Entra si suma manejo, paisaje y margen para el grupo."
+        "value": "+6",
+        "label": "años rodando"
       },
       {
-        "title": "[NEEDS_TRANSLATION] Ritmo",
-        "body": "[NEEDS_TRANSLATION] Cada jornada se arma para llegar entero y con algo conquistado."
+        "value": "ON/OFF",
+        "label": "ruta y ripio"
       },
       {
-        "title": "[NEEDS_TRANSLATION] Plan B",
-        "body": "[NEEDS_TRANSLATION] Combustible, descanso y escape quedan marcados antes de salir."
+        "value": "100%",
+        "label": "rutas probadas"
+      },
+      {
+        "value": "+60.000km",
+        "label": "en testeos"
       }
     ],
-    "photo_alt": "[NEEDS_TRANSLATION] Riders de Moto On/Off revisando una parada de ruta durante una travesía"
+    "field_notes": [
+      "Medimos horas reales de manejo, no líneas en un mapa.",
+      "Marcamos combustible, descanso y puntos de salida.",
+      "Probamos ripio, altura y clima antes de abrir cupos.",
+      "Volvemos a ajustar cuando la ruta cambia."
+    ],
+    "dossier_eyebrow": "Bitácora",
+    "dossier_title": "RUTA EN PRUEBA",
+    "dossier_meta": "Rodada",
+    "dossier_items": [
+      {
+        "title": "Tramo",
+        "body": "Entra si suma manejo, paisaje y margen para el grupo."
+      },
+      {
+        "title": "Ritmo",
+        "body": "Cada jornada se arma para llegar entero y con algo conquistado."
+      },
+      {
+        "title": "Plan B",
+        "body": "Combustible, descanso y escape quedan marcados antes de salir."
+      }
+    ],
+    "photo_alt": "Riders de Moto On/Off revisando una parada de ruta durante una travesía"
   },
   "home_journal": {
-    "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "heading": "[NEEDS_TRANSLATION] CÓMO PROBAMOS Y ARMAMOS LAS RUTAS",
-    "intro": "[NEEDS_TRANSLATION] Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
-    "see_all": "[NEEDS_TRANSLATION] Entrar al taller"
+    "eyebrow": "Taller de Rutas",
+    "heading": "CÓMO PROBAMOS Y ARMAMOS LAS RUTAS",
+    "intro": "Cada ruta que vendemos la rodamos varias veces antes de ponerle nombre. Probamos tramos, descartamos otros, volvimos en otra estación. Esto es cómo terminó armada cada una.",
+    "see_all": "Entrar al taller"
   },
   "tours_index": {
-    "eyebrow": "[NEEDS_TRANSLATION] Viajes",
-    "headline": "[NEEDS_TRANSLATION] RUTAS QUE TE CAMBIAN",
-    "intro": "[NEEDS_TRANSLATION] Cada ruta es una que ya rodamos.",
-    "hero_image_alt": "[NEEDS_TRANSLATION] Tres motos cruzando una planicie de altura entre salares, arena negra y montañas.",
-    "all_routes_eyebrow": "[NEEDS_TRANSLATION] Todas las rutas",
-    "all_routes_heading": "[NEEDS_TRANSLATION] Elegí tu travesía",
-    "empty": "[NEEDS_TRANSLATION] Estamos preparando la próxima temporada."
+    "eyebrow": "Viajes",
+    "headline": "RUTAS QUE TE CAMBIAN",
+    "intro": "Cada ruta es una que ya rodamos.",
+    "hero_image_alt": "Tres motos cruzando una planicie de altura entre salares, arena negra y montañas.",
+    "all_routes_eyebrow": "Todas las rutas",
+    "all_tours_cta": "Todos los Tours",
+    "all_routes_heading": "Elegí tu travesía",
+    "empty": "Estamos preparando la próxima temporada."
   },
   "tour_detail": {
-    "overview_eyebrow": "[NEEDS_TRANSLATION] Ruta",
-    "duration_label": "[NEEDS_TRANSLATION] Duración",
-    "distance_label": "[NEEDS_TRANSLATION] Distancia",
-    "ripio_label": "[NEEDS_TRANSLATION] Ripio",
-    "max_altitude_label": "[NEEDS_TRANSLATION] Altura máxima",
-    "surface_pending": "[NEEDS_TRANSLATION] superficie a confirmar",
-    "distance_pending": "[NEEDS_TRANSLATION] km s/d",
-    "altitude_pending": "[NEEDS_TRANSLATION] sin cota",
-    "days_unit": "[NEEDS_TRANSLATION] días",
-    "gallery_eyebrow": "[NEEDS_TRANSLATION] Fotos de ruta",
-    "itinerary_eyebrow": "[NEEDS_TRANSLATION] Recorrido",
-    "itinerary_heading": "[NEEDS_TRANSLATION] Día por día",
-    "itinerary_hook": "[NEEDS_TRANSLATION] Cada día suma kilómetros, ripio y altura. Vos llevás la cuenta en el cuerpo.",
-    "day_label": "[NEEDS_TRANSLATION] Día",
-    "highlights_label": "[NEEDS_TRANSLATION] Destacados",
-    "practical_eyebrow": "[NEEDS_TRANSLATION] Detalles del viaje",
-    "practical_heading": "[NEEDS_TRANSLATION] Información práctica",
-    "included_heading": "[NEEDS_TRANSLATION] Qué incluye",
-    "not_included_heading": "[NEEDS_TRANSLATION] Qué no incluye",
-    "need_to_know_heading": "[NEEDS_TRANSLATION] Lo que conviene saber",
-    "good_to_know_heading": "[NEEDS_TRANSLATION] Buenas a saber",
-    "departures_eyebrow": "[NEEDS_TRANSLATION] Salidas",
-    "departures_heading": "[NEEDS_TRANSLATION] Próximas fechas",
-    "no_departures": "[NEEDS_TRANSLATION] Sin fechas confirmadas por ahora. Decinos cuándo querés salir y armamos una ventana.",
-    "no_departures_cta": "[NEEDS_TRANSLATION] Escribinos por WhatsApp",
-    "status_open": "[NEEDS_TRANSLATION] Disponible",
-    "status_low": "[NEEDS_TRANSLATION] Últimos lugares",
-    "status_sold_out": "[NEEDS_TRANSLATION] Agotado",
-    "related_eyebrow": "[NEEDS_TRANSLATION] Otras rutas",
-    "related_heading": "[NEEDS_TRANSLATION] Otras rutas",
-    "missing_content": "[NEEDS_TRANSLATION] Contenido en preparación."
+    "overview_eyebrow": "Ruta",
+    "duration_label": "Duración",
+    "distance_label": "Distancia",
+    "ripio_label": "Ripio",
+    "max_altitude_label": "Altura máxima",
+    "surface_pending": "superficie a confirmar",
+    "distance_pending": "km s/d",
+    "altitude_pending": "sin cota",
+    "days_unit": "días",
+    "gallery_eyebrow": "Fotos de ruta",
+    "itinerary_eyebrow": "Recorrido",
+    "itinerary_heading": "Día por día",
+    "itinerary_hook": "Cada día suma kilómetros, ripio y altura. Vos llevás la cuenta en el cuerpo.",
+    "day_label": "Día",
+    "highlights_label": "Destacados del tour en moto",
+    "route_map_eyebrow": "Mapa del recorrido",
+    "route_map_heading": "Cruces del Sur en el mapa",
+    "route_map_body": "Bariloche, Trevelin, Chile Chico, Cochrane, Paso Roballos, Perito Moreno y regreso por Patagonia. Mové el mapa, acercate al ripio y mirá el giro completo antes de escribirnos.",
+    "route_map_frame_title": "Mapa interactivo del recorrido Cruces del Sur",
+    "route_map_open_google": "Abrir en Google Maps",
+    "route_map_workshop_title": "Taller de ruta",
+    "route_map_workshop_body": "La línea final no salió de una mesa. La probamos con viento, frontera, ferry y ripio hasta que el recorrido quedó listo para rodarse.",
+    "route_map_workshop_cta": "Mirá cómo armamos Cruces del Sur",
+    "practical_eyebrow": "Detalles del viaje",
+    "practical_heading": "Información práctica",
+    "included_heading": "Qué incluye",
+    "not_included_heading": "Qué no incluye",
+    "need_to_know_heading": "Lo que conviene saber",
+    "good_to_know_heading": "Buenas a saber",
+    "departures_eyebrow": "Salidas",
+    "departures_heading": "Próximas fechas",
+    "no_departures": "Sin fechas confirmadas por ahora. Decinos cuándo querés salir y armamos una ventana.",
+    "no_departures_cta": "Escribinos por WhatsApp",
+    "status_open": "Disponible",
+    "status_low": "Últimos pilotos",
+    "status_sold_out": "Agotado",
+    "related_eyebrow": "Otras rutas",
+    "related_heading": "Otras rutas",
+    "missing_content": "Contenido en preparación."
   },
   "features": {
-    "eyebrow": "[NEEDS_TRANSLATION] Cómo se rueda",
-    "heading": "[NEEDS_TRANSLATION] ASÍ ANDAMOS",
+    "eyebrow": "Cómo se rueda",
+    "heading": "ASÍ ANDAMOS",
     "items": {
       "remote_routes": {
-        "title": "[NEEDS_TRANSLATION] RUTAS REMOTAS",
-        "body": "[NEEDS_TRANSLATION] Tramos que casi nadie corre."
+        "title": "RUTAS REMOTAS",
+        "body": "Tramos que casi nadie corre."
       },
       "local_people": {
-        "title": "[NEEDS_TRANSLATION] GENTE LOCAL",
-        "body": "[NEEDS_TRANSLATION] Comemos donde comen los puesteros."
+        "title": "GENTE LOCAL",
+        "body": "Comemos donde comen los puesteros."
       },
       "hard_riding": {
-        "title": "[NEEDS_TRANSLATION] ANDAR DURO",
-        "body": "[NEEDS_TRANSLATION] Días largos, altura, viento, polvo."
+        "title": "ANDAR DURO",
+        "body": "Días largos, altura, viento, polvo."
       },
       "sleep_where": {
-        "title": "[NEEDS_TRANSLATION] DORMIR DONDE CAIGA",
-        "body": "[NEEDS_TRANSLATION] Refugio de montaña, hostería de pueblo, carpa al borde del camino."
+        "title": "DORMIR DONDE CAIGA",
+        "body": "Refugio de montaña, hostería de pueblo, carpa al borde del camino."
       }
     }
   },
   "x_list": {
-    "eyebrow": "[NEEDS_TRANSLATION] Esto no es para cualquiera",
-    "heading": "[NEEDS_TRANSLATION] ESTO ES PARA VOS SI…",
+    "eyebrow": "Esto no es para cualquiera",
+    "heading": "ESTO ES PARA VOS SI…",
     "items": [
-      "[NEEDS_TRANSLATION] Manejaste en ripio profundo y querés más.",
-      "[NEEDS_TRANSLATION] Una ruta de tierra te entusiasma más que un resort.",
-      "[NEEDS_TRANSLATION] Andás para descubrir de qué estás hecho.",
-      "[NEEDS_TRANSLATION] Las historias que valen la pena contar son las que te cuestan."
+      "Manejaste en ripio profundo y querés más.",
+      "Una ruta de tierra te entusiasma más que un resort.",
+      "Andás para descubrir de qué estás hecho.",
+      "Las historias que valen la pena contar son las que te cuestan."
     ]
   },
   "journal_grid": {
-    "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "heading": "[NEEDS_TRANSLATION] PRIMERO RODAMOS",
-    "read_more": "[NEEDS_TRANSLATION] Cómo se armó"
+    "eyebrow": "Taller de Rutas",
+    "heading": "PRIMERO RODAMOS",
+    "read_more": "Cómo se armó"
   },
   "quote_section": {
-    "eyebrow": "[NEEDS_TRANSLATION] Lo que se queda",
-    "hunter_thompson_quote": "[NEEDS_TRANSLATION] No vas a encontrar hombres razonables en la cima de las montañas más altas.",
+    "eyebrow": "Lo que se queda",
+    "hunter_thompson_quote": "No vas a encontrar hombres razonables en la cima de las montañas más altas.",
     "hunter_thompson_attribution": "Hunter S. Thompson"
   },
   "manifesto": {
-    "eyebrow": "[NEEDS_TRANSLATION] Manifiesto",
-    "heading": "[NEEDS_TRANSLATION] LA RUTA NO PIDE PERMISO",
-    "p1": "[NEEDS_TRANSLATION] Cruzamos cordilleras porque del otro lado uno vuelve distinto.",
-    "p2": "[NEEDS_TRANSLATION] Cada día tiene su precio: el viento de la Patagonia, el ripio del NOA, la altura de los Andes.",
-    "emphasis": "[NEEDS_TRANSLATION] lo que no se mide"
+    "eyebrow": "Manifiesto",
+    "heading": "LA RUTA NO PIDE PERMISO",
+    "p1": "Cruzamos cordilleras porque del otro lado uno vuelve distinto.",
+    "p2": "Cada día tiene su precio: el viento de la Patagonia, el ripio del NOA, la altura de los Andes.",
+    "emphasis": "lo que no se mide"
   },
   "about": {
-    "title": "[NEEDS_TRANSLATION] Nosotros",
-    "eyebrow": "[NEEDS_TRANSLATION] Quiénes somos",
-    "headline": "[NEEDS_TRANSLATION] ARMADO EN LA RUTA",
-    "metadata_description": "[NEEDS_TRANSLATION] Moto On/Off arma travesías en moto por la Patagonia, los Andes y el norte argentino.",
-    "subheadline": "[NEEDS_TRANSLATION] No somos guías de paseo. Andamos las rutas que vendemos.",
-    "founder_eyebrow": "[NEEDS_TRANSLATION] Fundador",
-    "founder_name": "[NEEDS_TRANSLATION] Sebastián",
-    "founder_caption": "[NEEDS_TRANSLATION] Patagonia, 2024. Día 9 de la travesía.",
-    "cta": "[NEEDS_TRANSLATION] Conocenos por WhatsApp",
-    "cta_heading": "[NEEDS_TRANSLATION] CONTANOS QUÉ QUERÉS CRUZAR",
-    "cta_body": "[NEEDS_TRANSLATION] Contanos qué moto manejás, cuántos días tenés y qué ruta te llama. Te respondemos con una ventana posible, el nivel de exigencia y los próximos pasos.",
-    "cta_secondary": "[NEEDS_TRANSLATION] Ir al contacto",
-    "cta_prompt_heading": "[NEEDS_TRANSLATION] Mandanos 3 datos",
-    "cta_prompt_meta": "[NEEDS_TRANSLATION] Por WhatsApp",
+    "title": "Nosotros",
+    "eyebrow": "Quiénes somos",
+    "headline": "ARMADO EN LA RUTA",
+    "metadata_description": "Moto On/Off arma travesías en moto por la Patagonia, los Andes y el norte argentino.",
+    "subheadline": "No somos guías de paseo. Andamos las rutas que vendemos.",
+    "founder_eyebrow": "Fundador",
+    "founder_name": "Sebastián",
+    "founder_caption": "Patagonia, 2024. Día 9 de la travesía.",
+    "cta": "Conocenos por WhatsApp",
+    "cta_heading": "CONTANOS QUÉ QUERÉS CRUZAR",
+    "cta_body": "Contanos qué moto manejás, cuántos días tenés y qué ruta te llama. Te respondemos con una ventana posible, el nivel de exigencia y los próximos pasos.",
+    "cta_secondary": "Ir al contacto",
+    "cta_prompt_heading": "Mandanos 3 datos",
+    "cta_prompt_meta": "Por WhatsApp",
     "cta_prompts": [
-      "[NEEDS_TRANSLATION] Qué ruta te llama y cuándo podrías salir.",
-      "[NEEDS_TRANSLATION] Qué moto manejás y cuánta experiencia tenés en ripio.",
-      "[NEEDS_TRANSLATION] Si querés sumarte a una salida o armar algo a medida."
+      "Qué ruta te llama y cuándo podrías salir.",
+      "Qué moto manejás y cuánta experiencia tenés en ripio.",
+      "Si querés sumarte a una salida o armar algo a medida."
     ]
   },
   "custom": {
-    "title": "[NEEDS_TRANSLATION] Viajes a medida",
-    "eyebrow": "[NEEDS_TRANSLATION] Custom Tours // Viajes a medida // Tours personalizados",
-    "headline": "[NEEDS_TRANSLATION] ORGANIZAMOS TU VIAJE A MEDIDA",
-    "metadata_description": "[NEEDS_TRANSLATION] Diseñamos rutas en moto a medida por Argentina y la Cordillera según tu nivel de manejo, terreno, duración ideal y experiencia buscada.",
-    "subheadline": "[NEEDS_TRANSLATION] Diseñamos la ruta en moto a tu medida.",
-    "hero_primary_cta": "[NEEDS_TRANSLATION] Organizar mi viaje",
-    "hero_secondary_cta": "[NEEDS_TRANSLATION] Contar mi idea",
-    "hero_image_alt": "[NEEDS_TRANSLATION] Rider de aventura junto a su moto preparado para salir a la ruta",
+    "title": "Viajes a medida",
+    "eyebrow": "Viajes a medida - Tours personalizados",
+    "headline": "ORGANIZAMOS TU VIAJE A MEDIDA",
+    "metadata_description": "Diseñamos rutas en moto a medida por Argentina y la Cordillera según tu nivel de manejo, terreno, duración ideal y experiencia buscada.",
+    "subheadline": "Diseñamos la ruta en moto a tu medida.",
+    "hero_primary_cta": "Organizar mi viaje",
+    "hero_secondary_cta": "Contar mi idea",
+    "hero_image_alt": "Rider de aventura junto a su moto preparado para salir a la ruta",
     "hero_stats": [
-      { "value": "3-12", "label": "[NEEDS_TRANSLATION] días de ruta" },
-      { "value": "GPX", "label": "[NEEDS_TRANSLATION] track listo" },
-      { "value": "ON/OFF", "label": "[NEEDS_TRANSLATION] ripio y asfalto" }
+      {
+        "value": "3-12",
+        "label": "días de ruta"
+      },
+      {
+        "value": "GPX",
+        "label": "track listo"
+      },
+      {
+        "value": "ON/OFF",
+        "label": "ripio y asfalto"
+      }
     ],
-    "permit_label": "[NEEDS_TRANSLATION] Viaje en moto",
-    "permit_value": "[NEEDS_TRANSLATION] 100% a medida",
-    "permit_meta": "[NEEDS_TRANSLATION] Nivel de manejo, terreno, duración ideal y experiencia.",
-    "sticky_note": "[NEEDS_TRANSLATION] Tu ruta. Tu ritmo.",
-    "brief_eyebrow": "[NEEDS_TRANSLATION] Viajes a medida",
-    "brief_heading": "[NEEDS_TRANSLATION] DISEÑAMOS LA RUTA SEGÚN TU MANERA DE MANEJAR",
-    "p1": "[NEEDS_TRANSLATION] Además de nuestros tours en moto, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
-    "p2": "[NEEDS_TRANSLATION] Nos contás qué te imaginás, lo convertimos en un viaje en moto posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
-    "brief_stamp_1": "[NEEDS_TRANSLATION] Viaje posible",
-    "brief_stamp_2": "[NEEDS_TRANSLATION] Ruta a medida",
-    "brief_image_alt_1": "[NEEDS_TRANSLATION] Camino de altura en el norte argentino usado como referencia para viajes a medida",
-    "brief_image_alt_2": "[NEEDS_TRANSLATION] Ruta de montaña en Cuyo para diseñar una travesía en moto",
-    "brief_image_alt_3": "[NEEDS_TRANSLATION] Camino patagónico de ripio para una expedición a medida",
+    "permit_label": "Viaje en moto",
+    "permit_value": "100% a medida",
+    "permit_meta": "Nivel de manejo, terreno, duración ideal y experiencia.",
+    "sticky_note": "Tu ruta. Tu ritmo.",
+    "brief_eyebrow": "Viajes a medida",
+    "brief_heading": "DISEÑAMOS LA RUTA SEGÚN TU MANERA DE MANEJAR",
+    "p1": "Además de nuestros tours en moto, te ofrecemos la posibilidad de crear un viaje totalmente personalizado. Pensado según tu nivel de manejo, el tipo de terreno que te gusta, la duración ideal y la experiencia que querés vivir.",
+    "p2": "Nos contás qué te imaginás, lo convertimos en un viaje en moto posible, 100% a tu medida. Basándonos en tu estilo de manejo, duración del viaje, tipos de camino y alternativas de los mismos.",
+    "brief_stamp_1": "Viaje posible",
+    "brief_stamp_2": "Ruta a medida",
+    "brief_image_alt_1": "Camino de altura en el norte argentino usado como referencia para viajes a medida",
+    "brief_image_alt_2": "Ruta de montaña en Cuyo para diseñar una travesía en moto",
+    "brief_image_alt_3": "Camino patagónico de ripio para una expedición a medida",
     "brief_cards": [
       {
-        "title": "[NEEDS_TRANSLATION] NIVEL DE MANEJO",
-        "body": "[NEEDS_TRANSLATION] Pensamos la ruta según tu experiencia, ritmo de manejo y confianza en distintos terrenos."
+        "title": "NIVEL DE MANEJO",
+        "body": "Pensamos la ruta según tu experiencia, ritmo de manejo y confianza en distintos terrenos."
       },
       {
-        "title": "[NEEDS_TRANSLATION] TIPO DE TERRENO",
-        "body": "[NEEDS_TRANSLATION] Ruta, ripio, montaña, arena, altura o caminos mixtos según lo que querés vivir."
+        "title": "TIPO DE TERRENO",
+        "body": "Ruta, ripio, montaña, arena, altura o caminos mixtos según lo que querés vivir."
       },
       {
-        "title": "[NEEDS_TRANSLATION] DURACIÓN IDEAL",
-        "body": "[NEEDS_TRANSLATION] Ajustamos kilómetros, tiempos y jornadas al viaje que imaginás y los días disponibles."
+        "title": "DURACIÓN IDEAL",
+        "body": "Ajustamos kilómetros, tiempos y jornadas al viaje que imaginás y los días disponibles."
       },
       {
-        "title": "[NEEDS_TRANSLATION] ALTERNATIVAS",
-        "body": "[NEEDS_TRANSLATION] Sumamos opciones de camino, navegación, hoteles y experiencias recomendadas por zona."
+        "title": "ALTERNATIVAS",
+        "body": "Sumamos opciones de camino, navegación, hoteles y experiencias recomendadas por zona."
       }
     ],
-    "process_eyebrow": "[NEEDS_TRANSLATION] Cómo lo armamos",
-    "process_heading": "[NEEDS_TRANSLATION] DE TU IDEA A UN VIAJE EN MOTO POSIBLE",
-    "process_body": "[NEEDS_TRANSLATION] Nos contás qué te imaginás y lo llevamos a un plan concreto: tiempos, kilómetros, navegación, hoteles y alternativas de camino.",
+    "process_eyebrow": "Cómo lo armamos",
+    "process_heading": "DE TU IDEA A UN VIAJE EN MOTO POSIBLE",
+    "process_body": "Nos contás qué te imaginás y lo llevamos a un plan concreto: tiempos, kilómetros, navegación, hoteles y alternativas de camino.",
     "process_steps": [
       {
-        "title": "[NEEDS_TRANSLATION] Nos contás la idea",
-        "body": "[NEEDS_TRANSLATION] Nivel de manejo, tipo de terreno, duración ideal y experiencia que querés vivir."
+        "title": "Nos contás la idea",
+        "body": "Nivel de manejo, tipo de terreno, duración ideal y experiencia que querés vivir."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Convertimos la ruta",
-        "body": "[NEEDS_TRANSLATION] La pasamos a un viaje posible con tiempos, kilómetros y jornadas reales."
+        "title": "Convertimos la ruta",
+        "body": "La pasamos a un viaje posible con tiempos, kilómetros y jornadas reales."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Marcamos alternativas",
-        "body": "[NEEDS_TRANSLATION] Definimos tipos de camino, opciones de navegación y variantes según zona."
+        "title": "Marcamos alternativas",
+        "body": "Definimos tipos de camino, opciones de navegación y variantes según zona."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Sumamos apoyo",
-        "body": "[NEEDS_TRANSLATION] Si lo necesitás, agregamos traslado, guía en moto, 4x4 y transporte de equipaje."
+        "title": "Sumamos apoyo",
+        "body": "Si lo necesitás, agregamos traslado, guía en moto, 4x4 y transporte de equipaje."
       }
     ],
-    "includes_eyebrow": "[NEEDS_TRANSLATION] Lo que armamos",
-    "includes_heading": "[NEEDS_TRANSLATION] ¿QUÉ INCLUYE?",
+    "includes_eyebrow": "Lo que armamos",
+    "includes_heading": "¿QUÉ INCLUYE?",
     "includes_items": [
-      "[NEEDS_TRANSLATION] Itinerario detallado con tiempos y kilómetros.",
-      "[NEEDS_TRANSLATION] Hoteles sugeridos según la categoría deseada.",
-      "[NEEDS_TRANSLATION] Archivos GPX o Google Maps para navegación.",
-      "[NEEDS_TRANSLATION] Experiencias recomendadas según la zona de interés."
+      "Itinerario detallado con tiempos y kilómetros.",
+      "Hoteles sugeridos según la categoría deseada.",
+      "Archivos GPX o Google Maps para navegación.",
+      "Experiencias recomendadas según la zona de interés."
     ],
-    "extras_eyebrow": "[NEEDS_TRANSLATION] Opcional",
-    "extras_heading": "[NEEDS_TRANSLATION] APOYO EN RUTA",
+    "extras_eyebrow": "Opcional",
+    "extras_heading": "APOYO EN RUTA",
     "extras_items": [
-      "[NEEDS_TRANSLATION] Traslado de la moto ida y vuelta a destino.",
-      "[NEEDS_TRANSLATION] Guía en moto.",
-      "[NEEDS_TRANSLATION] Vehículo de apoyo 4×4 y transporte de equipaje."
+      "Traslado de la moto ida y vuelta a destino.",
+      "Guía en moto.",
+      "Vehículo de apoyo 4×4 y transporte de equipaje."
     ],
-    "form_eyebrow": "[NEEDS_TRANSLATION] Contanos tu idea",
-    "form_heading": "[NEEDS_TRANSLATION] CONTANOS QUÉ TE IMAGINÁS",
-    "form_intro": "[NEEDS_TRANSLATION] No hace falta tener todo cerrado. Con tu nivel de manejo, terreno preferido y duración ideal ya podemos empezar.",
+    "form_eyebrow": "Contanos tu idea",
+    "form_heading": "CONTANOS QUÉ TE IMAGINÁS",
+    "form_intro": "No hace falta tener todo cerrado. Con tu nivel de manejo, terreno preferido y duración ideal ya podemos empezar.",
     "route_ideas": [
       {
-        "title": "[NEEDS_TRANSLATION] Nivel",
-        "meta": "[NEEDS_TRANSLATION] Cómo manejás",
-        "body": "[NEEDS_TRANSLATION] Contanos tu experiencia sobre ripio, ruta, altura, arena o caminos de montaña."
+        "title": "Nivel",
+        "meta": "Cómo manejás",
+        "body": "Contanos tu experiencia sobre ripio, ruta, altura, arena o caminos de montaña."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Terreno",
-        "meta": "[NEEDS_TRANSLATION] Qué te gusta",
-        "body": "[NEEDS_TRANSLATION] Elegimos caminos según el tipo de terreno que querés rodar durante el viaje."
+        "title": "Terreno",
+        "meta": "Qué te gusta",
+        "body": "Elegimos caminos según el tipo de terreno que querés rodar durante el viaje."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Duración",
-        "meta": "[NEEDS_TRANSLATION] Cuántos días",
-        "body": "[NEEDS_TRANSLATION] Ajustamos el itinerario a los días disponibles y al ritmo ideal del grupo."
+        "title": "Duración",
+        "meta": "Cuántos días",
+        "body": "Ajustamos el itinerario a los días disponibles y al ritmo ideal del grupo."
       }
     ],
-    "talk_eyebrow": "[NEEDS_TRANSLATION] O por WhatsApp",
-    "talk_heading": "[NEEDS_TRANSLATION] PREFERÍS HABLAR DIRECTO",
-    "talk_body": "[NEEDS_TRANSLATION] Escribinos por WhatsApp y arrancamos por ahí. Con unos datos básicos podemos convertir tu idea en una propuesta posible.",
-    "talk_cta": "[NEEDS_TRANSLATION] Abrir WhatsApp",
+    "talk_eyebrow": "O por WhatsApp",
+    "talk_heading": "PREFERÍS HABLAR DIRECTO",
+    "talk_body": "Escribinos por WhatsApp y arrancamos por ahí. Con unos datos básicos podemos convertir tu idea en una propuesta posible.",
+    "talk_cta": "Abrir WhatsApp",
     "prompt_items": [
-      "[NEEDS_TRANSLATION] Tu nivel de manejo.",
-      "[NEEDS_TRANSLATION] El tipo de terreno que te gusta.",
-      "[NEEDS_TRANSLATION] La duración ideal del viaje."
+      "Tu nivel de manejo.",
+      "El tipo de terreno que te gusta.",
+      "La duración ideal del viaje."
     ]
   },
   "calendar": {
-    "title": "[NEEDS_TRANSLATION] Calendario",
-    "eyebrow": "[NEEDS_TRANSLATION] Salidas confirmadas",
-    "headline": "[NEEDS_TRANSLATION] PRÓXIMAS FECHAS",
-    "metadata_description": "[NEEDS_TRANSLATION] Calendario de salidas confirmadas por ruta.",
-    "intro": "[NEEDS_TRANSLATION] Cada salida tiene cupo limitado.",
-    "hero_stamp": "[NEEDS_TRANSLATION] Cupos limitados",
-    "hero_note": "[NEEDS_TRANSLATION] Fechas reales, cupos reales y rutas que se confirman cuando el terreno, el clima y el grupo cierran.",
-    "hero_image_alt": "[NEEDS_TRANSLATION] Moto de aventura cruzando una ruta de montaña en el norte argentino",
-    "season_eyebrow": "[NEEDS_TRANSLATION] Temporada en marcha",
-    "season_heading": "[NEEDS_TRANSLATION] EL MAPA YA TIENE FECHAS",
-    "season_intro": "[NEEDS_TRANSLATION] Este tablero se actualiza desde la hoja de salidas. Cuando una fecha cambia, la ruta se mueve acá sin maquillaje.",
-    "confirmed_label": "[NEEDS_TRANSLATION] salidas confirmadas",
-    "open_label": "[NEEDS_TRANSLATION] con cupos",
-    "spots_label": "[NEEDS_TRANSLATION] lugares disponibles",
-    "next_label": "[NEEDS_TRANSLATION] Próxima salida",
-    "board_eyebrow": "[NEEDS_TRANSLATION] Orden de salida",
-    "board_heading": "[NEEDS_TRANSLATION] EL TRACK DE LA TEMPORADA",
-    "board_intro": "[NEEDS_TRANSLATION] Cada tarjeta marca una ventana de ruta: fecha, cupos, tramo y estado. Elegí el mes; después hablamos de la moto.",
-    "legend_label": "[NEEDS_TRANSLATION] Estado de cupos",
-    "departures_unit": "[NEEDS_TRANSLATION] salida(s)",
-    "departure_label": "[NEEDS_TRANSLATION] Salida",
-    "spots_remaining_label": "[NEEDS_TRANSLATION] lugares",
-    "cta_eyebrow": "[NEEDS_TRANSLATION] Tu lugar",
-    "cta_heading": "[NEEDS_TRANSLATION] SI LA FECHA CIERRA, LA RUTA EMPIEZA ACÁ",
-    "cta_body": "[NEEDS_TRANSLATION] Escribinos con la salida que querés rodar. Te pasamos disponibilidad, próximos pasos y lo que necesitás preparar.",
-    "cta_primary": "[NEEDS_TRANSLATION] Hablar por la fecha",
-    "cta_secondary": "[NEEDS_TRANSLATION] Ver las rutas",
-    "no_departures": "[NEEDS_TRANSLATION] No hay salidas confirmadas todavía.",
+    "title": "Calendario",
+    "eyebrow": "Salidas confirmadas",
+    "headline": "PRÓXIMAS FECHAS",
+    "metadata_description": "Calendario de salidas confirmadas por ruta.",
+    "intro": "Los tours con cupo limitado. Hacemos enfoque en grupo humano.",
+    "hero_stamp": "Cupos limitados",
+    "hero_image_alt": "Motos de aventura cargadas en trailers antes de una salida de ruta",
+    "season_eyebrow": "Temporada en marcha",
+    "season_heading": "EL MAPA YA TIENE FECHAS",
+    "season_callout": "Las fechas no son elegidas al azar:",
+    "season_body": "Son el resultado de más de 10 años rodando, probando rutas, clima y conociendo cada destino.",
+    "confirmed_label": "salidas confirmadas",
+    "open_label": "con cupos",
+    "spots_label": "pilotos disponibles",
+    "next_label": "Próxima salida",
+    "board_eyebrow": "Orden de salida",
+    "board_heading": "EL TRACK DE LA TEMPORADA",
+    "board_intro_detail": "Cada tarjeta marca una ventana de ruta: fecha, cupos, tramo y estado.",
+    "board_intro_prompt": "Elegí el mes; después hablamos de la moto.",
+    "legend_label": "Estado de cupos",
+    "departures_unit": "salida(s)",
+    "departure_label": "Salida",
+    "spots_remaining_label": "pilotos",
+    "cta_eyebrow": "Tu lugar",
+    "cta_heading": "SI LA FECHA CIERRA, LA RUTA EMPIEZA ACÁ",
+    "cta_body_lead": "Escribinos con la salida que querés rodar.",
+    "cta_body_follow": "Te pasamos disponibilidad, próximos pasos y lo que necesitás preparar.",
+    "cta_primary": "Hablar por la fecha",
+    "cta_secondary": "Ver las rutas",
+    "no_departures": "No hay salidas confirmadas todavía.",
     "month_format": "long",
-    "see_tour": "[NEEDS_TRANSLATION] Ver la ruta",
-    "until": "[NEEDS_TRANSLATION] hasta"
+    "see_tour": "Ver la ruta",
+    "until": "hasta"
   },
   "contact": {
-    "title": "[NEEDS_TRANSLATION] Contacto",
-    "eyebrow": "[NEEDS_TRANSLATION] Hablemos",
-    "headline": "[NEEDS_TRANSLATION] ESCRIBINOS",
-    "metadata_description": "[NEEDS_TRANSLATION] Contactá a Moto On/Off por WhatsApp, correo o el formulario.",
-    "intro": "[NEEDS_TRANSLATION] Lo más rápido es WhatsApp.",
-    "channels_eyebrow": "[NEEDS_TRANSLATION] Por dónde",
+    "title": "Contacto",
+    "eyebrow": "Hablemos",
+    "headline": "ESCRIBINOS",
+    "metadata_description": "Contactá a Moto On/Off por WhatsApp, correo o el formulario.",
+    "intro": "Lo más rápido es WhatsApp.",
+    "channels_eyebrow": "Por dónde",
     "whatsapp_label": "WhatsApp",
-    "whatsapp_body": "[NEEDS_TRANSLATION] Lo levantamos en el día.",
-    "email_label": "[NEEDS_TRANSLATION] Correo",
+    "whatsapp_body": "Lo levantamos en el día.",
+    "email_label": "Correo",
     "email_body": "hello@motoonoff.com",
-    "form_eyebrow": "[NEEDS_TRANSLATION] O dejanos un mensaje",
-    "form_heading": "[NEEDS_TRANSLATION] FORMULARIO DE CONTACTO"
+    "form_eyebrow": "O dejanos un mensaje",
+    "form_heading": "FORMULARIO DE CONTACTO",
+    "next_eyebrow": "Próximo paso",
+    "next_heading": "ELEGÍ QUÉ RUTA TE VA A PROBAR",
+    "next_body": "Si todavía estás midiendo fechas o terreno, mirá las salidas abiertas y las rutas de temporada antes de escribir.",
+    "next_primary": "Ver fechas",
+    "next_secondary": "Ver rutas"
+  },
+  "reservations": {
+    "title": "Reservas",
+    "eyebrow": "Reservá tu lugar",
+    "headline": "TU RUTA EMPIEZA ACÁ",
+    "metadata_description": "Reservá tu lugar en una salida de Moto On/Off. Elegí ruta, fecha y contanos tu moto para confirmar próximos pasos.",
+    "intro": "Decinos qué ruta querés rodar y cuándo podés salir. Te respondemos con disponibilidad, señal y próximos pasos.",
+    "whatsapp_cta": "Hablar por WhatsApp",
+    "calendar_cta": "Ver fechas",
+    "steps_eyebrow": "Cómo sigue",
+    "steps_heading": "CUPOS CHICOS, PASOS CLAROS",
+    "items": [
+      "Elegís ruta o ventana de fechas.",
+      "Nos contás moto, experiencia y acompañantes.",
+      "Confirmamos cupo, señal y lo que necesitás preparar.",
+      "La ruta queda bloqueada cuando recibimos la reserva."
+    ],
+    "form_eyebrow": "Reserva",
+    "form_heading": "DEJANOS TUS DATOS",
+    "form_body": "Usá el formulario si preferís escribir todo junto. Si hay cupo, seguimos la conversación por WhatsApp."
   },
   "journal_index": {
-    "title": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "eyebrow": "[NEEDS_TRANSLATION] Taller de Rutas",
-    "headline": "[NEEDS_TRANSLATION] PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
-    "metadata_description": "[NEEDS_TRANSLATION] Cómo diseñamos rutas en moto: exploración, tramos probados, variantes descartadas y decisiones reales antes de abrir cada tour.",
-    "intro": "[NEEDS_TRANSLATION] Cada ruta nace mucho antes del viaje. Nace explorando caminos, equivocándonos, volviendo atrás y buscando una versión mejor. Antes de abrir un tour, lo rodamos en condiciones reales: tiempos, combustible, altura, clima, cansancio y nivel técnico.",
-    "proof_eyebrow": "[NEEDS_TRANSLATION] Detrás de cada tour",
-    "proof_heading": "[NEEDS_TRANSLATION] ESTO NO SALE DE UN MAPA",
-    "proof_body": "[NEEDS_TRANSLATION] Rodamos variantes, hablamos con locales, medimos tiempos y volvemos cuando algo no cierra. La ruta final es la que aguanta el terreno, la temporada y el grupo.",
+    "title": "Taller de Rutas",
+    "eyebrow": "Taller de Rutas",
+    "headline": "PRIMERO RODAMOS. DESPUÉS ABRIMOS EL TRACK",
+    "metadata_description": "Cada tour en moto nace de exploración, equivocación y reintentos. Rutas testeadas, expediciones en moto y decisiones tomadas en el terreno.",
+    "intro": "Cada tour empieza mucho antes de abrir sus cupos. Nace explorando caminos, equivocándonos, volviendo atrás y buscando mejores rutas. Para lanzar un recorrido, viajamos en distintas estaciones, probamos alternativas, medimos los tiempos, caminos y niveles de dificultad reales.",
+    "proof_eyebrow": "Detrás de cada paisaje",
+    "proof_heading": "HAY HORAS DE TESTEO",
+    "proof_body": "No improvisamos rutas: las vivimos primero. Nuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con pilotos de todos los niveles para que vos viajes con total libertad.",
+    "proof_photo_label": "Hay horas de exploración",
+    "proof_photo_caption": "Antes de abrir cupos, volvemos al camino y probamos la ruta en serio.",
     "proof_items": [
-      "[NEEDS_TRANSLATION] Probamos caminos antes de ponerles nombre.",
-      "[NEEDS_TRANSLATION] Descartamos tramos cuando el clima, el sentido o la logística no cierran.",
-      "[NEEDS_TRANSLATION] Medimos combustible, horas de manejo, altura y cansancio real.",
-      "[NEEDS_TRANSLATION] Mantenemos una red local que nos avisa cómo está cada camino."
+      "Mostramos cómo preparamos las rutas y cómo probamos los caminos antes que los clientes.",
+      "Probamos alternativas, tiempos, caminos y niveles de dificultad reales.",
+      "Realizamos recorridos con pilotos de distintos niveles de experiencia.",
+      "Tenemos una red de contactos locales que nos informa las condiciones de los caminos."
     ],
     "stats": [
       {
-        "value": "4",
-        "label": "[NEEDS_TRANSLATION] rutas abiertas"
+        "value": "Exploración",
+        "label": "y experiencia real"
       },
       {
-        "value": "2+",
-        "label": "[NEEDS_TRANSLATION] vueltas por ruta"
+        "value": "Rutas",
+        "label": "testeadas"
       },
       {
-        "value": "[NEEDS_TRANSLATION] Cada día",
-        "label": "[NEEDS_TRANSLATION] con alternativa"
+        "value": "Aventura",
+        "label": "diseñada"
       },
       {
-        "value": "[NEEDS_TRANSLATION] Red local",
-        "label": "[NEEDS_TRANSLATION] en cada destino"
+        "value": "Red local",
+        "label": "condiciones reales"
       }
     ],
-    "process_eyebrow": "[NEEDS_TRANSLATION] Cómo probamos",
-    "process_heading": "[NEEDS_TRANSLATION] DEL PRIMER TRACK A LA RUTA FINAL",
+    "process_eyebrow": "Cómo probamos",
+    "process_heading": "EXPLORAR, AJUSTAR, VOLVER",
     "process_items": [
       {
-        "title": "[NEEDS_TRANSLATION] Exploramos",
-        "body": "[NEEDS_TRANSLATION] Salimos con una idea y dejamos que el terreno la rompa. El mapa dice una cosa; el ripio, la lluvia y la altura dicen otra."
+        "title": "Exploración",
+        "body": "Cada tour nace de explorar, equivocarse y volver a intentarlo. Diseñamos rutas y variantes que primero tuvimos que descubrir."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Abrimos variantes",
-        "body": "[NEEDS_TRANSLATION] Probamos sentidos, horarios, paradas, combustible y noches posibles. Una ruta no es una línea: es una decisión por día."
+        "title": "Ajustes",
+        "body": "Las rutas tienen un sentido. No es lo mismo hacer una ruta de norte a sur que de sur a norte: cambia la dificultad tecnica, la inmersion dentro del paisaje y la experiencia."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Descartamos",
-        "body": "[NEEDS_TRANSLATION] Hay caminos que son lindos pero no sostienen un grupo. Quedan afuera si no dan seguridad, ritmo o margen."
+        "title": "Problemas reales",
+        "body": "Cuando el clima nos hizo volver, cuando el mapa estaba equivocado o cuando una ruta quedó descartada, volvimos meses después."
       },
       {
-        "title": "[NEEDS_TRANSLATION] Volvemos",
-        "body": "[NEEDS_TRANSLATION] Cambiamos época, clima y nivel de riders. La versión final entra al tour cuando ya sabemos por qué existe."
+        "title": "Red Local",
+        "body": "Contamos con contactos locales que nos mantienen informados sobre el estado de los caminos y las condiciones reales de cada destino."
       }
     ],
-    "stories_eyebrow": "[NEEDS_TRANSLATION] Historias del taller",
-    "stories_heading": "[NEEDS_TRANSLATION] LAS VERSIONES QUE SOBREVIVIERON",
-    "cta_eyebrow": "[NEEDS_TRANSLATION] La ruta final",
-    "cta_heading": "[NEEDS_TRANSLATION] VIAJÁS SOBRE UNA RUTA QUE YA NOS PROBÓ",
-    "cta_body": "[NEEDS_TRANSLATION] El tour limpio está en la página comercial. Acá queda el barro: lo que probamos, lo que salió mal y lo que terminó entrando.",
-    "cta_primary": "[NEEDS_TRANSLATION] Ver las rutas",
-    "cta_secondary": "[NEEDS_TRANSLATION] Hablemos",
-    "empty": "[NEEDS_TRANSLATION] Pronto. Estamos escribiendo las primeras notas."
+    "stories_eyebrow": "Taller de Rutas",
+    "stories_heading": "DECISIONES DE DISEÑO DEL TOUR",
+    "cta_eyebrow": "La ruta final",
+    "cta_heading": "VIAJÁS SOBRE UNA RUTA QUE YA NOS PROBÓ",
+    "cta_body": "El tour limpio está en la página comercial. Acá queda el barro: lo que probamos, lo que salió mal y lo que terminó entrando.",
+    "cta_primary": "Ver las rutas",
+    "cta_secondary": "Hablemos",
+    "empty": "Pronto. Estamos escribiendo las primeras notas."
   },
   "journal_post": {
-    "back": "[NEEDS_TRANSLATION] Volver al taller",
-    "share_eyebrow": "[NEEDS_TRANSLATION] Más del taller"
+    "back": "Volver al taller",
+    "share_eyebrow": "Más del taller"
   },
   "form": {
-    "name_label": "[NEEDS_TRANSLATION] Tu nombre",
-    "name_placeholder": "[NEEDS_TRANSLATION] Cómo te llamás",
-    "email_label": "[NEEDS_TRANSLATION] Tu correo",
-    "email_placeholder": "[NEEDS_TRANSLATION] vos@correo.com",
-    "group_size_label": "[NEEDS_TRANSLATION] Cuántos son",
-    "group_size_placeholder": "[NEEDS_TRANSLATION] 1, 2, 4…",
-    "preferred_dates_label": "[NEEDS_TRANSLATION] Cuándo te gustaría",
-    "preferred_dates_placeholder": "[NEEDS_TRANSLATION] Marzo 2027 / fines / flexible",
-    "tour_label": "[NEEDS_TRANSLATION] Ruta que te interesa",
-    "tour_placeholder": "[NEEDS_TRANSLATION] Elegí una (o dejá en blanco)",
-    "tour_any": "[NEEDS_TRANSLATION] Cualquiera / no sé todavía",
-    "experience_label": "[NEEDS_TRANSLATION] Experiencia en moto",
-    "experience_placeholder": "[NEEDS_TRANSLATION] Cuántos años, qué moto, en qué andás",
-    "region_label": "[NEEDS_TRANSLATION] Región o ruta soñada",
-    "region_placeholder": "[NEEDS_TRANSLATION] Patagonia, Norte, Cordillera…",
-    "window_label": "[NEEDS_TRANSLATION] Ventana de fechas",
-    "window_placeholder": "[NEEDS_TRANSLATION] Octubre 2027, una semana, etc.",
-    "message_label": "[NEEDS_TRANSLATION] Tu mensaje",
-    "message_placeholder": "[NEEDS_TRANSLATION] Contanos un poco de vos y de lo que buscás.",
-    "pitch_label": "[NEEDS_TRANSLATION] Tu idea",
-    "pitch_placeholder": "[NEEDS_TRANSLATION] La ruta que tenés en la cabeza.",
-    "submit": "[NEEDS_TRANSLATION] Enviar",
-    "sending": "[NEEDS_TRANSLATION] Enviando…",
-    "success_heading": "[NEEDS_TRANSLATION] Recibimos tu mensaje.",
-    "success_body": "[NEEDS_TRANSLATION] Te escribimos en menos de 48 hs. Mientras tanto, leé las notas del taller.",
-    "error_heading": "[NEEDS_TRANSLATION] Algo no salió.",
-    "error_body": "[NEEDS_TRANSLATION] Probá de nuevo en un rato.",
-    "required": "[NEEDS_TRANSLATION] Completá este campo.",
-    "invalid_email": "[NEEDS_TRANSLATION] Ese correo no parece válido.",
-    "invalid_number": "[NEEDS_TRANSLATION] Tiene que ser un número."
+    "name_label": "Tu nombre",
+    "name_placeholder": "Cómo te llamás",
+    "email_label": "Tu correo",
+    "email_placeholder": "vos@correo.com",
+    "group_size_label": "Cuántos son",
+    "group_size_placeholder": "1, 2, 4…",
+    "preferred_dates_label": "Cuándo te gustaría",
+    "preferred_dates_placeholder": "Marzo 2027 / fines / flexible",
+    "tour_label": "Ruta que te interesa",
+    "tour_placeholder": "Elegí una (o dejá en blanco)",
+    "tour_any": "Cualquiera / no sé todavía",
+    "experience_label": "Experiencia en moto",
+    "experience_placeholder": "Cuántos años, qué moto, en qué andás",
+    "region_label": "Región o ruta soñada",
+    "region_placeholder": "Patagonia, Norte, Cordillera…",
+    "window_label": "Ventana de fechas",
+    "window_placeholder": "Octubre 2027, una semana, etc.",
+    "message_label": "Tu mensaje",
+    "message_placeholder": "Contanos un poco de vos y de lo que buscás.",
+    "pitch_label": "Tu idea",
+    "pitch_placeholder": "La ruta que tenés en la cabeza.",
+    "submit": "Enviar",
+    "sending": "Enviando…",
+    "success_heading": "Recibimos tu mensaje.",
+    "success_body": "Te escribimos en menos de 48 hs. Mientras tanto, leé las notas del taller.",
+    "error_heading": "Algo no salió.",
+    "error_body": "Probá de nuevo en un rato.",
+    "required": "Completá este campo.",
+    "invalid_email": "Ese correo no parece válido.",
+    "invalid_number": "Tiene que ser un número."
   }
 }

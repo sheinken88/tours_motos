@@ -30,6 +30,9 @@
   --color-danger: #7a2018;
   --color-info: #3d556c;
 
+  /* External channel color — explicitly requested for the floating WhatsApp CTA. */
+  --color-whatsapp-green: #25d366;
+
   /* ── Typography ─────────────────────────────────────────────────────────── */
 
   --font-display: var(--font-anton), "Impact", sans-serif;
@@ -53,8 +56,8 @@
   --text-display-md: 1.5rem;
   --text-display-md--line-height: 1.05;
 
-  --text-eyebrow: 0.8125rem;
-  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow: 1.125rem;
+  --text-eyebrow--line-height: 1.25;
   --text-eyebrow--letter-spacing: 0.12em;
 
   /* ── Letter spacing tokens ──────────────────────────────────────────────── */

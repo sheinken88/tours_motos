@@ -19,8 +19,7 @@ import { type Locale } from "@/lib/i18n/config";
  * tour_detail.missing_content.
  *
  * The four launch tours per /docs/tours-source.md (client-provided
- * 2026-05-10). EN/PT bodies are placeholders flagged [NEEDS_TRANSLATION]
- * until the translator passes (CLAUDE.md §8 forbids machine translation).
+ * 2026-05-10). EN/PT bodies are placeholders flagged  * until the translator passes (CLAUDE.md §8 forbids machine translation).
  */
 
 type MdxModule = { default: ComponentType };

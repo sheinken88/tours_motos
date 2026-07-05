@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Button, Container, DisplayHeading, Eyebrow, Stamp, XIcon } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
 import { CustomTourForm } from "@/components/forms";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
@@ -214,6 +214,26 @@ function RouteIdeaCard({ title, meta, body, index }: RouteIdea & { index: number
   );
 }
 
+function CheckMarkIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+      fill="none"
+    >
+      <path
+        d="M4 12.8 9.2 18 20 5.5"
+        stroke="currentColor"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        strokeWidth="3.5"
+      />
+    </svg>
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
@@ -389,7 +409,7 @@ export default async function CustomPage({ params }: Props) {
               <ul className="mt-7 grid gap-4 font-sans text-lg leading-relaxed sm:grid-cols-2">
                 {includesItems.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <XIcon className="mt-1.5 h-5 w-5 shrink-0" />
+                    <CheckMarkIcon className="mt-1.5 h-5 w-5 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -397,19 +417,21 @@ export default async function CustomPage({ params }: Props) {
             </div>
 
             <div
-              data-zone="red"
-              className="bg-ink bg-paper-grain text-on-red shadow-sticker-red border-paper/70 rotate-1 border-2 p-6 md:p-8"
+              data-zone="paper"
+              className="bg-paper-light bg-paper-grain text-on-paper shadow-sticker-ink border-paper rotate-1 border-2 p-6 md:p-8"
             >
               <div className="space-y-4">
-                <Eyebrow rule>{t("extras_eyebrow")}</Eyebrow>
-                <DisplayHeading size="lg" as="h3">
+                <Eyebrow rule style={{ color: "var(--color-brand-red)", opacity: 1 }}>
+                  {t("extras_eyebrow")}
+                </Eyebrow>
+                <DisplayHeading size="lg" as="h3" style={{ color: "var(--color-brand-red)" }}>
                   {t("extras_heading")}
                 </DisplayHeading>
               </div>
               <ul className="mt-7 space-y-4 font-sans text-lg leading-relaxed">
                 {extrasItems.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <XIcon className="text-brand-red-bright mt-1.5 h-5 w-5 shrink-0" />
+                    <CheckMarkIcon className="text-brand-red mt-1.5 h-5 w-5 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -457,7 +479,7 @@ export default async function CustomPage({ params }: Props) {
                 <ul className="mt-5 space-y-3 font-sans text-sm leading-relaxed">
                   {promptItems.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <XIcon className="mt-1 h-4 w-4 shrink-0" />
+                      <CheckMarkIcon className="mt-1 h-4 w-4 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}

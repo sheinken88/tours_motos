@@ -136,7 +136,7 @@ export default async function CalendarPage({ params }: Props) {
           <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
         </div>
 
-        <Container className="relative z-10 grid min-h-[68vh] gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.82fr)] lg:items-center xl:min-h-[72vh]">
+        <Container className="relative z-10 grid min-h-[68vh] gap-12 lg:grid-cols-[minmax(0,0.86fr)_minmax(31rem,1fr)] lg:items-center xl:min-h-[72vh]">
           <div className="max-w-[55rem] space-y-7">
             <div className="flex flex-wrap items-center gap-4">
               <Eyebrow>{t("eyebrow")}</Eyebrow>
@@ -148,19 +148,17 @@ export default async function CalendarPage({ params }: Props) {
             <p className="text-on-red max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
               {t("intro")}
             </p>
-            <p className="border-paper/50 text-paper/85 max-w-2xl border-l-2 pl-5 font-sans text-base leading-relaxed md:text-lg">
-              {t("hero_note")}
-            </p>
           </div>
 
-          <div className="relative -mx-5 pt-6 sm:-mx-8 md:mx-0 lg:pt-0">
+          <div className="relative -mx-5 pt-6 sm:-mx-8 md:mx-0 lg:-mr-10 lg:pt-0 xl:-mr-16">
             <RoutePrint
               alt={t("hero_image_alt")}
-              colorSrc="/images/tours/sobre_las_nubes/sobre_las_nubes_1_color.jpg"
-              halftoneSrc="/images/tours/sobre_las_nubes/sobre_las_nubes_1_halftone.png"
+              colorSrc="/images/Imagen%20Fondo%20Calendario.jpeg"
               priority
-              sizes="(min-width: 1024px) 42vw, 100vw"
-              className="h-72 rotate-1 sm:h-[23rem] lg:h-[31rem] xl:h-[35rem]"
+              sizes="(min-width: 1280px) 54vw, (min-width: 1024px) 50vw, 100vw"
+              width={1600}
+              height={737}
+              className="h-80 rotate-1 sm:h-[28rem] lg:h-[38rem] xl:h-[42rem]"
               imageClassName="object-center"
             />
             <div className="bg-paper-grain text-on-paper shadow-sticker-ink border-ink absolute -bottom-7 left-5 z-20 w-64 -rotate-2 border-2 p-5 sm:left-10 md:w-72 lg:-bottom-8 lg:left-0">
@@ -190,9 +188,14 @@ export default async function CalendarPage({ params }: Props) {
                 {t("season_heading")}
               </DisplayHeading>
             </div>
-            <p className="text-muted-on-paper font-sans text-lg leading-relaxed">
-              {t("season_intro")}
-            </p>
+            <div className="border-ink/35 space-y-3 border-l-2 pl-5">
+              <p className="text-accent-on-paper font-display text-4xl leading-none uppercase md:text-5xl">
+                {t("season_callout")}
+              </p>
+              <p className="text-muted-on-paper font-sans text-xl leading-relaxed md:text-2xl">
+                {t("season_body")}
+              </p>
+            </div>
           </div>
 
           <div className="border-ink/35 bg-paper-grain grid border-2 sm:grid-cols-2 lg:grid-cols-4">
@@ -215,9 +218,10 @@ export default async function CalendarPage({ params }: Props) {
               <DisplayHeading size="xl" as="h2">
                 {t("board_heading")}
               </DisplayHeading>
-              <p className="text-muted-on-red max-w-2xl font-sans text-lg leading-relaxed">
-                {t("board_intro")}
-              </p>
+              <div className="text-muted-on-red max-w-2xl space-y-4 font-sans text-lg leading-relaxed">
+                <p>{t("board_intro_detail")}</p>
+                <p>{t("board_intro_prompt")}</p>
+              </div>
             </div>
             <div className="border-paper/65 text-paper border-2 p-5 lg:rotate-1">
               <p className="text-eyebrow tracking-eyebrow font-semibold uppercase opacity-75">
@@ -327,7 +331,10 @@ export default async function CalendarPage({ params }: Props) {
             <DisplayHeading size="xl" as="h2">
               {t("cta_heading")}
             </DisplayHeading>
-            <p className="text-muted-on-paper font-sans text-lg leading-relaxed">{t("cta_body")}</p>
+            <div className="text-muted-on-paper space-y-3 font-sans text-lg leading-relaxed">
+              <p>{t("cta_body_lead")}</p>
+              <p>{t("cta_body_follow")}</p>
+            </div>
           </div>
           <div className="flex flex-wrap gap-4">
             <Button href={`/${locale}/contact`} variant="sticker-filled" tilt="left" edge={1}>

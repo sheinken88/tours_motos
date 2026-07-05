@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 import { TourGrid } from "@/components/sections/TourGrid";
-import { PlaceholderMountains } from "@/components/surfaces/PlaceholderHalftones";
-import { PaperZone, RedZone, RoutePrint } from "@/components/surfaces";
+import { PaperZone, RedZone } from "@/components/surfaces";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
@@ -59,15 +59,32 @@ export default async function ToursIndex({ params }: Props) {
 
   return (
     <>
-      <RedZone density="heavy" tornBottom={3} className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[52%] opacity-90">
-          <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
-        </div>
+      <RedZone density="heavy" tornBottom={3} className="min-h-[100svh] overflow-hidden !py-0">
+        <Image
+          src="/images/nosotros/428-DSC09893.jpg"
+          alt={t("hero_image_alt")}
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[54%_center]"
+        />
+        <div className="from-brand-red/[0.70] via-brand-red/[0.24] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+        <div className="from-ink/[0.30] via-ink/[0.08] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+        <div className="from-ink/[0.24] via-ink/[0.07] pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-2/5 bg-gradient-to-t to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
+        <div className="from-ink/[0.16] pointer-events-none absolute inset-x-0 top-0 z-[4] h-48 bg-gradient-to-b to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 z-[5] opacity-10 mix-blend-multiply [background-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14/.28)_45%,transparent_78%),url('/textures/halftone-overlay.svg')] [background-size:100%_100%,18px_18px]"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 z-[5] opacity-[0.08] mix-blend-multiply [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px]"
+          aria-hidden="true"
+        />
 
-        <Container className="relative z-10 grid min-h-[64vh] gap-10 lg:min-h-[68vh] lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.8fr)] lg:items-center xl:min-h-[72vh]">
-          <div className="max-w-[50rem] space-y-6">
+        <Container className="relative z-10 flex min-h-[100svh] items-center pt-32 pb-24 md:pt-40 md:pb-28">
+          <div className="max-w-[48rem] space-y-6">
             <Eyebrow>{t("eyebrow")}</Eyebrow>
-            <DisplayHeading size="2xl" as="h1">
+            <DisplayHeading size="2xl" as="h1" className="max-w-[9ch] leading-[0.88]">
               {t("headline")}
             </DisplayHeading>
             <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed md:text-2xl">
@@ -82,16 +99,6 @@ export default async function ToursIndex({ params }: Props) {
               </Button>
             </div>
           </div>
-
-          <div className="relative -mx-5 sm:-mx-8 md:mx-0">
-            <RoutePrint
-              alt={t("hero_image_alt")}
-              colorSrc="/images/nosotros/428-DSC09893.jpg"
-              priority
-              sizes="(min-width: 1024px) 44vw, 100vw"
-              className="h-72 sm:h-[22rem] md:rotate-1 lg:h-[30rem] lg:-rotate-1 xl:h-[34rem]"
-            />
-          </div>
         </Container>
       </RedZone>
 
@@ -102,7 +109,8 @@ export default async function ToursIndex({ params }: Props) {
           eyebrow={t("all_routes_eyebrow")}
           heading={t("all_routes_heading")}
           emptyMessage={t("empty")}
-          variant="posterWall"
+          variant="homeShowcase"
+          showHalftoneAccent={false}
         />
       </PaperZone>
     </>

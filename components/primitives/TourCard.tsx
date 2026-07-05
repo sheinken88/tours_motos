@@ -21,6 +21,11 @@ type TourCardProps = {
 const difficultyLabel: Record<Tour["difficulty"], { es: string; en: string; pt: string }> = {
   easy: { es: "fácil", en: "easy", pt: "fácil" },
   moderate: { es: "intermedio", en: "moderate", pt: "moderado" },
+  intermediate_plus_plus: {
+    es: "Intermediate++",
+    en: "Intermediate++",
+    pt: "Intermediate++",
+  },
   hard: { es: "duro", en: "hard", pt: "difícil" },
   expert: { es: "experto", en: "expert", pt: "expert" },
 };
@@ -79,6 +84,8 @@ export function TourCard({
   const poster = variant === "poster";
   const photo = variant === "photo";
   const gravelValue = tour.ripio_percent === null ? "-" : `${tour.ripio_percent}%`;
+  const photoObjectPositionClass =
+    photo && slug === "volcanes-del-norte" ? "object-[62%_center]" : "";
 
   const cardClass = poster
     ? [
@@ -106,32 +113,26 @@ export function TourCard({
         ].join(" ");
 
   return (
-    <Link href={`/tours/${slug}`} className={cardClass} aria-label={title}>
+    <Link href={`/tours/${slug}`} className={cardClass}>
       {photo ? (
         <>
-          <div className="bg-paper-aged relative min-h-0 flex-1 overflow-hidden">
-            <div
-              className="bg-halftone absolute inset-0 z-[1] opacity-35 mix-blend-multiply transition-opacity duration-200 group-hover:opacity-55"
-              aria-hidden="true"
-            />
-            {tour.hero_image ? (
+          <div className="bg-paper-aged relative aspect-[16/10] overflow-hidden">
+            {tour.hero_image_color ? (
+              <Image
+                src={tour.hero_image_color}
+                alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
+                fill
+                sizes="(min-width: 1280px) 42vw, (min-width: 768px) 50vw, 100vw"
+                draggable={false}
+                className={`ease-out-soft absolute inset-0 object-cover transition-transform duration-300 group-hover:scale-[1.02] ${photoObjectPositionClass}`}
+              />
+            ) : tour.hero_image ? (
               <HalftoneImage
                 src={tour.hero_image}
                 alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
                 fill
                 sizes="(min-width: 1280px) 42vw, (min-width: 768px) 50vw, 100vw"
-                className="object-cover mix-blend-multiply"
-              />
-            ) : null}
-            {tour.hero_image_color ? (
-              <Image
-                src={tour.hero_image_color}
-                alt=""
-                aria-hidden="true"
-                fill
-                sizes="(min-width: 1280px) 42vw, (min-width: 768px) 50vw, 100vw"
-                draggable={false}
-                className="ease-out-soft absolute inset-0 object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className={`object-cover mix-blend-multiply ${photoObjectPositionClass}`}
               />
             ) : null}
             <div className="absolute top-4 right-4 left-4 z-[3] flex items-start justify-between gap-4">
@@ -184,46 +185,29 @@ export function TourCard({
             />
           ) : null}
 
-          {/* Hero slot. Z-stack (bottom → top):
-          1. paper-aged field + halftone overlay (always — graceful fallback
-             for tours whose halftone PNG has not shipped yet).
-          2. HalftoneImage cropped to 4:3 (if hero_image resolves) — the
-             default visible state.
-          3. Color JPG (if hero_image_color resolves) layered on top at
-             opacity-0, crossfading to opacity-100 on card hover.
-          4. Region stamp, tilted top-left, on top of everything. */}
+          {/* Hero slot. Color images render first when available; the halftone
+             asset remains only as a fallback for tours without a color source. */}
           <div
             className={`bg-paper-aged relative overflow-hidden ${
               poster ? "border-ink/60 aspect-[16/10] border-b-2" : "aspect-[4/3]"
             }`}
           >
-            <div
-              className={`absolute inset-0 z-[1] mix-blend-multiply transition-opacity duration-200 ${
-                poster ? "opacity-35 group-hover:opacity-55" : "opacity-30"
-              }`}
-              style={{
-                backgroundImage: "url(/textures/halftone-overlay.svg)",
-                backgroundRepeat: "repeat",
-              }}
-            />
-            {tour.hero_image ? (
+            {tour.hero_image_color ? (
+              <Image
+                src={tour.hero_image_color}
+                alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                draggable={false}
+                className="ease-out-soft absolute inset-0 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+            ) : tour.hero_image ? (
               <HalftoneImage
                 src={tour.hero_image}
                 alt={tour.hero_image_alt[locale] || `${title} — ${region}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 className={`object-cover ${poster ? "mix-blend-multiply" : ""}`}
-              />
-            ) : null}
-            {tour.hero_image_color ? (
-              <Image
-                src={tour.hero_image_color}
-                alt=""
-                aria-hidden="true"
-                fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                draggable={false}
-                className="ease-out-soft absolute inset-0 object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             ) : null}
             <div className="absolute top-4 left-4 z-[3]">

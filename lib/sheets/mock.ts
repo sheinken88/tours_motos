@@ -14,8 +14,8 @@ import {
 
 const t = (es: string) => ({
   es,
-  en: `[NEEDS_TRANSLATION] ${es}`,
-  pt: `[NEEDS_TRANSLATION] ${es}`,
+  en: `${es}`,
+  pt: `${es}`,
 });
 
 const empty = { es: "", en: "", pt: "" };
@@ -47,8 +47,8 @@ function galleryImage({
 function highlights(items: string[]): ItineraryDay["highlights"] {
   return {
     es: items,
-    en: items.map((item) => `[NEEDS_TRANSLATION] ${item}`),
-    pt: items.map((item) => `[NEEDS_TRANSLATION] ${item}`),
+    en: items.map((item) => `${item}`),
+    pt: items.map((item) => `${item}`),
   };
 }
 
@@ -91,38 +91,6 @@ function itineraryDay({
 
 export const MOCK_TOURS: Tour[] = [
   {
-    slug: "gigantes-del-oeste",
-    sort_order: 1,
-    title: t("Gigantes del Oeste"),
-    slugs: {
-      es: "gigantes-del-oeste",
-      en: "gigantes-del-oeste",
-      pt: "gigantes-del-oeste",
-    },
-    region: t("Mendoza a La Rioja"),
-    difficulty: "moderate",
-    duration_days: 8,
-    distance_km: 2400,
-    ripio_percent: 30,
-    max_altitude_m: 4600,
-    base_price_usd: 0,
-    currency: "USD",
-    hero_image: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_halftone.png",
-    hero_image_color: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_color.jpg",
-    hero_image_drive_id: "",
-    hero_image_color_drive_id: "",
-    hero_image_alt: t("Moto de aventura cruzando el oeste argentino"),
-    summary: t(
-      "Ocho días desde Mendoza hasta La Rioja. 2400 km de cordillera, parques nacionales, rutas de alta montaña y pueblos que se ganan con horas de manejo.",
-    ),
-    tagline: t("2400 km. Ocho días. La cordillera se cruza arriba de la moto."),
-    seo_title: empty,
-    seo_description: t(
-      "Ocho días de moto por Mendoza, San Juan y La Rioja. 2400 km, ripio, cordillera y parques nacionales con Moto On/Off.",
-    ),
-    published: true,
-  },
-  {
     slug: "sobre-las-nubes",
     sort_order: 2,
     title: t("Sobre las Nubes"),
@@ -145,7 +113,7 @@ export const MOCK_TOURS: Tour[] = [
     hero_image_color_drive_id: "",
     hero_image_alt: t("Ruta de montaña en Salta y Jujuy"),
     summary: t(
-      "Siete días cruzando Salta y Jujuy. Asfalto, ripio, altura, selva y pueblos andinos. El Abra del Acay marca la vara: 4895 msnm, una ruta que se gana kilómetro a kilómetro.",
+      "Siete días en moto cruzando Salta y Jujuy. Asfalto, ripio, altura, selva y pueblos andinos. El Abra del Acay marca la vara: 4895 msnm, una ruta que se gana kilómetro a kilómetro.",
     ),
     tagline: t("1712 km. 4895 msnm. Siete días sobre las nubes."),
     seo_title: empty,
@@ -156,7 +124,7 @@ export const MOCK_TOURS: Tour[] = [
   },
   {
     slug: "volcanes-del-norte",
-    sort_order: 3,
+    sort_order: 1,
     title: t("Volcanes del Norte"),
     slugs: {
       es: "volcanes-del-norte",
@@ -164,7 +132,7 @@ export const MOCK_TOURS: Tour[] = [
       pt: "volcanes-del-norte",
     },
     region: t("Catamarca"),
-    difficulty: "hard",
+    difficulty: "intermediate_plus_plus",
     duration_days: 7,
     distance_km: 1917,
     ripio_percent: 50,
@@ -177,7 +145,7 @@ export const MOCK_TOURS: Tour[] = [
     hero_image_color_drive_id: "",
     hero_image_alt: t("Paisaje volcánico de Catamarca"),
     summary: t(
-      "Catamarca en siete días: cuestas, seismiles, salares, puna y volcanes. Una ruta de altura que alterna ripio, asfalto y jornadas largas para riders que ya saben lo que buscan.",
+      "Tour en moto por Catamarca\nCuestas Minas Capillitas, Balcón de Pissis, Campo de Piedra Pómez, salares, puna y volcanes. Una ruta de altura que alterna ripio, asfalto y jornadas para riders que ya saben lo que buscan.",
     ),
     tagline: t("Siete días entre volcanes, puna y caminos que ponen a prueba."),
     seo_title: empty,
@@ -188,7 +156,7 @@ export const MOCK_TOURS: Tour[] = [
   },
   {
     slug: "cruces-del-sur",
-    sort_order: 4,
+    sort_order: 3,
     title: t("Cruces del Sur"),
     slugs: {
       es: "cruces-del-sur",
@@ -209,12 +177,44 @@ export const MOCK_TOURS: Tour[] = [
     hero_image_color_drive_id: "",
     hero_image_alt: t("Riders avanzando por un camino de ripio en Patagonia"),
     summary: t(
-      "Carretera Austral, pasos fronterizos y ripio patagónico. 2321 km para cruzar bosques, lagos, viento y rutas que se recuerdan por lo que exigieron.",
+      "Carretera Austral en moto. Pasos fronterizos y ripio patagónico. 2321 km para cruzar bosques, lagos y rutas que se recuerdan por lo que exigieron.",
     ),
-    tagline: t("2321 km de Patagonia, viento y ripio ganado."),
+    tagline: t("2,321 km through Patagonia, lakes, and border crossings."),
     seo_title: empty,
     seo_description: t(
       "Tour de moto por Carretera Austral y Patagonia. Siete días, 2321 km y 45% ripio con Moto On/Off.",
+    ),
+    published: true,
+  },
+  {
+    slug: "gigantes-del-oeste",
+    sort_order: 4,
+    title: t("Gigantes del Oeste"),
+    slugs: {
+      es: "gigantes-del-oeste",
+      en: "gigantes-del-oeste",
+      pt: "gigantes-del-oeste",
+    },
+    region: t("Mendoza a La Rioja"),
+    difficulty: "moderate",
+    duration_days: 8,
+    distance_km: 2400,
+    ripio_percent: 30,
+    max_altitude_m: 4600,
+    base_price_usd: 0,
+    currency: "USD",
+    hero_image: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_halftone.png",
+    hero_image_color: "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_color.jpg",
+    hero_image_drive_id: "",
+    hero_image_color_drive_id: "",
+    hero_image_alt: t("Moto de aventura cruzando el oeste argentino"),
+    summary: t(
+      "Tour en moto por Mendoza, San Juan y La Rioja. Recorriendo la cordillera, Laguna Brava, Mina la Mejicana y caminos de montaña entre asfalto y ripio.",
+    ),
+    tagline: t("2400 km. Ocho días. La cordillera se cruza arriba de la moto."),
+    seo_title: empty,
+    seo_description: t(
+      "Ocho días de moto por Mendoza, San Juan y La Rioja. 2400 km, ripio, cordillera y parques nacionales con Moto On/Off.",
     ),
     published: true,
   },
@@ -241,16 +241,16 @@ export const MOCK_ITINERARY: ItineraryDay[] = [
         "Recta del Tintín",
       ],
       en: [
-        "[NEEDS_TRANSLATION] Embalse Cabra Corral",
-        "[NEEDS_TRANSLATION] Parque Nacional Los Cardones",
-        "[NEEDS_TRANSLATION] Cuesta del Obispo",
-        "[NEEDS_TRANSLATION] Recta del Tintín",
+        "Embalse Cabra Corral",
+        "Parque Nacional Los Cardones",
+        "Cuesta del Obispo",
+        "Recta del Tintín",
       ],
       pt: [
-        "[NEEDS_TRANSLATION] Embalse Cabra Corral",
-        "[NEEDS_TRANSLATION] Parque Nacional Los Cardones",
-        "[NEEDS_TRANSLATION] Cuesta del Obispo",
-        "[NEEDS_TRANSLATION] Recta del Tintín",
+        "Embalse Cabra Corral",
+        "Parque Nacional Los Cardones",
+        "Cuesta del Obispo",
+        "Recta del Tintín",
       ],
     },
   },
@@ -274,16 +274,16 @@ export const MOCK_ITINERARY: ItineraryDay[] = [
         "Garganta del Diablo",
       ],
       en: [
-        "[NEEDS_TRANSLATION] Quebrada de las Flechas",
-        "[NEEDS_TRANSLATION] Anfiteatro",
-        "[NEEDS_TRANSLATION] Quebrada de las Conchas",
-        "[NEEDS_TRANSLATION] Garganta del Diablo",
+        "Quebrada de las Flechas",
+        "Anfiteatro",
+        "Quebrada de las Conchas",
+        "Garganta del Diablo",
       ],
       pt: [
-        "[NEEDS_TRANSLATION] Quebrada de las Flechas",
-        "[NEEDS_TRANSLATION] Anfiteatro",
-        "[NEEDS_TRANSLATION] Quebrada de las Conchas",
-        "[NEEDS_TRANSLATION] Garganta del Diablo",
+        "Quebrada de las Flechas",
+        "Anfiteatro",
+        "Quebrada de las Conchas",
+        "Garganta del Diablo",
       ],
     },
   },
@@ -301,8 +301,8 @@ export const MOCK_ITINERARY: ItineraryDay[] = [
     ),
     highlights: {
       es: ["Abra del Acay"],
-      en: ["[NEEDS_TRANSLATION] Abra del Acay"],
-      pt: ["[NEEDS_TRANSLATION] Abra del Acay"],
+      en: ["Abra del Acay"],
+      pt: ["Abra del Acay"],
     },
   },
   {
@@ -319,26 +319,16 @@ export const MOCK_ITINERARY: ItineraryDay[] = [
     ),
     highlights: {
       es: ["Viaducto la Polvorilla", "La Juguetería", "Salinas Grandes", "Cerro de los 7 colores"],
-      en: [
-        "[NEEDS_TRANSLATION] Viaducto la Polvorilla",
-        "[NEEDS_TRANSLATION] La Juguetería",
-        "[NEEDS_TRANSLATION] Salinas Grandes",
-        "[NEEDS_TRANSLATION] Cerro de los 7 colores",
-      ],
-      pt: [
-        "[NEEDS_TRANSLATION] Viaducto la Polvorilla",
-        "[NEEDS_TRANSLATION] La Juguetería",
-        "[NEEDS_TRANSLATION] Salinas Grandes",
-        "[NEEDS_TRANSLATION] Cerro de los 7 colores",
-      ],
+      en: ["Viaducto la Polvorilla", "La Juguetería", "Salinas Grandes", "Cerro de los 7 colores"],
+      pt: ["Viaducto la Polvorilla", "La Juguetería", "Salinas Grandes", "Cerro de los 7 colores"],
     },
   },
   {
     tour_slug: "sobre-las-nubes",
     day_number: 5,
-    title: t("Tilcara → Santa Ana"),
+    title: t("Tilcara → Hornocal → Caspala"),
     route_from: "Tilcara",
-    route_to: "Santa Ana",
+    route_to: "Caspala",
     distance_km: 140,
     surface: t("20% asfalto"),
     max_altitude_m: 4550,
@@ -347,24 +337,16 @@ export const MOCK_ITINERARY: ItineraryDay[] = [
     ),
     highlights: {
       es: ["Hornocal", "Abra Azul", "Caspala"],
-      en: [
-        "[NEEDS_TRANSLATION] Hornocal",
-        "[NEEDS_TRANSLATION] Abra Azul",
-        "[NEEDS_TRANSLATION] Caspala",
-      ],
-      pt: [
-        "[NEEDS_TRANSLATION] Hornocal",
-        "[NEEDS_TRANSLATION] Abra Azul",
-        "[NEEDS_TRANSLATION] Caspala",
-      ],
+      en: ["Hornocal", "Abra Azul", "Caspala"],
+      pt: ["Hornocal", "Abra Azul", "Caspala"],
     },
   },
   {
     tour_slug: "sobre-las-nubes",
     day_number: 6,
-    title: t("Santa Ana → Parque Nacional Calilegua → Perico"),
-    route_from: "Santa Ana",
-    route_to: "Perico",
+    title: t("Caspala → Parque Nacional Calilegua → Libertador San Martín"),
+    route_from: "Caspala",
+    route_to: "Libertador San Martín",
     distance_km: 205,
     surface: t("50% asfalto"),
     max_altitude_m: null,
@@ -373,34 +355,26 @@ export const MOCK_ITINERARY: ItineraryDay[] = [
     ),
     highlights: {
       es: ["Parque Nacional Calilegua"],
-      en: ["[NEEDS_TRANSLATION] Parque Nacional Calilegua"],
-      pt: ["[NEEDS_TRANSLATION] Parque Nacional Calilegua"],
+      en: ["Parque Nacional Calilegua"],
+      pt: ["Parque Nacional Calilegua"],
     },
   },
   {
     tour_slug: "sobre-las-nubes",
     day_number: 7,
-    title: t("Perico → Termas de Reyes → Salta Capital"),
-    route_from: "Perico",
+    title: t("Libertador San Martín → Embalse Las Maderas → Salta"),
+    route_from: "Libertador San Martín",
     route_to: "Salta Capital",
     distance_km: 143,
     surface: t("80% asfalto"),
     max_altitude_m: null,
     body: t(
-      "Una jornada tranquila para cerrar la ruta. Ripio hasta Termas de Reyes, almuerzo junto al Dique La Ciénaga y unas dos horas finales de asfalto y curvas hasta volver a Salta Capital.",
+      "Una jornada tranquila para cerrar el tour. Almuerzo junto al Dique La Ciénaga y unas dos horas finales de asfalto y curvas hasta volver a Salta Capital.",
     ),
     highlights: {
-      es: ["Termas de Reyes", "Dique La Ciénaga", "Embalse Las Maderas"],
-      en: [
-        "[NEEDS_TRANSLATION] Termas de Reyes",
-        "[NEEDS_TRANSLATION] Dique La Ciénaga",
-        "[NEEDS_TRANSLATION] Embalse Las Maderas",
-      ],
-      pt: [
-        "[NEEDS_TRANSLATION] Termas de Reyes",
-        "[NEEDS_TRANSLATION] Dique La Ciénaga",
-        "[NEEDS_TRANSLATION] Embalse Las Maderas",
-      ],
+      es: ["Embalse Las Maderas", "Dique La Ciénaga"],
+      en: ["Embalse Las Maderas", "Dique La Ciénaga"],
+      pt: ["Embalse Las Maderas", "Dique La Ciénaga"],
     },
   },
 ];
@@ -414,7 +388,7 @@ MOCK_ITINERARY.push(
     route_to: "Uspallata",
     distance_km: 218,
     surface: "80% asfalto",
-    body: "Partimos desde Mendoza Capital rumbo a Potrerillos entre túneles, curvas y embalses. Después entramos a la Reserva Natural Villavicencio: ripio, 365 curvas y llegada al histórico hotel antes de dormir en Uspallata.",
+    body: "Partimos el tour en moto desde Mendoza Capital rumbo a Potrerillos entre túneles, curvas y embalses. Después entramos a la Reserva Natural Villavicencio: ripio, 365 curvas y llegada al histórico hotel antes de dormir en Uspallata.",
     highlights: ["Embalse Potrerillos", "Reserva Natural Villavicencio", "365 curvas"],
   }),
   itineraryDay({
@@ -437,7 +411,7 @@ MOCK_ITINERARY.push(
     route_to: "Calingasta",
     distance_km: 290,
     surface: "80% asfalto",
-    body: "Dejamos el valle mendocino para entrar en planicies abiertas y caminos solitarios. Pampa del Leoncito, Barreal y Laguna Blanca marcan un día de horizontes largos y atardeceres ganados.",
+    body: "Dejamos el valle mendocino para entrar en planicies abiertas y caminos solitarios. El tour en moto sigue por Pampa del Leoncito, Barreal y Laguna Blanca: un día de horizontes largos y atardeceres ganados.",
     highlights: ["Pampa Leoncito", "Barreal", "Laguna Blanca"],
   }),
   itineraryDay({
@@ -460,7 +434,7 @@ MOCK_ITINERARY.push(
     distance_km: 370,
     surface: "40% asfalto",
     max_altitude_m: 4300,
-    body: "Subimos a Laguna Brava, una laguna de alta montaña custodiada por silencio, flamencos y refugios de piedra. El ripio de Quebrada de la Troya y La Herradura pone color y exigencia al día.",
+    body: "Subimos a Laguna Brava en moto, una laguna de alta montaña custodiada por silencio, flamencos y refugios de piedra. El ripio de Quebrada de la Troya y La Herradura pone color y exigencia al día.",
     highlights: ["Laguna Brava", "Volcancito de Troya", "Quebrada de la Troya", "La Herradura"],
   }),
   itineraryDay({
@@ -483,7 +457,7 @@ MOCK_ITINERARY.push(
     distance_km: 240,
     surface: "20% asfalto",
     max_altitude_m: 4600,
-    body: "El ascenso a Mina La Mejicana es corto en kilómetros e intenso en historia, altura y paisaje. Cañón del Ocre, ríos anaranjados, estructuras abandonadas y silencio absoluto cierran el tramo más alto.",
+    body: "El ascenso a Mina La Mejicana en moto es corto en kilómetros e intenso en historia, altura y paisaje. Cañón del Ocre, ríos anaranjados, estructuras abandonadas y silencio absoluto cierran el tramo más alto del tour.",
     highlights: ["Cañón del Ocre", "Mina La Mejicana", "Los Pesebres"],
   }),
   itineraryDay({
@@ -657,12 +631,16 @@ MOCK_ITINERARY.push(
 );
 
 export const MOCK_TOUR_SECTIONS: TourSection[] = [
-  "Seis noches de alojamiento en hospedajes seleccionados",
-  "Vehículo de apoyo con mecánico durante toda la ruta",
-  "Combustible para todo el trayecto",
-  "Comidas y desayunos del itinerario",
-  "Guía rider con experiencia probada en el norte",
-  "Seguro básico de moto",
+  "Traslado de la moto ida y vuelta a destino",
+  "Seguro de carga de la moto",
+  "Refrigerios",
+  "Moto de repuesto",
+  "Starlink",
+  "Siete noches de alojamiento en hospedajes seleccionados",
+  "Vehículo de apoyo durante toda la ruta",
+  "Combustible de emergencia para todo el trayecto",
+  "Desayunos, almuerzos y cenas",
+  "Guía con experiencia probada en el oeste argentino",
 ].map((text, index) => ({
   tour_slug: "sobre-las-nubes",
   type: "included",
@@ -683,12 +661,93 @@ MOCK_TOUR_SECTIONS.push(
     text: t(text),
   })),
   ...[
-    "Cupo limitado por travesía. Para reservar tu lugar, escribinos.",
-    "Necesitás experiencia previa en ripio y manejo de altura.",
-    "Traé licencia vigente, documentación de la moto y seguro con cobertura de ruta.",
-    "La ventana ideal es marzo a mayo o septiembre a noviembre.",
+    "Cupo limitado por tour.",
+    "Esta travesía atraviesa altura sostenida (2500–4550 msnm).",
+    "Se requiere experiencia previa en ripio.",
   ].map((text, index) => ({
     tour_slug: "sobre-las-nubes",
+    type: "need_to_know" as const,
+    sort_order: index + 1,
+    text: t(text),
+  })),
+);
+
+MOCK_TOUR_SECTIONS.push(
+  ...[
+    "Traslado de la moto ida y vuelta a destino",
+    "Seguro de carga de la moto",
+    "Refrigerios",
+    "Moto de repuesto",
+    "Starlink",
+    "Siete noches de alojamiento en hospedajes seleccionados",
+    "Vehículo de apoyo durante toda la ruta",
+    "Combustible de emergencia para todo el trayecto",
+    "Desayunos, almuerzos y cenas",
+    "Guía con experiencia probada en el oeste argentino",
+  ].map((text, index) => ({
+    tour_slug: "volcanes-del-norte",
+    type: "included" as const,
+    sort_order: index + 1,
+    text: t(text),
+  })),
+  ...[
+    "Pasajes aéreos hasta Catamarca y desde Catamarca",
+    "Bebidas alcohólicas y comidas fuera del itinerario",
+    "Seguro de viajero con cobertura de moto",
+    "Alquiler de moto si no traés la tuya",
+  ].map((text, index) => ({
+    tour_slug: "volcanes-del-norte",
+    type: "not_included" as const,
+    sort_order: index + 1,
+    text: t(text),
+  })),
+  ...[
+    "Cupo limitado por tour.",
+    "Esta travesía atraviesa altura sostenida (2500–4550 msnm).",
+    "Se requiere experiencia previa en ripio.",
+  ].map((text, index) => ({
+    tour_slug: "volcanes-del-norte",
+    type: "need_to_know" as const,
+    sort_order: index + 1,
+    text: t(text),
+  })),
+);
+
+MOCK_TOUR_SECTIONS.push(
+  ...[
+    "Traslado de la moto ida y vuelta a destino",
+    "Seguro de carga de la moto",
+    "Refrigerios",
+    "Moto de repuesto",
+    "Starlink",
+    "Siete noches de alojamiento en hospedajes seleccionados",
+    "Vehículo de apoyo durante toda la ruta",
+    "Combustible de emergencia para todo el trayecto",
+    "Desayunos, almuerzos y cenas",
+    "Guía con experiencia probada en el oeste argentino",
+  ].map((text, index) => ({
+    tour_slug: "gigantes-del-oeste",
+    type: "included" as const,
+    sort_order: index + 1,
+    text: t(text),
+  })),
+  ...[
+    "Pasajes aéreos hasta Mendoza y desde La Rioja",
+    "Bebidas alcohólicas y comidas fuera del itinerario",
+    "Seguro de viajero con cobertura de moto",
+    "Alquiler de moto si no traés la tuya",
+  ].map((text, index) => ({
+    tour_slug: "gigantes-del-oeste",
+    type: "not_included" as const,
+    sort_order: index + 1,
+    text: t(text),
+  })),
+  ...[
+    "Cupo limitado por tour.",
+    "El tour cruza dos veces la frontera Argentina-Chile. DNI o pasaporte vigente y permiso para circular si la moto no está a tu nombre. Te asesoramos antes del viaje.",
+    "Se requiere experiencia previa en ripio.",
+  ].map((text, index) => ({
+    tour_slug: "gigantes-del-oeste",
     type: "need_to_know" as const,
     sort_order: index + 1,
     text: t(text),
@@ -767,8 +826,8 @@ export const MOCK_GALLERY: GalleryImage[] = [
   galleryImage({
     tour_slug: "gigantes-del-oeste",
     sort_order: 3,
-    image_url: "/images/tours/gigantes_del_oeste/20231107_162749.jpg",
-    alt: "Camino alto del oeste argentino",
+    image_url: "/images/tours/gigantes_del_oeste/gigantes-fotos-caco/DIA%203.png",
+    alt: "Motos avanzando por planicies abiertas en Gigantes del Oeste",
   }),
   galleryImage({
     tour_slug: "gigantes-del-oeste",
@@ -837,6 +896,36 @@ export const MOCK_GALLERY: GalleryImage[] = [
     alt: "Paisaje de cordillera atravesado en moto",
   }),
   galleryImage({
+    tour_slug: "gigantes-del-oeste",
+    sort_order: 15,
+    image_url: "/images/tours/gigantes_del_oeste/gigantes-fotos-caco/DIA%202.jpg",
+    alt: "Camino de alta montaña durante el día dos de Gigantes del Oeste",
+  }),
+  galleryImage({
+    tour_slug: "gigantes-del-oeste",
+    sort_order: 16,
+    image_url: "/images/tours/gigantes_del_oeste/gigantes-fotos-caco/DIA%204.png",
+    alt: "Riders avanzando por planicies de ripio en Gigantes del Oeste",
+  }),
+  galleryImage({
+    tour_slug: "gigantes-del-oeste",
+    sort_order: 17,
+    image_url: "/images/tours/gigantes_del_oeste/gigantes-fotos-caco/DIA%205.jpg",
+    alt: "Moto sobre camino abierto rumbo a Laguna Brava",
+  }),
+  galleryImage({
+    tour_slug: "gigantes-del-oeste",
+    sort_order: 18,
+    image_url: "/images/tours/gigantes_del_oeste/gigantes-fotos-caco/DIA%207.jpg",
+    alt: "Estructura minera en la ruta hacia Mina La Mejicana",
+  }),
+  galleryImage({
+    tour_slug: "gigantes-del-oeste",
+    sort_order: 19,
+    image_url: "/images/tours/gigantes_del_oeste/gigantes-fotos-caco/Galeria%20foto%206.jpg",
+    alt: "Grupo de motos detenido en un camino de montaña del oeste argentino",
+  }),
+  galleryImage({
     tour_slug: "volcanes-del-norte",
     sort_order: 1,
     image_url: "/images/tours/volcanes_del_norte/1.jpg",
@@ -894,27 +983,27 @@ export const MOCK_GALLERY: GalleryImage[] = [
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 1,
-    image_url: "/images/tours/cruces_del_sur/1.jpg",
-    alt: "Ruta patagónica en Cruces del Sur",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Galeria%201.jpeg",
+    alt: "Campo de Tulipanes, Trevelin.",
     featured: true,
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 2,
     image_url: "/images/tours/cruces_del_sur/2.jpg",
-    alt: "Ripio patagónico atravesado en moto",
+    alt: "Camino ripio, Carretera Austral",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 3,
-    image_url: "/images/tours/cruces_del_sur/3.jpg",
-    alt: "Camino de la Carretera Austral y Patagonia",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Dia%203.png",
+    alt: "Descanso entre la ruta 40 y la Carretera Austral",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 4,
-    image_url: "/images/tours/cruces_del_sur/4.jpg",
-    alt: "Ruta del sur con viento y distancia",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Dia%204.jpg",
+    alt: "Camino a Puerto Cisnes, Chile",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
@@ -931,32 +1020,32 @@ export const MOCK_GALLERY: GalleryImage[] = [
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 7,
-    image_url: "/images/tours/cruces_del_sur/7.jpg",
-    alt: "Rider cruzando una ruta de ripio del sur",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Dia%207.jpg",
+    alt: "Ruta 40, ripio hacia Chile",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 8,
     image_url: "/images/tours/cruces_del_sur/8.png",
-    alt: "Tramo de Patagonia dentro de Cruces del Sur",
+    alt: "Vista a volcán en la Carretera Austral",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 9,
-    image_url: "/images/tours/cruces_del_sur/9.png",
-    alt: "Camino patagónico exigido por viento y ripio",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Galeria%209.png",
+    alt: "Cruce de frontera hacia Chile",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 10,
-    image_url: "/images/tours/cruces_del_sur/10.png",
-    alt: "Ruta austral recorrida en moto",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Galeria%2010.jpeg",
+    alt: "Paso Roballos en moto, Argentina",
   }),
   galleryImage({
     tour_slug: "cruces-del-sur",
     sort_order: 11,
-    image_url: "/images/tours/cruces_del_sur/11.png",
-    alt: "Paisaje del sur cruzado sobre dos ruedas",
+    image_url: "/images/tours/cruces_del_sur/cruces-fotos-caco/Galeria%2011.jpg",
+    alt: "Paso Roballos en moto, Argentina",
   }),
 ];
 
@@ -992,6 +1081,6 @@ export const MOCK_DEPARTURES: Departure[] = [
     status: "open",
     price: 0,
     currency: "USD",
-    notes: t("Patagonia y Carretera Austral con viento, bosque, frontera y ripio."),
+    notes: t("Patagonia y Carretera Austral con bosque, frontera y ripio."),
   },
 ];

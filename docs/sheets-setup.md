@@ -75,7 +75,7 @@ the route facts displayed on the detail page.
 | `region_es` | yes | text | Example: `Salta y Jujuy`. |
 | `region_en` | yes | text | Localized region label. |
 | `region_pt` | yes | text | Localized region label. |
-| `difficulty` | yes | enum | `easy`, `moderate`, `hard`, `expert`. |
+| `difficulty` | yes | enum | `easy`, `moderate`, `Intermediate++`, `hard`, `expert`. |
 | `duration_days` | yes | integer | Positive number. |
 | `distance_km` | yes | integer | Total route distance. |
 | `ripio_percent` | no | integer | Percent gravel/dirt. Leave empty if unknown. |

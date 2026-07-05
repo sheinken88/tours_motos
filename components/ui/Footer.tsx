@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Button, Container, Eyebrow, SkullBadge } from "@/components/primitives";
 import { PaperZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
@@ -16,6 +16,7 @@ import { Link } from "@/lib/i18n/navigation";
  * the ornament artwork.
  */
 export async function Footer() {
+  const locale = await getLocale();
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
   const tCommon = await getTranslations("common");
@@ -90,7 +91,7 @@ export async function Footer() {
               </li>
               <li>
                 <a
-                  href="https://instagram.com/motoonoff"
+                  href="https://www.instagram.com/mototoursonoff/"
                   className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -115,7 +116,7 @@ export async function Footer() {
             <div className="flex flex-col items-start gap-6">
               <SkullBadge size="xl" className="text-brand-red" />
               <p className="text-on-paper max-w-prose text-sm">
-                Moto On/Off · {new Date().getFullYear()} — {t("rights")}
+                Moto On/Off · 2019 — {t("rights")}
               </p>
             </div>
             <div className="flex flex-col items-start gap-5">
@@ -132,7 +133,7 @@ export async function Footer() {
                 <Button href={whatsAppHref} external edge={2} tilt="right" variant="sticker-filled">
                   {tNav("cta")}
                 </Button>
-                <Button href="/tours" edge={3} tilt="left">
+                <Button href={`/${locale}/tours`} edge={3} tilt="left">
                   {tCommon("see_routes")}
                 </Button>
               </div>

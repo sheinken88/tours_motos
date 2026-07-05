@@ -54,6 +54,19 @@ const optionalNonNegativeInt = z.preprocess((value) => {
   return raw === "" ? null : Number(raw);
 }, z.number().int().nonnegative().nullable());
 
+const difficulty = z.preprocess((value) => {
+  const raw = cellToString(value)
+    .toLowerCase()
+    .replace(/\s+/g, "_")
+    .replace(/\+/g, "_plus");
+
+  if (raw === "intermedio_plus_plus" || raw === "intermediate_plus_plus") {
+    return "intermediate_plus_plus";
+  }
+
+  return raw;
+}, z.enum(["easy", "moderate", "intermediate_plus_plus", "hard", "expert"]));
+
 /** Sheets-style booleans: TRUE / FALSE / yes / no / 1 / 0. Empty = false. */
 const sheetsBool = z.preprocess((value) => {
   const raw = cellToString(value).toLowerCase();
@@ -128,7 +141,7 @@ export const TourSchema = z.object({
   /** Per-locale URL slugs — e.g. /es/tours/sobre-las-nubes. */
   slugs: localizedText,
   region: localizedText,
-  difficulty: z.enum(["easy", "moderate", "hard", "expert"]),
+  difficulty,
   duration_days: positiveInt,
   distance_km: positiveInt,
   ripio_percent: optionalNonNegativeInt,

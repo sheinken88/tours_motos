@@ -130,7 +130,7 @@ export default async function TourDetail({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
 
-      <TourHero tour={tour} locale={locale} />
+      <TourHero tour={tour} locale={locale} heroSummary={fm?.hero} />
 
       {hasStructuredBody ? (
         <TourCmsContent content={contentWithPracticalFallback} locale={locale} />

@@ -2,11 +2,11 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Button, Container, DisplayHeading, Eyebrow, Stamp, XIcon } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
 import { PaperZone, RedZone } from "@/components/surfaces";
+import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { listJournalEntries, type JournalEntry } from "@/lib/content/getJournalMdx";
 import {
-  WORKSHOP_CASES,
   listWorkshopCases,
   type WorkshopCase,
   type WorkshopCaseImage,
@@ -31,6 +31,69 @@ type ProcessItem = {
   title: string;
   body: string;
 };
+
+const TALLER_ROUTE_PHOTOS: WorkshopCaseImage[] = [
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/DSC04248.jpg",
+    alt: "Pilotos y motos detenidos junto a una construcción rural durante una prueba de ruta.",
+    label: "Salida de prueba",
+    caption: "Cada recorrido empieza con kilómetros reales, no con una línea dibujada.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/DSC04356.jpg",
+    alt: "Motos y carpas junto a un lago durante una exploración de ruta.",
+    label: "Noche medida",
+    caption: "Probamos dónde conviene cortar el día y cómo responde el grupo.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/DSC04474.jpg",
+    alt: "Formaciones rocosas altas en una quebrada recorrida durante el armado de ruta.",
+    label: "Terreno elegido",
+    caption: "El paisaje entra al tour cuando la logística también cierra.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/DSC04536.jpg",
+    alt: "Pilotos junto a motos cargadas en un camino de ripio de montaña.",
+    label: "Ritmo real",
+    caption: "Medimos paradas, tiempos y dificultad con motos cargadas.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/DSC04649.jpg",
+    alt: "Piloto en moto pasando un cartel naranja en un camino de montaña.",
+    label: "Camino revisado",
+    caption: "Volvemos al terreno hasta saber qué tramo aguanta.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/WhatsApp Image 2026-05-21 at 09.47.11 (2).jpeg",
+    alt: "Piloto cruzando agua sobre una moto durante un testeo de ruta.",
+    label: "Cruce probado",
+    caption: "Hay horas de testeo antes de abrir cupos.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/WhatsApp Image 2026-05-21 at 09.47.17 (1).jpeg",
+    alt: "Moto avanzando por barro y nieve durante una exploración de montaña.",
+    label: "Barro y nieve",
+    caption: "El mapa no cuenta cómo cambia el terreno bajo la rueda.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/WhatsApp Image 2026-05-27 at 11.09.17.jpeg",
+    alt: "Piloto en moto atravesando una ladera nevada en alta montaña.",
+    label: "Altura testeada",
+    caption: "Probamos dificultad real, no dificultad imaginada.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/WhatsApp Image 2026-05-27 at 11.09.18 (2).jpeg",
+    alt: "Valle de alta montaña con nieve durante una exploración de ruta.",
+    label: "Ventana de clima",
+    caption: "Las estaciones cambian el viaje; por eso volvemos.",
+  },
+  {
+    src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/caida 1.png",
+    alt: "Moto caída en un camino nevado durante una prueba de condiciones reales.",
+    label: "Condición real",
+    caption: "También medimos dónde el viaje deja de sumar y empieza a romper el ritmo.",
+  },
+];
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -58,8 +121,10 @@ export default async function TallerDeRutasIndex({ params }: Props) {
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, entries] = await Promise.all([
+  const [t, tWhatsApp, tCommon, entries] = await Promise.all([
     getTranslations({ locale, namespace: "journal_index" }),
+    getTranslations({ locale, namespace: "whatsapp" }),
+    getTranslations({ locale, namespace: "common" }),
     listJournalEntries(locale),
   ]);
   const tGrid = await getTranslations({ locale, namespace: "journal_grid" });
@@ -68,9 +133,11 @@ export default async function TallerDeRutasIndex({ params }: Props) {
   const stats = t.raw("stats") as WorkshopStat[];
   const processItems = t.raw("process_items") as ProcessItem[];
   const storyCases = listWorkshopCases(entries.map((entry) => entry.slug));
-  const visualCases = storyCases.length > 0 ? storyCases : Object.values(WORKSHOP_CASES);
-  const heroCase = WORKSHOP_CASES["armar-volcanes-del-norte"] ?? visualCases[0];
-  const ctaCase = WORKSHOP_CASES["armar-cruces-del-sur"];
+  const processPhotos = TALLER_ROUTE_PHOTOS.slice(0, 4);
+  const proofPhotos = TALLER_ROUTE_PHOTOS.slice(4);
+  const proofImage = proofPhotos[1] ?? proofPhotos[0];
+  const proofGalleryPhotos = proofPhotos.filter((image) => image.src !== proofImage?.src);
+  const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
 
   return (
     <>
@@ -79,10 +146,77 @@ export default async function TallerDeRutasIndex({ params }: Props) {
         eyebrow={t("eyebrow")}
         headline={t("headline")}
         intro={t("intro")}
-        ctaLabel={t("cta_primary")}
+        whatsAppHref={whatsAppHref}
+        whatsAppLabel={tWhatsApp("label")}
+        reserveLabel={tCommon("reserve_spot")}
       />
 
-      <PaperZone density="default" tornBottom={3}>
+      <PaperZone density="default" tornBottom={1}>
+        <Container className="space-y-10">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,1.14fr)] lg:items-end">
+            <div className="max-w-4xl space-y-3">
+              <Eyebrow rule>{t("process_eyebrow")}</Eyebrow>
+              <DisplayHeading size="xl" as="h2" className="max-w-[18ch]">
+                {t("process_heading")}
+              </DisplayHeading>
+            </div>
+            <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">
+              {localize(
+                locale,
+                "La idea no es improvisar la aventura. Es diseñarla para disfrutarla de verdad.",
+              )}
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,1.14fr)] lg:items-start">
+            <ol className="grid gap-4 sm:grid-cols-2">
+              {processItems.map((item, index) => (
+                <li
+                  key={item.title}
+                  className="border-ink/35 bg-paper-light/45 border-2 p-5 md:p-6"
+                >
+                  <p className="font-display text-accent-on-paper/70 text-5xl leading-none">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <DisplayHeading size="md" as="h3" distress={false} className="mt-5">
+                    {item.title}
+                  </DisplayHeading>
+                  <p className="mt-4 font-sans text-sm leading-relaxed opacity-85">{item.body}</p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
+              {processPhotos.map((image, index) => (
+                <WorkshopPhoto
+                  key={image.src}
+                  image={image}
+                  label={localize(locale, image.label)}
+                  sizes="(min-width: 1024px) 24vw, (min-width: 640px) 46vw, 92vw"
+                  aspectClassName="aspect-[4/3]"
+                  className={index % 2 === 0 ? "lg:-rotate-1" : "lg:rotate-1"}
+                  compact
+                  showCaption={false}
+                />
+              ))}
+            </div>
+          </div>
+        </Container>
+      </PaperZone>
+
+      <RedZone density="default" tornBottom={3}>
+        <WorkshopStoryWall
+          entries={entries}
+          cases={storyCases}
+          locale={locale}
+          eyebrow={t("stories_eyebrow")}
+          heading={t("stories_heading")}
+          readMoreLabel={tGrid("read_more")}
+          emptyMessage={t("empty")}
+        />
+      </RedZone>
+
+      <PaperZone density="default">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,1.08fr)] lg:items-start lg:gap-16">
             <div className="space-y-6">
@@ -94,7 +228,7 @@ export default async function TallerDeRutasIndex({ params }: Props) {
               <ul className="space-y-4">
                 {proofItems.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <XIcon className="text-accent-on-paper mt-1.5 h-5 w-5 shrink-0" />
+                    <CheckMarkIcon className="text-accent-on-paper mt-1.5 h-5 w-5 shrink-0" />
                     <span className="font-sans leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -119,115 +253,34 @@ export default async function TallerDeRutasIndex({ params }: Props) {
                   </div>
                 ))}
               </div>
-              {heroCase ? (
+              {proofImage ? (
                 <WorkshopPhoto
-                  image={heroCase.images[1] ?? heroCase.hero}
-                  label={localize(locale, "Notas de campo")}
+                  image={proofImage}
+                  label={localize(locale, proofImage.label)}
                   sizes="(min-width: 1024px) 44vw, 92vw"
                   aspectClassName="aspect-[16/9]"
                   className="lg:rotate-1"
-                  showLabel={false}
                   showCaption={false}
                 />
               ) : null}
-            </div>
-          </div>
-        </Container>
-      </PaperZone>
-
-      <RedZone density="default" tornBottom={4}>
-        <Container className="space-y-10">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,1.14fr)] lg:items-end">
-            <div className="max-w-4xl space-y-3">
-              <Eyebrow rule>{t("process_eyebrow")}</Eyebrow>
-              <DisplayHeading size="xl" as="h2" className="max-w-[18ch]">
-                {t("process_heading")}
-              </DisplayHeading>
-            </div>
-            <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">
-              {localize(
-                locale,
-                "La idea no es improvisar la aventura. Es diseñarla para disfrutarla de verdad.",
-              )}
-            </p>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,1.14fr)] lg:items-start">
-            <ol className="grid gap-4 sm:grid-cols-2">
-              {processItems.map((item, index) => (
-                <li key={item.title} className="border-paper/45 border-2 p-5 md:p-6">
-                  <p className="font-display text-paper/50 text-5xl leading-none">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <DisplayHeading size="md" as="h3" distress={false} className="mt-5">
-                    {item.title}
-                  </DisplayHeading>
-                  <p className="mt-4 font-sans text-sm leading-relaxed opacity-85">{item.body}</p>
-                </li>
-              ))}
-            </ol>
-
-            <div className="grid gap-5 sm:grid-cols-2 lg:gap-6">
-              {visualCases.slice(0, 4).map((item, index) => (
-                <WorkshopPhoto
-                  key={item.slug}
-                  image={item.images[index % item.images.length] ?? item.hero}
-                  label={localize(locale, item.routeName)}
-                  sizes="(min-width: 1024px) 24vw, (min-width: 640px) 46vw, 92vw"
-                  aspectClassName="aspect-[4/3]"
-                  className={index % 2 === 0 ? "lg:-rotate-1" : "lg:rotate-1"}
-                  compact
-                  showCaption={false}
-                />
-              ))}
-            </div>
-          </div>
-        </Container>
-      </RedZone>
-
-      <PaperZone density="default" tornBottom={1}>
-        <WorkshopStoryWall
-          entries={entries}
-          cases={storyCases}
-          locale={locale}
-          eyebrow={t("stories_eyebrow")}
-          heading={t("stories_heading")}
-          readMoreLabel={tGrid("read_more")}
-          emptyMessage={t("empty")}
-        />
-      </PaperZone>
-
-      <RedZone density="default">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.85fr)] lg:items-end">
-            <div className="space-y-4">
-              <Eyebrow rule>{t("cta_eyebrow")}</Eyebrow>
-              <DisplayHeading size="xl" as="h2" className="max-w-[12ch]">
-                {t("cta_heading")}
-              </DisplayHeading>
-              <p className="max-w-prose font-sans text-lg leading-relaxed">{t("cta_body")}</p>
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Button href={`/${locale}/tours`} variant="sticker-filled" edge={1} tilt="left">
-                  {t("cta_primary")}
-                </Button>
-                <Button href={`/${locale}/contact`} edge={3} tilt="right">
-                  {t("cta_secondary")}
-                </Button>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {proofGalleryPhotos.map((image, index) => (
+                  <WorkshopPhoto
+                    key={image.src}
+                    image={image}
+                    label={localize(locale, image.label)}
+                    sizes="(min-width: 1024px) 20vw, 46vw"
+                    aspectClassName="aspect-[4/3]"
+                    className={index % 2 === 0 ? "lg:-rotate-1" : "lg:rotate-1"}
+                    compact
+                    showCaption={false}
+                  />
+                ))}
               </div>
             </div>
-
-            {ctaCase ? (
-              <WorkshopPhoto
-                image={ctaCase.images[0] ?? ctaCase.hero}
-                label={localize(locale, "Ruta que sobrevivió")}
-                sizes="(min-width: 1024px) 34vw, 92vw"
-                aspectClassName="aspect-[16/10]"
-                className="lg:rotate-1"
-              />
-            ) : null}
           </div>
         </Container>
-      </RedZone>
+      </PaperZone>
     </>
   );
 }
@@ -237,19 +290,23 @@ function RouteWorkshopHero({
   eyebrow,
   headline,
   intro,
-  ctaLabel,
+  whatsAppHref,
+  whatsAppLabel,
+  reserveLabel,
 }: {
   locale: Locale;
   eyebrow: string;
   headline: string;
   intro: string;
-  ctaLabel: string;
+  whatsAppHref: string;
+  whatsAppLabel: string;
+  reserveLabel: string;
 }) {
   return (
-    <RedZone density="default" tornBottom={2} className="overflow-hidden">
+    <RedZone density="light" tornBottom={2} className="overflow-hidden pb-4 md:pb-6">
       <RouteWorkshopBackdrop />
 
-      <Container className="relative z-10 grid min-h-[64vh] gap-10 pt-10 md:pt-12 lg:min-h-[66vh] lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.74fr)] lg:items-center xl:min-h-[70vh]">
+      <Container className="relative z-10 grid min-h-[54vh] gap-10 pt-24 md:pt-16 lg:min-h-[56vh] lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.74fr)] lg:items-center xl:min-h-[60vh]">
         <div className="max-w-[62rem] space-y-6">
           <Eyebrow>{eyebrow}</Eyebrow>
           <DisplayHeading
@@ -262,9 +319,34 @@ function RouteWorkshopHero({
           <p className="text-paper/85 max-w-2xl font-sans text-lg leading-relaxed md:text-xl">
             {intro}
           </p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
-            <Button href={`/${locale}/tours`} variant="sticker-filled" edge={1} tilt="left">
-              {ctaLabel}
+          <div className="flex flex-col items-start gap-4 pt-1 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <Button
+                href={whatsAppHref}
+                external
+                variant="sticker-filled"
+                edge={1}
+                tilt="left"
+                className="whitespace-nowrap"
+              >
+                {whatsAppLabel}
+              </Button>
+              <Button
+                href={`/${locale}/reservas`}
+                edge={2}
+                tilt="right"
+                className="hidden whitespace-nowrap md:inline-flex"
+              >
+                {reserveLabel}
+              </Button>
+            </div>
+            <Button
+              href={`/${locale}/tours`}
+              variant="ghost"
+              tilt="left"
+              className="whitespace-nowrap"
+            >
+              {localize(locale, "Ver las rutas")}
             </Button>
             <Stamp tilt={2} className="text-paper/85">
               {localize(locale, "Rutas probadas")}
@@ -275,6 +357,20 @@ function RouteWorkshopHero({
         <RouteWorkshopArt locale={locale} />
       </Container>
     </RedZone>
+  );
+}
+
+function CheckMarkIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" className={className} fill="none">
+      <path
+        d="M4 12.8 9.2 18 20 5.5"
+        stroke="currentColor"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        strokeWidth="3.5"
+      />
+    </svg>
   );
 }
 
@@ -564,7 +660,12 @@ function WorkshopStoryWall({
                     <p className="text-eyebrow tracking-eyebrow text-accent-on-paper font-bold uppercase">
                       {item ? localize(locale, item.routeName) : localize(locale, "Taller")}
                     </p>
-                    <DisplayHeading size={large ? "lg" : "md"} as="h3" distress={false}>
+                    <DisplayHeading
+                      size={large ? "lg" : "md"}
+                      as="h3"
+                      distress={false}
+                      className="text-accent-on-paper"
+                    >
                       {entry.title}
                     </DisplayHeading>
                     {entry.excerpt ? (
@@ -651,5 +752,5 @@ function WorkshopPhoto({
 }
 
 function localize(locale: Locale, value: string) {
-  return locale === "es" ? value : `[NEEDS_TRANSLATION] ${value}`;
+  return locale === "es" ? value : `${value}`;
 }

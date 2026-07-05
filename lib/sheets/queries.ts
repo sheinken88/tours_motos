@@ -62,6 +62,10 @@ function resolveHeroImages(tours: Tour[]): Tour[] {
   }));
 }
 
+function sortTours(tours: Tour[]): Tour[] {
+  return [...tours].sort((a, b) => a.sort_order - b.sort_order);
+}
+
 function supplementMissingTourRows<T extends { tour_slug: string }>(rows: T[], fallback: T[]): T[] {
   const populatedTours = new Set(rows.map((row) => row.tour_slug));
   return [...rows, ...fallback.filter((row) => !populatedTours.has(row.tour_slug))];
@@ -79,12 +83,12 @@ async function fetchTours(): Promise<Tour[]> {
     if (process.env.NODE_ENV !== "production") {
       console.info("[sheets] credentials missing — serving mock tours");
     }
-    return resolveHeroImages(MOCK_TOURS.filter((tour) => tour.published));
+    return sortTours(resolveHeroImages(MOCK_TOURS.filter((tour) => tour.published)));
   }
 
   try {
     const { headers, rows } = await fetchSheetRows(TOURS_RANGE);
-    return resolveHeroImages(parseTours(headers, rows));
+    return sortTours(resolveHeroImages(parseTours(headers, rows)));
   } catch (error) {
     console.error("[sheets] fetchTours failed", error);
     return [];

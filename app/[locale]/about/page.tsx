@@ -30,41 +30,40 @@ type Props = {
 const nosotrosImages = {
   group: "/images/nosotros/43-DSC01360.jpg",
   dunes: "/images/nosotros/428-DSC09893.jpg",
+  galleryOne: "/images/nosotros/Galeria 1.jpg",
+  galleryTwo: "/images/nosotros/Galeria 2.jpg",
   riders: "/images/nosotros/20260331_120545.jpg",
   road: "/images/nosotros/20220905_150725.jpg",
   workshop: "/images/nosotros/20260402_180621.jpg",
   camp: "/images/nosotros/WhatsApp Image 2026-04-15 at 17.06.08.jpeg",
 } as const;
 
-const aboutHeroImage = {
-  src: "/images/tours/gigantes_del_oeste/IMG-20260421-WA0103.jpg",
-  alt: "Rider de Moto On/Off cruzando el oeste argentino durante Gigantes del Oeste",
+const aboutHeroBackground = {
+  src: "/images/nosotros/Fondo de pantalla Nosotros.jpg",
+  alt: "Equipo de Moto On/Off rodando una ruta de ripio en Argentina",
+  objectPosition: "54% center",
 } as const;
 
 const nosotrosCarouselImages = [
   {
-    src: nosotrosImages.group,
-    alt: "Grupo de riders de Moto On/Off reunido durante una travesía",
+    src: "/images/nosotros/nosotros-caco/Imagen 1.jpg",
+    alt: "Riders de Moto On/Off reunidos durante una salida en moto",
   },
   {
-    src: nosotrosImages.dunes,
-    alt: "Riders cruzando una zona de dunas y cordillera",
+    src: "/images/nosotros/nosotros-caco/Imagen 2.jpg",
+    alt: "Rider de Moto On/Off cruzando terreno de montaña",
   },
   {
-    src: nosotrosImages.riders,
-    alt: "Motos de aventura avanzando por una ruta de ripio",
+    src: "/images/nosotros/nosotros-caco/Imagen 3.jpg",
+    alt: "Grupo de motos de aventura en una ruta de ripio",
   },
   {
-    src: nosotrosImages.road,
-    alt: "Moto de aventura cargada en un camino de montaña",
+    src: "/images/nosotros/nosotros-caco/Imagen 4.jpg",
+    alt: "Riders avanzando por una ruta abierta entre montañas",
   },
   {
-    src: nosotrosImages.workshop,
-    alt: "Riders de Moto On/Off en una parada de ruta",
-  },
-  {
-    src: nosotrosImages.camp,
-    alt: "Riders compartiendo una parada durante un viaje en moto",
+    src: "/images/nosotros/nosotros-caco/Imagen 5.jpg",
+    alt: "Moto de aventura detenida sobre un camino de ripio",
   },
 ] as const;
 
@@ -86,9 +85,9 @@ const terrainList = [
 const commitmentTestimonials = [
   {
     quote:
-      "La ruta en moto hasta El Balcón del Pissis fue lo más impactante que he visto en mi vida. La vista del volcán a 4.500 metros fue mágica.",
-    rider: "Martín Gonzalez",
-    meta: "Volcanes del Norte · Balcón del Pissis",
+      "La Mina La Mejicana fue el desafío más grande que hice en moto. El grupo siempre con buena onda. Muy bueno todo.",
+    rider: "Diego Bianco",
+    meta: "Mina La Mejicana",
     tilt: -1.5,
   },
   {
@@ -100,9 +99,9 @@ const commitmentTestimonials = [
   },
   {
     quote:
-      "El Campo de Piedra Pómez fue como estar en otro planeta. Cada día fue una sorpresa. Nunca pensé que existían lugares así.",
-    rider: "Lucas Taccone",
-    meta: "Volcanes del Norte · Campo de Piedra Pómez",
+      "El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.",
+    rider: "Martin Pujol",
+    meta: "7 días de ruta",
     tilt: -1,
   },
 ] satisfies Array<{
@@ -124,6 +123,46 @@ type AboutContactCtaProps = {
   whatsAppHref: string;
   contactHref: string;
 };
+
+function AboutHero({ eyebrow, heading, body }: { eyebrow: string; heading: string; body: string }) {
+  return (
+    <RedZone density="heavy" tornBottom={1} className="min-h-[100svh] overflow-hidden !py-0">
+      <Image
+        src={aboutHeroBackground.src}
+        alt={aboutHeroBackground.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 z-0 h-full w-full object-cover"
+        style={{ objectPosition: aboutHeroBackground.objectPosition }}
+      />
+      <div className="from-brand-red/[0.70] via-brand-red/[0.24] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+      <div className="from-ink/[0.30] via-ink/[0.08] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
+      <div className="from-ink/[0.24] via-ink/[0.07] pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-2/5 bg-gradient-to-t to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
+      <div className="from-ink/[0.16] pointer-events-none absolute inset-x-0 top-0 z-[4] h-48 bg-gradient-to-b to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
+      <div
+        className="from-ink via-ink/[0.28] pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r to-transparent [mask-image:linear-gradient(to_right,black_0%,black_45%,transparent_78%)] opacity-10 mix-blend-multiply"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[5] [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px] opacity-[0.08] mix-blend-multiply"
+        aria-hidden="true"
+      />
+
+      <Container className="relative z-10 flex min-h-[100svh] items-center pt-32 pb-24 md:pt-40 md:pb-28">
+        <div className="max-w-[52rem] space-y-6">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <DisplayHeading size="2xl" as="h1" className="max-w-[10ch] leading-[0.88]">
+            {heading}
+          </DisplayHeading>
+          <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed whitespace-pre-line md:text-2xl">
+            {body}
+          </p>
+        </div>
+      </Container>
+    </RedZone>
+  );
+}
 
 function PosterPhoto({
   src,
@@ -170,42 +209,34 @@ function PosterPhoto({
           isColor ? "opacity-5" : "opacity-15"
         }`}
       />
-      <div
-        className={`pointer-events-none absolute inset-0 mix-blend-multiply ${
-          isColor ? "opacity-15" : "opacity-25"
-        }`}
-        style={{
-          backgroundImage: "url(/textures/halftone-overlay.svg)",
-          backgroundRepeat: "repeat",
-        }}
-        aria-hidden="true"
-      />
     </div>
   );
 }
 
 function NosotrosCarousel() {
   return (
-    <div
-      className="border-ink/30 bg-paper-light shadow-sticker-ink border-2 p-4 md:p-5"
-      aria-label="Fotos de Moto On/Off"
-    >
-      <div className="grid [scroll-snap-type:x_mandatory] auto-cols-[minmax(16rem,76vw)] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain pb-3 md:auto-cols-[minmax(22rem,38vw)] lg:auto-cols-[minmax(24rem,30vw)]">
-        {nosotrosCarouselImages.map((image, index) => (
-          <div
-            key={image.src}
-            className={`[scroll-snap-align:start] ${index % 2 === 0 ? "-rotate-1" : "rotate-1"}`}
-          >
-            <PosterPhoto
-              src={image.src}
-              alt={image.alt}
-              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 38vw, 76vw"
-              className="aspect-[4/3]"
-            />
-          </div>
-        ))}
+    <section className="space-y-6" aria-label="Fotos de Moto On/Off">
+      <Eyebrow rule>Fotos de ruta</Eyebrow>
+      <div className="border-ink/25 -mx-5 overflow-x-auto border-y-2 py-5 sm:-mx-8 lg:mx-0">
+        <div className="flex snap-x snap-mandatory gap-4 px-5 sm:px-8 lg:px-0">
+          {nosotrosCarouselImages.map((image) => (
+            <figure
+              key={image.src}
+              className="text-on-paper group/gallery-frame border-ink/60 bg-paper-aged shadow-sticker-ink hover:shadow-sticker-red relative aspect-[16/10] w-[86vw] shrink-0 snap-start overflow-hidden border-2 transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-1 sm:w-[42rem] lg:w-[48rem]"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1024px) 760px, (min-width: 640px) 78vw, 92vw"
+                draggable={false}
+                className="object-cover object-center saturate-110 transition-transform duration-300 ease-out group-hover/gallery-frame:scale-[1.03]"
+              />
+            </figure>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -258,7 +289,7 @@ function AboutContactCta({
                   key={item}
                   className="border-ink/35 flex items-start gap-3 border-b-2 p-4 last:border-b-0 md:p-5"
                 >
-                  <XIcon className="text-accent-on-paper mt-1 h-4 w-4 shrink-0" />
+                  <CheckMark className="text-accent-on-paper mt-0.5 shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -278,6 +309,17 @@ function ProofStamp({ value, label }: { value: string; label: string }) {
         {label}
       </p>
     </div>
+  );
+}
+
+function CheckMark({ className = "" }: { className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`font-display text-2xl leading-none text-current ${className}`}
+    >
+      ✓
+    </span>
   );
 }
 
@@ -401,15 +443,7 @@ export default async function AboutPage({ params }: Props) {
   if (locale !== "es") {
     return (
       <>
-        <RedZone density="heavy" tornBottom={1}>
-          <Container className="space-y-6">
-            <Eyebrow>{t("eyebrow")}</Eyebrow>
-            <DisplayHeading size="2xl" as="h1" className="leading-display">
-              {t("headline")}
-            </DisplayHeading>
-            <p className="max-w-prose font-sans text-lg leading-relaxed">{t("subheadline")}</p>
-          </Container>
-        </RedZone>
+        <AboutHero eyebrow={t("eyebrow")} heading={t("headline")} body={t("subheadline")} />
 
         <PaperZone density="default" tornBottom={2}>
           <Container width="narrow">
@@ -455,34 +489,12 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <>
-      <RedZone density="heavy" tornBottom={1} className="overflow-hidden">
-        <Container>
-          <div className="grid items-end gap-12 lg:grid-cols-[1fr_0.78fr] lg:items-center">
-            <div className="space-y-6">
-              <Eyebrow>{t("eyebrow")}</Eyebrow>
-              <DisplayHeading size="2xl" as="h1" className="leading-display">
-                EL EQUIPO QUE ABRE LA HUELLA
-              </DisplayHeading>
-              <p className="max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
-                Somos el equipo que diseña, prueba y guía cada ruta. Antes de invitarte a cruzarla,
-                la rodamos nosotros.
-              </p>
-            </div>
-            <div className="relative min-h-80 lg:min-h-[34rem]">
-              <PosterPhoto
-                src={aboutHeroImage.src}
-                alt={aboutHeroImage.alt}
-                sizes="(min-width: 1024px) 38vw, 100vw"
-                className="absolute inset-x-0 top-0 h-72 rotate-1 md:h-96 lg:h-[27rem]"
-                treatment="color"
-              />
-              <div className="bg-paper text-accent-on-paper shadow-sticker-ink font-display absolute right-4 bottom-2 z-10 max-w-56 -rotate-2 border-2 border-current px-5 py-4 text-2xl leading-none uppercase md:right-10">
-                ON the Adventure. OFF the Map.
-              </div>
-            </div>
-          </div>
-        </Container>
-      </RedZone>
+      <AboutHero
+        eyebrow={t("eyebrow")}
+        heading="EL EQUIPO QUE ABRE LA HUELLA"
+        body={`Somos el equipo que diseña, prueba y guía cada ruta.
+No abrimos una salida hasta haberla recorrido, medido y ajustado el terreno.`}
+      />
 
       <PaperZone density="default" tornBottom={2}>
         <Container className="space-y-12">
@@ -516,14 +528,14 @@ export default async function AboutPage({ params }: Props) {
             </div>
             <div className="grid min-h-[34rem] grid-cols-5 grid-rows-5 gap-4">
               <PosterPhoto
-                src={nosotrosImages.dunes}
-                alt="Riders cruzando una zona de dunas y cordillera"
+                src={nosotrosImages.galleryOne}
+                alt="Riders de Moto On/Off avanzando en una ruta de ripio"
                 sizes="(min-width: 1024px) 38vw, 100vw"
                 className="col-span-5 row-span-3 -rotate-1"
               />
               <PosterPhoto
-                src={nosotrosImages.riders}
-                alt="Motos de aventura avanzando por una ruta de ripio"
+                src={nosotrosImages.galleryTwo}
+                alt="Grupo de riders de Moto On/Off durante una travesía"
                 sizes="(min-width: 1024px) 22vw, 55vw"
                 className="col-span-3 row-span-2 rotate-1"
               />
@@ -550,7 +562,7 @@ export default async function AboutPage({ params }: Props) {
             <ul className="grid gap-4 font-sans text-lg leading-relaxed md:grid-cols-2">
               {routePrinciples.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <XIcon className="mt-1 h-5 w-5 shrink-0" />
+                  <CheckMark className="mt-0.5 shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -571,10 +583,10 @@ export default async function AboutPage({ params }: Props) {
               </div>
               <div className="space-y-6">
                 <p className="max-w-3xl font-sans text-lg leading-relaxed">
-                  No hacemos tours masivos. Planificamos cada viaje en moto al detalle, desde los
-                  hoteles, las paradas y las horas de manejo. Brindamos apoyo y organización para
-                  que la experiencia sea intensa y auténtica. Hacemos especial foco en el grupo
-                  humano.
+                  No hacemos tours masivos. En un viaje en moto la ruta importa, pero también
+                  quiénes la comparten. Armamos grupos chicos para ayudarnos, acompañarnos y
+                  disfrutar el camino como equipo. Porque una gran experiencia no la hace solamente
+                  el paisaje.
                 </p>
                 <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed md:grid-cols-3">
                   {terrainList.map((item) => (
@@ -608,8 +620,8 @@ export default async function AboutPage({ params }: Props) {
               </DisplayHeading>
             </div>
             <p className="max-w-3xl font-sans text-xl leading-relaxed md:text-2xl">
-              Animamos a la gente a una experiencia que va más allá del camino. Más de 6 años de
-              experiencia respaldan nuestro compromiso.
+              Invitamos a vivir una experiencia que va más allá del camino. Ganar confianza, sumar
+              herramientas y volver del viaje siendo un mejor piloto.
             </p>
           </div>
 

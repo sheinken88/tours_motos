@@ -1,4 +1,4 @@
-import { Button, Container, DisplayHeading, Eyebrow, XIcon } from "@/components/primitives";
+import { Button, Container, DisplayHeading, Eyebrow } from "@/components/primitives";
 
 type RouteStat = {
   value: string;
@@ -145,7 +145,7 @@ export function CustomRouteTeaser({
             <ul className="grid gap-4 sm:grid-cols-2">
               {items.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <XIcon className="text-brand-red mt-1 h-5 w-5 shrink-0" />
+                  <CheckMarkIcon className="text-brand-red mt-1 h-5 w-5 shrink-0" />
                   <span className="font-sans text-base leading-relaxed">{item}</span>
                 </li>
               ))}
@@ -154,5 +154,25 @@ export function CustomRouteTeaser({
         </div>
       </div>
     </Container>
+  );
+}
+
+function CheckMarkIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+      fill="none"
+    >
+      <path
+        d="M4 12.8 9.2 18 20 5.5"
+        stroke="currentColor"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        strokeWidth="3.5"
+      />
+    </svg>
   );
 }

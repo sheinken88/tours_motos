@@ -1,0 +1,272 @@
+- generic [ref=f1e1]:
+  - generic "Google Maps" [ref=f1e2]:
+    - alert "Copiado en el portapapeles" [ref=f1e362]:
+      - generic [ref=f1e363]: Copiado en el portapapeles
+      - button "Descartar" [ref=f1e364] [cursor=pointer]:
+        - generic [ref=f1e365]: 
+    - generic [ref=f1e7]:
+      - application "Mapa·Usa las teclas de flecha para desplazarte por el mapa.·Obtén detalles sobre un lugar al presionar la tecla de número correspondiente." [ref=f1e12]
+      - generic [ref=f1e18]:
+        - generic [ref=f1e20]:
+          - radiogroup [ref=f1e21]:
+            - generic [ref=f1e22]:
+              - radio "Medios de transporte óptimos" [disabled] [ref=f1e24]:
+                - img "Medios de transporte óptimos" [ref=f1e25]:
+                  - generic [ref=f1e27]: 
+              - radio "Automóvil 41 h" [checked] [ref=f1e31]:
+                - img "Automóvil" [ref=f1e32]:
+                  - generic [ref=f1e34]: 
+                - generic [ref=f1e35]: 41 h
+              - radio "Transporte público" [ref=f1e37] [cursor=pointer]:
+                - img "Transporte público" [ref=f1e38]:
+                  - generic [ref=f1e40]: 
+              - radio "Caminar 21 días" [ref=f1e42] [cursor=pointer]:
+                - img "Caminar" [ref=f1e43]:
+                  - generic [ref=f1e45]: 
+                - generic [ref=f1e46]: 21 días
+              - radio "Bicicleta 6 días" [ref=f1e48] [cursor=pointer]:
+                - img "Bicicleta" [ref=f1e49]:
+                  - generic [ref=f1e51]: 
+                - generic [ref=f1e52]: 6 días
+              - radio "Avión no disponible" [disabled] [ref=f1e54]:
+                - img "Avión no disponible" [ref=f1e55]:
+                  - generic [ref=f1e57]: 
+          - button "Cerrar indicaciones" [ref=f1e60] [cursor=pointer]:
+            - generic [ref=f1e61]: 
+        - list [ref=f1e63]:
+          - listitem [ref=f1e64]:
+            - generic [ref=f1e65]:
+              - generic [ref=f1e66]: 
+              - generic [ref=f1e67]: 
+            - generic [ref=f1e68]:
+              - combobox [ref=f1e70]:
+                - textbox "Punto de partida San Carlos de Bariloche, Río Negro" [ref=f1e71]:
+                  - /placeholder: ""
+                  - text: San Carlos de Bariloche, Río Negro
+              - button "Buscar" [ref=f1e72]:
+                - generic [ref=f1e73]: 
+              - button "Eliminar punto de partida" [ref=f1e74] [cursor=pointer]:
+                - generic [ref=f1e75]: 
+          - listitem [ref=f1e77]:
+            - generic [ref=f1e78]:
+              - generic [ref=f1e79]: 
+              - generic [ref=f1e80]: 
+            - generic [ref=f1e81]:
+              - combobox [ref=f1e83]:
+                - textbox "Destino Trevelin, Chubut" [ref=f1e84]:
+                  - /placeholder: ""
+                  - text: Trevelin, Chubut
+              - button "Buscar" [ref=f1e85]:
+                - generic [ref=f1e86]: 
+              - button "Eliminar destino" [ref=f1e87] [cursor=pointer]:
+                - generic [ref=f1e88]: 
+          - listitem [ref=f1e90]:
+            - generic [ref=f1e91]:
+              - generic [ref=f1e92]: 
+              - generic [ref=f1e93]: 
+            - generic [ref=f1e94]:
+              - combobox [ref=f1e96]:
+                - textbox "Destino Chile Chico, Aysén, Chile" [ref=f1e97]:
+                  - /placeholder: ""
+                  - text: Chile Chico, Aysén, Chile
+              - button "Buscar" [ref=f1e98]:
+                - generic [ref=f1e99]: 
+              - button "Eliminar destino" [ref=f1e100] [cursor=pointer]:
+                - generic [ref=f1e101]: 
+          - listitem [ref=f1e103]:
+            - generic [ref=f1e104]:
+              - generic [ref=f1e105]: 
+              - generic [ref=f1e106]: 
+            - generic [ref=f1e107]:
+              - combobox [ref=f1e109]:
+                - textbox "Destino Cochrane, Aysén, Chile" [ref=f1e110]:
+                  - /placeholder: ""
+                  - text: Cochrane, Aysén, Chile
+              - button "Buscar" [ref=f1e111]:
+                - generic [ref=f1e112]: 
+              - button "Eliminar destino" [ref=f1e113] [cursor=pointer]:
+                - generic [ref=f1e114]: 
+          - listitem [ref=f1e116]:
+            - generic [ref=f1e117]:
+              - generic [ref=f1e118]: 
+              - generic [ref=f1e119]: 
+            - generic [ref=f1e120]:
+              - combobox [ref=f1e122]:
+                - textbox "Destino Paso Roballo, Santa Cruz" [ref=f1e123]:
+                  - /placeholder: ""
+                  - text: Paso Roballo, Santa Cruz
+              - button "Buscar" [ref=f1e124]:
+                - generic [ref=f1e125]: 
+              - button "Eliminar destino" [ref=f1e126] [cursor=pointer]:
+                - generic [ref=f1e127]: 
+          - listitem [ref=f1e129]:
+            - generic [ref=f1e130]:
+              - generic [ref=f1e131]: 
+              - generic [ref=f1e132]: 
+            - generic [ref=f1e133]:
+              - combobox [ref=f1e135]:
+                - textbox "Destino Perito Moreno, Santa Cruz" [ref=f1e136]:
+                  - /placeholder: ""
+                  - text: Perito Moreno, Santa Cruz
+              - button "Buscar" [ref=f1e137]:
+                - generic [ref=f1e138]: 
+              - button "Eliminar destino" [ref=f1e139] [cursor=pointer]:
+                - generic [ref=f1e140]: 
+          - listitem [ref=f1e142]:
+            - generic [ref=f1e143]:
+              - generic [ref=f1e144]: 
+              - generic [ref=f1e145]: 
+            - generic [ref=f1e146]:
+              - combobox [ref=f1e148]:
+                - textbox "Destino RP44, Chubut" [ref=f1e149]:
+                  - /placeholder: ""
+                  - text: RP44, Chubut
+              - button "Buscar" [ref=f1e150]:
+                - generic [ref=f1e151]: 
+              - button "Eliminar destino" [ref=f1e152] [cursor=pointer]:
+                - generic [ref=f1e153]: 
+          - listitem [ref=f1e155]:
+            - generic [ref=f1e157]: 
+            - generic [ref=f1e158]:
+              - combobox [ref=f1e160]:
+                - textbox "Destino San Carlos de Bariloche, Río Negro" [ref=f1e161]:
+                  - /placeholder: ""
+                  - text: San Carlos de Bariloche, Río Negro
+              - button "Buscar" [ref=f1e162]:
+                - generic [ref=f1e163]: 
+              - button "Eliminar destino" [ref=f1e164] [cursor=pointer]:
+                - generic [ref=f1e165]: 
+      - generic [ref=f1e167]:
+        - generic [ref=f1e168]:
+          - list [ref=f1e170]:
+            - listitem [ref=f1e171]:
+              - button "Menú" [ref=f1e172] [cursor=pointer]:
+                - generic [ref=f1e174]: 
+            - listitem [ref=f1e175]:
+              - button "Guardado" [ref=f1e176] [cursor=pointer]:
+                - generic [ref=f1e178]: 
+                - generic [ref=f1e180]: Guardado
+            - listitem [ref=f1e181]:
+              - button "Recientes" [ref=f1e182] [cursor=pointer]:
+                - generic [ref=f1e184]: 
+                - generic [ref=f1e186]: Recientes
+            - listitem [ref=f1e188]:
+              - button "San Carlos de Bariloche 41 h" [ref=f1e189] [cursor=pointer]:
+                - generic [ref=f1e195]: 
+                - generic [ref=f1e196]:
+                  - generic [ref=f1e197]: San Carlos de Bariloche
+                  - generic [ref=f1e198]: 41 h
+            - listitem [ref=f1e199]:
+              - button "Trevelin" [ref=f1e200] [cursor=pointer]:
+                - generic [ref=f1e206]: Trevelin
+              - button "San Carlos de Bariloche" [ref=f1e207] [cursor=pointer]:
+                - generic [ref=f1e213]: San Carlos de Bariloche
+            - listitem [ref=f1e214]:
+              - button "Ver más" [ref=f1e215] [cursor=pointer]:
+                - generic [ref=f1e221]: 
+                - generic [ref=f1e223]: Ver más
+            - listitem [ref=f1e225]:
+              - button "Obtener app" [ref=f1e226] [cursor=pointer]:
+                - generic [ref=f1e228]: 
+                - generic [ref=f1e230]: Obtener app
+          - main "Cómo llegar" [ref=f1e235]:
+            - generic [ref=f1e238]:
+              - button "La ruta no se puede modificar más." [ref=f1e239]:
+                - generic [ref=f1e240]: 
+              - button "Opciones" [ref=f1e241] [cursor=pointer]:
+                - generic [ref=f1e242]: Opciones
+            - generic [ref=f1e244]:
+              - button "Enviar al teléfono instrucciones sobre cómo llegar" [ref=f1e247]:
+                - generic [ref=f1e248]:
+                  - generic [ref=f1e249]: 
+                  - text: Enviar al teléfono instrucciones sobre cómo llegar
+              - button "Copiar vínculo" [active] [ref=f1e251]:
+                - generic [ref=f1e252]:
+                  - generic [ref=f1e253]: 
+                  - text: Copiar vínculo
+            - link "Automóvil 41 h 2,317 km por RN40 y RP71 Advertencia Esta ruta incluye un ferry. Advertencia Esta ruta cruza una frontera de país o región. Detalles Vista previa" [ref=f1e255] [cursor=pointer]:
+              - img "Automóvil" [ref=f1e256]: 
+              - generic [ref=f1e258]:
+                - generic [ref=f1e259]:
+                  - generic [ref=f1e260]: 41 h
+                  - generic [ref=f1e262]: 2,317 km
+                - heading "por RN40 y RP71" [level=1] [ref=f1e264]
+                - list [ref=f1e266]:
+                  - listitem [ref=f1e267]:
+                    - generic [ref=f1e268]:
+                      - img "Advertencia" [ref=f1e270]: 
+                      - heading "Esta ruta incluye un ferry." [level=6] [ref=f1e271]
+                  - listitem [ref=f1e272]:
+                    - generic [ref=f1e273]:
+                      - img "Advertencia" [ref=f1e275]: 
+                      - heading "Esta ruta cruza una frontera de país o región." [level=6] [ref=f1e276]
+                - generic [ref=f1e277]:
+                  - button "Detalles" [ref=f1e278]:
+                    - generic [ref=f1e280]: Detalles
+                  - button "Vista previa" [ref=f1e281]:
+                    - generic [ref=f1e283]: Vista previa
+            - heading "Explora San Carlos de Bariloche" [level=2] [ref=f1e286]:
+              - generic [ref=f1e287]: Explora San Carlos de Bariloche
+            - generic [ref=f1e367] [cursor=pointer]:
+              - button "Isla Huemul·4.5 estrellas·52 opiniones" [ref=f1e368]
+              - generic:
+                - generic: Isla Huemul
+                - generic:
+                  - img "4.5 estrellas 52 opiniones":
+                    - text: "4.5"
+                    - text: (52)
+            - generic [ref=f1e321]:
+              - button "Restaurantes" [ref=f1e322] [cursor=pointer]:
+                - generic [ref=f1e325]: 
+                - generic [ref=f1e326]: Restaurantes
+              - button "Hoteles" [ref=f1e327] [cursor=pointer]:
+                - generic [ref=f1e330]: 
+                - generic [ref=f1e331]: Hoteles
+              - button "Gasolineras" [ref=f1e332] [cursor=pointer]:
+                - generic [ref=f1e335]: 
+                - generic [ref=f1e336]: Gasolineras
+              - button "Estacionamientos" [ref=f1e337] [cursor=pointer]:
+                - generic [ref=f1e340]: 
+                - generic [ref=f1e341]: Estacionamientos
+              - button "Más" [ref=f1e342] [cursor=pointer]:
+                - generic [ref=f1e345]: 
+                - generic [ref=f1e346]: Más
+            - generic [ref=f1e347]:
+              - generic [ref=f1e349]:
+                - generic [ref=f1e351]: 
+                - generic [ref=f1e352]: ¡Nuevo! Continúa tu viaje. Presiona la notificación en tu teléfono para obtener instrucciones
+              - button "Descartar" [ref=f1e353]:
+                - generic [ref=f1e354]: 
+        - button "Contraer panel lateral" [ref=f1e356] [cursor=pointer]:
+          - generic [ref=f1e357]: 
+      - generic [ref=f1e373]:
+        - button "Apps de Google" [ref=f1e377] [cursor=pointer]:
+          - img [ref=f1e378]
+        - link "Acceder" [ref=f1e381] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es-419&passive=true&continue=https%3A%2F%2Fwww.google.com.ar%2Fmaps%2Fdir%2FSan%2BCarlos%2Bde%2BBariloche%2C%2BR%25C3%25ADo%2BNegro%2FTrevelin%2C%2BChubut%2FChile%2BChico%2C%2BAys%25C3%25A9n%2C%2BChile%2FCochrane%2C%2BAys%25C3%25A9n%2C%2BChile%2FPaso%2BRoballo%2C%2BSanta%2BCruz%2FPerito%2BMoreno%2C%2BSanta%2BCruz%2F-43.68483%2C-71.4113039%2FSan%2BCarlos%2Bde%2BBariloche%2C%2BR%25C3%25ADo%2BNegro%2F%40-44.0264251%2C-74.0319003%2C6z%2Fdata%3D!4m60!4m59!1m10!1m1!1s0x961a7b1520c860e5%3A0x8210ae97cb7b9a65!2m2!1d-71.3102778!2d-41.1334722!3m4!1m2!1d-71.6610817!2d-42.6266304!3s0x961c3c252a43b1d7%3A0x15a3269fab412f56!1m10!1m1!1s0x961dbbc323173289%3A0x99675354e0415645!2m2!1d-71.4625883!2d-43.0888123!3m4!1m2!1d-72.6549718!2d-44.7240165!3s0xbdf4a53b76147a17%3A0x91ca162893152573!1m5!1m1!1s0xbd93aa5e3554b831%3A0xb6427bda7bc908a9!2m2!1d-71.7229183!2d-46.5401253!1m5!1m1!1s0xbd938db71ffaea73%3A0x4cd1904fb5c24602!2m2!1d-72.5752373!2d-47.2520865!1m10!1m1!1s0xbd9367bb244f9665%3A0x99d19e5c5bc867c1!2m2!1d-71.8338256!2d-47.1603752!3m4!1m2!1d-71.8295054!2d-46.9697335!3s0xbd9340e5cb5756ff%3A0x35699a477f2e301e!1m5!1m1!1s0xbdecfa36ad96c16d%3A0x32c3522667d38960!2m2!1d-70.925584!2d-46.5916181!1m0!1m5!1m1!1s0x961a7b1520c860e5%3A0x8210ae97cb7b9a65!2m2!1d-71.3102778!2d-41.1334722!3e0%3Fved%3D1t%253A314688&service=local&ec=GAZAcQ
+      - generic:
+        - generic:
+          - button "Mostrar tu ubicación" [ref=f1e384] [cursor=pointer]:
+            - generic [ref=f1e386]: 
+          - generic [ref=f1e388] [cursor=pointer]:
+            - button "Acercar" [ref=f1e389]:
+              - generic [ref=f1e391]: 
+            - button "Alejar" [ref=f1e392]:
+              - generic [ref=f1e394]: 
+        - button "Explorar imágenes de Street View" [ref=f1e400]
+        - generic [ref=f1e402]:
+          - generic "Mapa interactivo" [ref=f1e403]
+          - generic [ref=f1e407] [cursor=pointer]:
+            - generic [ref=f1e408]: 
+            - generic [ref=f1e409]: Capas
+          - button "Capas" [ref=f1e410] [cursor=pointer]
+      - generic [ref=f1e412]:
+        - contentinfo [ref=f1e415]:
+          - text: Imágenes © 2026 , Datos del mapa © 2026 Google
+          - button "Argentina" [ref=f1e416] [cursor=pointer]
+          - button "Condiciones" [ref=f1e417] [cursor=pointer]
+          - button "Privacidad" [ref=f1e418] [cursor=pointer]
+          - button "Enviar comentarios sobre el producto" [ref=f1e419] [cursor=pointer]
+        - button "200 km" [ref=f1e421] [cursor=pointer]: 200 km
+  - generic [ref=f1e361]: La ruta no se puede modificar más.
+  - generic [ref=f1e425]: Copiado en el portapapeles

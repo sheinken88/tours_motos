@@ -1,0 +1,243 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Moto On/Off" [ref=e4] [cursor=pointer]:
+        - /url: /es
+        - img [ref=e5]
+        - generic [ref=e7]: Moto On/Off
+      - navigation "Primary" [ref=e8]:
+        - link "Viajes" [ref=e9] [cursor=pointer]:
+          - /url: /es/tours
+          - text: Viajes
+          - img
+        - link "Calendario" [ref=e10] [cursor=pointer]:
+          - /url: /es/calendar
+          - text: Calendario
+          - img
+        - link "A medida" [ref=e11] [cursor=pointer]:
+          - /url: /es/custom
+          - text: A medida
+          - img
+        - generic [ref=e12]: /
+        - link "Nosotros" [ref=e13] [cursor=pointer]:
+          - /url: /es/about
+          - text: Nosotros
+          - img
+        - link "Taller de Rutas" [ref=e14] [cursor=pointer]:
+          - /url: /es/taller-de-rutas
+          - text: Taller de Rutas
+          - img
+      - generic [ref=e15]:
+        - 'button "Idioma: Español" [ref=e17]':
+          - text: ES
+          - img [ref=e18]
+        - link "Instagram" [ref=e20] [cursor=pointer]:
+          - /url: https://www.instagram.com/mototoursonoff/
+          - img [ref=e21]
+        - link "Contacto" [ref=e26] [cursor=pointer]:
+          - /url: /es/contact#contact-form
+          - img [ref=e27]
+          - generic [ref=e29]: Contacto
+        - link "Hablemos" [ref=e31] [cursor=pointer]:
+          - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+          - img [ref=e32]
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - text: Hablemos
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic:
+        - img
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - paragraph [ref=e43]: Salidas confirmadas
+            - generic [ref=e44]: Cupos limitados
+          - heading "PRÓXIMAS FECHAS" [level=1] [ref=e45]
+          - paragraph [ref=e46]: Los tours con cupo limitado. Hacemos enfoque en grupo humano.
+        - generic [ref=e47]:
+          - figure [ref=e48]:
+            - img "Motos de aventura cargadas en trailers antes de una salida de ruta" [ref=e49]
+          - generic [ref=e50]:
+            - paragraph [ref=e51]: Próxima salida
+            - paragraph [ref=e52]: 01-AGO
+            - paragraph [ref=e53]: Sobre las Nubes
+      - img
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - paragraph [ref=e58]: Temporada en marcha
+            - heading "EL MAPA YA TIENE FECHAS" [level=2] [ref=e59]
+          - generic [ref=e60]:
+            - paragraph [ref=e61]: "Las fechas no son elegidas al azar:"
+            - paragraph [ref=e62]: Son el resultado de más de 10 años rodando, probando rutas, clima y conociendo cada destino.
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: "3"
+            - paragraph [ref=e66]: salidas confirmadas
+          - generic [ref=e67]:
+            - paragraph [ref=e68]: "3"
+            - paragraph [ref=e69]: con cupos
+          - generic [ref=e70]:
+            - paragraph [ref=e71]: "24"
+            - paragraph [ref=e72]: pilotos disponibles
+          - generic [ref=e73]:
+            - paragraph [ref=e74]: 01-AGO
+            - paragraph [ref=e75]: Próxima salida
+      - img
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - paragraph [ref=e80]: Orden de salida
+            - heading "EL TRACK DE LA TEMPORADA" [level=2] [ref=e81]
+            - generic [ref=e82]:
+              - paragraph [ref=e83]: "Cada tarjeta marca una ventana de ruta: fecha, cupos, tramo y estado."
+              - paragraph [ref=e84]: Elegí el mes; después hablamos de la moto.
+          - generic [ref=e85]:
+            - paragraph [ref=e86]: Estado de cupos
+            - generic [ref=e87]:
+              - generic [ref=e88]: Disponible
+              - generic [ref=e89]: Últimos pilotos
+              - generic [ref=e90]: Agotado
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - heading "AGOSTO DE 2026" [level=3] [ref=e93]
+            - paragraph [ref=e94]: 1 salida(s)
+          - list [ref=e95]:
+            - listitem [ref=e96]:
+              - generic [ref=e97]: "01"
+              - generic [ref=e98]:
+                - paragraph [ref=e99]: Salida
+                - paragraph [ref=e100]: 01-AGO
+                - paragraph [ref=e101]: hasta 07-AGO
+              - generic [ref=e102]:
+                - heading "Sobre las Nubes" [level=3] [ref=e103]
+                - paragraph [ref=e104]: Salta y Jujuy · 7 días · 1.712 km · 50% ripio
+                - paragraph [ref=e105]: Abra del Acay, Quebrada de las Flechas y 1712 km ganados en el NOA.
+              - generic [ref=e106]:
+                - generic [ref=e107]: Disponible
+                - paragraph [ref=e108]: 8/8 pilotos
+                - link "Sobre las Nubes →" [ref=e109] [cursor=pointer]:
+                  - /url: /es/tours/sobre-las-nubes
+        - generic [ref=e110]:
+          - generic [ref=e111]:
+            - heading "SEPTIEMBRE DE 2026" [level=3] [ref=e112]
+            - paragraph [ref=e113]: 1 salida(s)
+          - list [ref=e114]:
+            - listitem [ref=e115]:
+              - generic [ref=e116]: "01"
+              - generic [ref=e117]:
+                - paragraph [ref=e118]: Salida
+                - paragraph [ref=e119]: 12-SEPT
+                - paragraph [ref=e120]: hasta 18-SEPT
+              - generic [ref=e121]:
+                - heading "Volcanes del Norte" [level=3] [ref=e122]
+                - paragraph [ref=e123]: Catamarca · 7 días · 1.917 km · 50% ripio
+                - paragraph [ref=e124]: "Catamarca alta: volcanes, puna, salares y jornadas largas de ripio."
+              - generic [ref=e125]:
+                - generic [ref=e126]: Disponible
+                - paragraph [ref=e127]: 8/8 pilotos
+                - link "Volcanes del Norte →" [ref=e128] [cursor=pointer]:
+                  - /url: /es/tours/volcanes-del-norte
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - heading "NOVIEMBRE DE 2026" [level=3] [ref=e131]
+            - paragraph [ref=e132]: 1 salida(s)
+          - list [ref=e133]:
+            - listitem [ref=e134]:
+              - generic [ref=e135]: "01"
+              - generic [ref=e136]:
+                - paragraph [ref=e137]: Salida
+                - paragraph [ref=e138]: 07-NOV
+                - paragraph [ref=e139]: hasta 13-NOV
+              - generic [ref=e140]:
+                - heading "Cruces del Sur" [level=3] [ref=e141]
+                - paragraph [ref=e142]: Carretera Austral y Patagonia · 7 días · 2.321 km · 45% ripio
+                - paragraph [ref=e143]: Patagonia y Carretera Austral con viento, bosque, frontera y ripio.
+              - generic [ref=e144]:
+                - generic [ref=e145]: Disponible
+                - paragraph [ref=e146]: 8/8 pilotos
+                - link "Cruces del Sur →" [ref=e147] [cursor=pointer]:
+                  - /url: /es/tours/cruces-del-sur
+      - img
+    - generic [ref=e149]:
+      - generic [ref=e150]:
+        - paragraph [ref=e151]: Tu lugar
+        - heading "SI LA FECHA CIERRA, LA RUTA EMPIEZA ACÁ" [level=2] [ref=e152]
+        - generic [ref=e153]:
+          - paragraph [ref=e154]: Escribinos con la salida que querés rodar.
+          - paragraph [ref=e155]: Te pasamos disponibilidad, próximos pasos y lo que necesitás preparar.
+      - generic [ref=e156]:
+        - link "Hablar por la fecha" [ref=e157] [cursor=pointer]:
+          - /url: /es/contact
+          - generic [ref=e158]: Hablar por la fecha
+          - generic [ref=e159]: →
+        - link "Ver las rutas" [ref=e160] [cursor=pointer]:
+          - /url: /es/tours
+          - img [ref=e161]
+          - generic [ref=e163]: Ver las rutas
+          - generic [ref=e164]: →
+  - contentinfo [ref=e165]:
+    - generic [ref=e166]:
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - paragraph [ref=e169]: Viajes
+          - list [ref=e170]:
+            - listitem [ref=e171]:
+              - link "Viajes" [ref=e172] [cursor=pointer]:
+                - /url: /es/tours
+            - listitem [ref=e173]:
+              - link "Calendario" [ref=e174] [cursor=pointer]:
+                - /url: /es/calendar
+            - listitem [ref=e175]:
+              - link "A medida" [ref=e176] [cursor=pointer]:
+                - /url: /es/custom
+        - generic [ref=e177]:
+          - paragraph [ref=e178]: Taller de Rutas
+          - list [ref=e179]:
+            - listitem [ref=e180]:
+              - link "Nosotros" [ref=e181] [cursor=pointer]:
+                - /url: /es/about
+            - listitem [ref=e182]:
+              - link "Taller de Rutas" [ref=e183] [cursor=pointer]:
+                - /url: /es/taller-de-rutas
+        - generic [ref=e184]:
+          - paragraph [ref=e185]: Contacto
+          - list [ref=e186]:
+            - listitem [ref=e187]:
+              - link "WhatsApp" [ref=e188] [cursor=pointer]:
+                - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+            - listitem [ref=e189]:
+              - link "Instagram" [ref=e190] [cursor=pointer]:
+                - /url: https://www.instagram.com/mototoursonoff/
+            - listitem [ref=e191]:
+              - link "hello@motoonoff.com" [ref=e192] [cursor=pointer]:
+                - /url: mailto:hello@motoonoff.com
+      - generic [ref=e194]:
+        - generic [ref=e195]:
+          - img [ref=e196]
+          - paragraph [ref=e198]: Moto On/Off · 2019 — Todos los derechos reservados.
+        - generic [ref=e199]:
+          - paragraph [ref=e200]: Próximo paso
+          - generic [ref=e201]:
+            - paragraph [ref=e202]: ¿QUÉ RUTA TE VA A PROBAR?
+            - paragraph [ref=e203]: Contanos cuántos días tenés, qué moto manejás y qué querés cruzar. Te respondemos con una ruta posible y los próximos pasos.
+          - generic [ref=e204]:
+            - link "Hablemos" [ref=e205] [cursor=pointer]:
+              - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+              - generic [ref=e206]: Hablemos
+              - generic [ref=e207]: →
+            - link "Ver las rutas" [ref=e208] [cursor=pointer]:
+              - /url: /es/tours
+              - img [ref=e209]
+              - generic [ref=e211]: Ver las rutas
+              - generic [ref=e212]: →
+  - generic [ref=e213]:
+    - link "Hablar por WhatsApp" [ref=e214] [cursor=pointer]:
+      - /url: https://wa.me/5491135939730?text=Hola%2C%20me%20interesa%20una%20expedici%C3%B3n.
+      - img [ref=e215]
+    - link "Reservá tu lugar" [ref=e217] [cursor=pointer]:
+      - /url: /es/reservas
+  - alert [ref=e218]

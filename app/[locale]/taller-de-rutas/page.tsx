@@ -32,6 +32,9 @@ type ProcessItem = {
   body: string;
 };
 
+const HOW_WE_TEST_COPY =
+  "No improvisamos rutas: las vivimos primero.\nNuestro equipo se embarra, prueba terrenos, ajusta tiempos y testea con pilotos de todos los niveles para que vos viajes con total libertad.";
+
 const TALLER_ROUTE_PHOTOS: WorkshopCaseImage[] = [
   {
     src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/DSC04248.jpg",
@@ -160,11 +163,8 @@ export default async function TallerDeRutasIndex({ params }: Props) {
                 {t("process_heading")}
               </DisplayHeading>
             </div>
-            <p className="max-w-prose font-sans text-lg leading-relaxed opacity-85">
-              {localize(
-                locale,
-                "La idea no es improvisar la aventura. Es diseñarla para disfrutarla de verdad.",
-              )}
+            <p className="max-w-prose whitespace-pre-line font-sans text-lg leading-relaxed opacity-85">
+              {localize(locale, HOW_WE_TEST_COPY)}
             </p>
           </div>
 

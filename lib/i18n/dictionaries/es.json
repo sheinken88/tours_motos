@@ -93,11 +93,7 @@
         "label": "track listo"
       }
     ],
-    "route_stops": [
-      "Idea",
-      "Ruta",
-      "Salida"
-    ],
+    "route_stops": ["Idea", "Ruta", "Salida"],
     "items": [
       "Moto y nivel de manejo.",
       "Días disponibles y ritmo deseado.",
@@ -290,11 +286,7 @@
       "Todos nuestros tours en moto son distintos entre sí. Diseñamos experiencias de moto ON/OFF que combinan ruta, ripio y aventura.",
       "Viajando en moto por zonas volcánicas, desiertos, bosques con lagos, montañas nevadas o yungas cerradas."
     ],
-    "proof_labels": [
-      "años rodando",
-      "ruta y ripio",
-      "rutas probadas"
-    ],
+    "proof_labels": ["años rodando", "ruta y ripio", "rutas probadas"],
     "route_principles_eyebrow": "Cómo lo hacemos",
     "route_principles_heading": "DISEÑADAS, TESTEADAS Y AJUSTADAS",
     "route_principles": [

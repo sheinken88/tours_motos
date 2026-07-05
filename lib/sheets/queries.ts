@@ -148,7 +148,9 @@ async function fetchTours(): Promise<Tour[]> {
     if (process.env.NODE_ENV !== "production") {
       console.info("[sheets] credentials missing — serving mock tours");
     }
-    return sortTours(resolveHeroImages(normalizeTours(MOCK_TOURS.filter((tour) => tour.published))));
+    return sortTours(
+      resolveHeroImages(normalizeTours(MOCK_TOURS.filter((tour) => tour.published))),
+    );
   }
 
   try {
@@ -165,7 +167,9 @@ async function fetchItinerary(): Promise<ItineraryDay[]> {
 
   try {
     const { headers, rows } = await fetchSheetRows(ITINERARY_RANGE);
-    return normalizeItinerary(supplementMissingTourRows(parseItinerary(headers, rows), MOCK_ITINERARY));
+    return normalizeItinerary(
+      supplementMissingTourRows(parseItinerary(headers, rows), MOCK_ITINERARY),
+    );
   } catch (error) {
     console.error("[sheets] fetchItinerary failed", error);
     return [];
@@ -191,7 +195,9 @@ async function fetchGallery(): Promise<GalleryImage[]> {
 
   try {
     const { headers, rows } = await fetchSheetRows(GALLERY_RANGE);
-    return normalizeGallery(supplementMissingTourRows(parseGalleryImages(headers, rows), MOCK_GALLERY));
+    return normalizeGallery(
+      supplementMissingTourRows(parseGalleryImages(headers, rows), MOCK_GALLERY),
+    );
   } catch (error) {
     console.error("[sheets] fetchGallery failed", error);
     return [];

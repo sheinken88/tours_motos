@@ -159,13 +159,7 @@ export function CustomRouteTeaser({
 
 function CheckMarkIcon({ className = "" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      focusable="false"
-      className={className}
-      fill="none"
-    >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" className={className} fill="none">
       <path
         d="M4 12.8 9.2 18 20 5.5"
         stroke="currentColor"

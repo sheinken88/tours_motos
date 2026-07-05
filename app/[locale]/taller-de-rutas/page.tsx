@@ -94,6 +94,7 @@ const TALLER_ROUTE_PHOTOS: WorkshopCaseImage[] = [
     alt: "Valle de alta montaña con nieve durante una exploración de ruta.",
     label: "Ventana de clima",
     caption: "Las estaciones cambian el viaje; por eso volvemos.",
+    objectPosition: "center 72%",
   },
   {
     src: "/images/taller_de_rutas/drive-download-20260704T224229Z-3-001/caida 1.png",
@@ -405,9 +406,7 @@ function WorkshopProofBand({
                   {proofBandTitle}
                 </p>
               </div>
-              <p className="mt-4 font-sans text-sm leading-relaxed opacity-80">
-                {proofBandBody}
-              </p>
+              <p className="mt-4 font-sans text-sm leading-relaxed opacity-80">{proofBandBody}</p>
             </div>
           </div>
 
@@ -589,9 +588,7 @@ function WorkshopStoryWall({
                     />
                     {item ? (
                       <div className="absolute top-4 left-4 z-[2]">
-                        <Stamp tilt={index % 2 === 0 ? -2 : 2}>
-                          {item.region}
-                        </Stamp>
+                        <Stamp tilt={index % 2 === 0 ? -2 : 2}>{item.region}</Stamp>
                       </div>
                     ) : null}
                   </div>
@@ -673,6 +670,7 @@ function WorkshopPhoto({
           sizes={sizes}
           priority={priority}
           draggable={false}
+          style={image.objectPosition ? { objectPosition: image.objectPosition } : undefined}
           className="object-cover transition-[filter,transform] duration-300 group-hover/photo:scale-[1.02] group-hover/photo:brightness-105"
         />
         {showLabel ? (

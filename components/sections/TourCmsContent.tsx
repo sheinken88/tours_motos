@@ -613,30 +613,35 @@ const testimonialsByTour: Record<string, Partial<Record<Locale, TourTestimonial[
 };
 
 const testimonialTranslations: Record<string, Record<TranslatedLocale, string>> = {
-  "El Abra del Acay fue espectacular, no me esperaba algo así, muy buen camino, de principio a fin.": {
-    en: "Abra del Acay was spectacular. I was not expecting anything like that, an excellent road from beginning to end.",
-    pt: "O Abra del Acay foi espetacular. Eu não esperava algo assim, um caminho muito bom do início ao fim.",
-  },
-  "Muy buena organización por parte de la empresa, grupo muy divertido, los guías unos fenómenos.": {
-    en: "Very good organization from the company, a very fun group, and the guides were outstanding.",
-    pt: "Organização muito boa por parte da empresa, grupo muito divertido e guias excelentes.",
-  },
-  "Un viaje muy variado, pasamos de selvas a montañas y la nada misma, muy bueno. El grupo que se armó fue excelente.": {
-    en: "A very varied trip. We went from jungle to mountains and then to pure emptiness. Very good. The group that formed was excellent.",
-    pt: "Uma viagem muito variada. Passamos de selvas a montanhas e ao vazio total. Muito boa. O grupo que se formou foi excelente.",
-  },
+  "El Abra del Acay fue espectacular, no me esperaba algo así, muy buen camino, de principio a fin.":
+    {
+      en: "Abra del Acay was spectacular. I was not expecting anything like that, an excellent road from beginning to end.",
+      pt: "O Abra del Acay foi espetacular. Eu não esperava algo assim, um caminho muito bom do início ao fim.",
+    },
+  "Muy buena organización por parte de la empresa, grupo muy divertido, los guías unos fenómenos.":
+    {
+      en: "Very good organization from the company, a very fun group, and the guides were outstanding.",
+      pt: "Organização muito boa por parte da empresa, grupo muito divertido e guias excelentes.",
+    },
+  "Un viaje muy variado, pasamos de selvas a montañas y la nada misma, muy bueno. El grupo que se armó fue excelente.":
+    {
+      en: "A very varied trip. We went from jungle to mountains and then to pure emptiness. Very good. The group that formed was excellent.",
+      pt: "Uma viagem muito variada. Passamos de selvas a montanhas e ao vazio total. Muito boa. O grupo que se formou foi excelente.",
+    },
   "El Paso Roballos fue el viaje más impactante de mi vida. No solo en moto, sino en general.": {
     en: "Paso Roballos was the most powerful trip of my life. Not only by motorcycle, in general.",
     pt: "O Paso Roballos foi a viagem mais impactante da minha vida. Não só de moto, em geral.",
   },
-  "El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.": {
-    en: "The group that formed over those 7 days is incredible. We are still in touch and already planning the next tour.",
-    pt: "O grupo que se formou nesses 7 dias é incrível. Seguimos em contato e já estamos planejando o próximo tour.",
-  },
-  "Excelente organización y aún mejor los lugares que recorrimos en el viaje en moto. El grupo que se formó fue espectacular, lo recomiendo a todos.": {
-    en: "Excellent organization and even better places along the motorcycle trip. The group that formed was spectacular. I recommend it to everyone.",
-    pt: "Excelente organização e ainda melhores os lugares que percorremos na viagem de moto. O grupo que se formou foi espetacular, recomendo a todos.",
-  },
+  "El grupo que se formó en esos 7 días es increíble. Seguimos en contacto y ya estamos planeando el próximo tour.":
+    {
+      en: "The group that formed over those 7 days is incredible. We are still in touch and already planning the next tour.",
+      pt: "O grupo que se formou nesses 7 dias é incrível. Seguimos em contato e já estamos planejando o próximo tour.",
+    },
+  "Excelente organización y aún mejor los lugares que recorrimos en el viaje en moto. El grupo que se formó fue espectacular, lo recomiendo a todos.":
+    {
+      en: "Excellent organization and even better places along the motorcycle trip. The group that formed was spectacular. I recommend it to everyone.",
+      pt: "Excelente organização e ainda melhores os lugares que percorremos na viagem de moto. O grupo que se formou foi espetacular, recomendo a todos.",
+    },
   "El Paso Los Libertadores fue increíble. Cruzar los Andes desde la moto fue un momento único.": {
     en: "Paso Los Libertadores was incredible. Crossing the Andes from the motorcycle was a unique moment.",
     pt: "O Paso Los Libertadores foi incrível. Cruzar os Andes de moto foi um momento único.",
@@ -645,22 +650,25 @@ const testimonialTranslations: Record<string, Record<TranslatedLocale, string>> 
     en: "The Laguna Brava day was surreal.",
     pt: "O dia de Laguna Brava foi surreal.",
   },
-  "La Mina La Mejicana fue el desafío más grande que hice en moto. El grupo siempre con buena onda. Muy bueno todo.": {
-    en: "Mina La Mejicana was the biggest challenge I have done by motorcycle. The group always had great energy. Everything was very good.",
-    pt: "A Mina La Mejicana foi o maior desafio que fiz de moto. O grupo sempre com boa energia. Tudo muito bom.",
-  },
-  "La ruta en moto hasta El Balcón de Pissis fue lo más impactante que vi en mi vida. La vista del volcán a 4.500 metros es impresionante.": {
-    en: "The motorcycle route to El Balcón de Pissis was the most powerful thing I have seen in my life. The view of the volcano at 4500 meters is impressive.",
-    pt: "A rota de moto até El Balcón de Pissis foi o mais impactante que vi na vida. A vista do vulcão a 4500 metros é impressionante.",
-  },
+  "La Mina La Mejicana fue el desafío más grande que hice en moto. El grupo siempre con buena onda. Muy bueno todo.":
+    {
+      en: "Mina La Mejicana was the biggest challenge I have done by motorcycle. The group always had great energy. Everything was very good.",
+      pt: "A Mina La Mejicana foi o maior desafio que fiz de moto. O grupo sempre com boa energia. Tudo muito bom.",
+    },
+  "La ruta en moto hasta El Balcón de Pissis fue lo más impactante que vi en mi vida. La vista del volcán a 4.500 metros es impresionante.":
+    {
+      en: "The motorcycle route to El Balcón de Pissis was the most powerful thing I have seen in my life. The view of the volcano at 4500 meters is impressive.",
+      pt: "A rota de moto até El Balcón de Pissis foi o mais impactante que vi na vida. A vista do vulcão a 4500 metros é impressionante.",
+    },
   "El grupo que se formó en esos 7 fue espectacular, ya hicimos 2 asados desde que volvimos.": {
     en: "The group that formed over those 7 days was spectacular. We have already had 2 barbecues since we got back.",
     pt: "O grupo que se formou nesses 7 dias foi espetacular. Já fizemos 2 churrascos desde que voltamos.",
   },
-  "El Campo de Piedra Pómez fue como estar en otro planeta. Cada día fue una sorpresa. Nunca pensé que existían lugares así.": {
-    en: "Campo de Piedra Pómez felt like being on another planet. Every day was a surprise. I never thought places like that existed.",
-    pt: "O Campo de Piedra Pómez foi como estar em outro planeta. Cada dia foi uma surpresa. Nunca pensei que existissem lugares assim.",
-  },
+  "El Campo de Piedra Pómez fue como estar en otro planeta. Cada día fue una sorpresa. Nunca pensé que existían lugares así.":
+    {
+      en: "Campo de Piedra Pómez felt like being on another planet. Every day was a surprise. I never thought places like that existed.",
+      pt: "O Campo de Piedra Pómez foi como estar em outro planeta. Cada dia foi uma surpresa. Nunca pensei que existissem lugares assim.",
+    },
 };
 
 function getTourTestimonials(slug: string, locale: Locale): TourTestimonial[] {

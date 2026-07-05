@@ -41,6 +41,7 @@ yarn-error.log*
 
 # Testing / coverage
 /coverage
+/.playwright-cli/
 
 # Misc
 *.pem

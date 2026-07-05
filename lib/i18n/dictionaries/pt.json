@@ -93,11 +93,7 @@
         "label": "track pronto"
       }
     ],
-    "route_stops": [
-      "Ideia",
-      "Rota",
-      "Saida"
-    ],
+    "route_stops": ["Ideia", "Rota", "Saida"],
     "items": [
       "Moto e nivel de pilotagem.",
       "Dias disponiveis e ritmo desejado.",
@@ -290,11 +286,7 @@
       "Todos os nossos tours de moto sao diferentes entre si. Desenhamos experiencias ON/OFF que combinam asfalto, terra e desafio conquistado.",
       "Rodamos por zonas vulcanicas, desertos, bosques com lagos, montanhas nevadas e yungas fechadas."
     ],
-    "proof_labels": [
-      "anos rodando",
-      "asfalto e terra",
-      "rotas testadas"
-    ],
+    "proof_labels": ["anos rodando", "asfalto e terra", "rotas testadas"],
     "route_principles_eyebrow": "Como fazemos",
     "route_principles_heading": "DESENHADAS, TESTADAS E AJUSTADAS",
     "route_principles": [

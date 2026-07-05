@@ -463,9 +463,7 @@ function RouteReportTimeline({
               showLabel={false}
               showCaption={false}
             />
-            <p className="mt-5 font-sans text-sm leading-relaxed opacity-85">
-              {stage.caption}
-            </p>
+            <p className="mt-5 font-sans text-sm leading-relaxed opacity-85">{stage.caption}</p>
           </li>
         ))}
       </ol>
@@ -590,12 +588,15 @@ function CasePhoto({
   );
 }
 
-function buildFallbackImage(fm: {
-  title: string;
-  excerpt?: string;
-  image?: string;
-  imageAlt?: string;
-}, label: string): WorkshopCaseImage {
+function buildFallbackImage(
+  fm: {
+    title: string;
+    excerpt?: string;
+    image?: string;
+    imageAlt?: string;
+  },
+  label: string,
+): WorkshopCaseImage {
   return {
     src: fm.image ?? "/images/halftone/hero-rider-cutout.png",
     alt: fm.imageAlt ?? fm.title,

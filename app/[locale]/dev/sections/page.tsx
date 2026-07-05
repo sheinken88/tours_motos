@@ -101,7 +101,8 @@ const DEV_COPY: Record<
       {
         slug: "noa-puna",
         title: "Crossing the Puna in convoy",
-        excerpt: "4300 meters, deep gravel, two hours without signal. You learn to trust the rider beside you.",
+        excerpt:
+          "4300 meters, deep gravel, two hours without signal. You learn to trust the rider beside you.",
         date: "2026-02-18",
       },
       {
@@ -122,13 +123,14 @@ const DEV_COPY: Record<
     quoteB: "You return knowing something you did not know when you left. That is the trip.",
     quoteBAttribution: "Rider · 2025 edition",
     quoteEyebrow: "What stays",
-    quoteVariantNote: "Same text, five treatments. Choose which one anchors the home page and I will wire it.",
+    quoteVariantNote:
+      "Same text, five treatments. Choose which one anchors the home page and I will wire it.",
     rawPhotoNote:
       "The unprocessed photo sits in the right column. The white sky shows against red: less on-brand, but more editorial.",
     multiplyPhotoNote: (
       <>
-        Same photo with <code>mix-blend-mode: multiply</code>: the white sky drops out and only
-        the figure stays over red. It reads like halftone even though the source is not processed.
+        Same photo with <code>mix-blend-mode: multiply</code>: the white sky drops out and only the
+        figure stays over red. It reads like halftone even though the source is not processed.
       </>
     ),
     posterNote:

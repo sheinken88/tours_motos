@@ -37,9 +37,7 @@ export function HeroVideo() {
         disablePictureInPicture
         className="h-full w-full object-cover"
       >
-        {loadVideo ? (
-          <source src="/video/hero-bg.mp4" type="video/mp4" />
-        ) : null}
+        {loadVideo ? <source src="/video/hero-bg.mp4" type="video/mp4" /> : null}
       </video>
       <div
         aria-hidden="true"
@@ -59,11 +57,11 @@ export function HeroVideo() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-10 mix-blend-multiply [background-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14/.28)_45%,transparent_78%),url('/textures/halftone-overlay.svg')] [background-size:100%_100%,18px_18px]"
+        className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14/.28)_45%,transparent_78%),url('/textures/halftone-overlay.svg')] [background-size:100%_100%,18px_18px] opacity-10 mix-blend-multiply"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.08] mix-blend-multiply [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px]"
+        className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px] opacity-[0.08] mix-blend-multiply"
       />
     </div>
   );

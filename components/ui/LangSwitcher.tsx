@@ -127,7 +127,7 @@ export function LangSwitcher({ mode = "menu" }: LangSwitcherProps) {
         <div
           role="menu"
           aria-label={t("label")}
-          className="bg-red-grunge absolute right-0 top-[calc(100%+0.55rem)] z-50 min-w-32 -rotate-1 border border-paper/65 p-1 text-paper"
+          className="bg-red-grunge border-paper/65 text-paper absolute top-[calc(100%+0.55rem)] right-0 z-50 min-w-32 -rotate-1 border p-1"
         >
           {locales.map((loc) => {
             const isActive = loc === active;

@@ -19,10 +19,7 @@ type HeroProps = {
  * Static rendering. Motion choreography comes in a later phase.
  */
 export async function Hero({ locale }: HeroProps) {
-  const [tHome, tCommon] = await Promise.all([
-    getTranslations("home"),
-    getTranslations("common"),
-  ]);
+  const [tHome, tCommon] = await Promise.all([getTranslations("home"), getTranslations("common")]);
 
   return (
     <RedZone density="heavy" tornBottom={2} className="relative overflow-hidden">
@@ -30,7 +27,7 @@ export async function Hero({ locale }: HeroProps) {
       <HeroVideo />
 
       {/* Layer 2 — mountain ridge, full width, anchored bottom, bleeds into the next zone */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[54%] opacity-70 [mask-image:linear-gradient(to_right,black_0%,black_42%,transparent_76%)]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[54%] [mask-image:linear-gradient(to_right,black_0%,black_42%,transparent_76%)] opacity-70">
         <PlaceholderMountains className="absolute inset-0 h-full w-full" tint="ink" />
       </div>
 

@@ -362,9 +362,7 @@ function AboutRouteCards({
             {heading}
           </DisplayHeading>
         </div>
-        <p className="text-muted-on-red max-w-3xl font-sans text-lg leading-relaxed">
-          {body}
-        </p>
+        <p className="text-muted-on-red max-w-3xl font-sans text-lg leading-relaxed">{body}</p>
       </div>
       <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {visible.map((tour, index) => (
@@ -430,9 +428,9 @@ export default async function AboutPage({ params }: Props) {
   const routePrinciples = t.raw("route_principles") as string[];
   const terrainList = t.raw("terrain_list") as string[];
   const carouselAlts = t.raw("image_alt_carousel") as string[];
-  const commitmentTestimonials = (t.raw("commitment_testimonials") as Array<
-    Omit<CommitmentTestimonial, "tilt">
-  >).map((item, index) => ({
+  const commitmentTestimonials = (
+    t.raw("commitment_testimonials") as Array<Omit<CommitmentTestimonial, "tilt">>
+  ).map((item, index) => ({
     ...item,
     tilt: [-1.5, 1.25, -1][index] ?? -1,
   }));
@@ -523,9 +521,7 @@ export default async function AboutPage({ params }: Props) {
                 </DisplayHeading>
               </div>
               <div className="space-y-6">
-                <p className="max-w-3xl font-sans text-lg leading-relaxed">
-                  {t("terrain_body")}
-                </p>
+                <p className="max-w-3xl font-sans text-lg leading-relaxed">{t("terrain_body")}</p>
                 <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed md:grid-cols-3">
                   {terrainList.map((item) => (
                     <li key={item} className="flex items-start gap-3">

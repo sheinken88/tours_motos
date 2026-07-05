@@ -366,7 +366,7 @@ function CheckMarkIcon({ className = "" }: { className?: string }) {
 function ProofValue({ value }: { value: string }) {
   if (value.endsWith("km")) {
     return (
-      <span className="block whitespace-nowrap text-[2rem] xl:text-[1.9rem]">
+      <span className="block text-[2rem] whitespace-nowrap xl:text-[1.9rem]">
         {value.slice(0, -2)}
         <span className="ml-0.5 text-[0.58em]">km</span>
       </span>

@@ -74,11 +74,11 @@ export async function TourHero({ tour, locale, heroSummary }: TourHeroProps) {
       <div className="from-ink/[0.24] via-ink/[0.07] pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-2/5 bg-gradient-to-t to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
       <div className="from-ink/[0.16] pointer-events-none absolute inset-x-0 top-0 z-[4] h-48 bg-gradient-to-b to-transparent [mask-image:linear-gradient(to_right,black_0%,black_46%,transparent_78%)]" />
       <div
-        className="pointer-events-none absolute inset-0 z-[5] opacity-10 mix-blend-multiply [background-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14/.28)_45%,transparent_78%),url('/textures/halftone-overlay.svg')] [background-size:100%_100%,18px_18px]"
+        className="pointer-events-none absolute inset-0 z-[5] [background-image:linear-gradient(to_right,rgb(31_20_14)_0%,rgb(31_20_14/.28)_45%,transparent_78%),url('/textures/halftone-overlay.svg')] [background-size:100%_100%,18px_18px] opacity-10 mix-blend-multiply"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute inset-0 z-[5] opacity-[0.08] mix-blend-multiply [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px]"
+        className="pointer-events-none absolute inset-0 z-[5] [background-image:linear-gradient(to_right,rgb(168_52_42/.82)_0%,rgb(168_52_42/.24)_45%,transparent_78%),url('/textures/red-grunge.svg')] [background-size:100%_100%,320px_320px] opacity-[0.08] mix-blend-multiply"
         aria-hidden="true"
       />
 
@@ -88,7 +88,7 @@ export async function TourHero({ tour, locale, heroSummary }: TourHeroProps) {
           <DisplayHeading size="2xl" as="h1" className="max-w-[10ch] leading-[0.88]">
             {tour.title[locale]}
           </DisplayHeading>
-          <p className="text-on-red max-w-2xl whitespace-pre-line font-sans text-xl leading-relaxed md:text-2xl">
+          <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed whitespace-pre-line md:text-2xl">
             {summary}
           </p>
           <div className="flex flex-wrap gap-4 pt-2">

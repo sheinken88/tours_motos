@@ -5,6 +5,7 @@ export type WorkshopCaseImage = {
   alt: string;
   label: string;
   caption: string;
+  objectPosition?: string;
 };
 
 export type WorkshopDecision = {
@@ -57,10 +58,11 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "The highest point on all of Route 40 had to be part of this trip.",
     pt: "O ponto mais alto de toda a Ruta 40 tinha que entrar nessa viagem.",
   },
-  "Buscamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto y mostrar los pueblos más pequeños, adentrados en la montaña.": {
-    en: "We wanted to escape the classic asphalt-heavy Salta and Jujuy trip and show the smaller villages tucked into the mountains.",
-    pt: "Buscamos fugir da viagem clássica por Salta e Jujuy dominada pelo asfalto e mostrar povoados menores, mais metidos na montanha.",
-  },
+  "Buscamos escapar del clásico viaje por Salta y Jujuy donde domina el asfalto y mostrar los pueblos más pequeños, adentrados en la montaña.":
+    {
+      en: "We wanted to escape the classic asphalt-heavy Salta and Jujuy trip and show the smaller villages tucked into the mountains.",
+      pt: "Buscamos fugir da viagem clássica por Salta e Jujuy dominada pelo asfalto e mostrar povoados menores, mais metidos na montanha.",
+    },
   "Piloto y moto en sombra frente a un paredón rural durante el armado de Sobre las Nubes.": {
     en: "Rider and motorcycle in shadow facing a rural wall while building Sobre las Nubes.",
     pt: "Piloto e moto na sombra diante de um paredão rural durante a montagem de Sobre las Nubes.",
@@ -133,7 +135,7 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "test runs",
     pt: "test runs",
   },
-  "ajustes": {
+  ajustes: {
     en: "adjustments",
     pt: "ajustes",
   },
@@ -169,10 +171,11 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "SECTIONS WE DISCARDED",
     pt: "TRECHOS QUE DESCARTAMOS",
   },
-  "Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.": {
-    en: "We prioritized the passage through the Yungas and the stark transition between jungle, mountains, and altitude.",
-    pt: "Priorizamos a passagem pelas Yungas e a transição forte entre selva, montanha e altitude.",
-  },
+  "Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.":
+    {
+      en: "We prioritized the passage through the Yungas and the stark transition between jungle, mountains, and altitude.",
+      pt: "Priorizamos a passagem pelas Yungas e a transição forte entre selva, montanha e altitude.",
+    },
   "Piloto cruzando agua entre vegetación cerrada durante el armado de Sobre las Nubes.": {
     en: "Rider crossing water through dense vegetation while building Sobre las Nubes.",
     pt: "Piloto cruzando água entre vegetação fechada durante a montagem de Sobre las Nubes.",
@@ -185,14 +188,16 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "The transition between jungle, mountains, and altitude defined which sections were worth keeping.",
     pt: "A transição entre selva, montanha e altitude definiu quais trechos valiam ficar.",
   },
-  "Decidimos dejar Iruya fuera del recorrido no por su dificultad, sino porque requería una jornada dedicada exclusivamente a ese destino. Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.": {
-    en: "We left Iruya out not because of difficulty, but because it needed a full day dedicated only to that destination. We prioritized the Yungas and the transition between jungle, mountains, and altitude.",
-    pt: "Decidimos deixar Iruya fora do percurso não pela dificuldade, mas porque exigia uma jornada dedicada só a esse destino. Priorizamos as Yungas e a transição entre selva, montanha e altitude.",
-  },
-  "Derrumbes frecuentes en la zona del Abra de la Cruz y sectores cercanos, que pueden cortar el camino sin aviso. Crecida repentina de ríos, especialmente después de lluvias en altura, lo que vuelve imposible el cruce incluso para motos livianas.": {
-    en: "Frequent landslides around Abra de la Cruz and nearby sectors can cut the road without warning. Rivers rise suddenly, especially after high-altitude rain, making crossings impossible even for light motorcycles.",
-    pt: "Deslizamentos frequentes na zona do Abra de la Cruz e setores próximos podem cortar o caminho sem aviso. Rios sobem de repente, especialmente depois de chuvas em altitude, tornando a travessia impossível até para motos leves.",
-  },
+  "Decidimos dejar Iruya fuera del recorrido no por su dificultad, sino porque requería una jornada dedicada exclusivamente a ese destino. Priorizamos el paso por las Yungas y la transición espectacular entre selva, montaña y altura.":
+    {
+      en: "We left Iruya out not because of difficulty, but because it needed a full day dedicated only to that destination. We prioritized the Yungas and the transition between jungle, mountains, and altitude.",
+      pt: "Decidimos deixar Iruya fora do percurso não pela dificuldade, mas porque exigia uma jornada dedicada só a esse destino. Priorizamos as Yungas e a transição entre selva, montanha e altitude.",
+    },
+  "Derrumbes frecuentes en la zona del Abra de la Cruz y sectores cercanos, que pueden cortar el camino sin aviso. Crecida repentina de ríos, especialmente después de lluvias en altura, lo que vuelve imposible el cruce incluso para motos livianas.":
+    {
+      en: "Frequent landslides around Abra de la Cruz and nearby sectors can cut the road without warning. Rivers rise suddenly, especially after high-altitude rain, making crossings impossible even for light motorcycles.",
+      pt: "Deslizamentos frequentes na zona do Abra de la Cruz e setores próximos podem cortar o caminho sem aviso. Rios sobem de repente, especialmente depois de chuvas em altitude, tornando a travessia impossível até para motos leves.",
+    },
   "Mendoza a La Rioja": {
     en: "Mendoza to La Rioja",
     pt: "Mendoza a La Rioja",
@@ -213,10 +218,11 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "Every section was chosen for safety, flow, views, and emotion.",
     pt: "Cada trecho foi escolhido por segurança, fluidez, vistas e emoção.",
   },
-  "Mendoza, San Juan y La Rioja tienen rutas increíbles. Nosotros queríamos unir caminos que casi nadie combina.": {
-    en: "Mendoza, San Juan, and La Rioja have incredible routes. We wanted to connect roads almost nobody combines.",
-    pt: "Mendoza, San Juan e La Rioja têm rotas incríveis. Queríamos unir caminhos que quase ninguém combina.",
-  },
+  "Mendoza, San Juan y La Rioja tienen rutas increíbles. Nosotros queríamos unir caminos que casi nadie combina.":
+    {
+      en: "Mendoza, San Juan, and La Rioja have incredible routes. We wanted to connect roads almost nobody combines.",
+      pt: "Mendoza, San Juan e La Rioja têm rotas incríveis. Queríamos unir caminhos que quase ninguém combina.",
+    },
   "Camino de ripio abriéndose entre cerros durante el armado de Gigantes del Oeste.": {
     en: "Gravel road opening between hills during the build of Gigantes del Oeste.",
     pt: "Caminho de terra se abrindo entre cerros durante a montagem de Gigantes del Oeste.",
@@ -269,26 +275,30 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "Pace adjustment",
     pt: "Ajuste de ritmo",
   },
-  "Un paso fronterizo espectacular, pero demasiado impredecible: condiciones blancas, cierres repentinos de frontera y riesgo alto para grupos. Lo probamos, pero no garantiza continuidad ni seguridad. Quedó afuera.": {
-    en: "A spectacular border pass, but too unpredictable: whiteout conditions, sudden border closures, and high group risk. We tested it, but it does not guarantee continuity or safety. It stayed out.",
-    pt: "Um passo de fronteira espetacular, mas imprevisível demais: condições brancas, fechamentos repentinos e risco alto para grupos. Testamos, mas não garante continuidade nem segurança. Ficou fora.",
-  },
-  "El camino es más técnico, más expuesto y con zonas de arena profunda. Para un tour de viaje —no de enduro— no suma. Optamos por hacer el recorrido de Laguna Brava, la variante: más progresiva y más disfrutable.": {
-    en: "The road is more technical, more exposed, and has deep sand zones. For a travel tour, not an enduro ride, it does not add. We chose the Laguna Brava route instead: more progressive and more enjoyable.",
-    pt: "O caminho é mais técnico, mais exposto e tem zonas de areia profunda. Para um tour de viagem, não de enduro, não soma. Optamos pelo percurso de Laguna Brava: mais progressivo e mais aproveitável.",
-  },
-  "Una variante en el tramo del día de Laguna Brava, era un antiguo tramo que corría el Dakar. Hermoso circuito internado en el antiguo lecho del río, pero presenta barro y condiciones de manejo avanzado, optamos por la variable más tranquila.": {
-    en: "A variant on the Laguna Brava day, once used by the Dakar. Beautiful circuit inside the old riverbed, but it brings mud and advanced riding conditions, so we chose the calmer variant.",
-    pt: "Uma variante no dia de Laguna Brava, antigo trecho do Dakar. Circuito lindo no antigo leito do rio, mas com barro e condições de pilotagem avançada; escolhemos a variante mais tranquila.",
-  },
+  "Un paso fronterizo espectacular, pero demasiado impredecible: condiciones blancas, cierres repentinos de frontera y riesgo alto para grupos. Lo probamos, pero no garantiza continuidad ni seguridad. Quedó afuera.":
+    {
+      en: "A spectacular border pass, but too unpredictable: whiteout conditions, sudden border closures, and high group risk. We tested it, but it does not guarantee continuity or safety. It stayed out.",
+      pt: "Um passo de fronteira espetacular, mas imprevisível demais: condições brancas, fechamentos repentinos e risco alto para grupos. Testamos, mas não garante continuidade nem segurança. Ficou fora.",
+    },
+  "El camino es más técnico, más expuesto y con zonas de arena profunda. Para un tour de viaje —no de enduro— no suma. Optamos por hacer el recorrido de Laguna Brava, la variante: más progresiva y más disfrutable.":
+    {
+      en: "The road is more technical, more exposed, and has deep sand zones. For a travel tour, not an enduro ride, it does not add. We chose the Laguna Brava route instead: more progressive and more enjoyable.",
+      pt: "O caminho é mais técnico, mais exposto e tem zonas de areia profunda. Para um tour de viagem, não de enduro, não soma. Optamos pelo percurso de Laguna Brava: mais progressivo e mais aproveitável.",
+    },
+  "Una variante en el tramo del día de Laguna Brava, era un antiguo tramo que corría el Dakar. Hermoso circuito internado en el antiguo lecho del río, pero presenta barro y condiciones de manejo avanzado, optamos por la variable más tranquila.":
+    {
+      en: "A variant on the Laguna Brava day, once used by the Dakar. Beautiful circuit inside the old riverbed, but it brings mud and advanced riding conditions, so we chose the calmer variant.",
+      pt: "Uma variante no dia de Laguna Brava, antigo trecho do Dakar. Circuito lindo no antigo leito do rio, mas com barro e condições de pilotagem avançada; escolhemos a variante mais tranquila.",
+    },
   "Ruta 153, San Juan": {
     en: "Route 153, San Juan",
     pt: "Ruta 153, San Juan",
   },
-  "Ruta muy trabada debido a que ya no la mantienen, divertido para hacer un enduro suave, pero se desviaba del track original y no valia la pena debido a que era muy trabada.": {
-    en: "A very blocked-up road because it is no longer maintained. Fun for light enduro, but it pulled us away from the original track and was too choked to be worth it.",
-    pt: "Rota muito travada porque já não recebe manutenção. Divertida para um enduro leve, mas desviava do track original e era travada demais para valer a pena.",
-  },
+  "Ruta muy trabada debido a que ya no la mantienen, divertido para hacer un enduro suave, pero se desviaba del track original y no valia la pena debido a que era muy trabada.":
+    {
+      en: "A very blocked-up road because it is no longer maintained. Fun for light enduro, but it pulled us away from the original track and was too choked to be worth it.",
+      pt: "Rota muito travada porque já não recebe manutenção. Divertida para um enduro leve, mas desviava do track original e era travada demais para valer a pena.",
+    },
   Catamarca: {
     en: "Catamarca",
     pt: "Catamarca",
@@ -301,10 +311,11 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "Routes have a direction.",
     pt: "As rotas têm um sentido.",
   },
-  "Pruebas en campo reales, notas sobre la ruta y meses de planificación, dieron lugar a la versión final.": {
-    en: "Real field tests, route notes, and months of planning led to the final version.",
-    pt: "Testes reais em campo, notas sobre a rota e meses de planejamento deram lugar à versão final.",
-  },
+  "Pruebas en campo reales, notas sobre la ruta y meses de planificación, dieron lugar a la versión final.":
+    {
+      en: "Real field tests, route notes, and months of planning led to the final version.",
+      pt: "Testes reais em campo, notas sobre a rota e meses de planejamento deram lugar à versão final.",
+    },
   "Campo de altura en Catamarca con una persona caminando hacia la montaña.": {
     en: "High-altitude field in Catamarca with a person walking toward the mountain.",
     pt: "Campo de altitude em Catamarca com uma pessoa caminhando em direção à montanha.",
@@ -353,10 +364,11 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "We returned, adjusted, improved",
     pt: "Voltamos, ajustamos, melhoramos",
   },
-  "Recorrimos variantes, invertimos etapas y ajustamos el recorrido hasta encontrar el equilibrio correcto.": {
-    en: "We rode variants, inverted stages, and adjusted the route until we found the right balance.",
-    pt: "Rodamos variantes, invertemos etapas e ajustamos o percurso até encontrar o equilíbrio certo.",
-  },
+  "Recorrimos variantes, invertimos etapas y ajustamos el recorrido hasta encontrar el equilibrio correcto.":
+    {
+      en: "We rode variants, inverted stages, and adjusted the route until we found the right balance.",
+      pt: "Rodamos variantes, invertemos etapas e ajustamos o percurso até encontrar o equilíbrio certo.",
+    },
   "Preferimos priorizar el ritmo general del viaje y el disfrute del recorrido.": {
     en: "We chose to prioritize the overall pace of the trip and enjoyment of the route.",
     pt: "Preferimos priorizar o ritmo geral da viagem e o aproveitamento do percurso.",
@@ -377,18 +389,20 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "Campo de Piedra Pomez via the Las Papas sand fields",
     pt: "Campo de Pedra Pómez pelos areais de Las Papas",
   },
-  "Una de las variantes más espectaculares para llegar a Campo de Piedra Pómez. Durante la temporada de lluvias, el acceso por Las Papas puede quedar intransitable y los largos arenales requieren experiencia real de manejo. Descartada por dificultad técnica.": {
-    en: "One of the most spectacular variants to reach Campo de Piedra Pomez. During the rainy season, access through Las Papas can become impassable, and the long sand fields require real riding experience. Cut for technical difficulty.",
-    pt: "Uma das variantes mais espetaculares para chegar ao Campo de Pedra Pómez. Na temporada de chuvas, o acesso por Las Papas pode ficar intransitável e os longos areais exigem experiência real de pilotagem. Descartada por dificuldade técnica.",
-  },
+  "Una de las variantes más espectaculares para llegar a Campo de Piedra Pómez. Durante la temporada de lluvias, el acceso por Las Papas puede quedar intransitable y los largos arenales requieren experiencia real de manejo. Descartada por dificultad técnica.":
+    {
+      en: "One of the most spectacular variants to reach Campo de Piedra Pomez. During the rainy season, access through Las Papas can become impassable, and the long sand fields require real riding experience. Cut for technical difficulty.",
+      pt: "Uma das variantes mais espetaculares para chegar ao Campo de Pedra Pómez. Na temporada de chuvas, o acesso por Las Papas pode ficar intransitável e os longos areais exigem experiência real de pilotagem. Descartada por dificuldade técnica.",
+    },
   "Volcan Peinado": {
     en: "Volcan Peinado",
     pt: "Vulcão Peinado",
   },
-  "De lo más impactante de Catamarca, descartado por las condiciones extremas. Aislación absoluta, gran altitud y una jornada de 11 hs de manejo por todo tipo de camino.": {
-    en: "One of Catamarca's most powerful places, cut for extreme conditions: total isolation, high altitude, and an 11-hour riding day over every kind of road.",
-    pt: "Um dos pontos mais impactantes de Catamarca, descartado pelas condições extremas: isolamento absoluto, grande altitude e uma jornada de 11 h por todo tipo de caminho.",
-  },
+  "De lo más impactante de Catamarca, descartado por las condiciones extremas. Aislación absoluta, gran altitud y una jornada de 11 hs de manejo por todo tipo de camino.":
+    {
+      en: "One of Catamarca's most powerful places, cut for extreme conditions: total isolation, high altitude, and an 11-hour riding day over every kind of road.",
+      pt: "Um dos pontos mais impactantes de Catamarca, descartado pelas condições extremas: isolamento absoluto, grande altitude e uma jornada de 11 h por todo tipo de caminho.",
+    },
   "Laguna verde": {
     en: "Laguna Verde",
     pt: "Laguna Verde",
@@ -401,18 +415,20 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "Cuesta de Zapata",
     pt: "Cuesta de Zapata",
   },
-  "Sección que une Tinogasta con Belén por un camino entretenido de manejar. Destinado a ser el tercer día del tour, fue descartado ya que priorizamos un día de manejo de recuperación de los pilotos.": {
-    en: "A section connecting Tinogasta with Belen on a road that is fun to ride. It was intended as the third day of the tour, but we cut it to prioritize a recovery riding day for the riders.",
-    pt: "Seção que une Tinogasta a Belén por um caminho divertido de pilotar. Pensada para o terceiro dia do tour, foi descartada porque priorizamos um dia de recuperação para os pilotos.",
-  },
+  "Sección que une Tinogasta con Belén por un camino entretenido de manejar. Destinado a ser el tercer día del tour, fue descartado ya que priorizamos un día de manejo de recuperación de los pilotos.":
+    {
+      en: "A section connecting Tinogasta with Belen on a road that is fun to ride. It was intended as the third day of the tour, but we cut it to prioritize a recovery riding day for the riders.",
+      pt: "Seção que une Tinogasta a Belén por um caminho divertido de pilotar. Pensada para o terceiro dia do tour, foi descartada porque priorizamos um dia de recuperação para os pilotos.",
+    },
   "Volcan Galan": {
     en: "Volcan Galan",
     pt: "Vulcão Galán",
   },
-  "La sensación de manejar la moto por el interior del volcán es algo único. Aunque exploramos incorporarlo a este recorrido, finalmente quedó afuera por su dificultad técnica y exigencia física.": {
-    en: "Riding inside the volcano is a unique feeling. We explored adding it to this route, but it ultimately stayed out because of technical difficulty and physical demand.",
-    pt: "A sensação de pilotar a moto por dentro do vulcão é única. Exploramos incorporar ao percurso, mas ficou fora pela dificuldade técnica e exigência física.",
-  },
+  "La sensación de manejar la moto por el interior del volcán es algo único. Aunque exploramos incorporarlo a este recorrido, finalmente quedó afuera por su dificultad técnica y exigencia física.":
+    {
+      en: "Riding inside the volcano is a unique feeling. We explored adding it to this route, but it ultimately stayed out because of technical difficulty and physical demand.",
+      pt: "A sensação de pilotar a moto por dentro do vulcão é única. Exploramos incorporar ao percurso, mas ficou fora pela dificuldade técnica e exigência física.",
+    },
   "Carretera Austral y Patagonia": {
     en: "Carretera Austral and Patagonia",
     pt: "Carretera Austral e Patagônia",
@@ -425,10 +441,11 @@ const WORKSHOP_TRANSLATIONS: Record<string, { en: string; pt: string }> = {
     en: "What sustains the trip stays.",
     pt: "Fica o que sustenta a viagem.",
   },
-  "Patagonia obligó a elegir: frontera, ferry, ripio, distancia y luz. El recorrido final mantiene el viaje vivo sin romper el grupo.": {
-    en: "Patagonia forced choices: border, ferry, gravel, distance, and daylight. The final route keeps the trip alive without breaking the group.",
-    pt: "A Patagônia obrigou a escolher: fronteira, balsa, terra, distância e luz. O percurso final mantém a viagem viva sem quebrar o grupo.",
-  },
+  "Patagonia obligó a elegir: frontera, ferry, ripio, distancia y luz. El recorrido final mantiene el viaje vivo sin romper el grupo.":
+    {
+      en: "Patagonia forced choices: border, ferry, gravel, distance, and daylight. The final route keeps the trip alive without breaking the group.",
+      pt: "A Patagônia obrigou a escolher: fronteira, balsa, terra, distância e luz. O percurso final mantém a viagem viva sem quebrar o grupo.",
+    },
   "Piloto cruzando agua sobre una moto durante el armado de Cruces del Sur.": {
     en: "Rider crossing water on a motorcycle during the build of Cruces del Sur.",
     pt: "Piloto cruzando água de moto durante a montagem de Cruces del Sur.",
@@ -989,10 +1006,7 @@ export function localizeWorkshopText(locale: Locale, value: string): string {
   return WORKSHOP_TRANSLATIONS[value]?.[locale] ?? value;
 }
 
-export function localizeWorkshopImage(
-  image: WorkshopCaseImage,
-  locale: Locale,
-): WorkshopCaseImage {
+export function localizeWorkshopImage(image: WorkshopCaseImage, locale: Locale): WorkshopCaseImage {
   return {
     ...image,
     alt: localizeWorkshopText(locale, image.alt),

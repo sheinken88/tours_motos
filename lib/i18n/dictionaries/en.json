@@ -93,11 +93,7 @@
         "label": "track ready"
       }
     ],
-    "route_stops": [
-      "Idea",
-      "Route",
-      "Departure"
-    ],
+    "route_stops": ["Idea", "Route", "Departure"],
     "items": [
       "Bike and riding level.",
       "Available days and desired pace.",
@@ -290,11 +286,7 @@
       "Every motorcycle tour is different. We design ON/OFF experiences that combine road, gravel, and earned challenge.",
       "We ride through volcanic zones, deserts, forests with lakes, snow-capped mountains, and closed yungas."
     ],
-    "proof_labels": [
-      "years riding",
-      "road and gravel",
-      "tested routes"
-    ],
+    "proof_labels": ["years riding", "road and gravel", "tested routes"],
     "route_principles_eyebrow": "How we do it",
     "route_principles_heading": "DESIGNED, TESTED, AND ADJUSTED",
     "route_principles": [

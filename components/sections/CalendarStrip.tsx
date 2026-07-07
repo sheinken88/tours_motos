@@ -76,7 +76,7 @@ export async function CalendarStrip({ locale, limit = 3 }: CalendarStripProps) {
           <Stamp tilt={2} className="mb-4">
             {t("confirmed_label")}
           </Stamp>
-          <p className="font-display text-display-md leading-none uppercase">{visible.length}</p>
+          <p className="font-display text-display-md leading-none uppercase">{departures.length}</p>
           <p className="text-eyebrow tracking-eyebrow text-paper/75 mt-1 font-semibold uppercase">
             {t("available_label")}
           </p>

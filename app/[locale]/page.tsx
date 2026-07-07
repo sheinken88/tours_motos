@@ -43,6 +43,22 @@ type HomeAboutSectionProps = {
   photoAlt: string;
 };
 
+const homeJournalColorImages: Record<string, string> = {
+  "/images/tours/sobre_las_nubes/sobre_las_nubes_1_halftone.png":
+    "/images/taller_de_rutas/sobre-las-nubes/2.jpeg",
+  "/images/tours/cruces_del_sur/cruces_del_sur_1_halftone.png":
+    "/images/taller_de_rutas/cruces-del-sur/cruces-del-sur-hero-mirrored.jpeg",
+  "/images/tours/gigantes_del_oeste/gigantes_del_oeste_1_halftone.png":
+    "/images/taller_de_rutas/gigantes-del-oeste/4.jpeg",
+  "/images/tours/volcanes_del_norte/volcanes_del_norte_1_halftone.png":
+    "/images/taller_de_rutas/volcanes-norte/Volvimos, ajustamos, mejoramos.jpg",
+};
+
+function resolveHomeJournalImage(image?: string): string | undefined {
+  if (!image) return undefined;
+  return homeJournalColorImages[image] ?? image;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
@@ -110,7 +126,7 @@ export default async function Home({ params }: Props) {
     excerpt: entry.excerpt,
     date: entry.date,
     locale: entry.locale,
-    image: entry.image,
+    image: resolveHomeJournalImage(entry.image),
     imageAlt: entry.imageAlt,
   }));
   const customStats = tCustom.raw("stats") as HomeCustomStat[];
@@ -331,16 +347,7 @@ function HomeAboutSection({
               alt={photoAlt}
               fill
               sizes="(min-width: 1024px) 44vw, 88vw"
-              className="object-cover object-center opacity-90 mix-blend-multiply contrast-125 grayscale saturate-0"
-            />
-            <div className="bg-brand-red pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply" />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
-              style={{
-                backgroundImage: "url(/textures/halftone-overlay.svg)",
-                backgroundRepeat: "repeat",
-              }}
-              aria-hidden="true"
+              className="object-cover object-center contrast-110 saturate-105"
             />
           </figure>
         </div>

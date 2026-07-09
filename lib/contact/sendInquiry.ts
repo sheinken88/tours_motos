@@ -24,6 +24,7 @@ export type InquiryPayload = {
   locale: Locale;
   name: string;
   email: string;
+  phone?: string;
   /** Optional tour slug when the form was opened from a tour page. */
   tourSlug?: string;
   /** Free-form data: group size, dates, message, experience, region, pitch. */
@@ -49,6 +50,7 @@ function formatBody(payload: InquiryPayload): string {
     `Nombre: ${payload.name}`,
     `Correo: ${payload.email}`,
   ];
+  if (payload.phone) lines.push(`Teléfono: ${payload.phone}`);
   if (payload.tourSlug) lines.push(`Ruta: ${payload.tourSlug}`);
   for (const [key, value] of Object.entries(payload.fields)) {
     if (value === undefined || value === "") continue;
@@ -90,7 +92,7 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
   try {
     const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
-      from: "Moto On/Off <hello@motoonoff.com>",
+      from: "Moto On/Off <info@mototoursonoff.com.ar>",
       to,
       replyTo: payload.email,
       subject,

@@ -101,10 +101,10 @@ export async function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@motoonoff.com"
+                  href="mailto:info@mototoursonoff.com.ar"
                   className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
                 >
-                  hello@motoonoff.com
+                  info@mototoursonoff.com.ar
                 </a>
               </li>
             </ul>

@@ -9,7 +9,6 @@ import {
   Eyebrow,
   Stamp,
   TourCard,
-  XIcon,
 } from "@/components/primitives";
 import { PaperZone, RedZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
@@ -525,7 +524,7 @@ export default async function AboutPage({ params }: Props) {
                 <ul className="grid max-w-3xl gap-3 font-sans text-base leading-relaxed md:grid-cols-3">
                   {terrainList.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <XIcon className="text-accent-on-paper mt-1 h-4 w-4 shrink-0" />
+                      <CheckMark className="text-accent-on-paper mt-0.5 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}

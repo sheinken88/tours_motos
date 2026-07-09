@@ -134,11 +134,11 @@ function resolveImageReference(url: string, driveId: string): string {
 // ─── Tour ───────────────────────────────────────────────────────────────────
 
 export const TourSchema = z.object({
-  /** Stable join key across every CMS tab. By convention this matches slug_es. */
+  /** Stable join key across every CMS tab. Keep separate from public URL slugs. */
   slug: requiredText,
   sort_order: nonNegativeInt.default(0),
   title: localizedText,
-  /** Per-locale URL slugs — e.g. /es/tours/sobre-las-nubes. */
+  /** Per-locale URL slugs — e.g. /es/tours/tour-moto-salta-jujuy. */
   slugs: localizedText,
   region: localizedText,
   difficulty,

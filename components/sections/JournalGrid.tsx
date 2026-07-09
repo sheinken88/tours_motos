@@ -79,7 +79,7 @@ export function JournalGrid({
       ) : (
         <ul className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {visible.map((post) => (
-            <li key={post.slug}>
+            <li key={post.slug} className="flex">
               <JournalCard post={post} readMoreLabel={readMoreLabel} />
             </li>
           ))}
@@ -105,7 +105,7 @@ function JournalCard({
   return (
     <I18nLink
       href={`/taller-de-rutas/${post.slug}`}
-      className="group block border-2 border-current transition-transform duration-200 hover:-translate-y-1"
+      className="group flex h-full w-full flex-col border-2 border-current transition-transform duration-200 hover:-translate-y-1"
     >
       {/* Image well — placeholder for Phase 8, real halftone in Phase 9/10 */}
       <div className="bg-paper-aged relative aspect-[4/3] overflow-hidden border-b-2 border-current">
@@ -130,7 +130,7 @@ function JournalCard({
         )}
       </div>
       {/* Title + meta strip */}
-      <div className="space-y-3 p-5">
+      <div className="flex flex-1 flex-col space-y-3 p-5">
         <Stamp tilt={-2} className="self-start">
           {dateLabel}
         </Stamp>
@@ -141,7 +141,7 @@ function JournalCard({
           <p className="font-sans text-sm leading-relaxed opacity-80">{post.excerpt}</p>
         ) : null}
         {readMoreLabel ? (
-          <p className="text-eyebrow tracking-eyebrow pt-1 font-semibold uppercase underline-offset-4 group-hover:underline">
+          <p className="text-eyebrow tracking-eyebrow mt-auto pt-1 font-semibold uppercase underline-offset-4 group-hover:underline">
             {readMoreLabel} →
           </p>
         ) : null}

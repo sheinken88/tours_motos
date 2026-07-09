@@ -164,7 +164,7 @@ async function fetchDepartures(): Promise<Departure[]> {
 
 // ─── Cached gates ───────────────────────────────────────────────────────────
 
-const cachedTours = unstable_cache(fetchTours, ["content:tours"], {
+const cachedTours = unstable_cache(fetchTours, ["content:tours:v3"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["tours"],
 });
@@ -197,7 +197,14 @@ export async function getTours(_locale: Locale): Promise<Tour[]> {
 
 export async function getTourBySlug(locale: Locale, slug: string): Promise<Tour | null> {
   const tours = await cachedTours();
-  return tours.find((tour) => tour.slug === slug || tour.slugs[locale] === slug) ?? null;
+  return (
+    tours.find(
+      (tour) =>
+        tour.slug === slug ||
+        tour.slugs[locale] === slug ||
+        Object.values(tour.slugs).includes(slug),
+    ) ?? null
+  );
 }
 
 export async function getTourPageBySlug(
@@ -213,7 +220,10 @@ export async function getTourPageBySlug(
   ]);
 
   const tour = tours.find(
-    (candidate) => candidate.slug === slug || candidate.slugs[locale] === slug,
+    (candidate) =>
+      candidate.slug === slug ||
+      candidate.slugs[locale] === slug ||
+      Object.values(candidate.slugs).includes(slug),
   );
   if (!tour) return null;
 

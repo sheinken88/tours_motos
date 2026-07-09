@@ -70,9 +70,9 @@ the route facts displayed on the detail page.
 | `slug` | yes | string | Stable join key. Use kebab-case. Do not change after publishing. |
 | `sort_order` | no | integer | Display order on indexes. Empty = `0`. |
 | `published` | yes | boolean | `TRUE`/`FALSE`. New tours should start as `FALSE`. |
-| `slug_es` | yes | string | Spanish URL slug. Usually same as `slug`. |
-| `slug_en` | yes | string | English URL slug. Can match ES until translations are final. |
-| `slug_pt` | yes | string | Portuguese URL slug. Can match ES until translations are final. |
+| `slug_es` | yes | string | Spanish public URL slug. Can differ from the stable `slug` join key. |
+| `slug_en` | yes | string | English public URL slug. Localize for the search terms in that language. |
+| `slug_pt` | yes | string | Portuguese public URL slug. Localize for the search terms in that language. |
 | `title_es` | yes | text | Tour title. |
 | `title_en` | yes | text | Human-written English title. |
 | `title_pt` | yes | text | Human-written Portuguese title. |

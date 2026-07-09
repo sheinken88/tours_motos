@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
 import { TourCmsContent, TourMdxContent } from "@/components/sections";
 import { TourGrid } from "@/components/sections/TourGrid";
@@ -80,6 +80,9 @@ export default async function TourDetail({ params }: Props) {
   if (!tourPage) notFound();
 
   const { tour, departures } = tourPage;
+  if (slug !== tour.slugs[locale]) {
+    permanentRedirect(`/${locale}/tours/${tour.slugs[locale]}`);
+  }
 
   const [allTours, fm, MdxBody, mdxPracticalSections, t, tCommon, tWhatsApp] = await Promise.all([
     getTours(locale),
@@ -206,7 +209,7 @@ export default async function TourDetail({ params }: Props) {
                   {tCommon("hold_a_spot")}
                 </Button>
                 <Button
-                  href={`/${locale}/contact?tour=${tour.slugs[locale]}`}
+                  href={`/${locale}/contact?tour=${tour.slug}`}
                   edge={3}
                   tilt="right"
                 >

@@ -256,7 +256,7 @@ function RouteWorkshopHero({
             <Button href={whatsAppHref} external variant="sticker-filled" edge={1} tilt="left">
               {whatsAppLabel}
             </Button>
-            <Button href={`/${locale}/reservas`} edge={2} tilt="right">
+            <Button href={`/${locale}/contact`} edge={2} tilt="right">
               {reserveLabel}
             </Button>
           </div>

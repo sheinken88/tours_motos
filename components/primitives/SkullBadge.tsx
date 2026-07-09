@@ -14,22 +14,28 @@ const sizeClass: Record<SkullSize, string> = {
 
 /**
  * SkullBadge — brand mark, used in:
- *   - Logo lockup (skull + wordmark)
+ *   - Logo lockup (helmet mark + wordmark)
  *   - Footer center as a section ornament
  *   - Stamp / seal moments throughout the site
  *
- * Geometry is a placeholder until the client confirms the brand mark
- * (open question §16). Refine the symbol in /components/ui/DistressSprite.tsx.
+ * Kept under the existing component name so all prior brand-mark placements
+ * pick up the confirmed logo without broad import churn.
  */
 export function SkullBadge({ size = "md", className = "" }: SkullBadgeProps) {
   return (
-    <svg
-      className={`${sizeClass[size]} ${className}`}
-      viewBox="0 0 64 64"
-      aria-hidden
-      focusable="false"
-    >
-      <use href="#skull-badge" />
-    </svg>
+    <span
+      className={`inline-block shrink-0 bg-current ${sizeClass[size]} ${className}`}
+      style={{
+        WebkitMaskImage: "url('/images/logo/moto-on-off-logo-mask.png')",
+        maskImage: "url('/images/logo/moto-on-off-logo-mask.png')",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+      }}
+      aria-hidden="true"
+    />
   );
 }

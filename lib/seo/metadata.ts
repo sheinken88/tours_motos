@@ -6,14 +6,14 @@ import { SITE_NAME, getSiteUrl } from "./site";
 /**
  * Build a hreflang alternate set for a locale-specific path.
  *
- * Example: localeAlternates({ locale: "es", path: "/tours/sobre-las-nubes" })
- * yields { es-AR: "/es/tours/sobre-las-nubes", en: "/en/tours/...", ... }
+ * Example: localeAlternates({ pathByLocale: { es: "/tours/tour-moto-salta-jujuy", ... } })
+ * yields { es-AR: "/es/tours/tour-moto-salta-jujuy", en: "/en/tours/...", ... }
  *
  * The `path` segment must NOT include the locale prefix.
  *
  * For tour pages, callers should pass the per-locale slug — Sheets stores
- * one slug per locale to support /es/tours/sobre-las-nubes and
- * /en/tours/over-the-clouds with different slugs when copy diverges.
+ * one slug per locale to support /es/tours/tour-moto-salta-jujuy and
+ * /en/tours/motorcycle-tour-salta-jujuy with different SEO targets.
  */
 type LocaleAlternatesInput = {
   /** Map of locale → URL path (NO locale prefix). */

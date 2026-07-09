@@ -177,38 +177,7 @@ export default async function Home({ params }: Props) {
         <CalendarStrip locale={locale} limit={3} />
       </RedZone>
 
-      {/* 4 · Custom teaser (paper) ──────────────────────────────────────── */}
-      <PaperZone density="default" tornBottom={4} className="overflow-x-clip">
-        <CustomRouteTeaser
-          eyebrow={tCustom("eyebrow")}
-          heading={tCustom("heading")}
-          body={tCustom("body")}
-          href={`/${locale}/custom`}
-          ctaLabel={tCustom("cta")}
-          boardEyebrow={tCustom("board_eyebrow")}
-          boardTitle={tCustom("board_title")}
-          boardBody={tCustom("board_body")}
-          stats={customStats}
-          items={customItems}
-          routeStops={customRouteStops}
-        />
-      </PaperZone>
-
-      {/* 5 · About teaser (red) ─────────────────────────────────────────── */}
-      <RedZone density="default" tornBottom={1}>
-        <HomeAboutSection
-          eyebrow={tAbout("eyebrow")}
-          heading={tAbout("heading")}
-          body={tAbout("body")}
-          href={`/${locale}/about`}
-          ctaLabel={tAbout("cta")}
-          proofs={aboutProofs}
-          fieldNotes={aboutFieldNotes}
-          photoAlt={tAbout("photo_alt")}
-        />
-      </RedZone>
-
-      {/* 6 · Journal preview (paper) ────────────────────────────────────── */}
+      {/* 4 · Journal preview (paper) ────────────────────────────────────── */}
       <PaperZone density="default" tornBottom={3}>
         <div className="flex flex-col gap-8">
           <JournalGrid
@@ -233,6 +202,37 @@ export default async function Home({ params }: Props) {
             </Container>
           ) : null}
         </div>
+      </PaperZone>
+
+      {/* 5 · About teaser (red) ─────────────────────────────────────────── */}
+      <RedZone density="default" tornBottom={1}>
+        <HomeAboutSection
+          eyebrow={tAbout("eyebrow")}
+          heading={tAbout("heading")}
+          body={tAbout("body")}
+          href={`/${locale}/about`}
+          ctaLabel={tAbout("cta")}
+          proofs={aboutProofs}
+          fieldNotes={aboutFieldNotes}
+          photoAlt={tAbout("photo_alt")}
+        />
+      </RedZone>
+
+      {/* 6 · Custom teaser (paper) ──────────────────────────────────────── */}
+      <PaperZone density="default" tornBottom={4} className="overflow-x-clip">
+        <CustomRouteTeaser
+          eyebrow={tCustom("eyebrow")}
+          heading={tCustom("heading")}
+          body={tCustom("body")}
+          href={`/${locale}/custom`}
+          ctaLabel={tCustom("cta")}
+          boardEyebrow={tCustom("board_eyebrow")}
+          boardTitle={tCustom("board_title")}
+          boardBody={tCustom("board_body")}
+          stats={customStats}
+          items={customItems}
+          routeStops={customRouteStops}
+        />
       </PaperZone>
 
       {/* 7 · Contact form (red) ──────────────────────────────────────────

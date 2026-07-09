@@ -33,6 +33,21 @@ const SECONDARY_NAV_ITEMS = [
 
 const CONTACT_NAV_ITEM = { href: "/contact#contact-form", labelKey: "contact" } as const;
 
+function hrefPath(href: string) {
+  return href.split("#")[0] || "/";
+}
+
+function isActivePath(pathname: string, href: string) {
+  const path = hrefPath(href);
+  return pathname === path || (path !== "/" && pathname.startsWith(`${path}/`));
+}
+
+function localePath(pathname: string, locale: string) {
+  if (pathname === `/${locale}`) return "/";
+  if (pathname.startsWith(`/${locale}/`)) return pathname.slice(locale.length + 1);
+  return pathname;
+}
+
 function WhatsAppGlyph() {
   return (
     <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden fill="currentColor">
@@ -65,6 +80,7 @@ export function Nav() {
   const tWhatsApp = useTranslations("whatsapp");
   const locale = useLocale();
   const pathname = usePathname();
+  const activePathname = localePath(pathname, locale);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
@@ -138,16 +154,32 @@ export function Nav() {
       </div>
 
       <nav className="mt-10 flex flex-col gap-4 sm:mt-12 sm:gap-6" aria-label="Primary mobile">
-        {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS, CONTACT_NAV_ITEM].map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            onClick={() => setOpen(false)}
-            className="font-display text-paper text-display-md inline-flex min-h-11 items-center tracking-[var(--tracking-cta)] uppercase"
-          >
-            {t(item.labelKey)}
-          </Link>
-        ))}
+        {[...PRIMARY_NAV_ITEMS, ...SECONDARY_NAV_ITEMS, CONTACT_NAV_ITEM].map((item) => {
+          const active = isActivePath(activePathname, item.href);
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              aria-current={active ? "page" : undefined}
+              className="font-display text-paper text-display-md inline-flex min-h-11 items-center tracking-[var(--tracking-cta)] uppercase"
+            >
+              <span className="relative">
+                {t(item.labelKey)}
+                <svg
+                  aria-hidden
+                  className={`pointer-events-none absolute -bottom-1 left-0 h-2 w-full transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    active ? "opacity-100" : "opacity-0"
+                  }`}
+                  viewBox="0 0 200 12"
+                  preserveAspectRatio="none"
+                >
+                  <use href="#hand-underline" />
+                </svg>
+              </span>
+            </Link>
+          );
+        })}
       </nav>
 
       <div className="mt-auto flex flex-col items-start gap-4 pt-8 pb-4">
@@ -206,46 +238,60 @@ export function Nav() {
             className="hidden items-center gap-4 md:flex xl:gap-6 2xl:gap-7"
             aria-label="Primary"
           >
-            {PRIMARY_NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group/navlink tracking-eyebrow text-paper 2xl:text-eyebrow relative text-sm font-bold uppercase lg:text-base"
-              >
-                {t(item.labelKey)}
-                <svg
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
-                  viewBox="0 0 200 12"
-                  preserveAspectRatio="none"
+            {PRIMARY_NAV_ITEMS.map((item) => {
+              const active = isActivePath(activePathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className="group/navlink tracking-eyebrow text-paper 2xl:text-eyebrow relative text-sm font-bold uppercase lg:text-base"
                 >
-                  <use href="#hand-underline" />
-                </svg>
-              </Link>
-            ))}
+                  {t(item.labelKey)}
+                  <svg
+                    aria-hidden
+                    className={`pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100 ${
+                      active ? "opacity-100" : "opacity-0"
+                    }`}
+                    viewBox="0 0 200 12"
+                    preserveAspectRatio="none"
+                  >
+                    <use href="#hand-underline" />
+                  </svg>
+                </Link>
+              );
+            })}
             <span
               aria-hidden
               className="font-display text-paper/35 hidden -rotate-6 text-sm xl:inline"
             >
               /
             </span>
-            {SECONDARY_NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group/navlink tracking-eyebrow text-paper/65 hover:text-paper relative hidden text-xs font-semibold uppercase transition-colors xl:inline-flex"
-              >
-                {t(item.labelKey)}
-                <svg
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100"
-                  viewBox="0 0 200 12"
-                  preserveAspectRatio="none"
+            {SECONDARY_NAV_ITEMS.map((item) => {
+              const active = isActivePath(activePathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`group/navlink tracking-eyebrow hover:text-paper relative hidden text-xs font-semibold uppercase transition-colors xl:inline-flex ${
+                    active ? "text-paper" : "text-paper/65"
+                  }`}
                 >
-                  <use href="#hand-underline" />
-                </svg>
-              </Link>
-            ))}
+                  {t(item.labelKey)}
+                  <svg
+                    aria-hidden
+                    className={`pointer-events-none absolute -bottom-1 left-0 h-1.5 w-full transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/navlink:opacity-100 ${
+                      active ? "opacity-100" : "opacity-0"
+                    }`}
+                    viewBox="0 0 200 12"
+                    preserveAspectRatio="none"
+                  >
+                    <use href="#hand-underline" />
+                  </svg>
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="hidden items-center gap-2 md:flex 2xl:gap-3">

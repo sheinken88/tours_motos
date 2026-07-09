@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const site = getSiteUrl();
   const url = `${site}/${locale}/tours`;
   const title = `${t("headline")} | ${SITE_NAME}`;
-  const description = t("intro");
+  const description = t("intro").replace(/\s*\n\s*/g, " ");
 
   const pathByLocale = Object.fromEntries(locales.map((loc) => [loc, "/tours"])) as Record<
     Locale,
@@ -56,17 +56,18 @@ export default async function ToursIndex({ params }: Props) {
     getTranslations("common"),
     getTours(locale),
   ]);
+  const heroIntroParagraphs = t("intro").split("\n");
 
   return (
     <>
       <RedZone density="heavy" tornBottom={3} className="min-h-[100svh] overflow-hidden !py-0">
         <Image
-          src="/images/optimized/heroes/tours-index.jpg"
+          src="/images/optimized/heroes/tours-index-zoomed.jpg"
           alt={t("hero_image_alt")}
           fill
           priority
           sizes="100vw"
-          className="absolute inset-0 z-0 h-full w-full object-cover object-[54%_center]"
+          className="absolute inset-0 z-0 h-full w-full object-cover object-[54%_top]"
         />
         <div className="from-brand-red/[0.70] via-brand-red/[0.24] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
         <div className="from-ink/[0.30] via-ink/[0.08] pointer-events-none absolute inset-0 z-[3] bg-gradient-to-r to-transparent mix-blend-multiply" />
@@ -87,9 +88,11 @@ export default async function ToursIndex({ params }: Props) {
             <DisplayHeading size="2xl" as="h1" className="max-w-[9ch] leading-[0.88]">
               {t("headline")}
             </DisplayHeading>
-            <p className="text-on-red max-w-2xl font-sans text-xl leading-relaxed md:text-2xl">
-              {t("intro")}
-            </p>
+            <div className="text-on-red max-w-2xl space-y-3 font-sans text-xl leading-relaxed md:text-2xl">
+              {heroIntroParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
             <div className="flex flex-wrap gap-4 pt-2">
               <Button href="#rutas" edge={1} tilt="left" variant="sticker-filled">
                 {tCommon("see_routes")}

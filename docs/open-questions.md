@@ -11,7 +11,7 @@
   - `gigantes-del-oeste` — Gigantes del Oeste (Mendoza a La Rioja · 8d · 2400 km)
   - `volcanes-del-norte` — Volcanes del Norte (Catamarca · 7d · ~1917 km — verify total)
   - `cruces-del-sur` — Cruces del Sur (Carretera Austral y Patagonia · 7d · 2321 km)
-  - **Still pending:** `base_price_usd` per tour (currently 0 — interpreted as "consultar"); EN/PT localized slug variants (currently identical to ES); two distance gaps in source flagged inline in `/docs/tours-source.md`.
+  - **Still pending:** `base_price_usd` per tour (currently 0 — interpreted as "consultar"); two distance gaps in source flagged inline in `/docs/tours-source.md`.
 - [ ] **Photography source** — existing library? new shoot? license terms? Halftone processing requires high-contrast source images — flat midday phone shots will need re-shoots.
 - [ ] **WhatsApp number(s)** — single or per-region?
 - [ ] **Google Sheet ownership** — client's account or shared service workspace?

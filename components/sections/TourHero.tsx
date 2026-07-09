@@ -18,7 +18,7 @@ type TourHeroBackground = {
 
 const tourHeroBackgrounds: Record<string, TourHeroBackground> = {
   "sobre-las-nubes": {
-    src: "/images/optimized/heroes/tour-sobre-las-nubes.jpg",
+    src: "/images/tours/sobre_las_nubes/nubes-fotos-caco/Galeria 4.jpg",
     objectPosition: "50% center",
   },
   "gigantes-del-oeste": {
@@ -30,8 +30,8 @@ const tourHeroBackgrounds: Record<string, TourHeroBackground> = {
     objectPosition: "58% center",
   },
   "cruces-del-sur": {
-    src: "/images/optimized/heroes/tour-cruces-del-sur.jpg",
-    objectPosition: "58% bottom",
+    src: "/images/tours/cruces_del_sur/cruces-fotos-caco/Dia 2.jpeg",
+    objectPosition: "50% center",
   },
 };
 
@@ -93,7 +93,7 @@ export async function TourHero({ tour, locale, heroSummary }: TourHeroProps) {
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
             <Button
-              href={`/${locale}/contact?tour=${tour.slugs[locale]}`}
+              href={`/${locale}/contact?tour=${tour.slug}`}
               edge={1}
               tilt="left"
               variant="sticker-filled"

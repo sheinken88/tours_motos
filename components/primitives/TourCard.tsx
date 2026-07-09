@@ -85,7 +85,7 @@ export function TourCard({
   const photo = variant === "photo";
   const gravelValue = tour.ripio_percent === null ? "-" : `${tour.ripio_percent}%`;
   const photoObjectPositionClass =
-    photo && slug === "volcanes-del-norte" ? "object-[62%_center]" : "";
+    photo && tour.slug === "volcanes-del-norte" ? "object-[62%_center]" : "";
 
   const cardClass = poster
     ? [

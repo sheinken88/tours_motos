@@ -68,12 +68,12 @@ export function InquiryForm({
   }
 
   return (
-    <form action={formAction} className="space-y-6" data-whatsapp-fab="hide">
+    <form action={formAction} className="space-y-7" data-whatsapp-fab="hide">
       <input type="hidden" name="locale" value={locale} />
       {tourSlug ? <input type="hidden" name="tour_slug" value={tourSlug} /> : null}
       <Honeypot />
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         <FormField
           id={`${formId}-name`}
           name="name"
@@ -95,9 +95,18 @@ export function InquiryForm({
             state.status === "error" && state.field === "email" ? t("invalid_email") : undefined
           }
         />
+        <FormField
+          id={`${formId}-phone`}
+          name="phone"
+          type="tel"
+          inputMode="tel"
+          label={t("phone_label")}
+          placeholder={t("phone_placeholder")}
+          autoComplete="tel"
+        />
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         <FormField
           id={`${formId}-group-size`}
           name="group_size"

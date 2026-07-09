@@ -41,6 +41,7 @@ function inquiryActionFor({ kind }: InquiryActionInput) {
     const locale = readLocale(formData);
     const name = readString(formData, "name");
     const email = readString(formData, "email");
+    const phone = readString(formData, "phone");
     const honeypot = readString(formData, "company");
 
     if (!name || !email) {
@@ -70,6 +71,7 @@ function inquiryActionFor({ kind }: InquiryActionInput) {
       locale,
       name,
       email,
+      phone,
       tourSlug,
       fields,
       honeypot,

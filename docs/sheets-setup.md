@@ -168,7 +168,7 @@ One row per valid contact, tour, or custom-route form submission.
 
 | Header | Required | Type | Notes |
 | --- | --- | --- | --- |
-| `date` | yes | ISO datetime | Written by the server. |
+| `date` | yes | Date + time | Native Sheets date, displayed as `dd/mm/yyyy hh:mm` in Argentina time. |
 | `name` | yes | text | Visitor name. |
 | `email` | yes | email | Visitor email. |
 | `phone` | no | text | Kept as text to preserve prefixes. |
@@ -178,9 +178,13 @@ One row per valid contact, tour, or custom-route form submission.
 | `status` | yes | enum | New rows start as `new`. |
 
 Keep these eight headers in this exact order. The server validates the header
-contract before writing and suppresses identical submissions received within
-five minutes. The deduplication is best-effort because the fixed contract does
-not include a persistent submission ID.
+contract before writing, stores `date` as a sortable native Sheets date, and
+suppresses identical submissions received within five minutes. The
+deduplication is best-effort because the fixed contract does not include a
+persistent submission ID. Existing ISO text rows are kept as-is; new rows use
+the native date format. On the first new inquiry, the app sets the spreadsheet
+timezone to `America/Argentina/Buenos_Aires` and formats the date column as
+`dd/mm/yyyy hh:mm`.
 
 ---
 

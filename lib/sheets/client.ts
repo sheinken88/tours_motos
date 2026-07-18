@@ -85,7 +85,7 @@ export async function readSheet(range: string): Promise<ReadResult> {
  * Append one row to an existing Sheet table. `RAW` keeps user-entered text
  * literal, so values beginning with `=` are not interpreted as formulas.
  */
-export async function appendSheetRow(range: string, values: string[]): Promise<void> {
+export async function appendSheetRow(range: string, values: Array<string | number>): Promise<void> {
   const spreadsheetId = process.env.GOOGLE_SHEETS_TOURS_ID;
   if (!spreadsheetId) throw new Error("GOOGLE_SHEETS_TOURS_ID is not set");
 
@@ -98,5 +98,63 @@ export async function appendSheetRow(range: string, values: string[]): Promise<v
       majorDimension: "ROWS",
       values: [values],
     },
+  });
+}
+
+/**
+ * Apply the display format used by the lead-capture date column. The date is
+ * stored as a native Sheets serial number, so filtering and sorting continue
+ * to work while the visible value stays friendly to the client.
+ */
+export async function formatSheetDateColumn(
+  sheetTitle: string,
+  pattern: string,
+  timeZone: string,
+): Promise<void> {
+  const spreadsheetId = process.env.GOOGLE_SHEETS_TOURS_ID;
+  if (!spreadsheetId) throw new Error("GOOGLE_SHEETS_TOURS_ID is not set");
+
+  const spreadsheet = await getClient().spreadsheets.get({
+    spreadsheetId,
+    fields: "properties(timeZone),sheets(properties(sheetId,title))",
+  });
+  const sheet = spreadsheet.data.sheets?.find(
+    (candidate) => candidate.properties?.title === sheetTitle,
+  );
+  const sheetId = sheet?.properties?.sheetId;
+  if (sheetId === undefined) throw new Error(`Sheet tab ${sheetTitle} was not found`);
+
+  const requests: sheets_v4.Schema$Request[] = [];
+  if (spreadsheet.data.properties?.timeZone !== timeZone) {
+    requests.push({
+      updateSpreadsheetProperties: {
+        properties: { timeZone },
+        fields: "timeZone",
+      },
+    });
+  }
+  requests.push({
+    repeatCell: {
+      range: {
+        sheetId,
+        startRowIndex: 1,
+        startColumnIndex: 0,
+        endColumnIndex: 1,
+      },
+      cell: {
+        userEnteredFormat: {
+          numberFormat: {
+            type: "DATE_TIME",
+            pattern,
+          },
+        },
+      },
+      fields: "userEnteredFormat.numberFormat",
+    },
+  });
+
+  await getClient().spreadsheets.batchUpdate({
+    spreadsheetId,
+    requestBody: { requests },
   });
 }

@@ -92,7 +92,7 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
   try {
     const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
-      from: "Moto On/Off <info@mototoursonoff.com.ar>",
+      from: "Moto On/Off <info@motoonofftours.com.ar>",
       to,
       replyTo: payload.email,
       subject,

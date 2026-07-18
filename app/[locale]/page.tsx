@@ -241,7 +241,7 @@ export default async function Home({ params }: Props) {
           cutout can bleed across that boundary instead of being painted over. */}
       <RedZone density="default" className="z-10 overflow-x-clip overflow-y-visible">
         <Container>
-          <div className="grid items-stretch gap-12 md:grid-cols-[1fr_1.4fr] md:gap-16">
+          <div className="grid items-stretch gap-12 md:min-h-[clamp(42rem,45.6vw,58.5rem)] md:grid-cols-[1fr_1.4fr] md:gap-16">
             <div className="space-y-8">
               <div className="space-y-3">
                 <Eyebrow rule>{tContact("eyebrow")}</Eyebrow>

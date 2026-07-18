@@ -2,6 +2,7 @@
 
 import { type Locale, isLocale } from "@/lib/i18n/config";
 import { sendInquiry, type InquiryKind } from "@/lib/contact/sendInquiry";
+import { type FormState } from "./state";
 
 /**
  * Server Actions for the brand's inquiry forms. Kept in one file so all the
@@ -12,13 +13,6 @@ import { sendInquiry, type InquiryKind } from "@/lib/contact/sendInquiry";
  * union: `idle | success | error`. The form components render the correct
  * UI off the state shape — no redirect, no full-page reload.
  */
-
-export type FormState =
-  | { status: "idle" }
-  | { status: "success" }
-  | { status: "error"; field?: string; message?: string };
-
-const initialState: FormState = { status: "idle" };
 
 function readLocale(formData: FormData): Locale {
   const raw = String(formData.get("locale") ?? "es");
@@ -87,5 +81,3 @@ function inquiryActionFor({ kind }: InquiryActionInput) {
 export const submitContactInquiry = inquiryActionFor({ kind: "contact" });
 export const submitTourInquiry = inquiryActionFor({ kind: "tour" });
 export const submitCustomInquiry = inquiryActionFor({ kind: "custom" });
-
-export const initialInquiryState: FormState = initialState;

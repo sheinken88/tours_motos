@@ -4,9 +4,10 @@ import { useActionState, useId } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/primitives";
 import { type Locale } from "@/lib/i18n/config";
-import { type FormState, initialInquiryState, submitCustomInquiry } from "./actions";
+import { submitCustomInquiry } from "./actions";
 import { FormFeedback } from "./FormFeedback";
 import { FormField, FormTextarea, Honeypot } from "./FormField";
+import { type FormState, initialInquiryState } from "./state";
 
 /**
  * CustomTourForm — extended intake for /custom (CLAUDE.md §15 step 16).

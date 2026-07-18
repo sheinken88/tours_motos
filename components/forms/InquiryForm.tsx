@@ -5,13 +5,12 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/primitives";
 import { type Locale } from "@/lib/i18n/config";
 import {
-  type FormState,
-  initialInquiryState,
   submitContactInquiry,
   submitTourInquiry,
 } from "./actions";
 import { FormFeedback } from "./FormFeedback";
 import { FormField, FormSelect, FormTextarea, Honeypot } from "./FormField";
+import { type FormState, initialInquiryState } from "./state";
 
 /**
  * InquiryForm — multi-field contact form (CLAUDE.md §15 step 16).

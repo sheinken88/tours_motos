@@ -11,4 +11,5 @@ export { SkullBadge } from "./SkullBadge";
 export { Stamp } from "./Stamp";
 export { StickyNote } from "./StickyNote";
 export { TourCard } from "./TourCard";
+export { ExchangeRateAttribution, TourPrice, formatTourPrice } from "./TourPrice";
 export { XIcon } from "./XIcon";

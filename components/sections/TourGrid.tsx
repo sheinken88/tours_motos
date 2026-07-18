@@ -1,6 +1,13 @@
-import { Button, Container, Eyebrow, TourCard } from "@/components/primitives";
+import {
+  Button,
+  Container,
+  ExchangeRateAttribution,
+  Eyebrow,
+  TourCard,
+} from "@/components/primitives";
 import { DisplayHeading } from "@/components/primitives/DisplayHeading";
 import { type Locale } from "@/lib/i18n/config";
+import { type TourPriceMap } from "@/lib/sheets/queries";
 import { type Tour } from "@/lib/sheets/schemas";
 
 type TourGridProps = {
@@ -21,6 +28,8 @@ type TourGridProps = {
   ctaLabel?: string;
   /** Hide the decorative halftone accent when a page needs clean color cards. */
   showHalftoneAccent?: boolean;
+  /** Catalog prices are opt-in so the home showcase never renders them. */
+  prices?: TourPriceMap;
 };
 
 const posterWallCellClass = [
@@ -83,6 +92,7 @@ export function TourGrid({
   ctaHref,
   ctaLabel,
   showHalftoneAccent = true,
+  prices,
 }: TourGridProps) {
   const visible = typeof limit === "number" ? tours.slice(0, limit) : tours;
   const posterWall = variant === "posterWall";
@@ -94,6 +104,7 @@ export function TourGrid({
     .filter((altitude) => altitude > 0);
   const highestAltitude = altitudes.length > 0 ? Math.max(...altitudes) : null;
   const labels = wallLabels[locale];
+  const hasConvertedPrice = visible.some((tour) => prices?.[tour.slug]?.converted);
 
   if (homeShowcase) {
     return (
@@ -167,6 +178,7 @@ export function TourGrid({
                     variant="photo"
                     index={index}
                     className="h-full"
+                    price={prices?.[tour.slug]}
                   />
                 </li>
               ))}
@@ -185,6 +197,7 @@ export function TourGrid({
                 </Button>
               </div>
             ) : null}
+            {hasConvertedPrice ? <ExchangeRateAttribution locale={locale} /> : null}
           </div>
         )}
       </Container>
@@ -246,22 +259,26 @@ export function TourGrid({
             <p className="relative z-10 font-sans text-sm opacity-70">{emptyMessage}</p>
           ) : null
         ) : (
-          <ul className="relative z-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
-            {visible.map((tour, index) => (
-              <li
-                key={tour.slug}
-                className={posterWallCellClass[index % posterWallCellClass.length]}
-              >
-                <TourCard
-                  tour={tour}
-                  locale={locale}
-                  numberLocale={numberLocale}
-                  variant="poster"
-                  index={index}
-                />
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className="relative z-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
+              {visible.map((tour, index) => (
+                <li
+                  key={tour.slug}
+                  className={posterWallCellClass[index % posterWallCellClass.length]}
+                >
+                  <TourCard
+                    tour={tour}
+                    locale={locale}
+                    numberLocale={numberLocale}
+                    variant="poster"
+                    index={index}
+                    price={prices?.[tour.slug]}
+                  />
+                </li>
+              ))}
+            </ul>
+            {hasConvertedPrice ? <ExchangeRateAttribution locale={locale} /> : null}
+          </>
         )}
       </Container>
     );
@@ -284,13 +301,22 @@ export function TourGrid({
           <p className="font-sans text-sm opacity-70">{emptyMessage}</p>
         ) : null
       ) : (
-        <ul className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
-          {visible.map((tour, index) => (
-            <li key={tour.slug}>
-              <TourCard tour={tour} locale={locale} numberLocale={numberLocale} index={index} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
+            {visible.map((tour, index) => (
+              <li key={tour.slug}>
+                <TourCard
+                  tour={tour}
+                  locale={locale}
+                  numberLocale={numberLocale}
+                  index={index}
+                  price={prices?.[tour.slug]}
+                />
+              </li>
+            ))}
+          </ul>
+          {hasConvertedPrice ? <ExchangeRateAttribution locale={locale} /> : null}
+        </>
       )}
     </Container>
   );

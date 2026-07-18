@@ -10,8 +10,8 @@
 
 ## Architecture
 
-- **Source of truth:** one Google Sheet tab for `Departures`.
-- **Auth:** Google Sheets API with a read-only service account.
+- **Source of truth:** `Departures` for calendar dates and `Inquiries` for lead capture.
+- **Auth:** Google Sheets API with a service account shared as Editor.
 - **Runtime:** Next.js server components read departure rows through `lib/sheets/`.
 - **Validation:** departure rows are parsed through Zod. Malformed rows are skipped
   and logged; the rest of the site continues rendering.
@@ -43,7 +43,8 @@ Treat the JSON key like a password. Never commit it.
 ## One-time Sheet setup
 
 1. Create a Google Sheet named `Moto On/Off — Departures`.
-2. Share it with the service account email as **Viewer**.
+2. Share it with the service account email as **Editor** so it can read
+   `Departures` and append form submissions to `Inquiries`.
 3. Copy the spreadsheet ID from the URL:
    `https://docs.google.com/spreadsheets/d/<THIS_IS_THE_ID>/edit`.
 4. Create the `Departures` tab.
@@ -85,7 +86,7 @@ the route facts displayed on the detail page.
 | `ripio_percent` | no | integer | Percent gravel/dirt. Leave empty if unknown. |
 | `max_altitude_m` | no | integer | Max altitude in meters. Leave empty if not relevant. |
 | `base_price_usd` | yes | number | `0` means “consultar”. |
-| `currency` | yes | enum | `USD`, `ARS`, `EUR`. |
+| `currency` | yes | enum | `USD`, `ARS`, `BRL`, `EUR`. |
 | `hero_image` | no | URL/path | Local path like `/images/tours/...png` or public URL. |
 | `hero_image_drive_id` | no | string | Drive file ID fallback if `hero_image` is empty. |
 | `hero_image_color` | no | URL/path | Optional color sibling for hover reveals. |
@@ -151,13 +152,35 @@ One row per scheduled departure.
 | `spots_remaining` | yes | integer | `0` or greater. |
 | `status` | yes | enum | `open`, `low`, `sold_out`. |
 | `price` | no | number | Departure-specific override. Empty = `0`. |
-| `currency` | yes | enum | `USD`, `ARS`, `EUR`. |
+| `currency` | yes | enum | `USD`, `ARS`, `BRL`, `EUR`. |
 | `notes_es` | no | text | Short public note. |
 | `notes_en` | no | text | Human-written translation. |
 | `notes_pt` | no | text | Human-written translation. |
 
 If exact availability might change faster than the cache, keep CTA language
 consultative: “Hold a spot” / “Talk to us” rather than “Buy now”.
+
+---
+
+## Tab: `Inquiries`
+
+One row per valid contact, tour, or custom-route form submission.
+
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `date` | yes | ISO datetime | Written by the server. |
+| `name` | yes | text | Visitor name. |
+| `email` | yes | email | Visitor email. |
+| `phone` | no | text | Kept as text to preserve prefixes. |
+| `tour` | no | text | Selected tour slug, when present. |
+| `language` | yes | enum | `es`, `en`, or `pt`. |
+| `message` | no | text | Contact message or custom-tour pitch. |
+| `status` | yes | enum | New rows start as `new`. |
+
+Keep these eight headers in this exact order. The server validates the header
+contract before writing and suppresses identical submissions received within
+five minutes. The deduplication is best-effort because the fixed contract does
+not include a persistent submission ID.
 
 ---
 
@@ -313,6 +336,8 @@ curl -X POST -H "x-revalidate-secret: <SECRET>" https://motoonoff.com/api/revali
 | Missing itinerary row | Other tour content still renders; missing day is simply absent. |
 | Service account loses Sheet access | Existing cached pages remain; fresh cache reads return empty data and log errors. |
 | Credentials missing locally | Mock data renders so development can continue. |
+| `Inquiries` write fails | Email delivery still runs; the form never throws a 500. |
+| Resend fails after a successful append | The lead remains captured in `Inquiries`. |
 
 Update this document whenever the schema changes. This is the contract between
 the client-facing Sheet and the website.

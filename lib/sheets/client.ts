@@ -45,7 +45,10 @@ function getClient(): sheets_v4.Sheets {
   const auth = new google.auth.JWT({
     email: json.client_email,
     key: json.private_key,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    // The same service account reads Departures and appends form submissions
+    // to Inquiries. Access is still limited to spreadsheets explicitly shared
+    // with that account.
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
 
   client = google.sheets({ version: "v4", auth });
@@ -76,4 +79,24 @@ export async function readSheet(range: string): Promise<ReadResult> {
   const [headerRow, ...dataRows] = values;
   const headers = (headerRow ?? []).map((h) => (typeof h === "string" ? h : String(h)));
   return { headers, rows: dataRows };
+}
+
+/**
+ * Append one row to an existing Sheet table. `RAW` keeps user-entered text
+ * literal, so values beginning with `=` are not interpreted as formulas.
+ */
+export async function appendSheetRow(range: string, values: string[]): Promise<void> {
+  const spreadsheetId = process.env.GOOGLE_SHEETS_TOURS_ID;
+  if (!spreadsheetId) throw new Error("GOOGLE_SHEETS_TOURS_ID is not set");
+
+  await getClient().spreadsheets.values.append({
+    spreadsheetId,
+    range,
+    valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
+    requestBody: {
+      majorDimension: "ROWS",
+      values: [values],
+    },
+  });
 }

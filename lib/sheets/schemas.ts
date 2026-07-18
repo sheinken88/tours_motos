@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { currencyCodes } from "@/lib/currency/types";
 import { type Locale, locales } from "@/lib/i18n/config";
 
 /**
@@ -147,7 +148,7 @@ export const TourSchema = z.object({
   ripio_percent: optionalNonNegativeInt,
   max_altitude_m: optionalNonNegativeInt,
   base_price_usd: nonNegativeNumber,
-  currency: z.enum(["USD", "ARS", "EUR"]).default("USD"),
+  currency: z.enum(currencyCodes).default("USD"),
   hero_image: text,
   hero_image_color: text,
   hero_image_drive_id: text,
@@ -214,7 +215,7 @@ export const DepartureSchema = z.object({
   spots_remaining: nonNegativeInt,
   status: z.enum(["open", "low", "sold_out"]),
   price: nonNegativeNumber,
-  currency: z.enum(["USD", "ARS", "EUR"]).default("USD"),
+  currency: z.enum(currencyCodes).default("USD"),
   notes: optionalLocalizedText,
 });
 

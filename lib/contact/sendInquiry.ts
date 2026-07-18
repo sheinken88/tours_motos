@@ -1,6 +1,7 @@
 import "server-only";
 import { Resend } from "resend";
 import { type Locale } from "@/lib/i18n/config";
+import { appendInquiry } from "@/lib/sheets/inquiries";
 
 /**
  * sendInquiry — server-side delivery for inquiry / contact / custom-tour
@@ -34,7 +35,7 @@ export type InquiryPayload = {
 };
 
 export type InquiryResult =
-  | { ok: true; id?: string }
+  | { ok: true; id?: string; capturedBy?: "email" | "sheet" | "both" | "duplicate" }
   | { ok: false; error: "honeypot" | "delivery" | "missing_fields" };
 
 const SUBJECT_BY_KIND: Record<InquiryKind, string> = {
@@ -59,34 +60,23 @@ function formatBody(payload: InquiryPayload): string {
   return lines.join("\n");
 }
 
-export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResult> {
-  // Honeypot — bots fill hidden fields. Silently succeed so the bot doesn't
-  // retry; never deliver mail.
-  if (payload.honeypot && payload.honeypot.trim().length > 0) {
-    if (process.env.NODE_ENV !== "production") {
-      console.info("[inquiry] honeypot tripped — dropping silently");
-    }
-    return { ok: true };
-  }
-
-  if (!payload.name.trim() || !payload.email.trim()) {
-    return { ok: false, error: "missing_fields" };
-  }
-
+async function deliverInquiryEmail(payload: InquiryPayload): Promise<InquiryResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.INQUIRY_NOTIFICATION_EMAIL;
   const subject = SUBJECT_BY_KIND[payload.kind];
   const body = formatBody(payload);
 
   // Dev / preview without credentials: log and pretend success so the form
-  // surface stays testable. Production deploys MUST set both env vars or
-  // delivery silently degrades.
+  // surface stays testable. Production treats missing configuration as a
+  // failed channel so it cannot report a capture that never happened.
   if (!apiKey || !to) {
     if (process.env.NODE_ENV !== "production") {
       console.info("[inquiry] RESEND not configured — logging payload");
       console.info({ subject, body });
+      return { ok: true, capturedBy: "email" };
     }
-    return { ok: true };
+    console.error("[inquiry] Resend configuration is missing in production");
+    return { ok: false, error: "delivery" };
   }
 
   try {
@@ -102,9 +92,69 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
       console.error("[inquiry] resend error", error);
       return { ok: false, error: "delivery" };
     }
-    return { ok: true, id: data?.id };
+    return { ok: true, id: data?.id, capturedBy: "email" };
   } catch (error) {
     console.error("[inquiry] resend threw", error);
     return { ok: false, error: "delivery" };
   }
+}
+
+export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResult> {
+  // Honeypot — bots fill hidden fields. Silently succeed so the bot doesn't
+  // retry; never deliver mail or write to Sheets.
+  if (payload.honeypot && payload.honeypot.trim().length > 0) {
+    if (process.env.NODE_ENV !== "production") {
+      console.info("[inquiry] honeypot tripped — dropping silently");
+    }
+    return { ok: true };
+  }
+
+  if (!payload.name.trim() || !payload.email.trim()) {
+    return { ok: false, error: "missing_fields" };
+  }
+
+  const selectedTour =
+    typeof payload.fields.tour === "string" && payload.fields.tour.trim()
+      ? payload.fields.tour.trim()
+      : payload.tourSlug;
+  const message =
+    typeof payload.fields.message === "string" && payload.fields.message.trim()
+      ? payload.fields.message.trim()
+      : typeof payload.fields.pitch === "string"
+        ? payload.fields.pitch.trim()
+        : "";
+
+  // Persist first so a recent duplicate can suppress both the row and email.
+  // If either provider captures the lead, the visitor sees success; only a
+  // total delivery failure returns the form error state.
+  const sheetResult = await appendInquiry({
+    name: payload.name,
+    email: payload.email,
+    phone: payload.phone,
+    tour: selectedTour,
+    language: payload.locale,
+    message,
+  });
+
+  if (sheetResult.ok && sheetResult.status === "duplicate") {
+    return { ok: true, capturedBy: "duplicate" };
+  }
+
+  const emailResult = await deliverInquiryEmail(payload);
+  const capturedBySheet = sheetResult.ok && sheetResult.status === "appended";
+  const capturedByEmail = emailResult.ok;
+
+  if (capturedBySheet && capturedByEmail) {
+    return { ...emailResult, capturedBy: "both" };
+  }
+  if (capturedBySheet) {
+    console.error("[inquiry] email delivery failed after Sheets capture");
+    return { ok: true, capturedBy: "sheet" };
+  }
+  if (capturedByEmail) {
+    console.error("[inquiry] Sheets capture failed after email delivery");
+    return { ...emailResult, capturedBy: "email" };
+  }
+
+  return { ok: false, error: "delivery" };
 }

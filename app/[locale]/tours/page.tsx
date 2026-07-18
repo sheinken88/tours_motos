@@ -7,7 +7,7 @@ import { PaperZone, RedZone } from "@/components/surfaces";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { localeAlternates } from "@/lib/seo/metadata";
 import { SITE_NAME, getSiteUrl } from "@/lib/seo/site";
-import { getTours } from "@/lib/sheets/queries";
+import { getTourPriceMap, getTours } from "@/lib/sheets/queries";
 
 export const revalidate = 600;
 
@@ -51,10 +51,11 @@ export default async function ToursIndex({ params }: Props) {
   if (!isLocale(locale)) return null;
   setRequestLocale(locale);
 
-  const [t, tCommon, tours] = await Promise.all([
+  const [t, tCommon, tours, prices] = await Promise.all([
     getTranslations("tours_index"),
     getTranslations("common"),
     getTours(locale),
+    getTourPriceMap(locale),
   ]);
   const heroIntroParagraphs = t("intro").split("\n");
 
@@ -114,6 +115,7 @@ export default async function ToursIndex({ params }: Props) {
           emptyMessage={t("empty")}
           variant="homeShowcase"
           showHalftoneAccent={false}
+          prices={prices}
         />
       </PaperZone>
     </>

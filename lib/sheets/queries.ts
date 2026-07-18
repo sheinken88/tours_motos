@@ -1,5 +1,7 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
+import { localizePrices } from "@/lib/currency/exchange";
+import { type LocalizedPrice } from "@/lib/currency/types";
 import { type Locale } from "@/lib/i18n/config";
 import {
   MOCK_DEPARTURES,
@@ -257,4 +259,43 @@ export async function getDeparturesByTour(slug: string): Promise<Departure[]> {
   return departures
     .filter((departure) => departure.tour_slug === slug)
     .sort((a, b) => a.start_date.localeCompare(b.start_date));
+}
+
+export type TourPriceMap = Record<string, LocalizedPrice>;
+
+/**
+ * Public catalog price per tour, derived from upcoming departure rows. A zero
+ * price means "consult us" and is intentionally omitted.
+ */
+export async function getTourPriceMap(locale: Locale): Promise<TourPriceMap> {
+  const today = new Date().toISOString().slice(0, 10);
+  const departures = (await cachedDepartures()).filter(
+    (departure) => departure.start_date >= today && departure.price > 0,
+  );
+  const byTour = new Map<string, Departure[]>();
+
+  for (const departure of departures) {
+    const current = byTour.get(departure.tour_slug) ?? [];
+    current.push(departure);
+    byTour.set(departure.tour_slug, current);
+  }
+
+  const entries = await Promise.all(
+    [...byTour.entries()].map(async ([slug, candidates]) => {
+      const localized = await localizePrices(
+        candidates.map(({ price, currency }) => ({ amount: price, currency })),
+        locale,
+      );
+      const comparable = localized.every((price) => price.currency === localized[0]?.currency);
+      const first = localized[0]!;
+      const selected = comparable
+        ? localized
+            .slice(1)
+            .reduce((lowest, price) => (price.amount < lowest.amount ? price : lowest), first)
+        : first;
+      return [slug, selected] as const;
+    }),
+  );
+
+  return Object.fromEntries(entries);
 }

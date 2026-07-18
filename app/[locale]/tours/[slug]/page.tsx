@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound, permanentRedirect } from "next/navigation";
-import { Button, Container, DisplayHeading, Eyebrow, Stamp } from "@/components/primitives";
+import {
+  Button,
+  Container,
+  DisplayHeading,
+  ExchangeRateAttribution,
+  Eyebrow,
+  Stamp,
+  TourPrice,
+} from "@/components/primitives";
 import { TourCmsContent, TourMdxContent } from "@/components/sections";
 import { TourGrid } from "@/components/sections/TourGrid";
 import { TourHero } from "@/components/sections/TourHero";
@@ -14,6 +22,7 @@ import {
 } from "@/lib/content/getTourMdx";
 import { getTourMdxComponent } from "@/lib/content/tourMdxRegistry";
 import { parseCalendarDate } from "@/lib/date";
+import { localizePrices } from "@/lib/currency/exchange";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { breadcrumbSchema, tourTripSchema } from "@/lib/seo/jsonld";
 import { tourMetadata } from "@/lib/seo/metadata";
@@ -121,6 +130,11 @@ export default async function TourDetail({ params }: Props) {
     template: tWhatsApp.raw("tour_message") as string,
     tourTitle: tour.title[locale],
   });
+  const departurePrices = await localizePrices(
+    departures.map(({ price, currency }) => ({ amount: price, currency })),
+    locale,
+  );
+  const hasConvertedPrice = departurePrices.some((price) => price.converted);
 
   return (
     <>
@@ -168,7 +182,7 @@ export default async function TourDetail({ params }: Props) {
           ) : (
             <>
               <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {departures.map((d) => {
+                {departures.map((d, index) => {
                   const notes = d.notes[locale];
                   const startLabel = dateFormatter.format(parseCalendarDate(d.start_date));
                   const endLabel = dateFormatter.format(parseCalendarDate(d.end_date));
@@ -178,6 +192,7 @@ export default async function TourDetail({ params }: Props) {
                       : d.status === "low"
                         ? t("status_low")
                         : t("status_sold_out");
+                  const displayPrice = departurePrices[index];
                   return (
                     <li
                       key={d.start_date}
@@ -191,6 +206,9 @@ export default async function TourDetail({ params }: Props) {
                         <br />
                         <span className="opacity-70">→ {endLabel}</span>
                       </p>
+                      {displayPrice && displayPrice.amount > 0 ? (
+                        <TourPrice price={displayPrice} locale={locale} kind="exact" tone="red" />
+                      ) : null}
                       {notes ? (
                         <p className="font-sans text-sm leading-relaxed opacity-80">{notes}</p>
                       ) : null}
@@ -198,6 +216,7 @@ export default async function TourDetail({ params }: Props) {
                   );
                 })}
               </ul>
+              {hasConvertedPrice ? <ExchangeRateAttribution locale={locale} /> : null}
               <div className="flex flex-wrap gap-4">
                 <Button
                   href={tourWhatsAppHref}
@@ -208,11 +227,7 @@ export default async function TourDetail({ params }: Props) {
                 >
                   {tCommon("hold_a_spot")}
                 </Button>
-                <Button
-                  href={`/${locale}/contact?tour=${tour.slug}`}
-                  edge={3}
-                  tilt="right"
-                >
+                <Button href={`/${locale}/contact?tour=${tour.slug}`} edge={3} tilt="right">
                   {tCommon("talk_to_us")}
                 </Button>
               </div>

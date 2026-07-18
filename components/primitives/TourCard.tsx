@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { type LocalizedPrice } from "@/lib/currency/types";
 import { type Locale } from "@/lib/i18n/config";
 import { Link } from "@/lib/i18n/navigation";
 import { type Tour } from "@/lib/sheets/schemas";
 import { HalftoneImage } from "../surfaces/HalftoneImage";
 import { DisplayHeading } from "./DisplayHeading";
 import { Stamp } from "./Stamp";
+import { TourPrice } from "./TourPrice";
 
 type TourCardProps = {
   tour: Tour;
@@ -16,6 +18,8 @@ type TourCardProps = {
   /** Zero-based visual index, used for route numbering and poster tilt. */
   index?: number;
   className?: string;
+  /** Omitted on the home page by design. */
+  price?: LocalizedPrice;
 };
 
 const difficultyLabel: Record<Tour["difficulty"], { es: string; en: string; pt: string }> = {
@@ -67,6 +71,7 @@ export function TourCard({
   variant = "standard",
   index = 0,
   className = "",
+  price,
 }: TourCardProps) {
   const title = tour.title[locale];
   const region = tour.region[locale];
@@ -172,6 +177,7 @@ export function TourCard({
                 {gravelValue} {labels.gravel}
               </span>
             </p>
+            {price ? <TourPrice price={price} locale={locale} className="mt-4" /> : null}
           </div>
         </>
       ) : null}
@@ -285,6 +291,7 @@ export function TourCard({
                   </span>
                 ) : null}
               </p>
+              {price ? <TourPrice price={price} locale={locale} /> : null}
             </div>
           ) : (
             <div className="flex flex-col gap-3 p-6">
@@ -294,6 +301,7 @@ export function TourCard({
               <p className="font-sans text-sm leading-relaxed opacity-80">
                 {days} · {km} km · {diff}
               </p>
+              {price ? <TourPrice price={price} locale={locale} /> : null}
             </div>
           )}
         </>

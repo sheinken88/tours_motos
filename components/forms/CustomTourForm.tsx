@@ -2,6 +2,7 @@
 
 import { useActionState, useId } from "react";
 import { useTranslations } from "next-intl";
+import { LeadTracker } from "@/components/analytics";
 import { Button } from "@/components/primitives";
 import { type Locale } from "@/lib/i18n/config";
 import { submitCustomInquiry } from "./actions";
@@ -40,7 +41,10 @@ export function CustomTourForm({ locale }: CustomTourFormProps) {
 
   if (state.status === "success") {
     return (
-      <FormFeedback variant="success" heading={t("success_heading")} body={t("success_body")} />
+      <>
+        {state.analytics ? <LeadTracker {...state.analytics} /> : null}
+        <FormFeedback variant="success" heading={t("success_heading")} body={t("success_body")} />
+      </>
     );
   }
 

@@ -1,5 +1,6 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
 import { type Locale, isLocale } from "@/lib/i18n/config";
 import { sendInquiry, type InquiryKind } from "@/lib/contact/sendInquiry";
 import { type FormState } from "./state";
@@ -74,7 +75,23 @@ function inquiryActionFor({ kind }: InquiryActionInput) {
     if (!result.ok) {
       return { status: "error", message: result.error };
     }
-    return { status: "success" };
+
+    const captured =
+      result.capturedBy === "email" ||
+      result.capturedBy === "sheet" ||
+      result.capturedBy === "both";
+    const selectedTour = fields.tour || tourSlug;
+    return {
+      status: "success",
+      analytics: captured
+        ? {
+            eventId: result.id ?? randomUUID(),
+            formKind: kind,
+            locale,
+            tourSlug: selectedTour,
+          }
+        : undefined,
+    };
   };
 }
 

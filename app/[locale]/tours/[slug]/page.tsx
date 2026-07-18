@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound, permanentRedirect } from "next/navigation";
+import { TourViewTracker } from "@/components/analytics";
 import {
   Button,
   Container,
@@ -146,6 +147,7 @@ export default async function TourDetail({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
+      <TourViewTracker tourSlug={tour.slug} tourName={tour.title[locale]} locale={locale} />
 
       <TourHero tour={tour} locale={locale} heroSummary={fm?.hero} />
 

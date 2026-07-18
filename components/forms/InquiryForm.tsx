@@ -2,12 +2,10 @@
 
 import { useActionState, useId } from "react";
 import { useTranslations } from "next-intl";
+import { LeadTracker } from "@/components/analytics";
 import { Button } from "@/components/primitives";
 import { type Locale } from "@/lib/i18n/config";
-import {
-  submitContactInquiry,
-  submitTourInquiry,
-} from "./actions";
+import { submitContactInquiry, submitTourInquiry } from "./actions";
 import { FormFeedback } from "./FormFeedback";
 import { FormField, FormSelect, FormTextarea, Honeypot } from "./FormField";
 import { type FormState, initialInquiryState } from "./state";
@@ -62,7 +60,10 @@ export function InquiryForm({
 
   if (state.status === "success") {
     return (
-      <FormFeedback variant="success" heading={t("success_heading")} body={t("success_body")} />
+      <>
+        {state.analytics ? <LeadTracker {...state.analytics} /> : null}
+        <FormFeedback variant="success" heading={t("success_heading")} body={t("success_body")} />
+      </>
     );
   }
 

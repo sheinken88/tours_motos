@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { AnalyticsRuntime, AnalyticsScripts } from "@/components/analytics";
 import { DistressSprite } from "@/components/ui/DistressSprite";
 import { Footer } from "@/components/ui/Footer";
 import { Nav } from "@/components/ui/Nav";
@@ -43,8 +44,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${fontDisplay.variable} ${fontBody.variable} ${fontScript.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <AnalyticsScripts />
         <DistressSprite />
         <NextIntlClientProvider locale={locale}>
+          <AnalyticsRuntime locale={locale} />
           <Nav />
           <main className="flex-1">{children}</main>
           <Footer />

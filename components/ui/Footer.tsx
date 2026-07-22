@@ -3,6 +3,7 @@ import { Button, Container, Eyebrow, SkullBadge } from "@/components/primitives"
 import { PaperZone } from "@/components/surfaces";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { Link } from "@/lib/i18n/navigation";
+import { INSTAGRAM_URL } from "@/lib/seo/site";
 
 /**
  * Footer — paper zone with nav-matched link groups, contact paths, and a
@@ -91,7 +92,7 @@ export async function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/mototoursonoff/"
+                  href={INSTAGRAM_URL}
                   className="inline-flex min-h-11 min-w-11 items-center py-1 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"

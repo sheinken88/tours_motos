@@ -27,7 +27,7 @@ import { localizePrices } from "@/lib/currency/exchange";
 import { isLocale, type Locale, locales } from "@/lib/i18n/config";
 import { breadcrumbSchema, tourTripSchema } from "@/lib/seo/jsonld";
 import { tourMetadata } from "@/lib/seo/metadata";
-import { getTourPageBySlug, getTours } from "@/lib/sheets/queries";
+import { getTourPageBySlug, getTourPriceMap, getTours } from "@/lib/sheets/queries";
 
 export const revalidate = 600;
 
@@ -94,7 +94,16 @@ export default async function TourDetail({ params }: Props) {
     permanentRedirect(`/${locale}/tours/${tour.slugs[locale]}`);
   }
 
-  const [allTours, fm, MdxBody, mdxPracticalSections, t, tCommon, tWhatsApp] = await Promise.all([
+  const [
+    allTours,
+    fm,
+    MdxBody,
+    mdxPracticalSections,
+    t,
+    tCommon,
+    tWhatsApp,
+    catalogPrices,
+  ] = await Promise.all([
     getTours(locale),
     getTourFrontmatter(tour.slug, locale),
     getTourMdxComponent(tour.slug, locale),
@@ -102,8 +111,10 @@ export default async function TourDetail({ params }: Props) {
     getTranslations({ locale, namespace: "tour_detail" }),
     getTranslations({ locale, namespace: "common" }),
     getTranslations({ locale, namespace: "whatsapp" }),
+    getTourPriceMap(locale),
   ]);
 
+  const catalogPrice = catalogPrices[tour.slug];
   const description =
     tour.seo_description[locale] || tour.summary[locale] || fm?.description || tour.title[locale];
   const related = allTours.filter((t) => t.slug !== tour.slug);
@@ -114,7 +125,13 @@ export default async function TourDetail({ params }: Props) {
   };
 
   // JSON-LD schemas — embedded as <script> tags below
-  const tripSchema = tourTripSchema({ tour, departures, locale, description });
+  const tripSchema = tourTripSchema({
+    tour,
+    departures,
+    locale,
+    description,
+    catalogPrice,
+  });
   const breadcrumb = breadcrumbSchema([
     { name: "Home", href: `/${locale}` },
     { name: t("departures_heading"), href: `/${locale}/tours` },
@@ -131,11 +148,18 @@ export default async function TourDetail({ params }: Props) {
     template: tWhatsApp.raw("tour_message") as string,
     tourTitle: tour.title[locale],
   });
-  const departurePrices = await localizePrices(
-    departures.map(({ price, currency }) => ({ amount: price, currency })),
-    locale,
+  const departurePrices = await Promise.all(
+    departures.map(async (departure) => {
+      if (departure.price <= 0) return catalogPrice;
+      return (
+        await localizePrices(
+          [{ amount: departure.price, currency: departure.currency }],
+          locale,
+        )
+      )[0];
+    }),
   );
-  const hasConvertedPrice = departurePrices.some((price) => price.converted);
+  const hasConvertedPrice = departurePrices.some((price) => price?.converted);
 
   return (
     <>
@@ -169,7 +193,12 @@ export default async function TourDetail({ params }: Props) {
           {departures.length === 0 ? (
             <article className="border-paper/30 bg-brand-red-deep/20 grid gap-5 border-2 p-5 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center">
               <CalendarIcon className="text-paper h-10 w-10" />
-              <p className="font-sans text-base leading-relaxed">{t("no_departures")}</p>
+              <div className="space-y-3">
+                <p className="font-sans text-base leading-relaxed">{t("no_departures")}</p>
+                {catalogPrice ? (
+                  <TourPrice price={catalogPrice} locale={locale} kind="from" tone="red" />
+                ) : null}
+              </div>
               <Button
                 href={tourWhatsAppHref}
                 external

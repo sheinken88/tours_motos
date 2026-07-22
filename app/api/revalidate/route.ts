@@ -10,7 +10,8 @@ import { type NextRequest, NextResponse } from "next/server";
  *
  * Tags (CLAUDE.md §6):
  *   - tours       — static route content cache
- *   - departures  — Sheets-backed calendar dates
+ *   - departures  — Sheets-backed calendar dates and availability
+ *   - tour-prices — Sheets-backed base prices and departure price overrides
  *   - all         — only fired when `?tag=all` is passed; not used yet
  *
  * Usage:
@@ -18,7 +19,7 @@ import { type NextRequest, NextResponse } from "next/server";
  *   curl -X POST -H "x-revalidate-secret: ..." https://motoonoff.com/api/revalidate
  */
 
-const TAGS = ["tours", "departures"] as const;
+const TAGS = ["tours", "departures", "tour-prices"] as const;
 
 export async function POST(request: NextRequest) {
   const expected = process.env.REVALIDATE_SECRET;

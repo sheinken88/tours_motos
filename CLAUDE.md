@@ -136,7 +136,7 @@ tailwind.config.ts
 
 ### Key patterns
 
-- **Tour content is hybrid**: structured data (dates, price, availability, capacity) lives in Sheets. Long-form descriptive content (overview, itinerary, FAQ) lives in MDX under `/content/tours/[slug]/[locale].mdx`. The tour page reads both and merges them.
+- **Tour content is hybrid**: operational data (base prices, dates, price overrides, availability, capacity) lives in Sheets. Curated route metadata and images remain static in the repo; long-form descriptive content (overview, itinerary, FAQ) lives in MDX under `/content/tours/[slug]/[locale].mdx`. The tour page reads both and merges them.
 - **Slug is the join key** between Sheets row and MDX file.
 - **Routing is locale-prefixed**. No automatic locale detection at the route level — user picks via switcher; preference stored in cookie.
 - **Halftone images are pre-processed assets**, not runtime conversions. See `/docs/halftone-pipeline.md`.
@@ -214,20 +214,23 @@ Client must be able to add tours, edit dates, and update availability without en
 
 ### Architecture
 
-- **Service account** with read-only access to a specific Sheet ID.
+- **Service account** with access to a specific Sheet ID.
 - Credentials in `GOOGLE_SHEETS_CREDENTIALS` env var (JSON, base64-encoded).
 - Sheet ID in `GOOGLE_SHEETS_TOURS_ID`.
-- Read layer in `/lib/sheets/` exposes typed functions: `getTours()`, `getTourBySlug(slug)`, `getUpcomingDepartures()`.
+- Read layer in `/lib/sheets/` exposes typed functions: `getTours()`, `getTourBySlug(slug)`, `getTourPriceMap()`, and `getUpcomingDepartures()`.
 
-### Sheet structure (proposed)
+### Sheet structure
 
-**Sheet: `Tours`**
+**Sheet: `Tour Prices`**
 
-| slug | title_es | title_en | title_pt | region | difficulty | duration_days | distance_km | base_price_usd | currency | hero_image | published |
+| tour_slug | price | currency |
 
 **Sheet: `Departures`**
 
-| tour_slug | start_date | end_date | capacity | spots_remaining | status (`open` / `low` / `sold_out`) | notes |
+| tour_slug | start_date | end_date | capacity | spots_remaining | status (`open` / `low` / `sold_out`) | price | currency | notes |
+
+`Tour Prices` is the stable base-price source. A non-zero `Departures.price`
+overrides it for that departure; empty or `0` falls back to the base price.
 
 ### Caching
 

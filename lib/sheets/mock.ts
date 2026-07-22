@@ -3,6 +3,7 @@ import {
   type GalleryImage,
   type ItineraryDay,
   type Tour,
+  type TourPrice,
   type TourSection,
 } from "./schemas";
 
@@ -743,6 +744,14 @@ export const MOCK_TOURS: Tour[] = [
     ),
     published: true,
   },
+];
+
+/** Mirrors the client-editable `Tour Prices` tab used in production. */
+export const MOCK_TOUR_PRICES: TourPrice[] = [
+  { tour_slug: "sobre-las-nubes", price: 2100000, currency: "ARS" },
+  { tour_slug: "gigantes-del-oeste", price: 0, currency: "ARS" },
+  { tour_slug: "volcanes-del-norte", price: 2100000, currency: "ARS" },
+  { tour_slug: "cruces-del-sur", price: 3200000, currency: "ARS" },
 ];
 
 export const MOCK_ITINERARY: ItineraryDay[] = [

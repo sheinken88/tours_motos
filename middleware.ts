@@ -4,7 +4,8 @@ import { routing } from "@/lib/i18n/routing";
 /**
  * next-intl locale middleware. Inspects every incoming request and either
  * redirects locale-less paths (/) to the default locale (/es) or resolves
- * the locale from the URL prefix and the NEXT_LOCALE cookie for return visits.
+ * the locale from the explicit URL prefix. Locale detection is disabled so
+ * browser language and stale cookies cannot send a new root visitor to /en.
  *
  * Excluded by the matcher below:
  *   - /api/*  — API routes are locale-neutral

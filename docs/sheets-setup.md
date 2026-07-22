@@ -1,16 +1,16 @@
 # Google Sheets Departures Setup
 
-> Current implementation note: Google Sheets is used only for departures and
-> calendar availability. Tour metadata, itinerary content, gallery references,
-> and route images are static repo content. Older `Tours`, `Itinerary`,
-> `Includes`, and `Gallery` tab notes below are retained as legacy reference,
-> not as the active production contract.
+> Current implementation note: Google Sheets is used for departure/calendar
+> availability and client-editable route prices. Tour metadata, itinerary
+> content, gallery references, and route images are static repo content. Older
+> `Tours`, `Itinerary`, `Includes`, and `Gallery` tab notes below are retained
+> as legacy reference, not as the active production contract.
 
 ---
 
 ## Architecture
 
-- **Source of truth:** `Departures` for calendar dates and `Inquiries` for lead capture.
+- **Source of truth:** `Tour Prices` for base route prices, `Departures` for calendar dates and availability, and `Inquiries` for lead capture.
 - **Auth:** Google Sheets API with a service account shared as Editor.
 - **Runtime:** Next.js server components read departure rows through `lib/sheets/`.
 - **Validation:** departure rows are parsed through Zod. Malformed rows are skipped
@@ -48,9 +48,10 @@ Treat the JSON key like a password. Never commit it.
 3. Copy the spreadsheet ID from the URL:
    `https://docs.google.com/spreadsheets/d/<THIS_IS_THE_ID>/edit`.
 4. Create the `Departures` tab.
-5. Freeze row 1 in every tab.
-6. Protect row 1 so the client cannot accidentally rename/delete headers.
-7. Add dropdown validations for enum fields listed below.
+5. Create the `Tour Prices` tab.
+6. Freeze row 1 in every tab.
+7. Protect row 1 so the client cannot accidentally rename/delete headers.
+8. Add dropdown validations for enum fields listed below.
 
 ---
 
@@ -138,6 +139,22 @@ Use one cell per language for the day body. Do not ask the client to write
 Markdown; the site handles layout, headings, stamps, and X-bullets.
 
 ---
+
+## Tab: `Tour Prices`
+
+One row per published route. This price remains visible on tour cards even
+when the route has no upcoming departure.
+
+| Header | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `tour_slug` | yes | string | Must match the stable route slug in `Slugs`. |
+| `price` | yes | number | Base route price. `0` or empty means “consultar”. |
+| `currency` | yes | enum | `USD`, `ARS`, `BRL`, `EUR`. |
+
+`Departures.price` is an optional departure-specific override. When it is
+empty or `0`, the website uses the matching `Tour Prices.price`. When it is
+greater than `0`, the departure price takes precedence for that date and for
+the catalog's “from” price calculation.
 
 ## Tab: `Departures`
 

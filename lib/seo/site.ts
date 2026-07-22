@@ -5,6 +5,7 @@
  */
 
 export const SITE_NAME = "Moto On/Off";
+export const INSTAGRAM_URL = "https://www.instagram.com/motoonofftours/";
 
 /**
  * Canonical site origin (no trailing slash). Reads from NEXT_PUBLIC_SITE_URL

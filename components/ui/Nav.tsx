@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button, SkullBadge } from "@/components/primitives";
 import { buildWhatsAppLink } from "@/lib/contact/whatsappLink";
 import { Link, usePathname } from "@/lib/i18n/navigation";
+import { INSTAGRAM_URL } from "@/lib/seo/site";
 import { LangSwitcher } from "./LangSwitcher";
 
 /**
@@ -84,7 +85,7 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const whatsAppHref = buildWhatsAppLink({ message: tWhatsApp("default_message") });
-  const instagramHref = "https://www.instagram.com/mototoursonoff/";
+  const instagramHref = INSTAGRAM_URL;
 
   function handleLogoClick() {
     if (pathname !== "/") return;

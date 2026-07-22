@@ -56,7 +56,7 @@ Spanish first (Rioplatense), then English, then Portuguese. Voice translates; id
 | ---------------- | ----------------------------------------- | ---------------------------------------------------------------------------- |
 | Framework        | **Next.js 14+ (App Router)**              | RSC by default; Client Components only where state/interactivity is required |
 | Styling          | **Tailwind CSS**                          | Theme tokens defined in `tailwind.config.ts` — see design system §8          |
-| CMS              | **Static routes + Google Sheets dates**   | Route catalog/images live in repo; departures/calendar dates come from Sheets |
+| CMS              | **Static routes + Google Sheets operations** | Route catalog/images live in repo; base prices and departures/availability come from Sheets |
 | Content (static) | **MDX**                                   | About, Custom Tours, legal pages — content that doesn't change often         |
 | Forms            | **React Hook Form + Zod**                 | Inquiry forms, custom tour forms                                             |
 | Animation        | **Framer Motion**                         | Used sparingly per design philosophy                                         |
@@ -68,7 +68,7 @@ Spanish first (Rioplatense), then English, then Portuguese. Voice translates; id
 ### Do not introduce
 
 - A backend framework (no Express, NestJS, etc.) — Next.js API routes / Server Actions are sufficient.
-- A database (the route catalog is static; Sheets is only for departures/calendar dates).
+- A database (the route catalog is static; Sheets is limited to client-editable prices and departures/calendar dates).
 - A traditional headless CMS (Sanity, Payload, Contentful) — explicitly rejected for this launch scope.
 - shadcn/ui or pre-built component libraries — components are custom; the aesthetic is incompatible with most defaults (rounded corners, soft shadows, neutral palettes).
 - CSS-in-JS (styled-components, emotion). Tailwind only.
@@ -136,7 +136,7 @@ tailwind.config.ts
 
 ### Key patterns
 
-- **Tour content is static**: route metadata, itinerary, sections, gallery references, and optimized images live in the repo. Departures/availability dates still come from Sheets.
+- **Tour content is static**: route metadata, itinerary, sections, gallery references, and optimized images live in the repo. Base prices and departures/availability dates come from Sheets.
 - **Slug is the join key** between static route metadata, MDX files, journal/workshop cases, and departure rows.
 - **Routing is locale-prefixed**. No automatic locale detection at the route level — user picks via switcher; preference stored in cookie.
 - **Halftone images are pre-processed assets**, not runtime conversions. See `/docs/halftone-pipeline.md`.
@@ -210,7 +210,7 @@ The token surface (regardless of declaration site) is:
 
 ### Why this choice
 
-The route catalog is curated launch content and should ship as static site data with local optimized imagery. The client still needs to edit departure dates and availability without engineering involvement, so Sheets remains the lowest-friction option for the calendar surface only.
+The route catalog is curated launch content and should ship as static site data with local optimized imagery. The client also needs to edit base prices and departure dates without engineering involvement, so Sheets owns those operational fields while the route content remains in the repo.
 
 ### Architecture
 
@@ -218,13 +218,20 @@ The route catalog is curated launch content and should ship as static site data 
 - Credentials in `GOOGLE_SHEETS_CREDENTIALS` env var (JSON, base64-encoded).
 - Sheet ID in `GOOGLE_SHEETS_TOURS_ID`.
 - Read layer in `/lib/sheets/` exposes typed functions: `getTours()`, `getTourBySlug(slug)`, `getUpcomingDepartures()`.
-- `getTours()` and route-detail helpers return static repo data; `getUpcomingDepartures()` and `getDeparturesByTour()` may read Sheets.
+- `getTours()` and route-detail helpers return static repo data; `getTourPriceMap()`, `getUpcomingDepartures()`, and `getDeparturesByTour()` may read Sheets.
 
 ### Sheet structure
 
+**Sheet: `Tour Prices`**
+
+One row per route: `tour_slug`, `price`, and `currency`. This is the stable
+base price source, independent of whether the route currently has a departure.
+`Departures.price` is an optional departure-specific override; empty or `0`
+falls back to the matching `Tour Prices` row.
+
 **Sheet: `Departures`**
 
-| tour_slug | start_date | end_date | capacity | spots_remaining | status (`open` / `low` / `sold_out`) | notes |
+| tour_slug | start_date | end_date | capacity | spots_remaining | status (`open` / `low` / `sold_out`) | price (optional override) | currency | notes |
 
 ### Caching
 
@@ -434,7 +441,7 @@ WhatsApp is the primary contact channel. Treat it as a first-class element of th
 ## 14. Environment Variables
 
 ```
-# Google Sheets — departures/calendar only
+# Google Sheets — prices and departures/calendar
 GOOGLE_SHEETS_CREDENTIALS=        # base64-encoded service account JSON
 GOOGLE_SHEETS_TOURS_ID=           # Spreadsheet ID
 

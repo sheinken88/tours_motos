@@ -7,6 +7,7 @@ import {
   MOCK_DEPARTURES,
   MOCK_GALLERY,
   MOCK_ITINERARY,
+  MOCK_TOUR_PRICES,
   MOCK_TOUR_SECTIONS,
   MOCK_TOURS,
   translateKnownSpanish,
@@ -16,16 +17,19 @@ import {
   type GalleryImage,
   type ItineraryDay,
   type Tour,
+  type TourPrice,
   type TourPageContent,
   type TourSection,
   parseDepartures,
+  parseTourPrices,
 } from "./schemas";
 
 /**
  * Query layer for route content and calendar departures.
  *
  * Tours, itinerary, route sections, gallery, and route images are static site
- * content. Google Sheets is used only for the departures/calendar surface.
+ * content. Google Sheets owns client-editable route prices and the
+ * departures/calendar surface.
  * Every reader is cached for 10 minutes and tagged so /api/revalidate can
  * flush departures after client edits.
  */
@@ -33,6 +37,7 @@ import {
 const REVALIDATE_SECONDS = 600;
 
 const DEPARTURES_RANGE = "Departures!A1:AZ1000";
+const TOUR_PRICES_RANGE = "'Tour Prices'!A1:C1000";
 
 type LocalizedText = Record<Locale, string>;
 type LocalizedList = Record<Locale, string[]>;
@@ -164,6 +169,18 @@ async function fetchDepartures(): Promise<Departure[]> {
   }
 }
 
+async function fetchTourPrices(): Promise<TourPrice[]> {
+  if (!(await hasSheetsCredentials())) return MOCK_TOUR_PRICES;
+
+  try {
+    const { headers, rows } = await fetchSheetRows(TOUR_PRICES_RANGE);
+    return parseTourPrices(headers, rows);
+  } catch (error) {
+    console.error("[sheets] fetchTourPrices failed", error);
+    return MOCK_TOUR_PRICES;
+  }
+}
+
 // ─── Cached gates ───────────────────────────────────────────────────────────
 
 const cachedTours = unstable_cache(fetchTours, ["content:tours:v3"], {
@@ -189,6 +206,11 @@ const cachedGallery = unstable_cache(fetchGallery, ["content:gallery"], {
 const cachedDepartures = unstable_cache(fetchDepartures, ["sheets:departures"], {
   revalidate: REVALIDATE_SECONDS,
   tags: ["departures"],
+});
+
+const cachedTourPrices = unstable_cache(fetchTourPrices, ["sheets:tour-prices"], {
+  revalidate: REVALIDATE_SECONDS,
+  tags: ["tour-prices"],
 });
 
 // ─── Public queries ─────────────────────────────────────────────────────────
@@ -264,24 +286,45 @@ export async function getDeparturesByTour(slug: string): Promise<Departure[]> {
 export type TourPriceMap = Record<string, LocalizedPrice>;
 
 /**
- * Public catalog price per tour, derived from upcoming departure rows. A zero
- * price means "consult us" and is intentionally omitted.
+ * Public catalog price per tour. The `Tour Prices` tab is the stable base
+ * price source; a non-zero price on an upcoming departure overrides that base
+ * price for the catalog. A zero price means "consult us" and is omitted.
  */
 export async function getTourPriceMap(locale: Locale): Promise<TourPriceMap> {
+  const [tours, tourPrices, allDepartures] = await Promise.all([
+    cachedTours(),
+    cachedTourPrices(),
+    cachedDepartures(),
+  ]);
   const today = new Date().toISOString().slice(0, 10);
-  const departures = (await cachedDepartures()).filter(
+  const departures = allDepartures.filter(
     (departure) => departure.start_date >= today && departure.price > 0,
   );
-  const byTour = new Map<string, Departure[]>();
+  const baseByTour = new Map<string, TourPrice>();
+  const overridesByTour = new Map<string, Departure[]>();
+
+  for (const tourPrice of tourPrices) {
+    if (tourPrice.price > 0) baseByTour.set(tourPrice.tour_slug, tourPrice);
+  }
 
   for (const departure of departures) {
-    const current = byTour.get(departure.tour_slug) ?? [];
+    const current = overridesByTour.get(departure.tour_slug) ?? [];
     current.push(departure);
-    byTour.set(departure.tour_slug, current);
+    overridesByTour.set(departure.tour_slug, current);
   }
 
   const entries = await Promise.all(
-    [...byTour.entries()].map(async ([slug, candidates]) => {
+    tours.map(async (tour) => {
+      const overrides = overridesByTour.get(tour.slug) ?? [];
+      const base = baseByTour.get(tour.slug);
+      const candidates = overrides.length
+        ? overrides.map(({ price, currency }) => ({ price, currency }))
+        : base
+          ? [{ price: base.price, currency: base.currency }]
+          : [];
+
+      if (!candidates.length) return null;
+
       const localized = await localizePrices(
         candidates.map(({ price, currency }) => ({ amount: price, currency })),
         locale,
@@ -293,9 +336,11 @@ export async function getTourPriceMap(locale: Locale): Promise<TourPriceMap> {
             .slice(1)
             .reduce((lowest, price) => (price.amount < lowest.amount ? price : lowest), first)
         : first;
-      return [slug, selected] as const;
+      return [tour.slug, selected] as const;
     }),
   );
 
-  return Object.fromEntries(entries);
+  return Object.fromEntries(
+    entries.filter((entry): entry is [string, LocalizedPrice] => entry !== null),
+  );
 }

@@ -163,6 +163,17 @@ export const TourSchema = z.object({
 
 export type Tour = z.infer<typeof TourSchema>;
 
+// ─── Tour price ────────────────────────────────────────────────────────────
+
+/** One editable base price per published route, independent of departures. */
+export const TourPriceSchema = z.object({
+  tour_slug: requiredText,
+  price: nonNegativeNumber,
+  currency: z.enum(currencyCodes).default("USD"),
+});
+
+export type TourPrice = z.infer<typeof TourPriceSchema>;
+
 // ─── Itinerary ──────────────────────────────────────────────────────────────
 
 export const ItineraryDaySchema = z.object({
@@ -284,6 +295,14 @@ function shapeItineraryRow(cells: RawCells): unknown {
   };
 }
 
+function shapeTourPriceRow(cells: RawCells): unknown {
+  return {
+    tour_slug: cells.tour_slug ?? cells.slug ?? "",
+    price: cells.price ?? cells.base_price ?? "0",
+    currency: cells.currency || "USD",
+  };
+}
+
 function shapeTourSectionRow(cells: RawCells): unknown {
   return {
     tour_slug: cells.tour_slug ?? cells.tour_id ?? cells.slug ?? "",
@@ -321,7 +340,7 @@ function shapeDepartureRow(cells: RawCells): unknown {
 }
 
 function logSkippedRow(
-  kind: "tour" | "itinerary" | "section" | "gallery" | "departure",
+  kind: "tour" | "tour_price" | "itinerary" | "section" | "gallery" | "departure",
   row: unknown,
   error: z.ZodError,
 ) {
@@ -334,7 +353,7 @@ function logSkippedRow(
 }
 
 function parseRows<T>(
-  kind: "tour" | "itinerary" | "section" | "gallery" | "departure",
+  kind: "tour" | "tour_price" | "itinerary" | "section" | "gallery" | "departure",
   headers: string[],
   rows: unknown[],
   shape: (cells: RawCells) => unknown,
@@ -359,6 +378,10 @@ export function parseTours(headers: string[], rows: unknown[]): Tour[] {
   return parseRows("tour", headers, rows, shapeTourRow, TourSchema)
     .filter((tour) => tour.published)
     .sort((a, b) => a.sort_order - b.sort_order || a.title.es.localeCompare(b.title.es));
+}
+
+export function parseTourPrices(headers: string[], rows: unknown[]): TourPrice[] {
+  return parseRows("tour_price", headers, rows, shapeTourPriceRow, TourPriceSchema);
 }
 
 export function parseItinerary(headers: string[], rows: unknown[]): ItineraryDay[] {

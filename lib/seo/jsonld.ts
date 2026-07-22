@@ -1,4 +1,5 @@
 import { type Locale, localeCodes } from "@/lib/i18n/config";
+import { type LocalizedPrice } from "@/lib/currency/types";
 import { type Departure, type Tour } from "@/lib/sheets/schemas";
 import { SITE_NAME, getSiteUrl } from "./site";
 
@@ -13,13 +14,15 @@ type TourTripInput = {
   locale: Locale;
   /** Long-form description from MDX frontmatter, used as schema description. */
   description: string;
+  /** Localized catalog price, retaining the source amount/currency for JSON-LD. */
+  catalogPrice?: LocalizedPrice;
 };
 
 /**
  * TouristTrip schema for an individual tour page.
  * Combines Sheets structured data + departures + MDX description.
  */
-export function tourTripSchema({ tour, departures, locale, description }: TourTripInput) {
+export function tourTripSchema({ tour, departures, locale, description, catalogPrice }: TourTripInput) {
   const site = getSiteUrl();
   const slug = tour.slugs[locale];
   const url = `${site}/${locale}/tours/${slug}`;
@@ -31,21 +34,42 @@ export function tourTripSchema({ tour, departures, locale, description }: TourTr
 
   const offers = departures
     .filter((d) => d.tour_slug === tour.slug && d.status !== "sold_out")
-    .map((d) => ({
-      "@type": "Offer",
-      url,
-      priceCurrency: tour.currency,
-      price: tour.base_price_usd,
-      validFrom: d.start_date,
-      availability:
-        d.status === "open"
-          ? "https://schema.org/InStock"
-          : "https://schema.org/LimitedAvailability",
-      eligibleQuantity: {
-        "@type": "QuantitativeValue",
-        value: d.spots_remaining,
-      },
-    }));
+    .map((d) => {
+      const hasDeparturePrice = d.price > 0;
+      const price = hasDeparturePrice ? d.price : (catalogPrice?.sourceAmount ?? 0);
+      const priceCurrency = hasDeparturePrice
+        ? d.currency
+        : (catalogPrice?.sourceCurrency ?? tour.currency);
+      return {
+        "@type": "Offer",
+        url,
+        priceCurrency,
+        price,
+        validFrom: d.start_date,
+        availability:
+          d.status === "open"
+            ? "https://schema.org/InStock"
+            : "https://schema.org/LimitedAvailability",
+        eligibleQuantity: {
+          "@type": "QuantitativeValue",
+          value: d.spots_remaining,
+        },
+      };
+    })
+    .filter((offer) => offer.price > 0);
+
+  const baseOffer =
+    departures.length === 0 && catalogPrice
+      ? [
+          {
+            "@type": "Offer",
+            url,
+            priceCurrency: catalogPrice.sourceCurrency,
+            price: catalogPrice.sourceAmount,
+            availability: "https://schema.org/PreOrder",
+          },
+        ]
+      : [];
 
   return {
     "@context": "https://schema.org",
@@ -68,7 +92,7 @@ export function tourTripSchema({ tour, departures, locale, description }: TourTr
     },
     touristType: tour.difficulty,
     duration: `P${tour.duration_days}D`,
-    offers,
+    offers: offers.length ? offers : baseOffer,
   };
 }
 

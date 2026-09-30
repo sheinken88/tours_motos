@@ -956,12 +956,13 @@ function RouteMapSection({
         </div>
 
         <div className="shadow-sticker-ink border-ink/40 bg-paper-aged relative min-h-[28rem] overflow-hidden border-2 md:min-h-[34rem]">
+          {/* This srcDoc is trusted, repo-owned content. Preserve its origin so OSM receives a Referer. */}
           <iframe
             title={text.frameTitle}
             srcDoc={map.srcDoc[locale]}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            sandbox="allow-scripts"
+            sandbox="allow-scripts allow-same-origin"
             className="h-full min-h-[28rem] w-full border-0 md:min-h-[34rem]"
           />
         </div>

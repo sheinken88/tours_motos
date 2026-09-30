@@ -94,25 +94,17 @@ export default async function TourDetail({ params }: Props) {
     permanentRedirect(`/${locale}/tours/${tour.slugs[locale]}`);
   }
 
-  const [
-    allTours,
-    fm,
-    MdxBody,
-    mdxPracticalSections,
-    t,
-    tCommon,
-    tWhatsApp,
-    catalogPrices,
-  ] = await Promise.all([
-    getTours(locale),
-    getTourFrontmatter(tour.slug, locale),
-    getTourMdxComponent(tour.slug, locale),
-    getTourPracticalSectionsFromMdx(tour.slug, locale),
-    getTranslations({ locale, namespace: "tour_detail" }),
-    getTranslations({ locale, namespace: "common" }),
-    getTranslations({ locale, namespace: "whatsapp" }),
-    getTourPriceMap(locale),
-  ]);
+  const [allTours, fm, MdxBody, mdxPracticalSections, t, tCommon, tWhatsApp, catalogPrices] =
+    await Promise.all([
+      getTours(locale),
+      getTourFrontmatter(tour.slug, locale),
+      getTourMdxComponent(tour.slug, locale),
+      getTourPracticalSectionsFromMdx(tour.slug, locale),
+      getTranslations({ locale, namespace: "tour_detail" }),
+      getTranslations({ locale, namespace: "common" }),
+      getTranslations({ locale, namespace: "whatsapp" }),
+      getTourPriceMap(locale),
+    ]);
 
   const catalogPrice = catalogPrices[tour.slug];
   const description =
@@ -152,10 +144,7 @@ export default async function TourDetail({ params }: Props) {
     departures.map(async (departure) => {
       if (departure.price <= 0) return catalogPrice;
       return (
-        await localizePrices(
-          [{ amount: departure.price, currency: departure.currency }],
-          locale,
-        )
+        await localizePrices([{ amount: departure.price, currency: departure.currency }], locale)
       )[0];
     }),
   );

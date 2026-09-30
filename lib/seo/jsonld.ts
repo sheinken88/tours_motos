@@ -22,7 +22,13 @@ type TourTripInput = {
  * TouristTrip schema for an individual tour page.
  * Combines Sheets structured data + departures + MDX description.
  */
-export function tourTripSchema({ tour, departures, locale, description, catalogPrice }: TourTripInput) {
+export function tourTripSchema({
+  tour,
+  departures,
+  locale,
+  description,
+  catalogPrice,
+}: TourTripInput) {
   const site = getSiteUrl();
   const slug = tour.slugs[locale];
   const url = `${site}/${locale}/tours/${slug}`;
